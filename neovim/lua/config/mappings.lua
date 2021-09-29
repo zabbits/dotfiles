@@ -8,6 +8,9 @@ end
 
 local opt = {}
 
+-- 移除space移动光标
+map("n", "<Space>", "<NOP>", opt)
+
 -- nvimtree
 map("n", "<C-n>", ":NvimTreeToggle<CR>", opt)
 
@@ -40,7 +43,7 @@ map("n", "<Esc>", ":noh<CR>", opt)
 -- end
 -- 
 -- _G.s_tab_complete = function()
---     if vim.fn.pumvisible() == 1 then
+    -- if vim.fn.pumvisible() == 1 then
 --         return t "<C-p>"
 --     elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
 --         return t "<Plug>(vsnip-jump-prev)"

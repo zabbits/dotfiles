@@ -17,4 +17,7 @@ require('config.mappings')
 require('config.lsp')
 require('config.themes')
 require('config.comment')
+require('config.venn')
+require('config.telescope')
+
 

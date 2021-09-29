@@ -79,4 +79,12 @@ return require('packer').startup(function()
         "npxbr/glow.nvim", 
     }
 
+    use {
+      "jbyuki/venn.nvim"
+    }
+
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = { {'nvim-lua/plenary.nvim'} }
+    }
 end)
