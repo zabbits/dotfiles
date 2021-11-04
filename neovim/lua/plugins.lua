@@ -1,90 +1,141 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
+-- this file can be loaded by calling `lua require('plugins')` from your init.vim
+
+local safe_load = function(plugin, hook)
+
+end
 
 return require('packer').startup(function()
-	-- Packer can manage itself
-	use 'wbthomason/packer.nvim'
+    -- Packer can manage itself
+    use 'wbthomason/packer.nvim'
 
     use 'nvim-lua/plenary.nvim'
 
-
-
+    -- treesitter相关 
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
+        run = ':TSUpdate',
+        requires = {
+          'nvim-treesitter/nvim-treesitter-refactor',
+          "nvim-treesitter/nvim-treesitter-textobjects",
+          'p00f/nvim-ts-rainbow',
+          'windwp/nvim-ts-autotag',
+        },
+        config = {
+          require("config.treesitter").setup() 
+        },
     }
 
-    use {
-        "hrsh7th/nvim-compe"
-    }
 
+    -- lsp相关
     use {
         "neovim/nvim-lspconfig",
+        requires = {
+          "williamboman/nvim-lsp-installer",
+          "onsails/lspkind-nvim",
+          "glepnir/lspsaga.nvim",
+          "RRethy/vim-illuminate",
+          "ray-x/lsp_signature.nvim",
+        },
+        config = {
+          require("config.lsp").setup()
+        },
+    }
+
+    -- 补全相关
+    use {
+        "hrsh7th/nvim-cmp",
+        requires = {
+            'hrsh7th/cmp-vsnip',
+            'hrsh7th/vim-vsnip',
+            'hrsh7th/vim-vsnip-integ',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-nvim-lua',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            "hrsh7th/cmp-calc",
+            "hrsh7th/cmp-emoji",
+            "ray-x/cmp-treesitter",
+            'windwp/nvim-autopairs',  -- 用于补全函数参数括号
+        },
+        config = {
+          require("config.cmp").setup()
+        }
     }
 
     use {
-        "kabouzeid/nvim-lspinstall",
+        'windwp/nvim-autopairs',
+        config = {
+            require("nvim-autopairs").setup {}
+        }
     }
 
+    -- 目录树
     use {
-        "onsails/lspkind-nvim",
+      'kyazdani42/nvim-tree.lua',
+      requires = 'kyazdani42/nvim-web-devicons',
+      config = {
+        require("config.nvimtree").setup()
+      }
     }
 
+    -- wsl copy
     use {
-        "terrortylor/nvim-comment",
+      'christianfosli/wsl-copy'
     }
 
-
-
-	-- norg
-	use { 
-		"vhyrro/neorg",
-		requires = "nvim-lua/plenary.nvim"
-	}
-
-
-
+    -- UI相关
     use {
         'kyazdani42/nvim-web-devicons'
     }
 
     use {
-        'akinsho/nvim-bufferline.lua', 
-        requires = 'kyazdani42/nvim-web-devicons'
+        'akinsho/nvim-bufferline.lua',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = {
+          require('config.bufferline').setup()
+        }
     }
 
     use {
         'hoob3rt/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+        requires = {'kyazdani42/nvim-web-devicons', opt = true},
+        config = {
+          require('config.lualine').setup()
+        }
     }
 
     use {
-        "lukas-reineke/indent-blankline.nvim"
+        "SmiteshP/nvim-gps",
+        config = {
+          require('nvim-gps').setup()
+        },
     }
 
     use {
-        'windwp/nvim-autopairs'
+        'navarasu/onedark.nvim',
+        config = {
+          require('onedark').setup()
+        },
     }
 
     use {
-        'kyazdani42/nvim-tree.lua',
-        requires = 'kyazdani42/nvim-web-devicons'
+      'folke/lsp-colors.nvim',
+      config = {
+        require("lsp-colors").setup({})
+      },
     }
 
     use {
-        'navarasu/onedark.nvim'
-    }
-
-    -- markdown preview, 建议手动安装命令行的glow后再安装该插件, 而不是用内置的GlowInstall命令安装
-    use {
-        "npxbr/glow.nvim", 
+      "ahmedkhalf/project.nvim",
+      config = function()
+        require("project_nvim").setup {}
+      end,
     }
 
     use {
       "jbyuki/venn.nvim"
     }
 
-    use {
-      'nvim-telescope/telescope.nvim',
-      requires = { {'nvim-lua/plenary.nvim'} }
-    }
 end)
+

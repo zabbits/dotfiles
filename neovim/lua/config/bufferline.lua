@@ -1,17 +1,15 @@
-local ok, configs = pcall(require, 'bufferline')
-if not ok then
-    return
+local M = {}
+
+function M.setup()
+    require("bufferline").setup({
+        options = {
+            numbers = "both",
+            diagnostics = "nvim_lsp",
+            show_tab_indicators = true,
+            show_buffer_close_icons = false,
+            show_close_icon = false
+        }
+    })
 end
 
-configs.setup{
-    options = {
-        offsets = {
-            {
-                filetype = "NvimTree",
-                text = "File Explorer",
-                highlight = "Directory",
-                text_align = "left"
-            }
-        }
-    }
-}
+return M
