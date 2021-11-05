@@ -1,16 +1,26 @@
 -- this file can be loaded by calling `lua require('plugins')` from your init.vim
+-- packer logs in stdpath(cache)/packer.nvim.log
 
-local safe_load = function(plugin, hook)
-
+local safe_load = function(plugin, opt)
+  local ok, p pcall(require, plugin)
+  if not ok then
+    return
+  end
+  local options = {}
+  if opt then
+    options = opt
+  end
+  p.setup(options)
 end
 
-return require('packer').startup(function()
+return require('packer').startup({
+  function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
     use 'nvim-lua/plenary.nvim'
 
-    -- treesitter相关 
+    -- treesitter相关
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
@@ -19,12 +29,12 @@ return require('packer').startup(function()
           "nvim-treesitter/nvim-treesitter-textobjects",
           'p00f/nvim-ts-rainbow',
           'windwp/nvim-ts-autotag',
+          'nvim-lua/plenary.nvim',
         },
-        config = {
-          require("config.treesitter").setup() 
-        },
+        config = function()
+          require("config.treesitter").setup()
+        end,
     }
-
 
     -- lsp相关
     use {
@@ -36,9 +46,9 @@ return require('packer').startup(function()
           "RRethy/vim-illuminate",
           "ray-x/lsp_signature.nvim",
         },
-        config = {
+        config = function()
           require("config.lsp").setup()
-        },
+        end,
     }
 
     -- 补全相关
@@ -58,25 +68,25 @@ return require('packer').startup(function()
             "ray-x/cmp-treesitter",
             'windwp/nvim-autopairs',  -- 用于补全函数参数括号
         },
-        config = {
+        config = function()
           require("config.cmp").setup()
-        }
+        end,
     }
 
     use {
         'windwp/nvim-autopairs',
-        config = {
+        config = function()
             require("nvim-autopairs").setup {}
-        }
+        end,
     }
 
     -- 目录树
     use {
       'kyazdani42/nvim-tree.lua',
       requires = 'kyazdani42/nvim-web-devicons',
-      config = {
+      config = function()
         require("config.nvimtree").setup()
-      }
+      end,
     }
 
     -- wsl copy
@@ -92,50 +102,50 @@ return require('packer').startup(function()
     use {
         'akinsho/nvim-bufferline.lua',
         requires = 'kyazdani42/nvim-web-devicons',
-        config = {
+        config = function()
           require('config.bufferline').setup()
-        }
+        end,
     }
 
     use {
         'hoob3rt/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true},
-        config = {
+        config = function()
           require('config.lualine').setup()
-        }
+        end,
     }
 
     use {
         "SmiteshP/nvim-gps",
-        config = {
+        config = function()
           require('nvim-gps').setup()
-        },
+        end,
     }
 
     use {
         'navarasu/onedark.nvim',
-        config = {
+        config = function()
           require('onedark').setup()
-        },
+        end,
     }
 
     use {
       'folke/lsp-colors.nvim',
-      config = {
-        require("lsp-colors").setup({})
-      },
-    }
-
-    use {
-      "ahmedkhalf/project.nvim",
       config = function()
-        require("project_nvim").setup {}
+        require("lsp-colors").setup()
       end,
     }
 
     use {
       "jbyuki/venn.nvim"
     }
-
-end)
+  end,
+  config = {
+    display = {
+      open_fn = function()
+        return require('packer.util').float({ border = 'single' })
+      end
+    }
+  }
+})
 

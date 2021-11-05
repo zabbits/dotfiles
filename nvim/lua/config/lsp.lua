@@ -45,6 +45,15 @@ end
 
 
 function M.setup()
+  local utils = require('config.utils')
+  local plugins = {
+    'lspconfig', 'nvim-lsp-installer', 'cmp_nvim_lsp', 'lspsaga', 'lsp_signature', 'illuminate'
+  }
+
+  if not utils.exist(plugins) then
+    return
+  end
+
 	local nvim_lsp = require('lspconfig')
 	-- Add additional capabilities supported by nvim-cmp
 	local lsp_installer = require("nvim-lsp-installer")
@@ -60,6 +69,13 @@ function M.setup()
 	    vim.cmd [[ do User LspAttachBuffers ]]
 	end)
   require('lspsaga').init_lsp_saga()
+
+  -- 关闭lsp行内提示
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+    }
+  )
 end
 
 return M

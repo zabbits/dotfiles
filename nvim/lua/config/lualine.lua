@@ -1,8 +1,15 @@
 local M = {}
 
 function M.setup()
-  local lualine = require "lualine"
+  local utils = require('config.utils')
+  local plugins = {
+    'lualine', 'nvim-gps'
+  }
+  if not utils.exist(plugins) then
+    return
+  end
 
+  local lualine = require("lualine")
   -- Color table for highlights
   local colors = {
     bg = "#202328",
