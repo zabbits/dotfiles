@@ -52,6 +52,7 @@ function M.setup()
         normal = { c = { fg = colors.fg, bg = colors.bg } },
         inactive = { c = { fg = colors.fg, bg = colors.bg } },
       },
+      extensions = {'nvim-tree'},
     },
     sections = {
       -- these are to remove the defaults

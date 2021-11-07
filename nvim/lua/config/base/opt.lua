@@ -36,6 +36,7 @@ function M.setup()
   cmd[[
     autocmd FileType markdown,xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2
   ]]
+
 end
 
 return M

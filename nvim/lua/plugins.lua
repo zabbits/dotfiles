@@ -1,18 +1,6 @@
 -- this file can be loaded by calling `lua require('plugins')` from your init.vim
 -- packer logs in stdpath(cache)/packer.nvim.log
 
-local safe_load = function(plugin, opt)
-  local ok, p pcall(require, plugin)
-  if not ok then
-    return
-  end
-  local options = {}
-  if opt then
-    options = opt
-  end
-  p.setup(options)
-end
-
 return require('packer').startup({
   function(use)
     -- Packer can manage itself
@@ -45,6 +33,7 @@ return require('packer').startup({
           "glepnir/lspsaga.nvim",
           "RRethy/vim-illuminate",
           "ray-x/lsp_signature.nvim",
+          "folke/trouble.nvim",
         },
         config = function()
           require("config.lsp").setup()
@@ -73,11 +62,43 @@ return require('packer').startup({
         end,
     }
 
+    -- debug
+    use {
+      'mfussenegger/nvim-dap',
+      requires = {
+        "Pocco81/DAPInstall.nvim",
+      }
+    }
+
+    use {
+        "rcarriga/nvim-dap-ui",
+        requires = {
+          'mfussenegger/nvim-dap',
+        },
+        after = {
+          'mfussenegger/nvim-dap',
+        }
+    }
+
+    -- 括号补全
     use {
         'windwp/nvim-autopairs',
         config = function()
             require("nvim-autopairs").setup {}
         end,
+    }
+
+    -- 注释
+    use {
+      'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end,
+    }
+
+    -- 格式化
+    use {
+      'sbdchd/neoformat'
     }
 
     -- 目录树
@@ -109,7 +130,7 @@ return require('packer').startup({
 
     use {
         'hoob3rt/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true},
+        requires = {'kyazdani42/nvim-web-devicons'},
         config = function()
           require('config.lualine').setup()
         end,
