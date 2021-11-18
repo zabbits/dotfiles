@@ -64,20 +64,26 @@ local tree_keymap = function()
 end
 
 local misc_keymap = function ()
-  -- let space not move cursor
-  map("n", "<Space>", "<NOP>", opt)
-  map("v", "<Space>", "<NOP>", opt)
+  map('', '<Space>', '<Nop>', opt)
   -- use ESC to turn off search highlighting
   map("n", "<Esc>", ":noh<CR>", opt)
 
-  -- insert new line below currentline and stay cursor in currentline
+  -- insert new line below currentline and keep cursor in currentline
   map('n', 'zj', 'o<ESC>k', opt)
-  -- insert new line above currentline and stay cursor in currentline
+  -- insert new line above currentline and keep cursor in currentline
   map('n', 'zk', 'O<ESC>j', opt)
+
   -- let cursor in next line with insert mode
-  map('i', '<C-j>', '<ESC>ji', opt)
+  map('i', '<C-j>', '<ESC>ja', opt)
   -- let cursor in next line with insert mode
-  map('i', '<C-k>', '<ESC>ki', opt)
+  map('i', '<C-k>', '<ESC>ka', opt)
+
+  --Remap for dealing with word wrap
+  map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
+  map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+
+  -- Y yank until the end of line  (note: this is now a default on master)
+  map('n', 'Y', 'y$', { noremap = true })
 end
 
 

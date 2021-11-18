@@ -5,161 +5,49 @@ return require('packer').startup({
   function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-
     use 'nvim-lua/plenary.nvim'
-
-    -- treesitter相关
+    -- color highlight
     use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-        requires = {
-          'nvim-treesitter/nvim-treesitter-refactor',
-          "nvim-treesitter/nvim-treesitter-textobjects",
-          'p00f/nvim-ts-rainbow',
-          'windwp/nvim-ts-autotag',
-          'nvim-lua/plenary.nvim',
-        },
-        config = function()
-          require("config.treesitter").setup()
-        end,
-    }
-
-    -- lsp相关
-    use {
-        "neovim/nvim-lspconfig",
-        requires = {
-          "williamboman/nvim-lsp-installer",
-          "onsails/lspkind-nvim",
-          "glepnir/lspsaga.nvim",
-          "RRethy/vim-illuminate",
-          "ray-x/lsp_signature.nvim",
-          "folke/trouble.nvim",
-        },
-        config = function()
-          require("config.lsp").setup()
-        end,
-    }
-
-    -- 补全相关
-    use {
-        "hrsh7th/nvim-cmp",
-        requires = {
-            'hrsh7th/cmp-vsnip',
-            'hrsh7th/vim-vsnip',
-            'hrsh7th/vim-vsnip-integ',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-nvim-lua',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-cmdline',
-            "hrsh7th/cmp-calc",
-            "hrsh7th/cmp-emoji",
-            "ray-x/cmp-treesitter",
-            'windwp/nvim-autopairs',  -- 用于补全函数参数括号
-        },
-        config = function()
-          require("config.cmp").setup()
-        end,
-    }
-
-    -- debug
-    use {
-      'mfussenegger/nvim-dap',
-      requires = {
-        "Pocco81/DAPInstall.nvim",
-      }
+      'norcalli/nvim-colorizer.lua',
+      event = 'BufEnter',
+      config = function() 
+        require'colorizer'.setup({
+        })
+      end
     }
 
     use {
-        "rcarriga/nvim-dap-ui",
-        requires = {
-          'mfussenegger/nvim-dap',
-        },
-        after = {
-          'mfussenegger/nvim-dap',
-        }
-    }
-
-    -- 括号补全
-    use {
-        'windwp/nvim-autopairs',
-        config = function()
-            require("nvim-autopairs").setup {}
-        end,
-    }
-
-    -- 注释
-    use {
-      'numToStr/Comment.nvim',
+      'folke/tokyonight.nvim',
+      event = 'BufEnter',
       config = function()
-          require('Comment').setup()
-      end,
-    }
-
-    -- 格式化
-    use {
-      'sbdchd/neoformat'
-    }
-
-    -- 目录树
-    use {
-      'kyazdani42/nvim-tree.lua',
-      requires = 'kyazdani42/nvim-web-devicons',
-      config = function()
-        require("config.nvimtree").setup()
-      end,
-    }
-
-    -- wsl copy
-    use {
-      'christianfosli/wsl-copy'
-    }
-
-    -- UI相关
-    use {
-        'kyazdani42/nvim-web-devicons'
+        vim.cmd[[colorscheme tokyonight]]
+      end
     }
 
     use {
-        'akinsho/nvim-bufferline.lua',
-        requires = 'kyazdani42/nvim-web-devicons',
-        config = function()
-          require('config.bufferline').setup()
-        end,
+      'ms-jpq/chadtree',
+      branch = 'chad',
+      run = 'python3 -m chadtree deps',
     }
 
     use {
-        'hoob3rt/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons'},
-        config = function()
-          require('config.lualine').setup()
-        end,
+      'ms-jpq/coq_nvim',
+      event = 'BufEnter',
+      branch = 'coq',
     }
 
     use {
-        "SmiteshP/nvim-gps",
-        config = function()
-          require('nvim-gps').setup()
-        end,
+      'ms-jpq/coq.artifacts',
+      event = 'BufEnter',
+      branch = 'artifacts',
     }
 
     use {
-        'navarasu/onedark.nvim',
-        config = function()
-          require('onedark').setup()
-        end,
+      'ms-jpq/coq.thirdparty',
+      event = 'BufEnter',
+      branch = '3p'
     }
 
-    use {
-      'folke/lsp-colors.nvim',
-      config = function()
-        require("lsp-colors").setup()
-      end,
-    }
-
-    use {
-      "jbyuki/venn.nvim"
-    }
   end,
   config = {
     display = {
