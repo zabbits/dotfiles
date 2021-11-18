@@ -13,7 +13,7 @@ function M.setup()
   o.completeopt = 'menuone,noselect'
 
   o.termguicolors = true
-  -- 缩进及tab, TODO 根据文件类型设置
+  -- tabs and indent
   o.breakindent = true
   o.shiftround  = true
   o.autoindent = true
@@ -54,9 +54,8 @@ function M.setup()
   ]]
 
   -- don't auto commenting new lines
-  cmd [[
-      autocmd Filetype * set fo-=cro
-  ]]
+  cmd [[au BufEnter * set fo-=c fo-=r fo-=o fo-=2 fo-=a]]
+
 
 end
 

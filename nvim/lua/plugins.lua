@@ -30,23 +30,33 @@ return require('packer').startup({
       run = 'python3 -m chadtree deps',
     }
 
+
+    -- 补全
     use {
-      'ms-jpq/coq_nvim',
+      'hrsh7th/vim-vsnip',
       event = 'BufEnter',
-      branch = 'coq',
+    }
+    use { 
+      'hrsh7th/nvim-cmp',
+      after = 'vim-vsnip',
+      config = function()
+        require('config.completion').setup()
+      end
+    }
+    use {
+      'hrsh7th/cmp-vsnip',
+      after = 'nvim-cmp',
+    }
+    use {
+      'hrsh7th/cmp-buffer',
+      after = 'nvim-cmp',
+    }
+    -- 默认定义了大量snippets
+    use {
+      "rafamadriz/friendly-snippets",
+      after = 'nvim-cmp',
     }
 
-    use {
-      'ms-jpq/coq.artifacts',
-      event = 'BufEnter',
-      branch = 'artifacts',
-    }
-
-    use {
-      'ms-jpq/coq.thirdparty',
-      event = 'BufEnter',
-      branch = '3p'
-    }
 
   end,
   config = {
