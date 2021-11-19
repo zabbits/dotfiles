@@ -72,13 +72,19 @@ return require('packer').startup({
 
     -- telescope
     use {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      event = 'BufEnter',
+      run = 'make'
+    }
+    use {
       'nvim-telescope/telescope.nvim',
       requires = { 'nvim-lua/plenary.nvim' },
-      event = 'BufEnter',
+      after = 'telescope-fzf-native.nvim',
       config = function()
         require('config.telescope').setup()
       end
     }
+
 
 
     -- 目录树
