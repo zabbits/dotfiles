@@ -43,7 +43,7 @@ return require('packer').startup({
     -- better % match
     use {
       'andymass/vim-matchup',
-      event = 'UIEnter',
+      event = 'BufEnter',
       config = function()
         vim.g.matchup_matchparen_offscreen = {method = 'popup'}
       end
@@ -71,13 +71,19 @@ return require('packer').startup({
 
 
     -- telescope
-    -- use {
-    --   'nvim-telescope/telescope.nvim',
-    --   requires = { 'nvim-lua/plenary.nvim' },
-    --   event = function()
-    --     require('config.telescope').setup()
-    --   end
-    -- }
+    use {
+      'nvim-telescope/telescope.nvim', 
+      event = 'BufEnter',
+      run = 'make',
+    }
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = { 'nvim-lua/plenary.nvim' },
+      after = 'telescope-fzf-native.nvim',
+      config = function()
+        require('config.telescope').setup()
+      end
+    }
 
 
     -- 目录树
@@ -94,12 +100,12 @@ return require('packer').startup({
     -- 补全
     use {
       'hrsh7th/vim-vsnip',
-      event = 'BufEnter',
+      event = 'InsertEnter',
     }
     -- 提供了类似vscode补全的类型图标
     use {
       'onsails/lspkind-nvim',
-      event = 'BufEnter',
+      event = 'InsertEnter',
     }
     use {
       'hrsh7th/nvim-cmp',
@@ -112,9 +118,11 @@ return require('packer').startup({
       'hrsh7th/cmp-vsnip',
       after = 'nvim-cmp',
     }
+    -- 用于lsp, 所以提前加载
     use {
       'hrsh7th/cmp-nvim-lsp',
-      after = 'nvim-cmp',
+      event = 'BufEnter',
+      -- after = 'nvim-cmp',
     }
     use {
       'hrsh7th/cmp-buffer',
@@ -128,7 +136,7 @@ return require('packer').startup({
     -- 括号补全
     use {
       'windwp/nvim-autopairs',
-      event = 'BufEnter',
+      event = 'InsertEnter',
       config = function()
         require('nvim-autopairs').setup({})
       end
