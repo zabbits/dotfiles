@@ -1,33 +1,98 @@
 -- this file can be loaded by calling `lua require('plugins')` from your init.vim
 -- packer logs in stdpath(cache)/packer.nvim.log
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
 
 return require('packer').startup({
   function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
     use 'nvim-lua/plenary.nvim'
+
     -- color highlight
     use {
       'norcalli/nvim-colorizer.lua',
       event = 'BufEnter',
       config = function() 
-        require'colorizer'.setup({
-        })
+        require'colorizer'.setup({})
+        vim.cmd [[au BufEnter * ColorizerAttachToBuffer]]
       end
     }
 
+    -- 主题
     use {
       'folke/tokyonight.nvim',
       event = 'BufEnter',
       config = function()
-        vim.cmd[[colorscheme tokyonight]]
+        vim.cmd [[colorscheme tokyonight]]
       end
     }
 
+    -- 缩进
+    use {
+      "lukas-reineke/indent-blankline.nvim",
+      after = 'tokyonight.nvim',
+      config = function ()
+        require('config.indentline').setup()
+      end
+    }
+
+    -- better % match
+    use {
+      'andymass/vim-matchup',
+      event = 'UIEnter',
+      config = function()
+        vim.g.matchup_matchparen_offscreen = {method = 'popup'}
+      end
+    }
+
+
+    -- terminal
+    use {
+      "akinsho/toggleterm.nvim",
+      event = 'BufEnter',
+      config = function()
+        require("toggleterm").setup{}
+      end
+    }
+
+    -- treesitter
+    use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate',
+      event = 'BufEnter',
+      config = function ()
+        require('config.treesitter').setup()
+      end
+    }
+
+
+    -- telescope
+    -- use {
+    --   'nvim-telescope/telescope.nvim',
+    --   requires = { 'nvim-lua/plenary.nvim' },
+    --   event = function()
+    --     require('config.telescope').setup()
+    --   end
+    -- }
+
+
+    -- 目录树
     use {
       'ms-jpq/chadtree',
       branch = 'chad',
       run = 'python3 -m chadtree deps',
+    }
+    use {
+      'kyazdani42/nvim-tree.lua',
+      event = 'BufEnter',
+      requires = 'kyazdani42/nvim-web-devicons',
+      config = function() 
+        require('config.tree').setup()
+      end
     }
 
 
@@ -36,15 +101,24 @@ return require('packer').startup({
       'hrsh7th/vim-vsnip',
       event = 'BufEnter',
     }
-    use { 
+    -- 提供了类似vscode补全的类型图标
+    use {
+      'onsails/lspkind-nvim',
+      event = 'BufEnter',
+    }
+    use {
       'hrsh7th/nvim-cmp',
-      after = 'vim-vsnip',
+      after = {'vim-vsnip', 'lspkind-nvim'},
       config = function()
         require('config.completion').setup()
       end
     }
     use {
       'hrsh7th/cmp-vsnip',
+      after = 'nvim-cmp',
+    }
+    use {
+      'hrsh7th/cmp-nvim-lsp',
       after = 'nvim-cmp',
     }
     use {
@@ -56,8 +130,48 @@ return require('packer').startup({
       "rafamadriz/friendly-snippets",
       after = 'nvim-cmp',
     }
+    -- 括号补全
+    use {
+      'windwp/nvim-autopairs',
+      event = 'BufEnter',
+      config = function()
+        require('nvim-autopairs').setup({})
+      end
+    }
 
 
+    -- lsp
+    use {
+      'neovim/nvim-lspconfig',
+      event = 'BufEnter',
+    }
+    use {
+      'williamboman/nvim-lsp-installer',
+      after = {'nvim-lspconfig', 'cmp-nvim-lsp'},
+      requires = {
+        'neovim/nvim-lspconfig'
+      },
+      config = function ()
+        require('config.lsp').setup()
+      end
+    }
+
+
+    -- TODO插件, 需要安装ripgrep, https://github.com/BurntSushi/ripgrep#installation
+    use {
+      "folke/todo-comments.nvim",
+      event = 'BufEnter',
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("todo-comments").setup({})
+      end
+    }
+
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
+    if packer_bootstrap then
+      require('packer').sync()
+    end
   end,
   config = {
     display = {

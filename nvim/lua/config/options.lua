@@ -53,8 +53,15 @@ function M.setup()
     augroup end
   ]]
 
+  -- TODO BufEnter首次加载不生效
   -- don't auto commenting new lines
-  cmd [[au BufEnter * set fo-=c fo-=r fo-=o fo-=2 fo-=a]]
+  cmd [[
+    augroup FormatComment
+      autocmd!
+      autocmd BufEnter * set fo-=c fo-=r fo-=o fo-=2 fo-=a
+    augroup end
+  ]]
+  -- cmd [[autocmd VimEnter * set fo-=c fo-=r fo-=o fo-=2 fo-=a]]
 
 
 end
