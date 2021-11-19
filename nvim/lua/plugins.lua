@@ -82,11 +82,6 @@ return require('packer').startup({
 
     -- 目录树
     use {
-      'ms-jpq/chadtree',
-      branch = 'chad',
-      run = 'python3 -m chadtree deps',
-    }
-    use {
       'kyazdani42/nvim-tree.lua',
       event = 'BufEnter',
       requires = 'kyazdani42/nvim-web-devicons',
