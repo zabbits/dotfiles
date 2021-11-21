@@ -63,6 +63,16 @@ local tree_keymap = function()
   map("n", "<C-n>", ":NvimTreeToggle<CR>", opt)
 end
 
+
+local telescope_keymap = function ()
+  map('n', '<leader><space>', '<cmd>Telescope find_files<cr>', opt)
+  map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', opt)
+  map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', opt)
+  map('n', '<leader>fb', '<cmd>Telescope buffers<cr>', opt)
+  map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', opt)
+end
+
+
 local misc_keymap = function ()
   map('', '<Space>', '<Nop>', opt)
   -- use ESC to turn off search highlighting
@@ -93,6 +103,7 @@ function M.setup()
   lspsaga_keymap()
   trouble_keymap()
   tree_keymap()
+  telescope_keymap()
 end
 
 return M

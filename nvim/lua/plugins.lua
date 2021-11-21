@@ -30,6 +30,36 @@ return require('packer').startup({
         vim.cmd [[colorscheme tokyonight]]
       end
     }
+    -- status line
+    use {
+      'famiu/feline.nvim',
+      event = 'BufEnter',
+      config = function()
+        require('feline').setup()
+      end
+    }
+    -- buffer line
+    use {
+      'akinsho/bufferline.nvim',
+      event = 'BufEnter',
+      requires = 'kyazdani42/nvim-web-devicons',
+      config = function()
+        require("config.bufferline").setup()
+      end
+    }
+
+
+    -- git
+    use {
+      'lewis6991/gitsigns.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim'
+      },
+      config = function()
+        require('gitsigns').setup()
+      end
+    }
+
 
     -- 缩进
     use {

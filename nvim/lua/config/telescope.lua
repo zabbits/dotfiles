@@ -4,6 +4,15 @@ M.setup = function ()
   -- You dont need to set any of these options. These are the default ones. Only
 -- the loading is important
 require('telescope').setup {
+  defaults = {
+    layout_strategy = 'flex',
+    layout_config = {
+      flex = {width = 0.8},
+      vertical = {width = 0.8},
+      horizontal = {width = 0.8},
+      center = {width = 0.8},
+    },
+  },
   extensions = {
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
