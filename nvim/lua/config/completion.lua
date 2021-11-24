@@ -9,7 +9,7 @@ local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
-M.setup = function() 
+M.setup = function()
   local cmp = require 'cmp'
   cmp.setup({
     formatting = {
@@ -35,7 +35,7 @@ M.setup = function()
       ['<C-e>'] = cmp.mapping.close(),
       ['<CR>'] = cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Select,
-        select = true,
+        select = false,
       },
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then

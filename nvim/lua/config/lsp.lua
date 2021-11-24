@@ -7,12 +7,21 @@ M.setup = function ()
   -- lsp completion
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  local function notify(server)
+    local msg = 'Actived Server: ' .. server.name
+    vim.notify(msg, 'info', {title = 'LSP', timeout = 2000})
+  end
+
+  local function on_attach(server, burnr)
+    notify(server)
+  end
 
   lsp_installer.on_server_ready(function(server)
-      local opts = {
-        capabilities = capabilities
-      }
-      server:setup(opts)
+    local opts = {
+      capabilities = capabilities,
+      on_attach = on_attach
+    }
+    server:setup(opts)
   end)
 end
 

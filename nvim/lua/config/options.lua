@@ -40,6 +40,9 @@ function M.setup()
   opt.undofile = true
   o.history = 200
 
+  -- improve matchup start time
+  g.loaded_matchit = 1
+
   -- 2 space for selected filetypes
   cmd [[
     autocmd FileType markdown,xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2
@@ -53,7 +56,6 @@ function M.setup()
     augroup end
   ]]
 
-  -- TODO BufEnter首次加载不生效
   -- don't auto commenting new lines
   cmd [[
     augroup FormatComment
@@ -62,7 +64,6 @@ function M.setup()
     augroup end
   ]]
   -- cmd [[autocmd VimEnter * set fo-=c fo-=r fo-=o fo-=2 fo-=a]]
-
 
 end
 

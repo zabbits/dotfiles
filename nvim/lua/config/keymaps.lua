@@ -72,7 +72,6 @@ local telescope_keymap = function ()
   map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', opt)
 end
 
-
 local misc_keymap = function ()
   map('', '<Space>', '<Nop>', opt)
   -- use ESC to turn off search highlighting
