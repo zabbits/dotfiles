@@ -105,7 +105,7 @@ return require('packer').startup({
       "akinsho/toggleterm.nvim",
       event = 'BufEnter',
       config = function()
-        require("toggleterm").setup{}
+        require('config.toggleterm').setup()
       end
     }
 
