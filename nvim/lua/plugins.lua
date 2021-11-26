@@ -232,7 +232,11 @@ return require('packer').startup({
     ---------------------------------
     use {
       'mg979/vim-visual-multi',
-
+      config = function ()
+        vim.cmd [[let g:VM_maps = {} ]]
+        vim.cmd[[let g:VM_maps['Find Under']         = '<C-e>']]
+        vim.cmd[[let g:VM_maps['Find Subword Under'] = '<C-e>']]
+      end
     }
 
 
