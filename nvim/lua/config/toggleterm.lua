@@ -6,7 +6,7 @@ M.setup = function ()
     start_in_insert = true,
     insert_mappings = true, -- whether or not the open mapping applies in insert mode
     -- direction = 'vertical' | 'horizontal' | 'tab' | 'float',
-    direction = 'tab',
+    direction = 'float',
   }
 end
 

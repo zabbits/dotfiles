@@ -10,7 +10,9 @@ local function map(mode, lhs, rhs, opts)
 end
 
 
--- bufferline key map
+-----------------------------------------------
+------------------bufferline-------------------
+-----------------------------------------------
 local bufferline_keymap = function()
   -- goto previous buffer
   map('n', '<leader>b', ':BufferLineCyclePrev<CR>', opt)
@@ -28,6 +30,9 @@ local bufferline_keymap = function()
   map('n', '<leader>9', ':BufferLineGoToBuffer 9<CR>', opt)
 end
 
+-----------------------------------------------
+--------------------lspsaga--------------------
+-----------------------------------------------
 local lspsaga_keymap = function()
   -- find the cursor word definition and reference
   map('n', '<leader>ph', ':Lspsaga lsp_finder<CR>', opt)
@@ -47,6 +52,9 @@ local lspsaga_keymap = function()
   map('n', '<leader>cr', ':Lspsaga rename<CR>', opt)
 end
 
+-----------------------------------------------
+------------------lsp trouble------------------
+-----------------------------------------------
 local trouble_keymap = function()
   vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>", {silent = true, noremap = true}
 )
@@ -58,12 +66,17 @@ local trouble_keymap = function()
 
 end
 
--- nvimtree
+-----------------------------------------------
+------------------nvimtree---------------------
+-----------------------------------------------
 local tree_keymap = function()
   map("n", "<C-n>", ":NvimTreeToggle<CR>", opt)
 end
 
 
+-----------------------------------------------
+------------------telescope--------------------
+-----------------------------------------------
 local telescope_keymap = function ()
   map('n', '<leader><space>', '<cmd>Telescope find_files<cr>', opt)
   map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', opt)
@@ -72,6 +85,9 @@ local telescope_keymap = function ()
   map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', opt)
 end
 
+-----------------------------------------------
+---------------------misc----------------------
+-----------------------------------------------
 local misc_keymap = function ()
   map('', '<Space>', '<Nop>', opt)
   -- use ESC to turn off search highlighting

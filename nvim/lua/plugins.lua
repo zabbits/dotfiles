@@ -44,7 +44,7 @@ return require('packer').startup({
       'folke/tokyonight.nvim',
       event = 'BufEnter',
       config = function()
-        vim.cmd [[colorscheme tokyonight]]
+        require("config.tokyonight").setup()
       end
     }
     -- status line
@@ -59,6 +59,7 @@ return require('packer').startup({
     use {
       'akinsho/bufferline.nvim',
       event = 'BufEnter',
+      after = 'tokyonight.nvim',
       requires = 'kyazdani42/nvim-web-devicons',
       config = function()
         require("config.bufferline").setup()

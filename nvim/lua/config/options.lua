@@ -45,7 +45,7 @@ function M.setup()
 
   -- 2 space for selected filetypes
   cmd [[
-    autocmd FileType markdown,xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2
+    autocmd FileType vue,markdown,xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2
   ]]
 
   -- Highlight on yank
