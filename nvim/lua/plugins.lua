@@ -10,7 +10,7 @@ end
 vim.cmd([[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile | colorscheme tokyonight
   augroup end
 ]])
 
@@ -237,6 +237,14 @@ return require('packer').startup({
         vim.cmd[[let g:VM_maps['Find Under']         = '<C-e>']]
         vim.cmd[[let g:VM_maps['Find Subword Under'] = '<C-e>']]
       end
+    }
+
+
+    ---------------------------------
+    --------------多选---------------
+    ---------------------------------
+    use {
+      'Shatur/neovim-session-manager',
     }
 
 

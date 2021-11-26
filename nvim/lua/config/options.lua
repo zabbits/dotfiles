@@ -40,8 +40,8 @@ function M.setup()
   opt.undofile = true
   o.history = 200
 
-  -- improve matchup start time
-  g.loaded_matchit = 1
+  -- for better auotosession
+  o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
   -- 2 space for selected filetypes
   cmd [[
