@@ -226,6 +226,15 @@ return require('packer').startup({
     }
 
 
+    ---------------------------------
+    --------------多选---------------
+    ---------------------------------
+    use {
+      'mg979/vim-visual-multi',
+
+    }
+
+
     -- TODO插件, 需要安装ripgrep, https://github.com/BurntSushi/ripgrep#installation
     use {
       "folke/todo-comments.nvim",
@@ -234,6 +243,7 @@ return require('packer').startup({
       config = function()
         require("config.todo-comment").setup()
       end
+
     }
 
     -- Automatically set up your configuration after cloning packer.nvim

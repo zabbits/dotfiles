@@ -58,13 +58,9 @@ function M.setup()
 
   -- don't auto commenting new lines
   cmd [[
-    augroup FormatComment
-      autocmd!
       autocmd BufEnter * set fo-=c fo-=r fo-=o fo-=2 fo-=a
-    augroup end
   ]]
   -- cmd [[autocmd VimEnter * set fo-=c fo-=r fo-=o fo-=2 fo-=a]]
-
 end
 
 return M
