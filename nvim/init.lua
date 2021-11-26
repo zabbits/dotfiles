@@ -2,5 +2,4 @@
 require('config')
 -- 引入插件
 require('plugins')
-vim.o.fo = ''
 
