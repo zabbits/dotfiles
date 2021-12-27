@@ -85,7 +85,13 @@ local function lsp_keymaps(bufnr)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
+local function notify(server)
+  local msg = 'Actived Server: ' .. server.name
+  vim.notify(msg, 'info', {title = 'LSP', timeout = 2000})
+end
+
 M.on_attach = function(client, bufnr)
+  notify(client)
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
   end

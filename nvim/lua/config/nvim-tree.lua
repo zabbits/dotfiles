@@ -110,3 +110,36 @@ nvim_tree.setup {
     tree_width = 30,
   },
 }
+
+-- 注册event
+local events = require('nvim-tree.events')
+local notify = function (msg)
+  local log_lv = vim.lsp.log_levels.INFO
+  local log_opts = {
+    title = 'Nvim Tree',
+    timeout = 2000,
+  }
+  vim.notify(msg, log_lv, log_opts)
+end
+
+events.on_node_renamed(function (data)
+  local msg = 'rename\nfrom:' .. data.old_name .. '\nto:' .. data.new_name
+  notify(msg)
+end)
+-- nvim-tree的file created事件与folder created事件会一起调用, 所以不注册改事件
+-- events.on_file_created(function (data)
+--   local msg = 'create file: ' .. data.fname
+--   notify(msg)
+-- end)
+events.on_file_removed(function (data)
+  local msg = 'remove file: ' .. data.fname
+  notify(msg)
+end)
+events.on_folder_created(function (data)
+  local msg = 'created : ' .. data.folder_name
+  notify(msg)
+end)
+events.on_folder_removed(function (data)
+  local msg = 'remove folder: ' .. data.folder_name
+  notify(msg)
+end)
