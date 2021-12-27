@@ -1,5 +1,4 @@
 local fn = vim.fn
-
 -- Automatically install packer
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -73,6 +72,9 @@ return packer.startup(function(use)
   -- Telescope
   use {
     "nvim-telescope/telescope.nvim",
+    requires = {
+      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    },
     config = function ()
       require('config.telescope')
     end

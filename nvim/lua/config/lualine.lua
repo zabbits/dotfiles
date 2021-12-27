@@ -48,6 +48,41 @@ local location = {
 	padding = 0,
 }
 
+local lsp = {
+  -- Lsp server name .
+  function()
+    local msg = 'No Active Lsp'
+    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+    local clients = vim.lsp.get_active_clients()
+    if next(clients) == nil then
+      return msg
+    end
+    msg = ''
+    for _, client in ipairs(clients) do
+      local filetypes = client.config.filetypes
+      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+        msg = msg .. client.name .. ' '
+      end
+    end
+    return msg
+  end,
+  icon = ' LSP:',
+  color = { bg = '#3B4261', gui = 'bold' },
+}
+
+local session = {
+  function ()
+    local msg = 'No Session'
+    local asl = require('auto-session-library')
+    local ok, name = pcall(asl.current_session_name)
+    if ok then
+      return name
+    end
+    return msg
+  end,
+  icon = '⚐ Session:'
+}
+
 -- cool function for progress
 local progress = function()
 	local current_line = vim.fn.line(".")
@@ -62,26 +97,35 @@ local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
+local themes = {}
+themes.normal = {
+  a = { bg = '#3b4261', fg = '#7aa2f7' },
+  b = { bg = '#3b4261', fg = '#7aa2f7' },
+  c = { bg = '#3b4261', fg = '#7aa2f7' },
+  x = { bg = '#3b4261', fg = '#7aa2f7' },
+  y = { bg = '#3b4261', fg = '#7aa2f7' },
+  z = { bg = '#3b4261', fg = '#7aa2f7' },
+}
+
 lualine.setup({
 	options = {
 		icons_enabled = true,
-		theme = "auto",
+		theme = themes,
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
 		always_divide_middle = true,
 	},
 	sections = {
-		lualine_a = { branch, diagnostics },
+		lualine_a = { branch, diff, diagnostics },
 		lualine_b = { mode },
-		lualine_c = { require('auto-session-library').current_session_name },
-		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { diff, spaces, "encoding", filetype },
+		lualine_c = { lsp },
+		lualine_x = { session, spaces, "encoding", filetype },
 		lualine_y = { location },
 		lualine_z = { progress },
 	},
 	inactive_sections = {
-		lualine_a = {filetype},
+		lualine_a = { filetype },
 		lualine_b = {},
 		lualine_c = { "filename" },
 		lualine_x = { "location" },
