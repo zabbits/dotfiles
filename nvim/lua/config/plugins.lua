@@ -11,7 +11,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
     install_path,
   }
   print "Installing packer close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
+  -- require on packer is opt
+  -- vim.cmd [[packadd packer.nvim]]
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
@@ -40,7 +41,6 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
-  use "wbthomason/packer.nvim" -- Have packer manage itself
   -- Speed up
   use {
     "lewis6991/impatient.nvim",
@@ -48,6 +48,7 @@ return packer.startup(function(use)
       require('config.impatient')
     end
   }
+  use "wbthomason/packer.nvim" -- Have packer manage itself
   -- use { --  Easily speed up your neovim startup time!. A faster version of filetype.vim
   --   'nathom/filetype.nvim'
   -- }
@@ -125,6 +126,7 @@ return packer.startup(function(use)
   }
   use { -- Preview native LSP's goto definition calls in floating windows.
     'rmagatti/goto-preview',
+    after = 'nvim-lspconfig',
     config = function ()
       require('config.lsp-preview')
     end
@@ -144,23 +146,11 @@ return packer.startup(function(use)
   }
 
 
-  -- Edit
   use {  -- better marks
     'chentau/marks.nvim',
+    even = 'BufEnter',
     config = function ()
       require('marks').setup({})
-    end
-  }
-  use {
-    "windwp/nvim-autopairs",
-    config = function ()
-      require('config.autopairs')
-    end
-  }
-  use {
-    "numToStr/Comment.nvim",
-    config = function ()
-      require('config.comment')
     end
   }
   use {
@@ -206,12 +196,6 @@ return packer.startup(function(use)
       require('config.project')
     end
   }
-  -- use {
-  --   "goolord/alpha-nvim",
-  --   config = function ()
-  --     require('config.alpha')
-  --   end
-  -- }
   use {
     "folke/which-key.nvim",
     config = function ()
@@ -220,22 +204,38 @@ return packer.startup(function(use)
   }
 
 
-  -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  ------------------ Edit ---------------------
   -- cmp plugins
   use {
     "hrsh7th/nvim-cmp", -- The completion plugin
     requires = {
+      -- snippets
+      "L3MON4D3/LuaSnip", --snippet engine
+      "rafamadriz/friendly-snippets", -- a bunch of snippets to use
       "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer", -- buffer completions
       "hrsh7th/cmp-path", -- path completions
       "hrsh7th/cmp-calc", -- nvim-cmp source for math calculation.
       "hrsh7th/cmp-cmdline", -- cmdline completions
       "saadparwaiz1/cmp_luasnip", -- snippet completions
     },
+    even = 'InsertEnter',
     config = function()
       require('config.cmp')
+    end
+  }
+  use {
+    "windwp/nvim-autopairs",
+    after = 'nvim-cmp',
+    config = function ()
+      require('config.autopairs')
+    end
+  }
+  use {
+    "numToStr/Comment.nvim",
+    config = function ()
+      require('config.comment')
     end
   }
 
