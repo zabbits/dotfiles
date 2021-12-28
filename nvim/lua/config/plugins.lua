@@ -16,12 +16,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_config_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
+-- vim.cmd [[
+--   augroup packer_config_config
+--     autocmd!
+--     autocmd BufWritePost plugins.lua source <afile> | PackerSync
+--   augroup end
+-- ]]
 
 
 -- Use a protected call so we don't error out on first use
@@ -33,6 +33,7 @@ end
 -- Have packer use a popup window
 packer.init {
   display = {
+    compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
     end,
@@ -49,9 +50,9 @@ return packer.startup(function(use)
     end
   }
   use "wbthomason/packer.nvim" -- Have packer manage itself
-  -- use { --  Easily speed up your neovim startup time!. A faster version of filetype.vim
-  --   'nathom/filetype.nvim'
-  -- }
+  use { --  Easily speed up your neovim startup time!. A faster version of filetype.vim
+    'nathom/filetype.nvim'
+  }
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "kyazdani42/nvim-web-devicons"
@@ -126,7 +127,6 @@ return packer.startup(function(use)
   }
   use { -- Preview native LSP's goto definition calls in floating windows.
     'rmagatti/goto-preview',
-    after = 'nvim-lspconfig',
     config = function ()
       require('config.lsp-preview')
     end
@@ -220,14 +220,17 @@ return packer.startup(function(use)
       "hrsh7th/cmp-cmdline", -- cmdline completions
       "saadparwaiz1/cmp_luasnip", -- snippet completions
     },
-    even = 'InsertEnter',
+    -- even = 'InsertEnter',
     config = function()
       require('config.cmp')
     end
   }
   use {
     "windwp/nvim-autopairs",
-    after = 'nvim-cmp',
+    requires = {
+      "hrsh7th/nvim-cmp", -- The completion plugin
+    },
+    -- even = 'InsertEnter',
     config = function ()
       require('config.autopairs')
     end
