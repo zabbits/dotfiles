@@ -27,7 +27,7 @@ local diff = {
 local mode = {
 	"mode",
 	fmt = function(str)
-		return "-- " .. str .. " --"
+		return "[" .. str .. "]"
 	end,
 }
 
@@ -97,15 +97,35 @@ local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
-local themes = {}
-themes.normal = {
-  a = { bg = '#3b4261', fg = '#7aa2f7' },
-  b = { bg = '#3b4261', fg = '#7aa2f7' },
-  c = { bg = '#3b4261', fg = '#7aa2f7' },
-  x = { bg = '#3b4261', fg = '#7aa2f7' },
-  y = { bg = '#3b4261', fg = '#7aa2f7' },
-  z = { bg = '#3b4261', fg = '#7aa2f7' },
+local themes = {
+  normal = {
+    a = { bg = '#3b4261', fg = '#7aa2f7' },
+    b = { bg = '#3b4261', fg = '#7aa2f7' },
+    c = { bg = '#3b4261', fg = '#7aa2f7' },
+    x = { bg = '#3b4261', fg = '#7aa2f7' },
+    y = { bg = '#3b4261', fg = '#7aa2f7' },
+    z = { bg = '#3b4261', fg = '#7aa2f7' },
+  }
 }
+
+local sections = {
+  lualine_a = { mode },
+  lualine_b = { branch, diff, diagnostics },
+  lualine_c = { lsp },
+  lualine_x = { session, spaces, "encoding", filetype },
+  lualine_y = { location },
+  lualine_z = { progress },
+}
+
+local inactive_sections = {
+  lualine_a = { filetype },
+  lualine_b = {},
+  lualine_c = { "filename" },
+  lualine_x = { "location" },
+  lualine_y = {},
+  lualine_z = {},
+}
+
 
 lualine.setup({
 	options = {
@@ -117,22 +137,8 @@ lualine.setup({
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
 		always_divide_middle = true,
 	},
-	sections = {
-		lualine_a = { branch, diff, diagnostics },
-		lualine_b = { mode },
-		lualine_c = { lsp },
-		lualine_x = { session, spaces, "encoding", filetype },
-		lualine_y = { location },
-		lualine_z = { progress },
-	},
-	inactive_sections = {
-		lualine_a = { filetype },
-		lualine_b = {},
-		lualine_c = { "filename" },
-		lualine_x = { "location" },
-		lualine_y = {},
-		lualine_z = {},
-	},
+	sections = sections,
+	inactive_sections = inactive_sections,
 	tabline = {},
 	extensions = {},
 })
