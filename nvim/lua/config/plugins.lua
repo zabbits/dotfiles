@@ -69,6 +69,8 @@ return packer.startup(function(use)
   use "lunarvim/darkplus.nvim"
   use 'folke/tokyonight.nvim'
   use 'rebelot/kanagawa.nvim'
+  -- load colorscheme
+  require('config.colorscheme')
   use {
     'norcalli/nvim-colorizer.lua',
     config = function ()

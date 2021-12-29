@@ -33,8 +33,8 @@ local mode = {
 
 local filetype = {
 	"filetype",
-	icons_enabled = false,
-	icon = nil,
+	-- icons_enabled = false,
+	-- icon = nil,
 }
 
 local branch = {
@@ -123,7 +123,7 @@ local inactive_sections = {
   lualine_a = { filetype },
   lualine_b = {},
   lualine_c = { "filename" },
-  lualine_x = { "location" },
+  lualine_x = {},
   lualine_y = {},
   lualine_z = {},
 }
