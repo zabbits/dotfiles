@@ -85,6 +85,7 @@ local function map(mode, lhs, rhs)
     vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true, silent = true })
 end
 -- Linewise toggle current line using C-/
+map('i', '<C-_>', '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>')
 map('n', '<C-_>', '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>')
 map('x', '<C-_>', '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
 
