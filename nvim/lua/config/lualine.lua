@@ -61,7 +61,9 @@ local lsp = {
     for _, client in ipairs(clients) do
       local filetypes = client.config.filetypes
       if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-        msg = msg .. client.name .. ' '
+        if client.name ~= 'null-ls' then
+          msg = msg .. client.name .. ' '
+        end
       end
     end
     return msg
@@ -70,18 +72,18 @@ local lsp = {
   color = { bg = '#3B4261', gui = 'bold' },
 }
 
-local session = {
-  function ()
-    local msg = 'No Session'
-    local asl = require('auto-session-library')
-    local ok, name = pcall(asl.current_session_name)
-    if ok then
-      return name
-    end
-    return msg
-  end,
-  icon = '⚐ Session:'
-}
+-- local session = {
+--   function ()
+--     local msg = 'Nil'
+--     local asl = require('auto-session-library')
+--     local ok, name = pcall(asl.current_session_name)
+--     if ok then
+--       return name
+--     end
+--     return msg
+--   end,
+--   icon = '⚐Session:'
+-- }
 
 -- cool function for progress
 local progress = function()
@@ -112,7 +114,7 @@ local sections = {
   lualine_a = { mode },
   lualine_b = { branch, diff, diagnostics },
   lualine_c = { lsp },
-  lualine_x = { session, spaces, "encoding", filetype },
+  lualine_x = { spaces, "encoding", filetype },
   lualine_y = { location },
   lualine_z = { progress },
 }
