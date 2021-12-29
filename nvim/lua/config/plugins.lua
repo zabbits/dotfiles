@@ -167,6 +167,12 @@ return packer.startup(function(use)
       require('config.bufferline')
     end
   }
+  -- use {
+  --   'feline-nvim/feline.nvim',
+  --   config = function ()
+  --     require('config.feline')
+  --   end
+  -- }
   use {
     "nvim-lualine/lualine.nvim",
     requires = {
