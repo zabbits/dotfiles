@@ -33,8 +33,6 @@ local mode = {
 
 local filetype = {
 	"filetype",
-	-- icons_enabled = false,
-	-- icon = nil,
 }
 
 local branch = {
@@ -71,19 +69,6 @@ local lsp = {
   icon = ' LSP:',
   color = { bg = '#3B4261', gui = 'bold' },
 }
-
--- local session = {
---   function ()
---     local msg = 'Nil'
---     local asl = require('auto-session-library')
---     local ok, name = pcall(asl.current_session_name)
---     if ok then
---       return name
---     end
---     return msg
---   end,
---   icon = '⚐Session:'
--- }
 
 -- cool function for progress
 local progress = function()
@@ -135,8 +120,7 @@ lualine.setup({
 		theme = themes,
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
-		-- disabled_filetypes = { "alpha", "dashboard",  "Outline" },
-		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
+		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Trouble", "Outline" },
 		always_divide_middle = true,
 	},
 	sections = sections,

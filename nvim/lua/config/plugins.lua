@@ -43,12 +43,12 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
   -- Speed up
-  use {
-    "lewis6991/impatient.nvim",
-    config = function ()
-      require('config.impatient')
-    end
-  }
+  -- use {
+  --   "lewis6991/impatient.nvim",
+  --   config = function ()
+  --     require('config.impatient')
+  --   end
+  -- }
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use { --  Easily speed up your neovim startup time!. A faster version of filetype.vim
     'nathom/filetype.nvim'
@@ -167,17 +167,8 @@ return packer.startup(function(use)
       require('config.bufferline')
     end
   }
-  -- use {
-  --   'feline-nvim/feline.nvim',
-  --   config = function ()
-  --     require('config.feline')
-  --   end
-  -- }
   use {
     "nvim-lualine/lualine.nvim",
-    requires = {
-      "auto-session",
-    },
     config = function ()
       require('config.lualine')
     end
