@@ -83,7 +83,6 @@ local mappings = {
     "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes'))<cr>",
     "Find files",
   },
-  ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["b"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
@@ -148,7 +147,7 @@ local mappings = {
       "Preview References",
     },
     w = {
-      "<cmd>Telescope lsp_workspace_diagnostics<cr>",
+      "<cmd>Telescope diagnostics<cr>",
       "Workspace Diagnostics",
     },
     f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
