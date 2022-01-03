@@ -218,6 +218,7 @@ return packer.startup(function(use)
       "hrsh7th/cmp-calc", -- nvim-cmp source for math calculation.
       "hrsh7th/cmp-cmdline", -- cmdline completions
       "saadparwaiz1/cmp_luasnip", -- snippet completions
+      "onsails/lspkind-nvim",  -- vscode like icon
     },
     -- even = 'InsertEnter',
     config = function()
