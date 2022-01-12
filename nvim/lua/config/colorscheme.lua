@@ -10,9 +10,14 @@ if kanagawa_status then
   kanagawa.setup({ overrides = overrides })
 end
 
+local enfocado_ok, _ = pcall(require, 'enfocado')
+if enfocado_ok then
+  vim.g.enfocado_style = 'neon'
+end
+
 vim.cmd [[
 try
-  colorscheme kanagawa
+  colorscheme kanagawa 
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
   set background=dark

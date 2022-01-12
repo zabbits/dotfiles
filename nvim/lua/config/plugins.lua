@@ -32,8 +32,8 @@ end
 
 -- Have packer use a popup window
 packer.init {
+  compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
   display = {
-    compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
     end,
@@ -43,16 +43,16 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
   -- Speed up
-  -- use {
-  --   "lewis6991/impatient.nvim",
-  --   config = function ()
-  --     require('config.impatient')
-  --   end
-  -- }
-  use "wbthomason/packer.nvim" -- Have packer manage itself
-  use { --  Easily speed up your neovim startup time!. A faster version of filetype.vim
-    'nathom/filetype.nvim'
+  use {
+    "lewis6991/impatient.nvim",
+    config = function ()
+      require('config.impatient')
+    end
   }
+  use "wbthomason/packer.nvim" -- Have packer manage itself
+  -- use { --  Easily speed up your neovim startup time!. A faster version of filetype.vim
+  --   'nathom/filetype.nvim'
+  -- }
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "kyazdani42/nvim-web-devicons"
@@ -69,6 +69,7 @@ return packer.startup(function(use)
   use "lunarvim/darkplus.nvim"
   use 'folke/tokyonight.nvim'
   use 'rebelot/kanagawa.nvim'
+  use 'wuelnerdotexe/vim-enfocado'
   -- load colorscheme
   require('config.colorscheme')
   use {
