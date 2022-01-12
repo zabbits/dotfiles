@@ -117,6 +117,7 @@ return packer.startup(function(use)
       "jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
       "antoinemadec/FixCursorHold.nvim", -- This is needed to fix lsp doc highlight
       "hrsh7th/cmp-nvim-lsp",
+      "jose-elias-alvarez/nvim-lsp-ts-utils", -- for better ts dev
     },
     config = function ()
       require('config.lsp')
