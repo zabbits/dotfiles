@@ -95,9 +95,6 @@ M.on_attach = function(client, bufnr)
   notify(client)
   if client.name == "tsserver" then
     -- client.resolved_capabilities.document_formatting = false
-    local ts_utils = require('nvim-lsp-ts-utils')
-    ts_utils.setup({})
-    ts_utils.setup_client(client)
   end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)

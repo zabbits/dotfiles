@@ -14,7 +14,6 @@ local check_backspace = function()
   local col = vim.fn.col "." - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
-
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup {
