@@ -154,6 +154,15 @@ return packer.startup(function(use)
     end
   }
 
+  -- neorg for note
+  use {
+    "nvim-neorg/neorg",
+    config = function()
+      -- require('neorg').setup{}
+      require('config.norg')
+    end,
+  }
+
 
   use {  -- better marks
     'chentau/marks.nvim',
