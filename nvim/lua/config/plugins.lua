@@ -32,7 +32,7 @@ end
 
 -- Have packer use a popup window
 packer.init {
-  compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
+  -- compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
   display = {
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
@@ -43,12 +43,12 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
   -- Speed up
-  use {
-    "lewis6991/impatient.nvim",
-    config = function ()
-      require('config.impatient')
-    end
-  }
+  -- use {
+  --   "lewis6991/impatient.nvim",
+  --   config = function ()
+  --     require('config.impatient')
+  --   end
+  -- }
   use "wbthomason/packer.nvim" -- Have packer manage itself
   -- use { --  Easily speed up your neovim startup time!. A faster version of filetype.vim
   --   'nathom/filetype.nvim'
@@ -60,6 +60,12 @@ return packer.startup(function(use)
     "rcarriga/nvim-notify",
     config = function ()
       vim.notify = require("notify")
+    end
+  }
+  use {
+    'j-hui/fidget.nvim',
+    config = function ()
+      require("fidget").setup{}
     end
   }
 
@@ -248,6 +254,15 @@ return packer.startup(function(use)
     "lewis6991/gitsigns.nvim",
     config = function ()
       require('config.gitsigns')
+    end
+  }
+  -- fold
+  use {
+    'anuvyklack/pretty-fold.nvim',
+    config = function ()
+      require('pretty-fold').setup{}
+      require('pretty-fold.preview').setup()
+      -- require('config.fold')
     end
   }
 
