@@ -63,7 +63,6 @@ comment.setup {
       extended = false,
   },
   ---Pre-hook, called before commenting the line
-  ---@type fun(ctx: Ctx):string
   pre_hook = function(ctx)
     local U = require 'Comment.utils'
 

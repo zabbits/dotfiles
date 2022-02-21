@@ -62,6 +62,7 @@ return packer.startup(function(use)
       vim.notify = require("notify")
     end
   }
+  -- lsp loading info
   use {
     'j-hui/fidget.nvim',
     config = function ()
@@ -82,6 +83,14 @@ return packer.startup(function(use)
     'norcalli/nvim-colorizer.lua',
     config = function ()
       require('colorizer').setup()
+    end
+  }
+
+  -- zen mode
+  use {
+    "Pocco81/TrueZen.nvim",
+    config = function ()
+      require('config.zen')
     end
   }
 
@@ -162,7 +171,6 @@ return packer.startup(function(use)
       require('config.norg')
     end,
   }
-
 
   use {  -- better marks
     'chentau/marks.nvim',
