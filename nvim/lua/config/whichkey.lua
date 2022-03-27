@@ -98,7 +98,7 @@ local mappings = {
   },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>Telescope projects<cr>", "Projects" },
-
+  -- Packer
   p = {
     name = "Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -107,7 +107,7 @@ local mappings = {
     S = { "<cmd>PackerStatus<cr>", "Status" },
     u = { "<cmd>PackerUpdate<cr>", "Update" },
   },
-
+  -- Git
   g = {
     name = "Git",
     g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
@@ -130,7 +130,7 @@ local mappings = {
       "Diff",
     },
   },
-
+  -- LSP
   l = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -168,6 +168,14 @@ local mappings = {
       "Workspace Symbols",
     },
   },
+  -- Neorg
+  n = {
+    name = 'Neorg',
+    v = {"<cmd>Neorg gtd views<cr>", "Gtd Views"},
+    e = {"<cmd>Neorg gtd edit<cr>", "Gtd Edit"},
+    c = {"<cmd>Neorg gtd capture<cr>", "Gtd Capture"},
+  },
+  -- Telescope
   s = {
     name = "Search",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
@@ -179,6 +187,7 @@ local mappings = {
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
+  -- Trouble
   t = {
     name = "Trouble",
     t = { "Trouble", "Trouble" },

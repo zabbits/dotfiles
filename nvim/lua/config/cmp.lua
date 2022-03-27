@@ -75,6 +75,7 @@ cmp.setup {
         buffer = "[Buffer]",
         path = "[Path]",
         nvim_lua = "[LUA]",
+        neorg = "[Neorg]",
         calc = "[CALC]",
       })
     }),
@@ -85,6 +86,7 @@ cmp.setup {
     { name = "buffer" },
     { name = "path" },
     { name = "nvim_lua" },
+    { name = "neorg" },
     { name = "calc" },
   },
   confirm_opts = {
