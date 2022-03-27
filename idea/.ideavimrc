@@ -1,0 +1,62 @@
+let mapleader = " "
+" normal模式使用英文
+set keep-english-in-normal
+
+" ========================= 跳转相关 ========================
+" 跳转实现类
+map <leader>i :action GotoImplementation <CR>
+map <leader>gi :action GotoImplementation <CR>
+" 跳转声明处, 例如跳转到变量定义的位置
+map <leader>gd :action GotoDeclaration <CR>
+" 跳转类型声明处, 例如变量是String类型, 会跳转到String类中
+map <leader>gt :action GotoTypeDeclaration <CR>
+" 跳转父方法
+map <leader>gs :action GotoSuperMethod <CR>
+" 跳转错误信息
+map <leader>gn :action GotoNextError <CR>
+map <leader>gb :action GotoPreviousError <CR>
+" buffer上个文件
+map <leader>k :prev <CR>
+" buffer下个文件
+map <leader>j :next <CR>
+" 显示错误信息
+map <leader>fe :action ShowErrorDescription <CR>
+" 最近使用的文件
+map <leader>ff :action RecentFiles <CR>
+" 查找类
+map <leader>fc :action GotoClass <CR>
+" 类结构
+map <leader>fh :action TypeHierarchy <CR>
+
+
+"  ========================= 实现相关 ========================
+" 实现方法
+map <leader>oi :action ImplementMethods <CR>
+" 重写方法
+map <leader>oo :action OverrideMethods <CR>
+" rename
+map <leader>rf :action RenameElement <CR>
+
+"  ========================= 运行相关 ========================
+" 运行当前配置类
+map <leader>rr :action Run <CR>
+" 运行当前类/方法
+map <leader>rc :action RunClass <CR>
+map <leader>rc :action RunClass <CR>
+" debug当前配置类
+map <leader>dd :action Debug <CR>
+" debug 当前类/方法
+map <leader>dc :action DebugClass <CR>
+" stop
+map <leader>ss :action Stop <CR>
+" compile
+map <leader>rb :action Compile <CR>
+
+" ================ Jrebel ==================
+map <leader>rj :action JRebel Executor <CR>
+map <leader>dj :action JRebel Debug <CR>
+
+"  ========================= leetcode ========================
+map <leader>lt :action leetcode.editor.TestcaseAction <CR>
+map <leader>ls :action leetcode.editor.SubmitAction <CR>
+
