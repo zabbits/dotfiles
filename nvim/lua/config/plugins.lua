@@ -282,6 +282,13 @@ return packer.startup(function(use)
       -- require('config.fold')
     end
   }
+  -- split window
+  use {
+    'mrjones2014/smart-splits.nvim',
+    config = function ()
+      require('config.split')
+    end
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

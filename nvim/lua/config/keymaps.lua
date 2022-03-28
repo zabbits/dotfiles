@@ -20,18 +20,6 @@ vim.g.maplocalleader = " "
 -- <ESC> cacel hightlight search
 keymap("n", "<ESC>", ":nohlsearch<CR>", opts)
 
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
-
--- Resize with arrows
-keymap("n", "<A-j>", ":resize -2<CR>", opts)
-keymap("n", "<A-k>", ":resize +2<CR>", opts)
-keymap("n", "<A-h>", ":vertical resize -2<CR>", opts)
-keymap("n", "<A-l>", ":vertical resize +2<CR>", opts)
-
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
@@ -52,10 +40,14 @@ keymap("x", "p", '"_dP', opts)
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
--- Terminal --
--- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
+-- recommended mappings
+-- resizing splits
+vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
+vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down)
+vim.keymap.set('n', '<A-k>', require('smart-splits').resize_up)
+vim.keymap.set('n', '<A-l>', require('smart-splits').resize_right)
+-- moving between splits
+vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)
+vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
+vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
+vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
