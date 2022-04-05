@@ -42,6 +42,10 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- recommended mappings
 -- resizing splits
+local ssok, ss = pcall(require, 'smart-splits')
+if not ssok then
+  return
+end
 vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
 vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down)
 vim.keymap.set('n', '<A-k>', require('smart-splits').resize_up)
