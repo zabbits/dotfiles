@@ -109,6 +109,16 @@ local plgins = {
     end,
   },
 
+  -- Window picker
+  {
+    's1n7ax/nvim-window-picker',
+    tag = 'v1.*',
+    after = 'neo-tree.nvim',
+    config = function()
+      require('configs.window-picker').config()
+    end,
+  },
+
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
@@ -196,16 +206,6 @@ local plgins = {
   -- LSP manager
   {
     "williamboman/nvim-lsp-installer",
-    cmd = {
-      "LspInstall",
-      "LspInstallInfo",
-      "LspPrintInstalled",
-      "LspRestart",
-      "LspStart",
-      "LspStop",
-      "LspUninstall",
-      "LspUninstallAll",
-    },
   },
 
   -- Built-in LSP
