@@ -26,7 +26,7 @@ function M.config()
   }
 
   local default_opts = {
-    ensure_installed = {},
+    ensure_installed = {'lua', 'python', 'vue', 'typescript'},
     sync_install = false,
     ignore_install = {},
     highlight = {

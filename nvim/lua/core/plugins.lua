@@ -139,17 +139,7 @@ local plgins = {
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    event = { "BufEnter", "BufRead", "BufNewFile" },
-    cmd = {
-      "TSInstall",
-      "TSInstallInfo",
-      "TSInstallSync",
-      "TSUninstall",
-      "TSUpdate",
-      "TSUpdateSync",
-      "TSDisableAll",
-      "TSEnableAll",
-    },
+    event = {"BufEnter"},
     config = function()
       require("configs.treesitter").config()
     end,
