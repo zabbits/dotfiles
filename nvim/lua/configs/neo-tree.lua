@@ -16,12 +16,12 @@ function M.config()
     default_component_configs = {
       indent = {
         indent_size = 2,
-        padding = 0,
+        padding = 1,
         with_markers = true,
         indent_marker = "│",
         last_indent_marker = "└",
         highlight = "NeoTreeIndentMarker",
-        with_expanders = false,
+        with_expanders = true,
         expander_collapsed = "",
         expander_expanded = "",
         expander_highlight = "NeoTreeExpander",
@@ -52,7 +52,7 @@ function M.config()
     },
     window = {
       position = "left",
-      width = 25,
+      width = 30,
       mappings = {
         ["<2-LeftMouse>"] = "open",
         ["<cr>"] = "open",
@@ -60,13 +60,9 @@ function M.config()
         ["S"] = "open_split",
         ["s"] = "open_vsplit",
         ["C"] = "close_node",
-        ["<bs>"] = "navigate_up",
-        ["."] = "set_root",
+        ["z"] = "close_all_nodes",
         ["H"] = "toggle_hidden",
         ["R"] = "refresh",
-        ["/"] = "fuzzy_finder",
-        ["f"] = "filter_on_submit",
-        ["<c-x>"] = "clear_filter",
         ["a"] = "add",
         ["d"] = "delete",
         ["r"] = "rename",
@@ -80,6 +76,16 @@ function M.config()
     },
     nesting_rules = {},
     filesystem = {
+      window = {
+        mappings = {
+          ["H"] = "toggle_hidden",
+          ["/"] = "fuzzy_finder",
+          ["f"] = "filter_on_submit",
+          ["<C-x>"] = "clear_filter",
+          ["<bs>"] = "navigate_up",
+          ["."] = "set_root",
+        }
+      },
       filtered_items = {
         visible = false,
         hide_dotfiles = true,
