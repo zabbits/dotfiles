@@ -42,11 +42,19 @@ function M.config()
   cmp.setup({
     preselect = cmp.PreselectMode.None,
     formatting = {
-      fields = { "kind", "abbr", "menu" },
-      format = function(_, vim_item)
-        vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+      format = function(entry, vim_item)
+        -- Kind icons
+        vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
+        -- Source
+        vim_item.menu = ({
+          buffer = "[Buffer]",
+          nvim_lsp = "[LSP]",
+          luasnip = "[LuaSnip]",
+          nvim_lua = "[Lua]",
+          latex_symbols = "[LaTeX]",
+        })[entry.source.name]
         return vim_item
-      end,
+      end
     },
     snippet = {
       expand = function(args)

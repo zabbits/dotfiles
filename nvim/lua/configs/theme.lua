@@ -1,19 +1,10 @@
 local M = {}
 
 function M.config()
-  local kanagawa_status, kanagawa = pcall(require, 'kanagawa')
-  if kanagawa_status then
-    kanagawa.setup({})
+  local n_ok, ne = pcall(require, 'nebulous')
+  if n_ok then
+    ne.setup()
   end
-
-  vim.cmd [[
-    try
-      colorscheme kanagawa
-    catch /^Vim\%((\a\+)\)\=:E185/
-      colorscheme default
-      set background=dark
-    endtry
-  ]]
+  vim.cmd("colorscheme duskfox")
 end
-
 return M

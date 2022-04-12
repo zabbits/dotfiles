@@ -20,7 +20,7 @@ function M.config()
     return
   end
 
-  local colors = require "default_theme.colors"
+  -- local colors = require "default_theme.colors"
 
   local conditions = {
     buffer_not_empty = function()
@@ -45,6 +45,7 @@ function M.config()
 
   local config = {
     options = {
+      theme = 'auto',
       disabled_filetypes = { "NvimTree", "neo-tree", "dashboard", "Outline" },
       component_separators = "",
       section_separators = "",
@@ -57,7 +58,7 @@ function M.config()
         {
           "branch",
           icon = "",
-          color = { fg = get_hl_prop("Conditional", "foreground", colors.purple_1), gui = "bold" },
+          -- color = { fg = get_hl_prop("Conditional", "foreground", colors.purple_1), gui = "bold" },
           padding = { left = 2, right = 1 },
         },
         {
@@ -99,7 +100,7 @@ function M.config()
         },
         {
           status.treesitter_status,
-          color = { fg = get_hl_prop("GitSignsAdd", "foreground", colors.green) },
+          -- color = { fg = get_hl_prop("GitSignsAdd", "foreground", colors.green) },
           padding = { left = 1, right = 0 },
           cond = conditions.hide_in_width,
         },
@@ -115,7 +116,7 @@ function M.config()
         {
           status.progress_bar,
           padding = { left = 1, right = 2 },
-          color = { fg = get_hl_prop("TypeDef", "foreground", colors.yellow) },
+          -- color = { fg = get_hl_prop("TypeDef", "foreground", colors.yellow) },
           cond = nil,
         },
       },

@@ -76,13 +76,18 @@ local plgins = {
     end,
   },
 
-  -- Theme
+  -- Colorscheme
   {
-    'rebelot/kanagawa.nvim',
-    config = function()
+    'EdenEast/nightfox.nvim',
+    requires = {
+      'rebelot/kanagawa.nvim',
+      'Yagua/nebulous.nvim',
+    },
+    config = function ()
       require("configs.theme").config()
-    end,
+    end
   },
+
 
   -- Bufferline
   {
@@ -122,6 +127,7 @@ local plgins = {
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
+    after = 'nightfox.nvim',
     config = function()
       require("configs.lualine").config()
     end,
@@ -149,7 +155,6 @@ local plgins = {
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    event = {"BufEnter"},
     config = function()
       require("configs.treesitter").config()
     end,
@@ -220,10 +225,53 @@ local plgins = {
   -- LSP symbols
   {
     "simrat39/symbols-outline.nvim",
+    after = "cmp-nvim-lsp",
     cmd = "SymbolsOutline",
     setup = function()
       require("configs.symbols-outline").setup()
     end,
+  },
+
+  -- lsp trouble
+  {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require('configs.lsp-trouble').config()
+    end
+  },
+
+  -- lsp signature
+  {
+    "ray-x/lsp_signature.nvim",
+    after = 'nvim-lspconfig',
+    config = function ()
+      require('configs.lsp-signature').config()
+    end
+  },
+
+  -- lsp code action menu
+  {
+    'weilbith/nvim-code-action-menu',
+    after = 'nvim-lspconfig',
+    cmd = 'CodeActionMenu',
+  },
+  -- lsp show code action hint
+  {
+    'kosayoda/nvim-lightbulb',
+    after = 'nvim-lspconfig',
+    config = function ()
+      require('configs.lightbulb').config()
+    end
+  },
+
+  -- lsp preview
+  {
+    'rmagatti/goto-preview',
+    -- after = 'nvim-lspconfig',
+    config = function()
+      require('configs.lsp-preview').config()
+    end
   },
 
   -- lsp loading info
@@ -250,7 +298,7 @@ local plgins = {
   -- Fuzzy finder
   {
     "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
+    after = 'trouble.nvim', -- use trouble show something
     module = "telescope",
     config = function()
       require("configs.telescope").config()
@@ -296,7 +344,8 @@ local plgins = {
   -- Autopairs
   {
     "windwp/nvim-autopairs",
-    event = "InsertEnter",
+    -- event = "InsertEnter",  -- use this events, sometimes will insert more than excpeted pairs.
+    after = "nvim-cmp",
     config = function()
       require("configs.autopairs").config()
     end,
@@ -365,6 +414,15 @@ local plgins = {
     config = function()
       require('configs.norg').config()
     end,
+  },
+
+  -- better marks
+  {
+    'chentau/marks.nvim',
+    event = { "BufRead", "BufNewFile" },
+    config = function ()
+      require('marks').setup({})
+    end
   },
 }
 

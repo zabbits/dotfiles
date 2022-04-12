@@ -52,7 +52,7 @@ end
 map("n", "gD", vim.lsp.buf.declaration)
 map("n", "gd", vim.lsp.buf.definition, { desc = "Show the definition of current function" })
 map("n", "gI", vim.lsp.buf.implementation)
-map("n", "gr", vim.lsp.buf.references)
+-- map("n", "gr", vim.lsp.buf.references)
 map("n", "go", vim.diagnostic.open_float)
 map("n", "gl", vim.diagnostic.open_float)
 map("n", "[d", vim.diagnostic.goto_prev)
@@ -62,6 +62,27 @@ map("n", "gj", vim.diagnostic.goto_next)
 map("n", "K", vim.lsp.buf.hover)
 -- <leader>rn: legacy binding here for backwards compatibility but not in which-key (see <leader>lr)
 map("n", "<leader>rn", vim.lsp.buf.rename)
+
+-- code action menu
+map("n", "<leader>xa", "<cmd>CodeActionMenu<CR>")
+
+-- lsp trouble
+map("n", "<leader>xx", "<cmd>Trouble<cr>", {silent = true, noremap = true})
+map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", {silent = true, noremap = true})
+map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", {silent = true, noremap = true})
+map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", {silent = true, noremap = true})
+map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", {silent = true, noremap = true})
+map("n", "gR", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
+map("n", "gr", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
+
+-- lsp preview
+if utils.is_available "goto-preview" then
+  map("n", "gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>")
+  map("n", "gpi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
+  map("n", "gq", "<cmd>lua require('goto-preview').close_all_win()<CR>")
+  map("n", "gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>")
+end
+
 
 -- ForceWrite
 map("n", "<C-s>", "<cmd>w!<CR>")
