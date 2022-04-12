@@ -211,9 +211,9 @@ if not utils.is_available "which-key.nvim" then
 
   -- Comment
   if utils.is_available "Comment.nvim" then
-    map("n", "<leader>/", function()
-      require("Comment.api").toggle_current_linewise()
-    end)
+    -- Linewise toggle current line using C-/
+    map('i', '<C-_>', require("Comment.api").toggle_current_linewise)
+    map('n', '<C-_>', require("Comment.api").toggle_current_linewise)
   end
 
   -- Terminal
@@ -248,25 +248,18 @@ if not utils.is_available "which-key.nvim" then
 end
 
 --========================= Visual ==========================--
--- Stay in indent mode
-map("v", "<", "<gv")
-map("v", ">", ">gv")
-
--- Move text up and down
-map("v", "<A-j>", "<cmd>m .+1<CR>==")
-map("v", "<A-k>", "<cmd>m .-2<CR>==")
 
 -- Comment
 if utils.is_available "Comment.nvim" then
-  map("v", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>")
+  map('x', '<C-_>', function()
+    require("Comment.api").toggle_linewise_op(vim.fn.visualmode())
+  end)
 end
 
 -- Visual Block --
 -- Move text up and down
 map("x", "J", "<cmd>move '>+1<CR>gv-gv")
 map("x", "K", "<cmd>move '<-2<CR>gv-gv")
-map("x", "<A-j>", "<cmd>move '>+1<CR>gv-gv")
-map("x", "<A-k>", "<cmd>move '<-2<CR>gv-gv")
 
 -- disable Ex mode:
 map("n", "Q", "<Nop>")

@@ -4,7 +4,7 @@ local utils = require "core.utils"
 
 local cmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local add_command = vim.api.nvim_add_user_command
+-- local add_command = vim.api.nvim_add_user_command
 
 -- TODO 切换为lua脚本
 vim.cmd [[
@@ -75,6 +75,6 @@ if utils.is_available "dashboard-nvim" and utils.is_available "bufferline.nvim" 
   })
 end
 
-add_command("AstroUpdate", require("core.utils").update, {})
+-- add_command("AstroUpdate", require("core.utils").update, {})
 
 return M

@@ -13,12 +13,12 @@ function M.setup()
   end
 
   local config = {
-    virtual_text = true,
+    virtual_text = false,
     signs = {
       active = signs,
     },
     update_in_insert = true,
-    underline = true,
+    underline = false,
     severity_sort = true,
     float = {
       focusable = false,
@@ -30,7 +30,7 @@ function M.setup()
     },
   }
 
-  vim.diagnostic.config(require("core.utils").user_plugin_opts("diagnostics", config))
+  vim.diagnostic.config(config)
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
@@ -72,7 +72,7 @@ M.on_attach = function(client, bufnr)
     on_attach_override(client, bufnr)
   end
 
-  vim.api.nvim_add_user_command("Format", vim.lsp.buf.formatting, {})
+  -- vim.api.nvim_add_user_command("Format", vim.lsp.buf.formatting, {})
   lsp_highlight_document(client)
 end
 
