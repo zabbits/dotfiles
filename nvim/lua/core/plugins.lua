@@ -78,11 +78,15 @@ local plgins = {
 
   -- Colorscheme
   {
+    'rebelot/kanagawa.nvim',
+    before = 'nightfox.nvim',
+  },
+  {
+    'Yagua/nebulous.nvim',
+    before = 'nightfox.nvim',
+  },
+  {
     'EdenEast/nightfox.nvim',
-    requires = {
-      'rebelot/kanagawa.nvim',
-      'Yagua/nebulous.nvim',
-    },
     config = function ()
       require("configs.theme").config()
     end
@@ -101,6 +105,7 @@ local plgins = {
   -- Better buffer closing
   {
     "moll/vim-bbye",
+    event = 'BufEnter',
   },
 
   -- File explorer
@@ -268,7 +273,7 @@ local plgins = {
   -- lsp preview
   {
     'rmagatti/goto-preview',
-    -- after = 'nvim-lspconfig',
+    after = 'nvim-lspconfig',
     config = function()
       require('configs.lsp-preview').config()
     end
@@ -277,6 +282,7 @@ local plgins = {
   -- lsp loading info
   {
     'j-hui/fidget.nvim',
+    after = 'nvim-lspconfig',
     config = function ()
       require("fidget").setup{}
     end
@@ -373,6 +379,7 @@ local plgins = {
   -- Indentation
   {
     "lukas-reineke/indent-blankline.nvim",
+    event = "BufEnter",
     config = function()
       require("configs.indent-line").config()
     end,
@@ -411,6 +418,9 @@ local plgins = {
   -- neorg for note
   {
     "nvim-neorg/neorg",
+    cmd = 'NeorgStart',
+    ft = 'norg',
+    after = "nvim-treesitter",
     config = function()
       require('configs.norg').config()
     end,
