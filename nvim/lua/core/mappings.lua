@@ -55,6 +55,14 @@ if utils.is_available "neorg" then
   map('n', '<leader>nc', "<cmd>Neorg gtd capture<cr>")
 end
 
+-- Harpoon
+map('n', '<leader>ha', '<cmd>lua require("harpoon.mark").add_file()<cr>')
+map('n', '<leader>hd', '<cmd>lua require("harpoon.mark").rm_file()<cr>')
+map('n', '<leader>hc', '<cmd>lua require("harpoon.mark").clear_all()<cr>')
+map('n', '<leader>ht', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
+map('n', '<leader>hh', '<cmd>Telescope harpoon marks<cr>')
+
+
 -- LSP
 map("n", "gD", vim.lsp.buf.declaration)
 map("n", "gd", vim.lsp.buf.definition, { desc = "Show the definition of current function" })

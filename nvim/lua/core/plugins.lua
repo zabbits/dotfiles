@@ -434,6 +434,22 @@ local plgins = {
       require('marks').setup({})
     end
   },
+
+  -- harpoon
+  {
+    'ThePrimeagen/harpoon',
+    config = function()
+      require('configs.harpoon').config()
+    end
+  },
+
+  -- session manager
+  {
+    'olimorris/persisted.nvim',
+    config = function()
+      require("persisted").setup()
+    end,
+  },
 }
 
 packer.startup {

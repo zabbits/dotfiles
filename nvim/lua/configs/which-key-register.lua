@@ -19,7 +19,6 @@ local opts = {
 local mappings = {
   ["w"] = { "<cmd>w<CR>", "Save" },
   ["q"] = { "<cmd>q<CR>", "Quit" },
-  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 
   p = {
     name = "Packer",
