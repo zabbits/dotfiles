@@ -48,6 +48,13 @@ else
   map("n", "<S-h>", "<cmd>bprevious<CR>")
 end
 
+-- Norg
+if utils.is_available "neorg" then
+  map('n', '<leader>nv', "<cmd>Neorg gtd views<cr>")
+  map('n', '<leader>ne', "<cmd>Neorg gtd edit<cr>")
+  map('n', '<leader>nc', "<cmd>Neorg gtd capture<cr>")
+end
+
 -- LSP
 map("n", "gD", vim.lsp.buf.declaration)
 map("n", "gd", vim.lsp.buf.definition, { desc = "Show the definition of current function" })
