@@ -355,7 +355,7 @@ if utils.is_available('harpoon') then
     end,
     "Clear file",
   }
-  mappings.h.c = {
+  mappings.h.m = {
     function()
       require("harpoon.ui").toggle_quick_menu()
     end,

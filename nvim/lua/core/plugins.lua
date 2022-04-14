@@ -93,6 +93,10 @@ local plgins = {
     before = 'nightfox.nvim',
   },
   {
+    'tiagovla/tokyodark.nvim',
+    before = 'nightfox.nvim',
+  },
+  {
     'EdenEast/nightfox.nvim',
     config = function ()
       require("configs.theme").config()

@@ -1,17 +1,25 @@
 local M = {}
 
 function M.config()
-  local n_ok, ne = pcall(require, 'nebulous')
-  if n_ok then
-    ne.setup()
+  local utils = require('core.utils')
+  local scheme = 'default'
+
+  local nebulous = utils.safe_require('nebulous')
+  if nebulous then
+    nebulous.setup()
   end
-  
-  local t_ok, to = pcall(require, 'tokyonight')
-  if to then
-    vim.cmd("colorscheme tokyonight")
-  else
-    vim.cmd("colorscheme duskfox")
+
+  local tokyonight = utils.safe_require('tokyonight')
+  if tokyonight then
+    scheme = 'tokyonight'
   end
+
+  local tokyodark = utils.safe_require('tokyodark')
+  if tokyodark then
+    scheme = 'tokyodark'
+  end
+
+  vim.cmd("colorscheme "..scheme)
 
 end
 return M

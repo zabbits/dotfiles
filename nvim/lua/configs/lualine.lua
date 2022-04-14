@@ -34,7 +34,18 @@ function M.config()
       local gitdir = vim.fn.finddir(".git", filepath .. ";")
       return gitdir and #gitdir > 0 and #gitdir < #filepath
     end,
+    is_filetype_match = function(filetype)
+      return function()
+        return filetype == vim.o.filetype
+      end
+    end,
+    is_not_in = function(ignored)
+      return function()
+        return ignored[vim.bo.filetype] == nil
+      end
+    end,
   }
+
 
   local spacer = {
     function()
@@ -43,10 +54,30 @@ function M.config()
     padding = { left = 0, right = 0 },
   }
 
+
+  local function mix(func_a, func_b)
+    return function()
+      return func_a() and func_b()
+    end
+  end
+
+  local ignore_filetypes = {
+   "NvimTree", "neo-tree", "dashboard", "Outline", "Trouble",
+  }
+  local function is_not_ignore()
+    local ft = vim.bo.filetype
+    for _, val in pairs(ignore_filetypes) do
+      if ft == val then
+        return false
+      end
+    end
+    return true
+  end
+
   local config = {
     options = {
       theme = 'auto',
-      disabled_filetypes = { "NvimTree", "neo-tree", "dashboard", "Outline" },
+      -- disabled_filetypes = { "NvimTree", "neo-tree", "dashboard", "Outline" },
       component_separators = "",
       section_separators = "",
       globalstatus = true,
@@ -60,6 +91,7 @@ function M.config()
           icon = "",
           -- color = { fg = get_hl_prop("Conditional", "foreground", colors.purple_1), gui = "bold" },
           padding = { left = 2, right = 1 },
+          cond = is_not_ignore,
         },
         {
           "filetype",
@@ -69,13 +101,14 @@ function M.config()
         {
           "diff",
           symbols = { added = " ", modified = "柳", removed = " " },
-          cond = conditions.hide_in_width,
+          cond = mix(conditions.hide_in_width, is_not_ignore),
           padding = { left = 2, right = 1 },
         },
         {
           "diagnostics",
           sources = { "nvim_diagnostic" },
           symbols = { error = " ", warn = " ", info = " ", hint = " " },
+          cond = is_not_ignore,
           padding = { left = 2, right = 1 },
         },
         {
@@ -96,28 +129,30 @@ function M.config()
           icon = " ",
           color = { gui = "none" },
           padding = { left = 0, right = 1 },
-          cond = conditions.hide_in_width,
+          cond = mix(conditions.hide_in_width, is_not_ignore),
         },
         {
           status.treesitter_status,
           -- color = { fg = get_hl_prop("GitSignsAdd", "foreground", colors.green) },
           padding = { left = 1, right = 0 },
-          cond = conditions.hide_in_width,
+          cond = mix(conditions.hide_in_width, is_not_ignore),
         },
         {
           "location",
           padding = { left = 1, right = 1 },
+          cond = is_not_ignore,
         },
         {
           "progress",
           color = { gui = "none" },
+          cond = is_not_ignore,
           padding = { left = 0, right = 0 },
         },
         {
           status.progress_bar,
           padding = { left = 1, right = 2 },
+          cond = is_not_ignore,
           -- color = { fg = get_hl_prop("TypeDef", "foreground", colors.yellow) },
-          cond = nil,
         },
       },
       lualine_y = {},

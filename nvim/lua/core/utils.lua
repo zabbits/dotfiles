@@ -182,4 +182,12 @@ function M.update()
     :sync()
 end
 
+function M.safe_require(modname)
+  local present, mod = pcall(require, modname)
+  if present then
+    return mod
+  end
+  return nil
+end
+
 return M
