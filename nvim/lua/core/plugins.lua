@@ -89,6 +89,10 @@ local plgins = {
     disable = true,
   },
   {
+    'folke/tokyonight.nvim',
+    before = 'nightfox.nvim',
+  },
+  {
     'EdenEast/nightfox.nvim',
     config = function ()
       require("configs.theme").config()

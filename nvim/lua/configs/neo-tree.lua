@@ -86,7 +86,7 @@ function M.config()
         }
       },
       filtered_items = {
-        visible = false,
+        visible = true,
         hide_dotfiles = true,
         hide_gitignored = false,
         hide_by_name = {
@@ -103,6 +103,7 @@ function M.config()
     buffers = {
       show_unloaded = true,
       window = {
+        position = 'float',
         mappings = {
           ["bd"] = "buffer_delete",
         },
