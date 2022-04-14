@@ -63,6 +63,7 @@ local plgins = {
   {
     "mrjones2014/smart-splits.nvim",
     module = "smart-splits",
+    event = {'WinNew', 'TabNew'},
     config = function()
       require("configs.smart-splits").config()
     end,
@@ -80,10 +81,12 @@ local plgins = {
   {
     'rebelot/kanagawa.nvim',
     before = 'nightfox.nvim',
+    disable = true,
   },
   {
     'Yagua/nebulous.nvim',
     before = 'nightfox.nvim',
+    disable = true,
   },
   {
     'EdenEast/nightfox.nvim',
@@ -244,6 +247,7 @@ local plgins = {
   {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
+    after = 'nvim-lspconfig',
     config = function()
       require('configs.lsp-trouble').config()
     end
@@ -307,8 +311,8 @@ local plgins = {
   -- Fuzzy finder
   {
     "nvim-telescope/telescope.nvim",
-    after = 'trouble.nvim', -- use trouble show something
     module = "telescope",
+    -- after = 'dashboard-nvim',
     config = function()
       require("configs.telescope").config()
     end,
@@ -441,6 +445,7 @@ local plgins = {
   -- harpoon
   {
     'ThePrimeagen/harpoon',
+    after = 'telescope.nvim',
     config = function()
       require('configs.harpoon').config()
     end
@@ -458,6 +463,7 @@ local plgins = {
   -- session manager
   {
     'rmagatti/auto-session',
+    after = 'telescope.nvim',
     config = function()
       require('configs.session').config()
     end

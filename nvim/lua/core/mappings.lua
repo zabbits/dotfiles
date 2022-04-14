@@ -48,23 +48,6 @@ else
   map("n", "<S-h>", "<cmd>bprevious<CR>")
 end
 
--- Norg
-if utils.is_available "neorg" then
-  map('n', '<leader>nv', "<cmd>Neorg gtd views<cr>")
-  map('n', '<leader>ne', "<cmd>Neorg gtd edit<cr>")
-  map('n', '<leader>nc', "<cmd>Neorg gtd capture<cr>")
-end
-
--- Harpoon
-if utils.is_available "harpoon" then
-  map('n', '<leader>ha', '<cmd>lua require("harpoon.mark").add_file()<cr>')
-  map('n', '<leader>hd', '<cmd>lua require("harpoon.mark").rm_file()<cr>')
-  map('n', '<leader>hc', '<cmd>lua require("harpoon.mark").clear_all()<cr>')
-  map('n', '<leader>ht', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
-  map('n', '<leader>hh', '<cmd>Telescope harpoon marks<cr>')
-end
-
-
 -- LSP
 map("n", "gD", vim.lsp.buf.declaration)
 map("n", "gd", vim.lsp.buf.definition, { desc = "Show the definition of current function" })
@@ -84,13 +67,15 @@ map("n", "<leader>rn", vim.lsp.buf.rename)
 map("n", "<leader>xa", "<cmd>CodeActionMenu<CR>")
 
 -- lsp trouble
-map("n", "<leader>xx", "<cmd>Trouble<cr>", {silent = true, noremap = true})
-map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", {silent = true, noremap = true})
-map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", {silent = true, noremap = true})
-map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", {silent = true, noremap = true})
-map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", {silent = true, noremap = true})
-map("n", "gR", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
-map("n", "gr", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
+if utils.is_available "trouble.nvim" then
+  map("n", "<leader>xx", "<cmd>Trouble<cr>", {silent = true, noremap = true})
+  map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", {silent = true, noremap = true})
+  map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", {silent = true, noremap = true})
+  map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", {silent = true, noremap = true})
+  map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", {silent = true, noremap = true})
+  map("n", "gR", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
+  map("n", "gr", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
+end
 
 -- lsp preview
 if utils.is_available "goto-preview" then

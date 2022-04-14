@@ -44,9 +44,10 @@ local extra_sections = {
   f = "File",
   g = "Git",
   l = "LSP",
-  s = "Search",
+  s = "Search/Session",
   t = "Terminal",
-  S = "Session",
+  h = "Harpoon",
+  n = "Neorg",
 }
 
 local function init_table(idx)
@@ -57,7 +58,9 @@ end
 
 if utils.is_available "neo-tree.nvim" then
   mappings.e = { "<cmd>Neotree toggle<CR>", "Toggle Explorer" }
-  mappings.o = { "<cmd>Neotree focus<CR>", "Focus Explorer" }
+  mappings.oo = { "<cmd>Neotree focus<CR>", "Focus Explorer" }
+  mappings.og = { "<cmd>Neotree toggle git_status<CR>", "Toggle Git Status" }
+  mappings.ob = { "<cmd>Neotree toggle buffers<CR>", "Toggle Buffers" }
 end
 
 if utils.is_available "dashboard-nvim" then
@@ -65,12 +68,6 @@ if utils.is_available "dashboard-nvim" then
 
   init_table "f"
   mappings.f.n = { "<cmd>DashboardNewFile<CR>", "New File" }
-end
-
-if utils.is_available "auto-session" then
-  init_table "s"
-  mappings.s.s = { "<cmd>SessionLoad<CR>", "Save Session" }
-  mappings.s.l = { "<cmd>SessionSave<CR>", "Load Session" }
 end
 
 if utils.is_available "Comment.nvim" then
@@ -194,7 +191,16 @@ if utils.is_available "symbols-outline.nvim" then
   mappings.l.S = { "<cmd>SymbolsOutline<CR>", "Symbols Outline" }
 end
 
+
+-------------------- telescope --------------------
 if utils.is_available "telescope.nvim" then
+  mappings["<leader>"] = {
+    function()
+      require("telescope.builtin").find_files()
+    end,
+    "Find Files",
+  }
+
   init_table "s"
   mappings.s.b = {
     function()
@@ -296,8 +302,6 @@ if utils.is_available "telescope.nvim" then
     end,
     "Find Words",
   }
-  mappings.f.p = { "<cmd>Telescope projects<cr>", "Find projects" }
-  mappings.f.s = { "<cmd>SearchSession<cr>", "Find Session" }
 
   init_table "l"
   mappings.l.s = {
@@ -319,6 +323,98 @@ if utils.is_available "telescope.nvim" then
     "All Diagnostics",
   }
 end
+
+
+-------------------- Neorg ------------------
+if utils.is_available('neorg') then
+  init_table('n')
+  mappings.n.v = {"<cmd>Neorg gtd views<cr>", "Gtd views"}
+  mappings.n.e = {"<cmd>Neorg gtd edit<cr>", "Gtd edit"}
+  mappings.n.c = {"<cmd>Neorg gtd capture<cr>", "Gtd capture"}
+end
+
+
+-------------------- Harpoon ------------------
+if utils.is_available('harpoon') then
+  init_table('h')
+  mappings.h.a = {
+    function()
+      require("harpoon.mark").add_file()
+    end,
+    "Add file",
+  }
+  mappings.h.d = {
+    function()
+      require("harpoon.mark").rm_file()
+    end,
+    "Remove file",
+  }
+  mappings.h.c = {
+    function()
+      require("harpoon.mark").clear_all()
+    end,
+    "Clear file",
+  }
+  mappings.h.c = {
+    function()
+      require("harpoon.ui").toggle_quick_menu()
+    end,
+    "List file",
+  }
+  mappings.h.n = {
+    function()
+      require("harpoon.ui").nav_next()
+    end,
+    "Next file",
+  }
+  mappings.h.b = {
+    function()
+      require("harpoon.ui").nav_prev()
+    end,
+    "Prev file",
+  }
+  mappings.h.h = {
+    function()
+      require("telescope._extensions").manager.harpoon.marks()
+    end,
+    "Telescope file",
+  }
+  -- TIPS: keymaps when use harpoon with telescope
+  -- "i", "<c-d>", delete_harpoon_mark
+  -- "n", "<c-d>", delete_harpoon_mark
+end
+
+
+-------------------- telescope projects integration --------------------
+if utils.is_available("project.nvim") then
+  init_table("f")
+  mappings.f.p = {
+    function()
+      require("telescope._extensions").manager.projects.projects()
+    end
+    , "Find projects",
+  }
+end
+
+
+-------------------- auto-session --------------------
+if utils.is_available "auto-session" then
+  init_table "s"
+  mappings.s.s = { "<cmd>SessionSave<CR>", "Save Session" }
+  mappings.s.l = { "<cmd>SessionLoad<CR>", "Load Session" }
+end
+
+
+-------------------- telescope session-lens integration --------------------
+if utils.is_available("session-lens") then
+  mappings.f.s = {
+    function()
+      require("telescope._extensions.session-lens.main").search_session()
+    end,
+    "Find Session"
+  }
+end
+
 
 which_key.register(mappings, opts)
 

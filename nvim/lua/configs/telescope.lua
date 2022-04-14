@@ -2,10 +2,6 @@ local M = {}
 
 function M.config()
   local status_ok, telescope = pcall(require, "telescope")
-  local trouble_present, trouble = pcall(require, "trouble.providers.telescope")
-  if not status_ok then
-    return
-  end
 
   local actions = require "telescope.actions"
 
@@ -54,7 +50,7 @@ function M.config()
           ["<CR>"] = actions.select_default,
           ["<C-x>"] = actions.select_horizontal,
           ["<C-v>"] = actions.select_vertical,
-          ["<C-t>"] = trouble.open_with_trouble,
+          ["<C-t>"] = actions.select_tab,
 
           ["<C-u>"] = actions.preview_scrolling_up,
           ["<C-d>"] = actions.preview_scrolling_down,
@@ -74,7 +70,7 @@ function M.config()
           ["<CR>"] = actions.select_default,
           ["<C-x>"] = actions.select_horizontal,
           ["<C-v>"] = actions.select_vertical,
-          ["<C-t>"] = trouble.open_with_trouble,
+          ["<C-t>"] = actions.select_tab,
 
           ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
           ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
