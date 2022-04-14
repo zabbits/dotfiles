@@ -56,11 +56,13 @@ if utils.is_available "neorg" then
 end
 
 -- Harpoon
-map('n', '<leader>ha', '<cmd>lua require("harpoon.mark").add_file()<cr>')
-map('n', '<leader>hd', '<cmd>lua require("harpoon.mark").rm_file()<cr>')
-map('n', '<leader>hc', '<cmd>lua require("harpoon.mark").clear_all()<cr>')
-map('n', '<leader>ht', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
-map('n', '<leader>hh', '<cmd>Telescope harpoon marks<cr>')
+if utils.is_available "harpoon" then
+  map('n', '<leader>ha', '<cmd>lua require("harpoon.mark").add_file()<cr>')
+  map('n', '<leader>hd', '<cmd>lua require("harpoon.mark").rm_file()<cr>')
+  map('n', '<leader>hc', '<cmd>lua require("harpoon.mark").clear_all()<cr>')
+  map('n', '<leader>ht', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
+  map('n', '<leader>hh', '<cmd>Telescope harpoon marks<cr>')
+end
 
 
 -- LSP

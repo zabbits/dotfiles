@@ -55,7 +55,6 @@ function M.config()
       width = 30,
       mappings = {
         ["<2-LeftMouse>"] = "open",
-        ["<cr>"] = "open",
         ["o"] = "open",
         ["S"] = "open_split",
         ["s"] = "open_vsplit",

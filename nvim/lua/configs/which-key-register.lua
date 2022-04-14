@@ -65,10 +65,12 @@ if utils.is_available "dashboard-nvim" then
 
   init_table "f"
   mappings.f.n = { "<cmd>DashboardNewFile<CR>", "New File" }
+end
 
-  init_table "S"
-  mappings.S.s = { "<cmd>SessionLoad<CR>", "Save Session" }
-  mappings.S.l = { "<cmd>SessionSave<CR>", "Load Session" }
+if utils.is_available "auto-session" then
+  init_table "s"
+  mappings.s.s = { "<cmd>SessionLoad<CR>", "Save Session" }
+  mappings.s.l = { "<cmd>SessionSave<CR>", "Load Session" }
 end
 
 if utils.is_available "Comment.nvim" then
@@ -294,6 +296,8 @@ if utils.is_available "telescope.nvim" then
     end,
     "Find Words",
   }
+  mappings.f.p = { "<cmd>Telescope projects<cr>", "Find projects" }
+  mappings.f.s = { "<cmd>SearchSession<cr>", "Find Session" }
 
   init_table "l"
   mappings.l.s = {

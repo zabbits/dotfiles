@@ -44,7 +44,7 @@ function M.config()
     formatting = {
       format = function(entry, vim_item)
         -- Kind icons
-        vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
+        vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
         -- Source
         vim_item.menu = ({
           buffer = "[Buffer]",
@@ -72,8 +72,10 @@ function M.config()
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
     },
-    documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    window = {
+      documentation = {
+        border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      },
     },
     experimental = {
       ghost_text = false,

@@ -184,6 +184,9 @@ local plgins = {
   {
     "hrsh7th/nvim-cmp",
     event = { "BufRead", "BufNewFile" },
+    requires = {
+      'onsails/lspkind-nvim',
+    },
     config = function()
       require("configs.cmp").config()
     end,
@@ -443,12 +446,29 @@ local plgins = {
     end
   },
 
+  -- manage project
+  {
+    'ahmedkhalf/project.nvim',
+    after = 'telescope.nvim',
+    config = function()
+      require('configs.project').config()
+    end
+  },
+
   -- session manager
   {
-    'olimorris/persisted.nvim',
+    'rmagatti/auto-session',
     config = function()
-      require("persisted").setup()
-    end,
+      require('configs.session').config()
+    end
+  },
+  -- integrat auto-session with telescope
+  {
+    'rmagatti/session-lens',
+    after = 'auto-session',
+    config = function()
+      require('session-lens').setup({})
+    end
   },
 }
 
