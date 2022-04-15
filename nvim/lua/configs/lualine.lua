@@ -2,18 +2,6 @@ local M = {}
 
 local status = require "core.status"
 
-local function get_hl_by_name(name)
-  return string.format("#%06x", vim.api.nvim_get_hl_by_name(name.group, true)[name.prop])
-end
-
-local function get_hl_prop(group, prop, default)
-  local status_ok, color = pcall(get_hl_by_name, { group = group, prop = prop })
-  if status_ok then
-    default = color
-  end
-  return default
-end
-
 function M.config()
   local status_ok, lualine = pcall(require, "lualine")
   if not status_ok then
@@ -47,14 +35,6 @@ function M.config()
   }
 
 
-  local spacer = {
-    function()
-      return " "
-    end,
-    padding = { left = 0, right = 0 },
-  }
-
-
   local function mix(func_a, func_b)
     return function()
       return func_a() and func_b()
@@ -74,6 +54,14 @@ function M.config()
     return true
   end
 
+  local spacer = {
+    function()
+      return " "
+    end,
+    padding = { left = 0, right = 0 },
+    cond = is_not_ignore,
+  }
+
   local config = {
     options = {
       theme = 'auto',
@@ -89,7 +77,6 @@ function M.config()
         {
           "branch",
           icon = "",
-          -- color = { fg = get_hl_prop("Conditional", "foreground", colors.purple_1), gui = "bold" },
           padding = { left = 2, right = 1 },
           cond = is_not_ignore,
         },
@@ -152,11 +139,12 @@ function M.config()
           status.progress_bar,
           padding = { left = 1, right = 2 },
           cond = is_not_ignore,
-          -- color = { fg = get_hl_prop("TypeDef", "foreground", colors.yellow) },
         },
       },
       lualine_y = {},
-      lualine_z = { spacer },
+      lualine_z = { 
+        spacer,
+      },
     },
     inactive_sections = {
       lualine_a = {},

@@ -10,8 +10,8 @@ function M.config()
     options = {
       offsets = {
         { filetype = "NvimTree", text = "", padding = 1 },
-        { filetype = "neo-tree", text = "", padding = 1 },
-        { filetype = "Outline", text = "", padding = 1 },
+        { filetype = "neo-tree", text = "Neo-Tree", padding = 1 },
+        { filetype = "Outline", text = "Outline", padding = 1 },
         { filetype = "norg", text = "Norg", padding = 1 },
       },
       buffer_close_icon = "",
