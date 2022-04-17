@@ -9,14 +9,15 @@ function M.config()
     nebulous.setup()
   end
 
-  local tokyonight = utils.safe_require('tokyonight')
-  if tokyonight then
-    scheme = 'tokyonight'
-  end
-
   local tokyodark = utils.safe_require('tokyodark')
   if tokyodark then
     scheme = 'tokyodark'
+  end
+
+  local tokyonight = utils.safe_require('tokyonight')
+  if tokyonight then
+    vim.g.tokyonight_style = "day"
+    scheme = 'tokyonight'
   end
 
   vim.cmd("colorscheme "..scheme)

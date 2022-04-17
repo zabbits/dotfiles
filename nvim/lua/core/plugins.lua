@@ -108,6 +108,7 @@ local plgins = {
   {
     "akinsho/bufferline.nvim",
     after = "nvim-web-devicons",
+    event = 'BufEnter',
     config = function()
       require("configs.bufferline").config()
     end,
@@ -143,7 +144,7 @@ local plgins = {
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
-    after = 'nightfox.nvim',
+    event = {'BufEnter', 'BufWinEnter'},
     config = function()
       require("configs.lualine").config()
     end,
@@ -165,6 +166,18 @@ local plgins = {
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
     after = "nvim-treesitter",
+  },
+
+  -- coding gps
+  {
+    "SmiteshP/nvim-gps",
+    after = "nvim-treesitter",
+    config = function()
+      local gps = require("core.utils").safe_require("nvim-gps")
+      if gps then
+        gps.setup({})
+      end
+    end
   },
 
   -- Syntax highlighting
@@ -224,6 +237,12 @@ local plgins = {
   -- LSP completion source
   {
     "hrsh7th/cmp-nvim-lsp",
+    after = "nvim-cmp",
+  },
+
+  -- Lua completion source
+  {
+    "hrsh7th/cmp-nvim-lua",
     after = "nvim-cmp",
   },
 
@@ -433,7 +452,7 @@ local plgins = {
   -- neorg for note
   {
     "nvim-neorg/neorg",
-    cmd = 'NeorgStart',
+    cmd = "NeorgStart",
     ft = 'norg',
     after = "nvim-treesitter",
     config = function()

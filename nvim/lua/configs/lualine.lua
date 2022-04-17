@@ -34,33 +34,46 @@ function M.config()
     end,
   }
 
-
-  local function mix(func_a, func_b)
-    return function()
-      return func_a() and func_b()
-    end
-  end
-
-  local ignore_filetypes = {
-   "NvimTree", "neo-tree", "dashboard", "Outline", "Trouble",
-  }
-  local function is_not_ignore()
-    local ft = vim.bo.filetype
-    for _, val in pairs(ignore_filetypes) do
-      if ft == val then
-        return false
-      end
-    end
-    return true
-  end
-
   local spacer = {
     function()
       return " "
     end,
     padding = { left = 0, right = 0 },
-    cond = is_not_ignore,
   }
+
+  local gps = require("core.utils").safe_require("nvim-gps")
+  local gps_component = {
+    function ()
+      return ""
+    end
+  }
+  if gps then
+    gps_component = {
+      gps.get_location,
+      cond = gps.is_available
+    }
+  end
+
+  local function extention_by_filetype(filetype)
+    return {
+      sections = {
+        lualine_a = {'filetype'}
+      },
+      inactive_sections = {
+        lualine_a = {'filetype'}
+      },
+      filetypes = { filetype }
+    }
+  end
+
+  local ignore_filetypes = {
+    "NvimTree", "neo-tree", "dashboard",
+    "Outline", "Trouble",
+  }
+  local extensions = {}
+  for index, value in ipairs(ignore_filetypes) do
+    extensions[index] = extention_by_filetype(value)
+  end
 
   local config = {
     options = {
@@ -72,13 +85,12 @@ function M.config()
     },
     sections = {
       lualine_a = { spacer },
-      lualine_b = {},
+      lualine_b = { "mode" },
       lualine_c = {
         {
           "branch",
           icon = "",
           padding = { left = 2, right = 1 },
-          cond = is_not_ignore,
         },
         {
           "filetype",
@@ -88,16 +100,16 @@ function M.config()
         {
           "diff",
           symbols = { added = " ", modified = "柳", removed = " " },
-          cond = mix(conditions.hide_in_width, is_not_ignore),
+          cond = conditions.hide_in_width,
           padding = { left = 2, right = 1 },
         },
         {
           "diagnostics",
           sources = { "nvim_diagnostic" },
           symbols = { error = " ", warn = " ", info = " ", hint = " " },
-          cond = is_not_ignore,
           padding = { left = 2, right = 1 },
         },
+        gps_component,
         {
           function()
             return "%="
@@ -105,44 +117,32 @@ function M.config()
         },
       },
       lualine_x = {
-        -- {
-        --   status.lsp_progress,
-        --   color = { gui = "none" },
-        --   padding = { left = 0, right = 1 },
-        --   cond = conditions.hide_in_width,
-        -- },
         {
           status.lsp_name,
           icon = " ",
-          color = { gui = "none" },
           padding = { left = 0, right = 1 },
-          cond = mix(conditions.hide_in_width, is_not_ignore),
+          cond = conditions.hide_in_width,
         },
         {
           status.treesitter_status,
-          -- color = { fg = get_hl_prop("GitSignsAdd", "foreground", colors.green) },
           padding = { left = 1, right = 0 },
-          cond = mix(conditions.hide_in_width, is_not_ignore),
+          cond = conditions.hide_in_width,
         },
         {
           "location",
           padding = { left = 1, right = 1 },
-          cond = is_not_ignore,
         },
         {
           "progress",
-          color = { gui = "none" },
-          cond = is_not_ignore,
           padding = { left = 0, right = 0 },
         },
         {
           status.progress_bar,
           padding = { left = 1, right = 2 },
-          cond = is_not_ignore,
         },
       },
       lualine_y = {},
-      lualine_z = { 
+      lualine_z = {
         spacer,
       },
     },
@@ -154,6 +154,7 @@ function M.config()
       lualine_c = {},
       lualine_x = {},
     },
+    extensions = extensions,
   }
 
   lualine.setup(config)

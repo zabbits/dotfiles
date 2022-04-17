@@ -2,18 +2,32 @@ local M = {}
 
 local utils = require "core.utils"
 
+-- see h: api-autocmd
 local cmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
--- local add_command = vim.api.nvim_add_user_command
 
--- TODO 切换为lua脚本
-vim.cmd [[
-  augroup _general_settings
-    autocmd!
-    autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
-    autocmd BufWinEnter * :set formatoptions-=cro
-  augroup end
-]]
+local gs_id = augroup("_general_settings", {})
+cmd("TextYankPost", {
+  desc = "Highlight on yank",
+  group = gs_id,
+  callback = function()
+    require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
+  end,
+})
+cmd("BufWinEnter", {
+  desc = "Change formatoptions",
+  group = gs_id,
+  command = "set formatoptions-=cro",
+})
+cmd("FileType", {
+  desc = "Use 'q' close in qf, help, man, lspinfo, notify",
+  pattern = {
+    "qf", "help", "man", "lspinfo", "notify",
+  },
+  group = gs_id,
+  command = "nnoremap <silent> <buffer> q :close<cr>",
+})
+
 
 augroup("packer_user_config", {})
 cmd("BufWritePost", {
@@ -56,7 +70,5 @@ if utils.is_available "dashboard-nvim" and utils.is_available "bufferline.nvim" 
     command = "if &ft is 'dashboard' | set nocursorline | endif",
   })
 end
-
--- add_command("AstroUpdate", require("core.utils").update, {})
 
 return M

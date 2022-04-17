@@ -51,6 +51,8 @@ function M.config()
           nvim_lsp = "[LSP]",
           luasnip = "[LuaSnip]",
           nvim_lua = "[Lua]",
+          path = "[Path]",
+          neorg = "[Neorg]",
           latex_symbols = "[LaTeX]",
         })[entry.source.name]
         return vim_item
@@ -88,12 +90,14 @@ function M.config()
       { name = "nvim_lsp" },
       { name = "luasnip" },
       { name = "buffer" },
+      { name = "nvim_lua" },
       { name = "path" },
+      { name = "neorg" },
     },
     mapping = {
       ["<C-k>"] = cmp.mapping.select_prev_item(),
       ["<C-j>"] = cmp.mapping.select_next_item(),
-      ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+      ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       ["<C-y>"] = cmp.config.disable,
