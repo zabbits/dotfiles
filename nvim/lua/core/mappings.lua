@@ -68,13 +68,13 @@ map("n", "<leader>xa", "<cmd>CodeActionMenu<CR>")
 
 -- lsp trouble
 if utils.is_available "trouble.nvim" then
-  map("n", "<leader>xx", "<cmd>Trouble<cr>", {silent = true, noremap = true})
-  map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", {silent = true, noremap = true})
-  map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", {silent = true, noremap = true})
-  map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", {silent = true, noremap = true})
-  map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", {silent = true, noremap = true})
-  map("n", "gR", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
-  map("n", "gr", "<cmd>Trouble lsp_references<cr>", {silent = true, noremap = true})
+  map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true})
+  map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", {silent = true, noremap = true})
+  map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", {silent = true, noremap = true})
+  map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", {silent = true, noremap = true})
+  map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", {silent = true, noremap = true})
+  map("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", {silent = true, noremap = true})
+  map("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", {silent = true, noremap = true})
 end
 
 -- lsp preview
