@@ -21,6 +21,12 @@ function M.config()
       ["core.gtd.base"] = {
         config = {
           workspace = 'gtd',
+          syntax = {
+            context = "#contexts",
+            start = "#time.start",
+            due = "#time.due",
+            waiting = "#waiting.for",
+          }
         }
       },
       ["core.norg.manoeuvre"] = {},
