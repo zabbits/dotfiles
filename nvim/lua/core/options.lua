@@ -1,6 +1,5 @@
 local M = {}
 
-vim.lsp.set_log_level("debug")
 local options = {
   fileencoding = "utf-8",                     -- File content encoding for the buffer
   spelllang = "en",                           -- Support US english
