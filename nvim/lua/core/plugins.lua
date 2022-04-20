@@ -299,6 +299,7 @@ local plgins = {
   {
     'kosayoda/nvim-lightbulb',
     after = 'nvim-lspconfig',
+    disable = true,
     config = function ()
       require('configs.lightbulb').config()
     end

@@ -66,6 +66,11 @@ map("n", "<leader>rn", vim.lsp.buf.rename)
 -- code action menu
 map("n", "<leader>xa", "<cmd>CodeActionMenu<CR>")
 
+-- lsp symbols
+if utils.is_available "symbols-outline.nvim" then
+  map("n", "gs", "<cmd>SymbolsOutline<CR>")
+end
+
 -- lsp trouble
 if utils.is_available "trouble.nvim" then
   map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true})
@@ -239,31 +244,6 @@ if not utils.is_available "which-key.nvim" then
     map('n', '<C-_>', require("Comment.api").toggle_current_linewise)
   end
 
-  -- Terminal
-  if utils.is_available "nvim-toggleterm.lua" then
-    map("n", "<leader>gg", function()
-      utils.toggle_term_cmd "lazygit"
-    end)
-    map("n", "<leader>tn", function()
-      utils.toggle_term_cmd "node"
-    end)
-    map("n", "<leader>tu", function()
-      utils.toggle_term_cmd "ncdu"
-    end)
-    map("n", "<leader>tt", function()
-      utils.toggle_term_cmd "htop"
-    end)
-    map("n", "<leader>tp", function()
-      utils.toggle_term_cmd "python"
-    end)
-    map("n", "<leader>tl", function()
-      utils.toggle_term_cmd "lazygit"
-    end)
-    map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>")
-    map("n", "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>")
-    map("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>")
-  end
-
   -- SymbolsOutline
   if utils.is_available "symbols-outline.nvim" then
     map("n", "<leader>lS", "<cmd>SymbolsOutline<CR>")
@@ -286,21 +266,5 @@ map("x", "K", "<cmd>move '<-2<CR>gv-gv")
 
 -- disable Ex mode:
 map("n", "Q", "<Nop>")
-
-function _G.set_terminal_keymaps()
-  vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], {})
-  vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], {})
-  vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], {})
-  vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], {})
-  vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], {})
-  vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], {})
-end
-
-augroup("TermMappings", {})
-cmd("TermOpen", {
-  desc = "Set terminal keymaps",
-  group = "TermMappings",
-  callback = _G.set_terminal_keymaps,
-})
 
 return M

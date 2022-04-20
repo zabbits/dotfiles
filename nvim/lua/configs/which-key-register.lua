@@ -171,7 +171,7 @@ if utils.is_available "nvim-toggleterm.lua" then
   }
   mappings.t.p = {
     function()
-      require("core.utils").toggle_term_cmd "python"
+      require("core.utils").toggle_term_cmd "python3"
     end,
     "Python",
   }
