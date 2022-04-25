@@ -504,6 +504,13 @@ local plgins = {
       require('session-lens').setup({})
     end
   },
+
+
+  -- snip run
+  { 
+    'michaelb/sniprun',
+    run = 'bash ./install.sh',
+  }
 }
 
 packer.startup {
