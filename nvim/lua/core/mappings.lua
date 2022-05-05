@@ -124,7 +124,7 @@ if not utils.is_available "which-key.nvim" then
   map("n", "<leader>pu", "<cmd>PackerUpdate<cr>")
 
   -- LSP
-  map("n", "<leader>lf", vim.lsp.buf.formatting_sync)
+  map("n", "<leader>lf", vim.lsp.buf.format)
   map("n", "<leader>li", "<cmd>LspInfo<cr>")
   map("n", "<leader>lI", "<cmd>LspInstallInfo<cr>")
   map("n", "<leader>la", vim.lsp.buf.code_action)
