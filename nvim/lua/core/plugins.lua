@@ -123,6 +123,7 @@ local plgins = {
   -- File explorer
   {
     "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
     module = "neo-tree",
     cmd = "Neotree",
     requires = "MunifTanjim/nui.nvim",
