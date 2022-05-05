@@ -16,7 +16,7 @@ function M.config()
 
   local tokyonight = utils.safe_require('tokyonight')
   if tokyonight then
-    vim.g.tokyonight_style = "day"
+    -- vim.g.tokyonight_style = "day"
     scheme = 'tokyonight'
   end
 
