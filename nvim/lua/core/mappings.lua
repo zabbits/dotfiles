@@ -237,24 +237,24 @@ if not utils.is_available "which-key.nvim" then
     end)
   end
 
-  -- Comment
-  if utils.is_available "Comment.nvim" then
-    -- Linewise toggle current line using C-/
-    map('i', '<C-_>', require("Comment.api").toggle_current_linewise)
-    map('n', '<C-_>', require("Comment.api").toggle_current_linewise)
-  end
-
   -- SymbolsOutline
   if utils.is_available "symbols-outline.nvim" then
     map("n", "<leader>lS", "<cmd>SymbolsOutline<CR>")
   end
 end
 
+-- Comment
+if utils.is_available "Comment.nvim" then
+  -- Linewise toggle current line using C-/
+  map('i', '<C-/>', require("Comment.api").toggle_current_linewise)
+  map('n', '<C-/>', require("Comment.api").toggle_current_linewise)
+end
+
 --========================= Visual ==========================--
 
 -- Comment
 if utils.is_available "Comment.nvim" then
-  map('x', '<C-_>', function()
+  map('x', '<C-/>', function()
     require("Comment.api").toggle_linewise_op(vim.fn.visualmode())
   end)
 end
