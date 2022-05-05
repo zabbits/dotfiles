@@ -63,7 +63,7 @@ local plgins = {
   {
     "mrjones2014/smart-splits.nvim",
     module = "smart-splits",
-    event = {'WinNew', 'TabNew'},
+    event = { 'WinNew', 'TabNew' },
     config = function()
       require("configs.smart-splits").config()
     end,
@@ -98,8 +98,17 @@ local plgins = {
   },
   {
     'EdenEast/nightfox.nvim',
-    config = function ()
+    config = function()
       require("configs.theme").config()
+    end
+  },
+
+
+  -- UI Dressing
+  {
+    "stevearc/dressing.nvim",
+    config = function()
+      require("configs.dressing").config()
     end
   },
 
@@ -145,7 +154,7 @@ local plgins = {
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
-    event = {'BufEnter', 'BufWinEnter'},
+    event = { 'BufEnter', 'BufWinEnter' },
     config = function()
       require("configs.lualine").config()
     end,
@@ -285,7 +294,7 @@ local plgins = {
   {
     "ray-x/lsp_signature.nvim",
     after = 'nvim-lspconfig',
-    config = function ()
+    config = function()
       require('configs.lsp-signature').config()
     end
   },
@@ -301,7 +310,7 @@ local plgins = {
     'kosayoda/nvim-lightbulb',
     after = 'nvim-lspconfig',
     disable = true,
-    config = function ()
+    config = function()
       require('configs.lightbulb').config()
     end
   },
@@ -319,8 +328,8 @@ local plgins = {
   {
     'j-hui/fidget.nvim',
     after = 'nvim-lspconfig',
-    config = function ()
-      require("fidget").setup{}
+    config = function()
+      require("fidget").setup {}
     end
   },
 
@@ -466,7 +475,7 @@ local plgins = {
   {
     'chentau/marks.nvim',
     event = { "BufRead", "BufNewFile" },
-    config = function ()
+    config = function()
       require('marks').setup({})
     end
   },
@@ -508,7 +517,7 @@ local plgins = {
 
 
   -- snip run
-  { 
+  {
     'michaelb/sniprun',
     run = 'bash ./install.sh',
   }
@@ -517,8 +526,7 @@ local plgins = {
 packer.startup {
   function(use)
     -- Load plugins!
-    for _, plugin in pairs(plgins)
-    do
+    for _, plugin in pairs(plgins) do
       use(plugin)
     end
   end,
