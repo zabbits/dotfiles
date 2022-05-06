@@ -375,6 +375,15 @@ local plgins = {
     end,
   },
 
+  -- Diff View
+  {
+    'sindrets/diffview.nvim',
+    event = { "BufRead", "BufNewFile" },
+    config = function()
+      require("configs.diffview").config()
+    end
+  },
+
   -- Start screen
   {
     "glepnir/dashboard-nvim",
