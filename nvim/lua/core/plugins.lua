@@ -81,12 +81,10 @@ local plgins = {
   {
     'rebelot/kanagawa.nvim',
     before = 'nightfox.nvim',
-    disable = true,
   },
   {
     'Yagua/nebulous.nvim',
     before = 'nightfox.nvim',
-    disable = true,
   },
   {
     'folke/tokyonight.nvim',
@@ -94,6 +92,10 @@ local plgins = {
   },
   {
     'tiagovla/tokyodark.nvim',
+    before = 'nightfox.nvim',
+  },
+  {
+    'rmehri01/onenord.nvim',
     before = 'nightfox.nvim',
   },
   {
