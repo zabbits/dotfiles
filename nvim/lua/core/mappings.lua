@@ -38,14 +38,14 @@ end
 
 -- Navigate buffers
 if utils.is_available "bufferline.nvim" then
-  map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>")
-  map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>")
+  map("n", "]]", "<cmd>BufferLineCycleNext<cr>")
+  map("n", "[[", "<cmd>BufferLineCyclePrev<cr>")
   -- move current buffer location
   map("n", "}", "<cmd>BufferLineMoveNext<cr>")
   map("n", "{", "<cmd>BufferLineMovePrev<cr>")
 else
-  map("n", "<S-l>", "<cmd>bnext<CR>")
-  map("n", "<S-h>", "<cmd>bprevious<CR>")
+  map("n", "]]", "<cmd>bnext<CR>")
+  map("n", "[[", "<cmd>bprevious<CR>")
 end
 
 -- LSP

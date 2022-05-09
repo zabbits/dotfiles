@@ -531,7 +531,16 @@ local plgins = {
   {
     'michaelb/sniprun',
     run = 'bash ./install.sh',
-  }
+  },
+
+  -- relative num
+  {
+    "nkakouros-original/numbers.nvim",
+    event = "BufEnter",
+    config = function()
+      require('numbers').setup()
+    end
+  },
 }
 
 packer.startup {
