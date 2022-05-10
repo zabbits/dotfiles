@@ -41,18 +41,29 @@ function M.setup()
   })
 end
 
-local function lsp_highlight_document(client)
-  if client.server_capabilities.document_highlight then
-    vim.api.nvim_exec(
-      [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
-      false
-    )
+local function lsp_highlight_document(client, bufnr)
+  if client.server_capabilities.documentHighlightProvider then
+    local cmd = vim.api.nvim_create_autocmd
+    local augroup = vim.api.nvim_create_augroup
+    local gs_id = augroup("_lsp_document_highlight", {})
+    cmd("CursorHold", {
+      desc = "LSP Highlight Document",
+      group = gs_id,
+      buffer = bufnr,
+      command = "lua vim.lsp.buf.document_highlight()",
+    })
+    cmd("CursorHoldI", {
+      desc = "LSP Highlight Document",
+      group = gs_id,
+      buffer = bufnr,
+      command = "lua vim.lsp.buf.document_highlight()",
+    })
+    cmd("CursorMoved", {
+      desc = "LSP Clear Highlight Document",
+      group = gs_id,
+      buffer = bufnr,
+      command = "lua vim.lsp.buf.clear_references()",
+    })
   end
 end
 
@@ -67,13 +78,7 @@ M.on_attach = function(client, bufnr)
     client.server_capabilities.document_formatting = false
   end
 
-  local on_attach_override = require("core.utils").user_plugin_opts "lsp.on_attach"
-  if on_attach_override ~= nil then
-    on_attach_override(client, bufnr)
-  end
-
-  -- vim.api.nvim_add_user_command("Format", vim.lsp.buf.formatting, {})
-  lsp_highlight_document(client)
+  lsp_highlight_document(client, bufnr)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
