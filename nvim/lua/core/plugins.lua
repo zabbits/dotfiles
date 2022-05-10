@@ -526,13 +526,6 @@ local plgins = {
     end
   },
 
-
-  -- snip run
-  {
-    'michaelb/sniprun',
-    run = 'bash ./install.sh',
-  },
-
   -- relative num
   {
     "nkakouros-original/numbers.nvim",
