@@ -31,9 +31,9 @@ lspconfig_configs.volar_api = {
     cmd = volar_cmd,
     root_dir = volar_root_dir,
     on_new_config = on_new_config,
-    filetypes = { 'vue'},
+    -- filetypes = { 'vue'},
     -- If you want to use Volar's Take Over Mode (if you know, you know)
-    -- filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
     init_options = {
       typescript = {
         serverPath = ts_path,
@@ -68,9 +68,9 @@ lspconfig_configs.volar_doc = {
     root_dir = volar_root_dir,
     on_new_config = on_new_config,
 
-    filetypes = { 'vue'},
+    -- filetypes = { 'vue'},
     -- If you want to use Volar's Take Over Mode (if you know, you know):
-    -- filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
     init_options = {
       typescript = {
         serverPath = ts_path,
@@ -96,9 +96,9 @@ lspconfig_configs.volar_html = {
     root_dir = volar_root_dir,
     on_new_config = on_new_config,
 
-    filetypes = { 'vue'},
+    -- filetypes = { 'vue'},
     -- If you want to use Volar's Take Over Mode (if you know, you know), intentionally no 'json':
-    -- filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
     init_options = {
       typescript = {
         serverPath = ts_path,

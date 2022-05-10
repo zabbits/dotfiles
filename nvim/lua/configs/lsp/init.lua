@@ -5,4 +5,8 @@ end
 
 require "configs.lsp.lsp-installer"
 require("configs.lsp.handlers").setup()
--- require("configs.lsp.vue-volar")
+
+local configs = require("core.configs")
+if configs.lsp.volar then
+  require("configs.lsp.vue-volar")
+end
