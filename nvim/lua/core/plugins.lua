@@ -1,4 +1,4 @@
-local M = {}
+M = {}
 
 local packer_status_ok, packer = pcall(require, "packer")
 if not packer_status_ok then
@@ -63,7 +63,7 @@ local plgins = {
   {
     "mrjones2014/smart-splits.nvim",
     module = "smart-splits",
-    event = {'WinNew', 'TabNew'},
+    event = { 'WinNew', 'TabNew' },
     config = function()
       require("configs.smart-splits").config()
     end,
@@ -81,12 +81,10 @@ local plgins = {
   {
     'rebelot/kanagawa.nvim',
     before = 'nightfox.nvim',
-    disable = true,
   },
   {
     'Yagua/nebulous.nvim',
     before = 'nightfox.nvim',
-    disable = true,
   },
   {
     'folke/tokyonight.nvim',
@@ -97,9 +95,22 @@ local plgins = {
     before = 'nightfox.nvim',
   },
   {
+    'rmehri01/onenord.nvim',
+    before = 'nightfox.nvim',
+  },
+  {
     'EdenEast/nightfox.nvim',
-    config = function ()
+    config = function()
       require("configs.theme").config()
+    end
+  },
+
+
+  -- UI Dressing
+  {
+    "stevearc/dressing.nvim",
+    config = function()
+      require("configs.dressing").config()
     end
   },
 
@@ -123,6 +134,7 @@ local plgins = {
   -- File explorer
   {
     "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
     module = "neo-tree",
     cmd = "Neotree",
     requires = "MunifTanjim/nui.nvim",
@@ -144,7 +156,7 @@ local plgins = {
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
-    event = {'BufEnter', 'BufWinEnter'},
+    event = { 'BufEnter', 'BufWinEnter' },
     config = function()
       require("configs.lualine").config()
     end,
@@ -284,7 +296,7 @@ local plgins = {
   {
     "ray-x/lsp_signature.nvim",
     after = 'nvim-lspconfig',
-    config = function ()
+    config = function()
       require('configs.lsp-signature').config()
     end
   },
@@ -300,7 +312,7 @@ local plgins = {
     'kosayoda/nvim-lightbulb',
     after = 'nvim-lspconfig',
     disable = true,
-    config = function ()
+    config = function()
       require('configs.lightbulb').config()
     end
   },
@@ -318,8 +330,8 @@ local plgins = {
   {
     'j-hui/fidget.nvim',
     after = 'nvim-lspconfig',
-    config = function ()
-      require("fidget").setup{}
+    config = function()
+      require("fidget").setup {}
     end
   },
 
@@ -363,6 +375,15 @@ local plgins = {
     config = function()
       require("configs.gitsigns").config()
     end,
+  },
+
+  -- Diff View
+  {
+    'sindrets/diffview.nvim',
+    event = { "BufRead", "BufNewFile" },
+    config = function()
+      require("configs.diffview").config()
+    end
   },
 
   -- Start screen
@@ -465,7 +486,7 @@ local plgins = {
   {
     'chentau/marks.nvim',
     event = { "BufRead", "BufNewFile" },
-    config = function ()
+    config = function()
       require('marks').setup({})
     end
   },
@@ -504,13 +525,21 @@ local plgins = {
       require('session-lens').setup({})
     end
   },
+
+  -- relative num
+  {
+    "nkakouros-original/numbers.nvim",
+    event = "BufEnter",
+    config = function()
+      require('numbers').setup()
+    end
+  },
 }
 
 packer.startup {
   function(use)
     -- Load plugins!
-    for _, plugin in pairs(plgins)
-    do
+    for _, plugin in pairs(plgins) do
       use(plugin)
     end
   end,

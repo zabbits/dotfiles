@@ -6,14 +6,15 @@ function M.config()
     return
   end
 
-  vim.g.neo_tree_legacy_commands = 1
-
   neotree.setup({
     close_if_last_window = true,
     popup_border_style = "rounded",
     enable_git_status = true,
-    enable_diagnostics = false,
+    enable_diagnostics = true,
     default_component_configs = {
+      container = {
+        enable_character_fade = true
+      },
       indent = {
         indent_size = 2,
         padding = 1,
@@ -29,12 +30,19 @@ function M.config()
       icon = {
         folder_closed = "",
         folder_open = "",
-        folder_empty = "",
-        default = "",
+        folder_empty = "ﰊ",
+        -- default = "",
+        default = "*",
+        highlight = "NeoTreeFileIcon"
+      },
+      modified = {
+        symbol = "[+]",
+        highlight = "NeoTreeModified",
       },
       name = {
         trailing_slash = false,
         use_git_status_colors = true,
+        highlight = "NeoTreeFileName",
       },
       git_status = {
         symbols = {
@@ -52,37 +60,57 @@ function M.config()
     },
     window = {
       position = "left",
-      width = 30,
+      width = 40,
+      mapping_options = {
+        noremap = true,
+        nowait = true,
+      },
       mappings = {
+        ["<space>"] = {
+          "toggle_node",
+          nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
+        },
         ["<2-LeftMouse>"] = "open",
-        ["o"] = "open",
+        ["<cr>"] = "open",
         ["S"] = "open_split",
         ["s"] = "open_vsplit",
+        -- ["S"] = "split_with_window_picker",
+        -- ["s"] = "vsplit_with_window_picker",
+        ["t"] = "open_tabnew",
+        ["w"] = "open_with_window_picker",
         ["C"] = "close_node",
-        ["z"] = "close_all_nodes",
-        ["H"] = "toggle_hidden",
-        ["R"] = "refresh",
-        ["a"] = "add",
+        ["a"] = {
+          "add",
+          -- some commands may take optional config options, see `:h neo-tree-mappings` for details
+          config = {
+            show_path = "none" -- "none", "relative", "absolute"
+          }
+        },
+        ["A"] = "add_directory", -- also accepts the config.show_path option.
         ["d"] = "delete",
         ["r"] = "rename",
         ["y"] = "copy_to_clipboard",
         ["x"] = "cut_to_clipboard",
         ["p"] = "paste_from_clipboard",
-        ["c"] = "copy",
-        ["m"] = "move",
+        ["c"] = "copy", -- takes text input for destination
+        ["m"] = "move", -- takes text input for destination
         ["q"] = "close_window",
-      },
+        ["R"] = "refresh",
+        ["?"] = "show_help",
+      }
     },
     nesting_rules = {},
     filesystem = {
       window = {
         mappings = {
+          ["<bs>"] = "navigate_up",
+          ["."] = "set_root",
           ["H"] = "toggle_hidden",
           ["/"] = "fuzzy_finder",
           ["f"] = "filter_on_submit",
-          ["<C-x>"] = "clear_filter",
-          ["<bs>"] = "navigate_up",
-          ["."] = "set_root",
+          ["<c-x>"] = "clear_filter",
+          ["[g"] = "prev_git_modified",
+          ["]g"] = "next_git_modified",
         }
       },
       filtered_items = {
@@ -97,16 +125,21 @@ function M.config()
         },
       },
       follow_current_file = true,
+      group_empty_dirs = false, -- when true, empty folders will be grouped together
       hijack_netrw_behavior = "open_current",
       use_libuv_file_watcher = true,
     },
     buffers = {
+      follow_current_file = true, -- This will find and focus the file in the active buffer every
+      -- time the current file is changed while the tree is open.
+      group_empty_dirs = true, -- when true, empty folders will be grouped together
       show_unloaded = true,
       window = {
-        position = 'float',
         mappings = {
           ["bd"] = "buffer_delete",
-        },
+          ["<bs>"] = "navigate_up",
+          ["."] = "set_root",
+        }
       },
     },
     git_status = {

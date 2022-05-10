@@ -38,14 +38,14 @@ end
 
 -- Navigate buffers
 if utils.is_available "bufferline.nvim" then
-  map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>")
-  map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>")
+  map("n", "]]", "<cmd>BufferLineCycleNext<cr>")
+  map("n", "[[", "<cmd>BufferLineCyclePrev<cr>")
   -- move current buffer location
   map("n", "}", "<cmd>BufferLineMoveNext<cr>")
   map("n", "{", "<cmd>BufferLineMovePrev<cr>")
 else
-  map("n", "<S-l>", "<cmd>bnext<CR>")
-  map("n", "<S-h>", "<cmd>bprevious<CR>")
+  map("n", "]]", "<cmd>bnext<CR>")
+  map("n", "[[", "<cmd>bprevious<CR>")
 end
 
 -- LSP
@@ -124,7 +124,7 @@ if not utils.is_available "which-key.nvim" then
   map("n", "<leader>pu", "<cmd>PackerUpdate<cr>")
 
   -- LSP
-  map("n", "<leader>lf", vim.lsp.buf.formatting_sync)
+  map("n", "<leader>lf", vim.lsp.buf.format)
   map("n", "<leader>li", "<cmd>LspInfo<cr>")
   map("n", "<leader>lI", "<cmd>LspInstallInfo<cr>")
   map("n", "<leader>la", vim.lsp.buf.code_action)
@@ -237,24 +237,24 @@ if not utils.is_available "which-key.nvim" then
     end)
   end
 
-  -- Comment
-  if utils.is_available "Comment.nvim" then
-    -- Linewise toggle current line using C-/
-    map('i', '<C-_>', require("Comment.api").toggle_current_linewise)
-    map('n', '<C-_>', require("Comment.api").toggle_current_linewise)
-  end
-
   -- SymbolsOutline
   if utils.is_available "symbols-outline.nvim" then
     map("n", "<leader>lS", "<cmd>SymbolsOutline<CR>")
   end
 end
 
+-- Comment
+if utils.is_available "Comment.nvim" then
+  -- Linewise toggle current line using C-/
+  map('i', '<C-/>', require("Comment.api").toggle_current_linewise)
+  map('n', '<C-/>', require("Comment.api").toggle_current_linewise)
+end
+
 --========================= Visual ==========================--
 
 -- Comment
 if utils.is_available "Comment.nvim" then
-  map('x', '<C-_>', function()
+  map('x', '<C-/>', function()
     require("Comment.api").toggle_linewise_op(vim.fn.visualmode())
   end)
 end

@@ -71,4 +71,13 @@ if utils.is_available "dashboard-nvim" and utils.is_available "bufferline.nvim" 
   })
 end
 
+-- fix telescope cannot use <C-R>, which-key hiject it.
+augroup("_telescope", {})
+cmd("FileType", {
+  desc = "",
+  group = "_telescope",
+  pattern = "TelescopePrompt",
+  command = "inoremap <buffer> <silent> <C-r> <C-r>"
+})
+
 return M
