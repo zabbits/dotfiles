@@ -202,7 +202,7 @@ if utils.is_available "telescope.nvim" then
   }
 
   init_table "s"
-  mappings.s.p = { "<cmd>UrlView packer", "Search Plugin" }
+  mappings.s.p = { "<cmd>UrlView packer<cr>", "Search Plugin" }
   mappings.s.b = {
     function()
       require("telescope.builtin").git_branches()
