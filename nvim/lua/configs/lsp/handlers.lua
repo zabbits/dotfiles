@@ -46,13 +46,7 @@ local function lsp_highlight_document(client, bufnr)
     local cmd = vim.api.nvim_create_autocmd
     local augroup = vim.api.nvim_create_augroup
     local gs_id = augroup("_lsp_document_highlight", {})
-    cmd("CursorHold", {
-      desc = "LSP Highlight Document",
-      group = gs_id,
-      buffer = bufnr,
-      command = "lua vim.lsp.buf.document_highlight()",
-    })
-    cmd("CursorHoldI", {
+    cmd({ "CursorHold", "CursorHoldI" }, {
       desc = "LSP Highlight Document",
       group = gs_id,
       buffer = bufnr,
@@ -68,13 +62,10 @@ local function lsp_highlight_document(client, bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  if client.name == "tsserver" then
-    client.server_capabilities.document_formatting = false
-  elseif client.name == "jsonls" then
-    client.server_capabilities.document_formatting = false
-  elseif client.name == "html" then
-    client.server_capabilities.document_formatting = false
-  elseif client.name == "sumneko_lua" then
+  if client.name == "tsserver"
+      or client.name == "jsonls"
+      or client.name == "html"
+      or client.name == "sumneko_lua" then
     client.server_capabilities.document_formatting = false
   end
 

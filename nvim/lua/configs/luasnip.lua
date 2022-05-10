@@ -6,9 +6,6 @@ function M.config()
     return
   end
 
-  luasnip.setup({
-    history = false,
-  })
   require("luasnip.loaders.from_vscode").lazy_load()
 end
 

@@ -81,14 +81,43 @@ cmd("FileType", {
 
 
 -- relative number
+local exclude_filetype = {
+  "NvimTree", "neo-tree", "neo-tree-popup", "dashboard",
+  "Outline", "Trouble",
+}
+local ef = {}
+for _, v in pairs(exclude_filetype) do
+  ef[v] = true
+end
+local function disable_number()
+  local ft = vim.bo.filetype
+  if ef[ft] then
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+    return true
+  end
+  return false
+end
 augroup("_relative_number", {})
-cmd("InsertEnter", {
+cmd({"InsertEnter",}, {
+  desc = "Disable Relative Number",
   group = "_relative_number",
-  command = "set norelativenumber"
+  callback = function()
+    if not disable_number() then
+      vim.opt.number = true
+      vim.opt.relativenumber = false
+    end
+  end,
 })
-cmd("InsertLeave", {
+cmd({"InsertLeave",}, {
+  desc = "Enable Relative Number",
   group = "_relative_number",
-  command = "set relativenumber"
+  callback = function()
+    if not disable_number() then
+      vim.opt.number = true
+      vim.opt.relativenumber = true
+    end
+  end,
 })
 
 -- fix luasnip use tab go to history

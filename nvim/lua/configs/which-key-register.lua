@@ -222,9 +222,7 @@ if utils.is_available "telescope.nvim" then
     "Man Pages",
   }
   mappings.s.n = {
-    function()
-      require("telescope").extensions.notify.notfy()
-    end,
+    "<cmd>Telescope notify<cr>",
     "Notifications",
   }
   mappings.s.r = {
