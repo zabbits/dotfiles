@@ -1,4 +1,4 @@
-local M = {}
+-- augroup("_luasnip", {})
 
 local utils = require "core.utils"
 
@@ -11,7 +11,7 @@ cmd("TextYankPost", {
   desc = "Highlight on yank",
   group = gs_id,
   callback = function()
-    require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
+    require('vim.highlight').on_yank({ higroup = 'Visual', timeout = 200 })
   end,
 })
 cmd("BufWinEnter", {
@@ -74,10 +74,40 @@ end
 -- fix telescope cannot use <C-R>, which-key hiject it.
 augroup("_telescope", {})
 cmd("FileType", {
-  desc = "",
   group = "_telescope",
   pattern = "TelescopePrompt",
   command = "inoremap <buffer> <silent> <C-r> <C-r>"
+})
+
+
+-- relative number
+augroup("_relative_number", {})
+cmd("InsertEnter", {
+  group = "_relative_number",
+  command = "set norelativenumber"
+})
+cmd("InsertLeave", {
+  group = "_relative_number",
+  command = "set relativenumber"
+})
+
+-- fix luasnip use tab go to history
+augroup("_luasnip", {})
+cmd("ModeChanged", {
+  group = "_luasnip",
+  callback = function()
+    local luasnip = utils.safe_require('luasnip')
+    if not luasnip then
+      return
+    end
+
+    if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+        and luasnip.session.current_nodes[vim.api.nvim_get_current_buf()]
+        and not luasnip.session.jump_active
+    then
+      luasnip.unlink_current()
+    end
+  end
 })
 
 return M

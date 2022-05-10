@@ -202,6 +202,7 @@ if utils.is_available "telescope.nvim" then
   }
 
   init_table "s"
+  mappings.s.p = { "<cmd>UrlView packer", "Search Plugin" }
   mappings.s.b = {
     function()
       require("telescope.builtin").git_branches()
@@ -222,7 +223,7 @@ if utils.is_available "telescope.nvim" then
   }
   mappings.s.n = {
     function()
-      require("telescope").extensions.notify.notify()
+      require("telescope").extensions.notify.notfy()
     end,
     "Notifications",
   }
@@ -328,9 +329,9 @@ end
 -------------------- Neorg ------------------
 if utils.is_available('neorg') then
   init_table('n')
-  mappings.n.v = {"<cmd>Neorg gtd views<cr>", "Gtd views"}
-  mappings.n.e = {"<cmd>Neorg gtd edit<cr>", "Gtd edit"}
-  mappings.n.c = {"<cmd>Neorg gtd capture<cr>", "Gtd capture"}
+  mappings.n.v = { "<cmd>Neorg gtd views<cr>", "Gtd views" }
+  mappings.n.e = { "<cmd>Neorg gtd edit<cr>", "Gtd edit" }
+  mappings.n.c = { "<cmd>Neorg gtd capture<cr>", "Gtd capture" }
 end
 
 

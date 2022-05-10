@@ -526,13 +526,10 @@ local plgins = {
     end
   },
 
-  -- relative num
+  -- plugin browser
   {
-    "nkakouros-original/numbers.nvim",
-    event = "BufEnter",
-    config = function()
-      require('numbers').setup()
-    end
+    "axieax/urlview.nvim",
+    after = "telescope.nvim",
   },
 }
 
