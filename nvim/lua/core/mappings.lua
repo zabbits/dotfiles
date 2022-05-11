@@ -246,17 +246,17 @@ end
 -- Comment
 if utils.is_available "Comment.nvim" then
   -- Linewise toggle current line using C-/
-  map('i', '<C-/>', require("Comment.api").toggle_current_linewise)
-  map('n', '<C-/>', require("Comment.api").toggle_current_linewise)
+  map('n', '<C-_>', '<CMD>lua require("Comment.api").toggle_current_linewise()<CR>')
+  -- Blockwise toggle current line using C-\
+  map('n', '<C-_>', '<CMD>lua require("Comment.api").toggle_current_blockwise()<CR>')
 end
 
 --========================= Visual ==========================--
 
 -- Comment
 if utils.is_available "Comment.nvim" then
-  map('x', '<C-/>', function()
-    require("Comment.api").toggle_linewise_op(vim.fn.visualmode())
-  end)
+  -- Linewise toggle using C-/
+  map('x', '<C-_>', '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
 end
 
 -- Visual Block --
