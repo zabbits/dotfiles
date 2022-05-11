@@ -1,13 +1,14 @@
 local M = {}
 
 local options = {
+  belloff = "all",
   fileencoding = "utf-8",                     -- File content encoding for the buffer
   spelllang = "en",                           -- Support US english
   clipboard = "unnamedplus",                  -- Connection to the system clipboard
   mouse = "a",                                -- Enable mouse support
   signcolumn = "yes",                         -- Always show the sign column
   foldmethod = "manual",                      -- Create folds manually
-  completeopt = { "menuone", "noselect" },    -- Options for insert mode completion
+  completeopt = { "menuone", "noselect", "menuone" },    -- Options for insert mode completion
   colorcolumn = "99999",                      -- Fix for the indentline problem
   backup = false,                             -- Disable making a backup file
   expandtab = true,                           -- Enable the use of space in tab
@@ -48,6 +49,6 @@ end
 vim.opt.shortmess:append "c"
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+vim.cmd [[set formatoptions-=cro]] -- this doesn't seem to work
 
 return M

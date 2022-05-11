@@ -37,18 +37,6 @@ cmd("BufWritePost", {
   pattern = "plugins.lua",
 })
 
-augroup("cursor_off", {})
-cmd("WinLeave", {
-  desc = "No cursorline",
-  group = "cursor_off",
-  command = "set nocursorline",
-})
-cmd("WinEnter", {
-  desc = "No cursorline",
-  group = "cursor_off",
-  command = "set cursorline",
-})
-
 if utils.is_available "dashboard-nvim" and utils.is_available "bufferline.nvim" then
   augroup("dashboard_settings", {})
   cmd("FileType", {
@@ -85,13 +73,9 @@ local exclude_filetype = {
   "NvimTree", "neo-tree", "neo-tree-popup", "dashboard",
   "Outline", "Trouble",
 }
-local ef = {}
-for _, v in pairs(exclude_filetype) do
-  ef[v] = true
-end
 local function disable_number()
   local ft = vim.bo.filetype
-  if ef[ft] then
+  if vim.tbl_contains(exclude_filetype, ft) then
     vim.opt.number = false
     vim.opt.relativenumber = false
     return true
@@ -137,6 +121,16 @@ cmd("ModeChanged", {
       luasnip.unlink_current()
     end
   end
+})
+
+
+-- open file in last edit place
+augroup("_last_edit", {})
+cmd('BufReadPost', {
+  desc = "Return to last edit position when opening files",
+  group = "_last_edit",
+  pattern = '*',
+  command = [[if line("'\"") > 0 && line("'\"") <= line("$") && expand('%:t') != 'COMMIT_EDITMSG' | exe "normal! g`\"" | endif]],
 })
 
 return M

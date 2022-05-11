@@ -109,6 +109,7 @@ local plgins = {
   -- UI Dressing
   {
     "stevearc/dressing.nvim",
+    event = 'BufEnter',
     config = function()
       require("configs.dressing").config()
     end
@@ -220,9 +221,6 @@ local plgins = {
   {
     "hrsh7th/nvim-cmp",
     event = { "BufRead", "BufNewFile" },
-    requires = {
-      'onsails/lspkind-nvim',
-    },
     config = function()
       require("configs.cmp").config()
     end,
@@ -261,6 +259,7 @@ local plgins = {
   -- LSP manager
   {
     "williamboman/nvim-lsp-installer",
+    before = "nvim-lspconfig",
   },
 
   -- Built-in LSP
@@ -341,10 +340,7 @@ local plgins = {
     "jose-elias-alvarez/null-ls.nvim",
     event = { "BufRead", "BufNewFile" },
     config = function()
-      local null_ls = require("core.utils").user_plugin_opts "null-ls"
-      if type(null_ls) == "function" then
-        null_ls()
-      end
+      -- TODO
     end,
   },
 
@@ -352,7 +348,6 @@ local plgins = {
   {
     "nvim-telescope/telescope.nvim",
     module = "telescope",
-    -- after = 'dashboard-nvim',
     config = function()
       require("configs.telescope").config()
     end,
@@ -406,7 +401,6 @@ local plgins = {
   -- Autopairs
   {
     "windwp/nvim-autopairs",
-    -- event = "InsertEnter",  -- use this events, sometimes will insert more than excpeted pairs.
     after = "nvim-cmp",
     config = function()
       require("configs.autopairs").config()
@@ -529,7 +523,7 @@ local plgins = {
   -- plugin browser
   {
     "axieax/urlview.nvim",
-    after = "telescope.nvim",
+    after = "dressing.nvim",
   },
 }
 

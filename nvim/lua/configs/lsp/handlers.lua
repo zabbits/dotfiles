@@ -66,7 +66,7 @@ M.on_attach = function(client, bufnr)
       or client.name == "jsonls"
       or client.name == "html"
       or client.name == "sumneko_lua" then
-    client.server_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
   end
 
   lsp_highlight_document(client, bufnr)
