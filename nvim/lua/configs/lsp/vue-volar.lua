@@ -1,5 +1,5 @@
-local lspconfig = require'lspconfig'
-local lspconfig_configs = require'lspconfig.configs'
+local lspconfig = require 'lspconfig'
+local lspconfig_configs = require 'lspconfig.configs'
 local lspconfig_util = require 'lspconfig.util'
 local install_root_dir = require('nvim-lsp-installer.path').install_root_dir
 local path = require "nvim-lsp-installer.path"
@@ -8,22 +8,20 @@ local function on_new_config(new_config, new_root_dir)
   local function get_typescript_server_path(root_dir)
     local project_root = lspconfig_util.find_node_modules_ancestor(root_dir)
     return project_root and (lspconfig_util.path.join(project_root, 'node_modules', 'typescript', 'lib', 'tsserverlibrary.js'))
-      or ''
+        or ''
   end
 
-  if
-    new_config.init_options
-    and new_config.init_options.typescript
-    and new_config.init_options.typescript.serverPath == ''
+  if new_config.init_options
+      and new_config.init_options.typescript
+      and new_config.init_options.typescript.serverPath == ''
   then
     new_config.init_options.typescript.serverPath = get_typescript_server_path(new_root_dir)
   end
 end
 
-local volar_cmd = {'vue-language-server', '--stdio'}
+local volar_cmd = { 'vue-language-server', '--stdio' }
 local volar_root_dir = lspconfig_util.root_pattern 'package.json'
 local ts_path = lspconfig_util.path.join(vim.fn.stdpath('data'), 'lsp_servers', 'neovolar', 'typescript', 'lib', 'tsserverlibrary.js')
-print(ts_path)
 
 
 lspconfig_configs.volar_api = {
@@ -56,11 +54,14 @@ lspconfig_configs.volar_api = {
           getDocumentNameCasesRequest = false,
           getDocumentSelectionRequest = false,
         },
+        schemaRequestService = {
+          getDocumentContentRequest = true,
+        },
       }
     },
   }
 }
-lspconfig.volar_api.setup{}
+-- lspconfig.volar_api.setup {}
 
 lspconfig_configs.volar_doc = {
   default_config = {
@@ -79,7 +80,7 @@ lspconfig_configs.volar_doc = {
         implementation = true, -- new in @volar/vue-language-server v0.33
         documentHighlight = true,
         documentLink = true,
-        codeLens = { showReferencesNotification = true},
+        codeLens = { showReferencesNotification = true },
         -- not supported - https://github.com/neovim/neovim/pull/15723
         semanticTokens = false,
         diagnostics = true,
@@ -88,7 +89,7 @@ lspconfig_configs.volar_doc = {
     },
   }
 }
-lspconfig.volar_doc.setup{}
+-- lspconfig.volar_doc.setup {}
 
 lspconfig_configs.volar_html = {
   default_config = {
@@ -117,4 +118,4 @@ lspconfig_configs.volar_html = {
     },
   }
 }
-lspconfig.volar_html.setup{}
+-- lspconfig.volar_html.setup {}

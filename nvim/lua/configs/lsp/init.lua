@@ -36,5 +36,12 @@ end
 -- 是否使用volar
 local configs = require("core.configs")
 if configs.lsp.volar then
+  local defaultOpts = {
+    on_attach = handlers.on_attach,
+    capabilities = handlers.capabilities,
+  }
   require("configs.lsp.vue-volar")
+  lspconfig.volar_api.setup(defaultOpts)
+  lspconfig.volar_doc.setup(defaultOpts)
+  lspconfig.volar_html.setup(defaultOpts)
 end
