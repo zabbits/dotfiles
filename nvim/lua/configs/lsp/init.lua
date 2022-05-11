@@ -1,7 +1,7 @@
 local utils = require("core.utils")
 local lsp_installer = utils.safe_require("nvim-lsp-installer")
 local lspconfig = utils.safe_require('lspconfig')
-if not (lsp_installer and lspconfig) then
+if not lsp_installer or not lspconfig then
   return
 end
 
@@ -16,6 +16,9 @@ lsp_installer.setup({
 })
 
 local handlers = utils.safe_require('configs.lsp.handlers')
+if not handlers then
+  return
+end
 handlers.setup()
 
 for _, server in ipairs(lsp_installer.get_installed_servers()) do

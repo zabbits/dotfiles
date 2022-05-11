@@ -256,16 +256,21 @@ local plgins = {
     after = "nvim-cmp",
   },
 
-  -- LSP manager
   {
-    "williamboman/nvim-lsp-installer",
-    before = "nvim-lspconfig",
+    'stevearc/aerial.nvim',
+    after = "cmp-nvim-lsp",
+    config = function()
+      require('configs.aerial').config()
+    end
   },
 
   -- Built-in LSP
   {
     "neovim/nvim-lspconfig",
-    after = "cmp-nvim-lsp",
+    requires = {
+      "williamboman/nvim-lsp-installer",
+    },
+    after = "aerial.nvim",
     config = function()
       require "configs.lsp"
     end,

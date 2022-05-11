@@ -1,4 +1,5 @@
 local M = {}
+local utils = require('core.utils')
 
 function M.setup()
   local signs = {
@@ -64,18 +65,21 @@ end
 M.on_attach = function(client, bufnr)
   if client.name == "tsserver"
       or client.name == "jsonls"
-      or client.name == "html"
-      or client.name == "sumneko_lua" then
+      or client.name == "html" then
     client.server_capabilities.documentFormattingProvider = false
   end
 
+  local aerial = utils.safe_require('aerial')
+  if aerial then
+    aerial.on_attach(client, bufnr)
+  end
   lsp_highlight_document(client, bufnr)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if status_ok then
+local cmp_nvim_lsp = utils.safe_require("cmp_nvim_lsp")
+if cmp_nvim_lsp then
   M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 end
 
