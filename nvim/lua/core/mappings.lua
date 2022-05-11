@@ -247,8 +247,6 @@ end
 if utils.is_available "Comment.nvim" then
   -- Linewise toggle current line using C-/
   map('n', '<C-_>', '<CMD>lua require("Comment.api").toggle_current_linewise()<CR>')
-  -- Blockwise toggle current line using C-\
-  map('n', '<C-_>', '<CMD>lua require("Comment.api").toggle_current_blockwise()<CR>')
 end
 
 --========================= Visual ==========================--
