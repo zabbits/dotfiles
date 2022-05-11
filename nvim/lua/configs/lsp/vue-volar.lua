@@ -48,6 +48,7 @@ lspconfig_configs.volar_api = {
         signatureHelp = true,
         codeAction = true,
         workspaceSymbol = true,
+        documentHighlight = true,
         completion = {
           defaultTagNameCase = 'both',
           defaultAttrNameCase = 'kebabCase',
