@@ -1,5 +1,3 @@
--- augroup("_luasnip", {})
-
 local utils = require "core.utils"
 
 -- see h: api-autocmd

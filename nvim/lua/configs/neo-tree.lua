@@ -10,7 +10,7 @@ function M.config()
     close_if_last_window = true,
     popup_border_style = "rounded",
     enable_git_status = true,
-    enable_diagnostics = true,
+    enable_diagnostics = false,
     default_component_configs = {
       container = {
         enable_character_fade = true
@@ -31,8 +31,8 @@ function M.config()
         folder_closed = "",
         folder_open = "",
         folder_empty = "ﰊ",
-        -- default = "",
-        default = "*",
+        default = "",
+        -- default = "*",
         highlight = "NeoTreeFileIcon"
       },
       modified = {
@@ -46,9 +46,9 @@ function M.config()
       },
       git_status = {
         symbols = {
-          added = "",
+          added = "",
+          modified = "",
           deleted = "",
-          modified = "",
           renamed = "➜",
           untracked = "★",
           ignored = "◌",
