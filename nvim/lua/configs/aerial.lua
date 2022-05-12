@@ -8,7 +8,7 @@ function M.config()
   aerial.setup({
     -- Priority list of preferred backends for aerial.
     -- This can be a filetype map (see :help aerial-filetype-map)
-    backends = { "treesitter", "lsp", "markdown" },
+    backends = { "lsp", "treesitter", "markdown" },
 
     -- Enum: persist, close, auto, global
     --   persist - aerial window will stay open until closed
@@ -36,34 +36,7 @@ function M.config()
     -- A list of all symbols to display. Set to false to display all symbols.
     -- This can be a filetype map (see :help aerial-filetype-map)
     -- To see all available values, see :help SymbolKind
-    filter_kind = {
-      "Array",
-      "Boolean",
-      "Class",
-      "Constant",
-      "Constructor",
-      "Enum",
-      "EnumMember",
-      "Event",
-      "Field",
-      "File",
-      "Function",
-      "Interface",
-      "Key",
-      "Method",
-      "Module",
-      "Namespace",
-      "Null",
-      "Number",
-      "Object",
-      "Operator",
-      "Package",
-      "Property",
-      "String",
-      "Struct",
-      "TypeParameter",
-      "Variable",
-    },
+    filter_kind = false,
 
     -- Enum: split_width, full_width, last, none
     -- Determines line highlighting mode when multiple splits are visible.

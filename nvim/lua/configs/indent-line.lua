@@ -17,6 +17,7 @@ function M.config()
     "terminal",
     "lsp-installer",
     "lspinfo",
+    "prompt",
   }
   vim.g.indent_blankline_filetype_exclude = {
     "help",
@@ -27,6 +28,7 @@ function M.config()
     "NvimTree",
     "neo-tree",
     "Trouble",
+    "TelescopePrompt",
   }
   vim.g.indent_blankline_context_patterns = {
     "class",

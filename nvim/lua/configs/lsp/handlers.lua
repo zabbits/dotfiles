@@ -59,6 +59,11 @@ local function lsp_highlight_document(client, bufnr)
       buffer = bufnr,
       command = "lua vim.lsp.buf.clear_references()",
     })
+    -- make <ESC> more useful
+    vim.keymap.set("n", "<ESC>", function()
+      vim.lsp.buf.clear_references()
+      vim.cmd[[nohlsearch]]
+    end)
   end
 end
 

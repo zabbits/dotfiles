@@ -79,27 +79,15 @@ local plgins = {
 
   -- Colorscheme
   {
-    'rebelot/kanagawa.nvim',
-    before = 'nightfox.nvim',
-  },
-  {
-    'Yagua/nebulous.nvim',
-    before = 'nightfox.nvim',
-  },
-  {
     'folke/tokyonight.nvim',
-    before = 'nightfox.nvim',
-  },
-  {
-    'tiagovla/tokyodark.nvim',
-    before = 'nightfox.nvim',
+    before = 'kanagawa.nvim',
   },
   {
     'rmehri01/onenord.nvim',
-    before = 'nightfox.nvim',
+    before = 'kanagawa.nvim',
   },
   {
-    'EdenEast/nightfox.nvim',
+    'rebelot/kanagawa.nvim',
     config = function()
       require("configs.theme").config()
     end
@@ -120,7 +108,7 @@ local plgins = {
   {
     "akinsho/bufferline.nvim",
     after = "nvim-web-devicons",
-    event = 'BufEnter',
+    event = 'BufRead',
     config = function()
       require("configs.bufferline").config()
     end,
@@ -157,7 +145,7 @@ local plgins = {
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
-    event = { 'BufEnter', 'BufWinEnter' },
+    event = { 'BufRead' },
     config = function()
       require("configs.lualine").config()
     end,
@@ -197,6 +185,7 @@ local plgins = {
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
+    event = { "BufRead", "BufNewFile" },
     config = function()
       require("configs.treesitter").config()
     end,
@@ -205,7 +194,7 @@ local plgins = {
   -- Snippet collection
   {
     "rafamadriz/friendly-snippets",
-    after = "nvim-cmp",
+    event = "InsertEnter",
   },
 
   -- Snippet engine
@@ -220,7 +209,8 @@ local plgins = {
   -- Completion engine
   {
     "hrsh7th/nvim-cmp",
-    event = { "BufRead", "BufNewFile" },
+    after = "LuaSnip",
+    -- event = { "BufRead", "BufNewFile" },
     config = function()
       require("configs.cmp").config()
     end,
@@ -258,19 +248,22 @@ local plgins = {
 
   {
     'stevearc/aerial.nvim',
-    after = "cmp-nvim-lsp",
+    after = "nvim-treesitter",
     config = function()
       require('configs.aerial').config()
     end
   },
 
+  -- Lsp manager
+  {
+    "williamboman/nvim-lsp-installer",
+    after = 'aerial.nvim',
+  },
+
   -- Built-in LSP
   {
     "neovim/nvim-lspconfig",
-    requires = {
-      "williamboman/nvim-lsp-installer",
-    },
-    after = "aerial.nvim",
+    after = 'nvim-lsp-installer',
     config = function()
       require "configs.lsp"
     end,
@@ -279,7 +272,7 @@ local plgins = {
   -- LSP symbols
   {
     "simrat39/symbols-outline.nvim",
-    after = "cmp-nvim-lsp",
+    after = "nvim-lspconfig",
     cmd = "SymbolsOutline",
     setup = function()
       require("configs.symbols-outline").setup()
@@ -434,7 +427,7 @@ local plgins = {
   -- Indentation
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufEnter",
+    event = "BufRead",
     config = function()
       require("configs.indent-line").config()
     end,
