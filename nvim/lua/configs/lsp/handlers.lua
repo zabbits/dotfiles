@@ -44,25 +44,13 @@ end
 
 local function lsp_highlight_document(client, bufnr)
   if client.server_capabilities.documentHighlightProvider then
-    local cmd = vim.api.nvim_create_autocmd
-    local augroup = vim.api.nvim_create_augroup
-    local gs_id = augroup("_lsp_document_highlight", {})
-    cmd({ "CursorHold", "CursorHoldI" }, {
-      desc = "LSP Highlight Document",
-      group = gs_id,
-      buffer = bufnr,
-      command = "lua vim.lsp.buf.document_highlight()",
-    })
-    cmd("CursorMoved", {
-      desc = "LSP Clear Highlight Document",
-      group = gs_id,
-      buffer = bufnr,
-      command = "lua vim.lsp.buf.clear_references()",
-    })
-    -- make <ESC> more useful
+    vim.keymap.set("n", "<leader>lh", function()
+      vim.lsp.buf.document_highlight()
+    end, { desc = "Highlight Document" })
+
     vim.keymap.set("n", "<ESC>", function()
       vim.lsp.buf.clear_references()
-      vim.cmd[[nohlsearch]]
+      vim.cmd [[nohlsearch]]
     end)
   end
 end

@@ -116,8 +116,8 @@ local plgins = {
 
   -- Better buffer closing
   {
-    "moll/vim-bbye",
-    event = 'BufEnter',
+    "famiu/bufdelete.nvim",
+    event = 'BufRead',
   },
 
   -- File explorer
@@ -381,10 +381,11 @@ local plgins = {
 
   -- Start screen
   {
-    "glepnir/dashboard-nvim",
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
-      require("configs.dashboard").config()
-    end,
+      require('configs.alpha').config()
+    end
   },
 
   -- Color highlighting
@@ -498,23 +499,6 @@ local plgins = {
     after = 'telescope.nvim',
     config = function()
       require('configs.project').config()
-    end
-  },
-
-  -- session manager
-  {
-    'rmagatti/auto-session',
-    after = 'telescope.nvim',
-    config = function()
-      require('configs.session').config()
-    end
-  },
-  -- integrat auto-session with telescope
-  {
-    'rmagatti/session-lens',
-    after = 'auto-session',
-    config = function()
-      require('session-lens').setup({})
     end
   },
 

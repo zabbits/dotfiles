@@ -70,6 +70,9 @@ function M.config()
     "NvimTree", "neo-tree", "dashboard",
     "Outline", "Trouble",
   }
+  local disabled_filetypes = {
+    "alpha"
+  }
   local extensions = {}
   for index, value in ipairs(ignore_filetypes) do
     extensions[index] = extention_by_filetype(value)
@@ -78,7 +81,7 @@ function M.config()
   local config = {
     options = {
       theme = 'auto',
-      -- disabled_filetypes = { "NvimTree", "neo-tree", "dashboard", "Outline" },
+      disabled_filetypes = disabled_filetypes,
       component_separators = "",
       section_separators = "",
       globalstatus = true,

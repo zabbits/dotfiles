@@ -98,13 +98,14 @@ end
 -- === Comment ===
 if utils.is_available "Comment.nvim" then
   -- Linewise toggle current line using C-/
-  map('n', '<C-_>', '<CMD>lua require("Comment.api").toggle_current_linewise()<CR>')
+  map('n', '<C-/>', '<CMD>lua require("Comment.api").toggle_current_linewise()<CR>')
   -- Linewise toggle using C-/
-  map('x', '<C-_>', '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
+  map('x', '<C-/>', '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
 end
 
 -- === Packer ===
 map("n", "<leader>pc", "<cmd>PackerCompile<cr>", { desc = "Compile" })
+map("n", "<leader>pd", "<cmd>PackerClean<cr>", { desc = "Clean" })
 map("n", "<leader>pi", "<cmd>PackerInstall<cr>", { desc = "Install" })
 map("n", "<leader>ps", "<cmd>PackerSync<cr>", { desc = "Sync" })
 map("n", "<leader>pS", "<cmd>PackerStatus<cr>", { desc = "Status" })
@@ -128,21 +129,16 @@ end
 
 -- === Dashboard ===
 if utils.is_available "dashboard-nvim" then
-  map("n", "<leader>d", "<cmd>Dashboard<CR>", { desc = "Dashboard" })
   map("n", "<leader>fn", "<cmd>DashboardNewFile<CR>", { desc = "New File" })
 end
 
 -- === Close Buffer ===
-if utils.is_available "vim-bbye" then
-  map("n", "<leader>c", "<cmd>Bdelete!<CR>", { desc = "Close Buffer" })
+if utils.is_available "bufdelete.nvim" then
+  map("n", "<leader>c", "<cmd>Bdelete<CR>", { desc = "Close Buffer" })
 end
 
 -- === GitSigns ===
 if utils.is_available "gitsigns.nvim" then
-  local gitsigns = function()
-    require('gitsigns')
-  end
-
   map("n", "<leader>gj", function()
     gitsigns().next_hunk()
   end,
@@ -189,7 +185,7 @@ if utils.is_available "nvim-toggleterm.lua" then
 end
 
 -- === UrlView ===
-if utils.is_available "urlview" then
+if utils.is_available "urlview.nvim" then
   map("n", "<leader>sp", "<cmd>UrlView packer<cr>", { desc = "Search Plugin" })
 end
 
@@ -333,19 +329,6 @@ if utils.is_available("project.nvim") then
     require("telescope._extensions").manager.projects.projects()
   end,
     { desc = "Find projects" })
-end
-
-
--- === Session ===
-if utils.is_available "auto-session" then
-  map("n", "<leader>ss", "<cmd>SessionSave<CR>", { desc = "Save Session" })
-  map("n", "<leader>sl", "<cmd>SessionLoad<CR>", { desc = "Load Session" })
-end
-if utils.is_available("session-lens") then
-  map("n", "<leader>fs", function()
-    require("telescope._extensions.session-lens.main").search_session()
-  end,
-    { desc = "Find Session" })
 end
 
 return M

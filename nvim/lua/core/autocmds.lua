@@ -35,25 +35,36 @@ cmd("BufWritePost", {
   pattern = "plugins.lua",
 })
 
-if utils.is_available "dashboard-nvim" and utils.is_available "bufferline.nvim" then
-  augroup("dashboard_settings", {})
+if utils.is_available "alpha-nvim" and utils.is_available "bufferline.nvim" then
+  augroup("alpha_settings", {})
   cmd("FileType", {
-    desc = "Disable tabline for dashboard",
-    group = "dashboard_settings",
-    pattern = "dashboard",
-    command = "set showtabline=0",
-  })
-  cmd("BufWinLeave", {
-    desc = "Reenable tabline when leaving dashboard",
-    group = "dashboard_settings",
-    pattern = "<buffer>",
-    command = "set showtabline=2",
+    desc = "No cursorline on alpha",
+    group = "alpha_settings",
+    pattern = "alpha",
+    callback = function()
+      vim.opt.showtabline = 0
+      vim.opt.laststatus = 0
+    end
   })
   cmd("BufEnter", {
-    desc = "No cursorline on dashboard",
-    group = "dashboard_settings",
+    desc = "No cursorline on alpha",
+    group = "alpha_settings",
     pattern = "*",
-    command = "if &ft is 'dashboard' | set nocursorline | endif",
+    callback = function()
+      if vim.bo.filetype == 'alpha' then
+        vim.opt.showtabline = 0
+        vim.opt.laststatus = 0
+      end
+      cmd("BufUnload", {
+        desc = "Reset",
+        group = "alpha_settings",
+        pattern = "<buffer>",
+        callback = function()
+          vim.opt.showtabline = 2
+          vim.opt.laststatus = 2
+        end
+      })
+    end
   })
 end
 
@@ -80,8 +91,9 @@ local function disable_number()
   end
   return false
 end
+
 augroup("_relative_number", {})
-cmd({"InsertEnter",}, {
+cmd({ "InsertEnter", }, {
   desc = "Disable Relative Number",
   group = "_relative_number",
   callback = function()
@@ -91,7 +103,7 @@ cmd({"InsertEnter",}, {
     end
   end,
 })
-cmd({"InsertLeave",}, {
+cmd({ "InsertLeave", }, {
   desc = "Enable Relative Number",
   group = "_relative_number",
   callback = function()
