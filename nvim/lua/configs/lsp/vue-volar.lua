@@ -1,8 +1,6 @@
 local lspconfig = require 'lspconfig'
 local lspconfig_configs = require 'lspconfig.configs'
 local lspconfig_util = require 'lspconfig.util'
-local install_root_dir = require('nvim-lsp-installer.path').install_root_dir
-local path = require "nvim-lsp-installer.path"
 
 local function on_new_config(new_config, new_root_dir)
   local function get_typescript_server_path(root_dir)
