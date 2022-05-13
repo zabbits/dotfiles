@@ -151,6 +151,22 @@ local plgins = {
     end,
   },
 
+  -- Treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    event = { "BufRead", "BufNewFile" },
+    config = function()
+      require("configs.treesitter").config()
+    end,
+  },
+  --
+  -- Ts Playground
+  {
+    "nvim-treesitter/playground",
+    after = "nvim-treesitter",
+  },
+
   -- Parenthesis highlighting
   {
     "p00f/nvim-ts-rainbow",
@@ -174,22 +190,10 @@ local plgins = {
     "SmiteshP/nvim-gps",
     after = "nvim-treesitter",
     config = function()
-      local gps = require("core.utils").safe_require("nvim-gps")
-      if gps then
-        gps.setup({})
-      end
+      require('configs.gps').config()
     end
   },
 
-  -- Syntax highlighting
-  {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      require("configs.treesitter").config()
-    end,
-  },
 
   -- Snippet collection
   {

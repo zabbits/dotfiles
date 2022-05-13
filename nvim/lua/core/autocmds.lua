@@ -35,35 +35,35 @@ cmd("BufWritePost", {
   pattern = "plugins.lua",
 })
 
-if utils.is_available "alpha-nvim" and utils.is_available "bufferline.nvim" then
-  augroup("alpha_settings", {})
-  cmd("FileType", {
-    desc = "No cursorline on alpha",
-    group = "alpha_settings",
-    pattern = "alpha",
+if utils.is_available "alpha-nvim" then
+  local as_id = augroup("alpha_settings", {})
+  cmd("User", {
+    desc = "",
+    group = as_id,
+    pattern = "AlphaReady",
     callback = function()
       vim.opt.showtabline = 0
       vim.opt.laststatus = 0
     end
   })
   cmd("BufEnter", {
-    desc = "No cursorline on alpha",
-    group = "alpha_settings",
+    desc = "Disable tabline and statusline in alpha",
+    group = as_id,
     pattern = "*",
     callback = function()
       if vim.bo.filetype == 'alpha' then
         vim.opt.showtabline = 0
         vim.opt.laststatus = 0
+        cmd("BufUnload", {
+          desc = "Reset",
+          group = "alpha_settings",
+          pattern = "<buffer>",
+          callback = function()
+            vim.opt.showtabline = 2
+            vim.opt.laststatus = 2
+          end
+        })
       end
-      cmd("BufUnload", {
-        desc = "Reset",
-        group = "alpha_settings",
-        pattern = "<buffer>",
-        callback = function()
-          vim.opt.showtabline = 2
-          vim.opt.laststatus = 2
-        end
-      })
     end
   })
 end

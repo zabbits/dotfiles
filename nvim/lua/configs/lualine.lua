@@ -8,8 +8,6 @@ function M.config()
     return
   end
 
-  -- local colors = require "default_theme.colors"
-
   local conditions = {
     buffer_not_empty = function()
       return vim.fn.empty(vim.fn.expand "%:t") ~= 1
@@ -102,7 +100,7 @@ function M.config()
         },
         {
           "diff",
-          symbols = { added = " ", modified = "柳", removed = " " },
+          symbols = { added = " ", modified = " ", removed = " " },
           cond = conditions.hide_in_width,
           padding = { left = 2, right = 1 },
         },

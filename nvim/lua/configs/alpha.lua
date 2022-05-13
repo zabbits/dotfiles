@@ -34,14 +34,13 @@ function M.config()
   dashboard.section.header.val = headers[math.random(1, #headers)]
 
   dashboard.section.buttons.val = {
-    button(leader .. '   e', 'ﱐ  New file'),
-    button(leader .. '   s', '  Sync plugins'),
-    button(leader .. '   c', '  Configurations'),
-    button(leader .. ' f f', '  Find files'),
-    button(leader .. ' f o', '  Find old files'),
-    button(leader .. ' f w', 'ﭨ  Live grep'),
-    button(leader .. ' f g', '  Git status'),
-    button(leader .. '   q', '  Quit')
+    dashboard.button('  e', 'ﱐ  New file', ':ene <BAR> startinsert <CR>'),
+    dashboard.button('  f', '  Find files', ':lua require("telescope.builtin").find_files() <CR>'),
+    dashboard.button('  o', '  Find old files', ':lua require("telescope.builtin").oldfiles() <CR>'),
+    dashboard.button('  w', 'ﭨ  Live grep', ':lua require("telescope.builtin").live_grep() <CR>'),
+    dashboard.button('  c', '  Configurations', ':lua require("telescope.builtin").find_files({cwd="$HOME/.config/nvim/"}) <CR>'),
+    dashboard.button('  s', '  Sync plugins', ':PackerSync <CR>'),
+    dashboard.button('  q', '  Quit', ':qa <CR>')
   }
 
   -- Foot must be a table so that its height is correctly measured

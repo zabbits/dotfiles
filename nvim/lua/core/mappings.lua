@@ -259,6 +259,11 @@ if utils.is_available "telescope.nvim" then
   end,
     { desc = "Find Words" })
 
+  map("n", "<leader>fc", function()
+    require("telescope.builtin").find_files({cwd="$HOME/.config/nvim/"})
+  end,
+    { desc = "Find Words" })
+
   map("n", "<leader>ls", function()
     require("telescope.builtin").lsp_document_symbols()
   end,

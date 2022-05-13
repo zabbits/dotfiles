@@ -10,12 +10,12 @@ function M.config()
     telescope.load_extension "notify"
   end
 
-
+  --                勉  切 黎        
   telescope.setup({
     defaults = {
       file_ignore_patterns = {"node_modules", "dist"},
-      prompt_prefix = " ",
-      selection_caret = " ",
+      prompt_prefix = "  ",
+      selection_caret = "  ",
       path_display = { "truncate" },
       selection_strategy = "reset",
       sorting_strategy = "ascending",

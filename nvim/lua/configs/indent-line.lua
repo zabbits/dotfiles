@@ -29,6 +29,7 @@ function M.config()
     "neo-tree",
     "Trouble",
     "TelescopePrompt",
+    "alpha",
   }
   vim.g.indent_blankline_context_patterns = {
     "class",

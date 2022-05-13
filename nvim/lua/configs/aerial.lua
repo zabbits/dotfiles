@@ -1,14 +1,15 @@
 local M = {}
 
 function M.config()
-  local present, aerial = pcall(require, 'aerial')
-  if not present then
+  local utils = require('core.utils')
+  local aerial = utils.safe_require('aerial')
+  if not aerial then
     return
   end
   aerial.setup({
     -- Priority list of preferred backends for aerial.
     -- This can be a filetype map (see :help aerial-filetype-map)
-    backends = { "lsp", "treesitter", "markdown" },
+    backends = { "treesitter", "lsp", "markdown" },
 
     -- Enum: persist, close, auto, global
     --   persist - aerial window will stay open until closed
@@ -107,7 +108,7 @@ function M.config()
 
     -- When you fold code with za, zo, or zc, update the aerial tree as well.
     -- Only works when manage_folds = true
-    link_folds_to_tree = false,
+    link_folds_to_tree = true,
 
     -- Fold code when you open/collapse symbols in the tree.
     -- Only works when manage_folds = true
@@ -115,7 +116,7 @@ function M.config()
 
     -- Use symbol tree for folding. Set to true or false to enable/disable
     -- 'auto' will manage folds if your previous foldmethod was 'manual'
-    manage_folds = false,
+    manage_folds = true,
 
     -- These control the width of the aerial window.
     -- They can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
@@ -214,6 +215,11 @@ function M.config()
       update_delay = 300,
     },
   })
+
+  local telescope = utils.safe_require('telescope')
+  if telescope then
+    telescope.load_extension('aerial')
+  end
 end
 
 return M
