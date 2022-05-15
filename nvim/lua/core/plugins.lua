@@ -509,6 +509,7 @@ local plgins = {
   -- manage session
   {
     'jedrzejboczar/possession.nvim',
+    after = 'telescope.nvim',
     config = function()
       require('configs.session').config()
     end

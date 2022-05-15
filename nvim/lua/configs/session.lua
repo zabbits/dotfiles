@@ -6,7 +6,14 @@ function M.config()
   if not possession then
     return
   end
-  possession.setup({})
+  possession.setup({
+    plugins = {
+      close_windows = false,
+      delete_hidden_buffers = false,
+      nvim_tree = false,
+      tabby = false,
+    }
+  })
 end
 
 return M
