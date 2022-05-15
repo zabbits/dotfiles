@@ -336,4 +336,15 @@ if utils.is_available("project.nvim") then
     { desc = "Find projects" })
 end
 
+-- === Session ===
+if utils.is_available("possession.nvim") then
+  map("n", "<leader>fs", function()
+    require('telescope').extensions.possession.list()
+  end,
+    { desc = "Find Session" })
+
+  map("n", "<leader>ss", ":PossessionSave <CR>", { desc = "Session Save" })
+  map("n", "<leader>sd", ":PossessionDelete <CR>", { desc = "Session Delete" })
+
+end
 return M

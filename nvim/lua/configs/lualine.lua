@@ -9,6 +9,9 @@ function M.config()
   end
 
   local conditions = {
+    is_file_open = function()
+      return #(vim.fn.expand('%')) > 0
+    end,
     buffer_not_empty = function()
       return vim.fn.empty(vim.fn.expand "%:t") ~= 1
     end,
@@ -41,24 +44,26 @@ function M.config()
 
   local gps = require("core.utils").safe_require("nvim-gps")
   local gps_component = {
-    function ()
+    function()
       return ""
     end
   }
   if gps then
     gps_component = {
       gps.get_location,
-      cond = gps.is_available
+      cond = function()
+        return gps.is_available() and conditions.hide_in_width()
+      end
     }
   end
 
   local function extention_by_filetype(filetype)
     return {
       sections = {
-        lualine_a = {'filetype'}
+        lualine_a = { 'filetype' }
       },
       inactive_sections = {
-        lualine_a = {'filetype'}
+        lualine_a = { 'filetype' }
       },
       filetypes = { filetype }
     }
@@ -66,7 +71,7 @@ function M.config()
 
   local ignore_filetypes = {
     "NvimTree", "neo-tree", "dashboard",
-    "Outline", "Trouble",
+    "Outline", "Trouble", "help",
   }
   local disabled_filetypes = {
     "alpha"
@@ -91,24 +96,26 @@ function M.config()
         {
           "branch",
           icon = "",
-          padding = { left = 2, right = 1 },
+          padding = { left = 1, right = 1 },
         },
         {
           "filetype",
           cond = conditions.buffer_not_empty,
-          padding = { left = 2, right = 1 },
+          padding = { left = 1, right = 1 },
         },
         {
           "diff",
           symbols = { added = " ", modified = " ", removed = " " },
           cond = conditions.hide_in_width,
-          padding = { left = 2, right = 1 },
+          padding = { left = 1, right = 1 },
         },
         {
           "diagnostics",
           sources = { "nvim_diagnostic" },
-          symbols = { error = " ", warn = " ", info = " ", hint = " " },
-          padding = { left = 2, right = 1 },
+          -- symbols = { error = " ", warn = " ", info = " ", hint = " " },
+          always_visible = conditions.is_file_open,
+          update_in_insert = true,
+          padding = { left = 1, right = 1 },
         },
         gps_component,
         {

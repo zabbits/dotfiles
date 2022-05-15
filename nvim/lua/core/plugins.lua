@@ -481,7 +481,7 @@ local plgins = {
 
   -- better marks
   {
-    'chentau/marks.nvim',
+    'chentoast/marks.nvim',
     event = { "BufRead", "BufNewFile" },
     config = function()
       require('marks').setup({})
@@ -503,6 +503,14 @@ local plgins = {
     after = 'telescope.nvim',
     config = function()
       require('configs.project').config()
+    end
+  },
+
+  -- manage session
+  {
+    'jedrzejboczar/possession.nvim',
+    config = function()
+      require('configs.session').config()
     end
   },
 
