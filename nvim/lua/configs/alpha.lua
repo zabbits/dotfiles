@@ -38,9 +38,10 @@ function M.config()
     dashboard.button('  f', '  Find files', ':lua require("telescope.builtin").find_files() <CR>'),
     dashboard.button('  o', '  Find old files', ':lua require("telescope.builtin").oldfiles() <CR>'),
     dashboard.button('  w', 'ﭨ  Live grep', ':lua require("telescope.builtin").live_grep() <CR>'),
-    dashboard.button('  p', '  Find Projects', ':lua require("telescope._extensions").manager.projects.projects() <CR>'),
+    dashboard.button('  s', 'ﮫ  Sessions', ':lua require("telescope").extensions.possession.list() <CR>'),
+    dashboard.button('  p', '  Find projects', ':lua require("telescope._extensions").manager.projects.projects() <CR>'),
     dashboard.button('  c', '  Configurations', ':lua require("telescope.builtin").find_files({cwd="$HOME/.config/nvim/"}) <CR>'),
-    dashboard.button('  s', '  Sync plugins', ':PackerSync <CR>'),
+    dashboard.button('  u', '  Sync plugins', ':PackerSync <CR>'),
     dashboard.button('  q', '  Quit', ':qa <CR>')
   }
 
