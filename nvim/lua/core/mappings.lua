@@ -51,17 +51,13 @@ else
   map("n", "[[", "<cmd>bprevious<CR>")
 end
 
--- LSP, deprecated, using lsp server on_attach
-map("n", "gD", vim.lsp.buf.declaration)
-map("n", "gd", vim.lsp.buf.definition, { desc = "Show the definition of current function" })
-map("n", "gI", vim.lsp.buf.implementation)
-map("n", "go", vim.diagnostic.open_float)
-map("n", "gl", vim.diagnostic.open_float)
-map("n", "[d", vim.diagnostic.goto_prev)
-map("n", "gk", vim.diagnostic.goto_prev)
-map("n", "]d", vim.diagnostic.goto_next)
-map("n", "gj", vim.diagnostic.goto_next)
-map("n", "K", vim.lsp.buf.hover)
+-- === LSP ===
+map("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code Action" })
+map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Diagnostic" })
+map("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format" })
+map("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
+map("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", { desc = "Installer Info" })
+map("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename" })
 
 -- code action menu
 map("n", "<leader>xa", "<cmd>CodeActionMenu<CR>")
@@ -110,14 +106,6 @@ map("n", "<leader>pi", "<cmd>PackerInstall<cr>", { desc = "Install" })
 map("n", "<leader>ps", "<cmd>PackerSync<cr>", { desc = "Sync" })
 map("n", "<leader>pS", "<cmd>PackerStatus<cr>", { desc = "Status" })
 map("n", "<leader>pu", "<cmd>PackerUpdate<cr>", { desc = "Update" })
-
--- === LSP ===
-map("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code Action" })
-map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Hover Diagnostic" })
-map("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format" })
-map("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
-map("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", { desc = "Installer Info" })
-map("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename" })
 
 -- === Neo-tree ===
 if utils.is_available "neo-tree.nvim" then
@@ -262,22 +250,12 @@ if utils.is_available "telescope.nvim" then
   map("n", "<leader>fc", function()
     require("telescope.builtin").find_files({cwd="$HOME/.config/nvim/"})
   end,
-    { desc = "Find Words" })
+    { desc = "Find Configurations" })
 
   map("n", "<leader>ls", function()
     require("telescope.builtin").lsp_document_symbols()
   end,
     { desc = "Document Symbols" })
-
-  map("n", "<leader>lr", function()
-    require("telescope.builtin").lsp_references()
-  end,
-    { desc = "References" })
-
-  map("n", "<leader>lr", function()
-    require("telescope.builtin").diagnostics()
-  end,
-    { desc = "All Diagnostics" })
 end
 
 -- === Neorg ===

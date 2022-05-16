@@ -55,6 +55,18 @@ local function lsp_highlight_document(client, bufnr)
   end
 end
 
+local function buffer_key_maps(client, bufnr)
+  local bmap = vim.api.nvim_buf_set_keymap
+  bmap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { desc = "Goto declaration" })
+  bmap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { desc = "Goto definition" })
+  bmap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { desc = "Hover document" })
+  bmap(bufnr, 'n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<CR>', { desc = "Goto implementation" })
+  bmap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = "Signature help" })
+  bmap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = "Signature help" })
+  bmap(bufnr, 'n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { desc = "Goto type definition" })
+  bmap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { desc = "Rename" })
+end
+
 M.on_attach = function(client, bufnr)
   if client.name == "tsserver"
       or client.name == "jsonls"
@@ -67,6 +79,7 @@ M.on_attach = function(client, bufnr)
     aerial.on_attach(client, bufnr)
   end
   lsp_highlight_document(client, bufnr)
+  buffer_key_maps(client, bufnr)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
