@@ -14,14 +14,21 @@ local options = {
   completeopt = { "menuone", "noselect", "menuone" },    -- Options for insert mode completion
   colorcolumn = "99999",                      -- Fix for the indentline problem
   backup = false,                             -- Disable making a backup file
-  expandtab = true,                           -- Enable the use of space in tab
   hidden = true,                              -- Ignore unsaved buffers
   hlsearch = true,                            -- Highlight all the matches of search pattern
   ignorecase = true,                          -- Case insensitive searching
   smartcase = true,                           -- Case sensitivie searching
   spell = false,                              -- Disable spelling checking and highlighting
   showmode = false,                           -- Disable showing modes in command line
-  smartindent = true,                         -- Do auto indenting when starting a new line
+
+  -- indent
+  autoindent = true,
+  expandtab = true,
+  shiftwidth = 2,
+  smartindent = true,
+  softtabstop = 2,
+  tabstop = 2,
+
   splitbelow = true,                          -- Splitting a new window below the current one
   splitright = true,                          -- Splitting a new window at the right of the current one
   swapfile = false,                           -- Disable use of swapfile for the buffer
@@ -34,8 +41,6 @@ local options = {
   wrap = false,                               -- Disable wrapping of lines longer than the width of window
   conceallevel = 0,                           -- Show text normally
   cmdheight = 1,                              -- Number of screen lines to use for the command line
-  shiftwidth = 2,                             -- Number of space inserted for indentation
-  tabstop = 2,                                -- Number of space in a tab
   scrolloff = 2,                              -- Number of lines to keep above and below the cursor
   sidescrolloff = 2,                          -- Number of columns to keep at the sides of the cursor
   pumheight = 10,                             -- Height of the pop up menu

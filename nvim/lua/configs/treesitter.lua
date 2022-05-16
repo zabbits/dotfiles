@@ -46,7 +46,7 @@ function M.config()
       enable = true,
     },
     indent = {
-      enable = false,
+      enable = true,
       disable = { "yaml" },
     },
     rainbow = {

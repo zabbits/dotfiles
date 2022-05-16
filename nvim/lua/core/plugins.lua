@@ -27,14 +27,6 @@ local plgins = {
       require("configs.filetype").config()
     end,
   },
-  -- Indent detection
-  {
-    "Darazaki/indent-o-matic",
-    event = "BufRead",
-    config = function()
-      require("configs.indent-o-matic").config()
-    end,
-  },
 
   -- Notification Enhancer
   {
