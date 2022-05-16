@@ -265,16 +265,6 @@ local plgins = {
     end,
   },
 
-  -- LSP symbols
-  {
-    "simrat39/symbols-outline.nvim",
-    after = "nvim-lspconfig",
-    cmd = "SymbolsOutline",
-    setup = function()
-      require("configs.symbols-outline").setup()
-    end,
-  },
-
   -- lsp trouble
   {
     "folke/trouble.nvim",
