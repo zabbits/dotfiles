@@ -5,13 +5,14 @@ function M.config()
   local gps = utils.safe_require('nvim-gps')
   gps.setup({
 
-    disable_icons = true, -- Setting it to true will disable all icons
+    disable_icons = false, -- Setting it to true will disable all icons
 
     icons = {
       ["class-name"] = ' ', -- Classes and class-like objects
       ["function-name"] = ' ', -- Functions
       ["method-name"] = ' ', -- Methods (functions inside class-like objects)
-      ["container-name"] = '⛶ ', -- Containers (example: lua tables)
+      
+      ["container-name"] = ' ', -- Containers (example: lua tables)
       ["tag-name"] = '炙 ' -- Tags (example: html tags)
     },
 
