@@ -7,10 +7,12 @@ local options = {
   clipboard = "unnamedplus",                  -- Connection to the system clipboard
   mouse = "a",                                -- Enable mouse support
   signcolumn = "no",                          -- Hide the sign column
+
   foldmethod = "expr",                        -- Treesitter fold
   foldexpr = "nvim_treesitter#foldexpr()",
   foldlevel = 99,
   foldlevelstart = 99,
+
   completeopt = { "menuone", "noselect", "menuone" },    -- Options for insert mode completion
   colorcolumn = "99999",                      -- Fix for the indentline problem
   backup = false,                             -- Disable making a backup file
