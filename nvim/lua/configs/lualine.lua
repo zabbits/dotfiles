@@ -42,21 +42,6 @@ function M.config()
     padding = { left = 0, right = 0 },
   }
 
-  local gps = require("core.utils").safe_require("nvim-gps")
-  local gps_component = {
-    function()
-      return ""
-    end
-  }
-  if gps then
-    gps_component = {
-      gps.get_location,
-      cond = function()
-        return gps.is_available() and conditions.hide_in_width()
-      end
-    }
-  end
-
   local function extention_by_filetype(filetype)
     return {
       sections = {
@@ -117,7 +102,6 @@ function M.config()
           update_in_insert = true,
           padding = { left = 1, right = 1 },
         },
-        gps_component,
         {
           function()
             return "%="

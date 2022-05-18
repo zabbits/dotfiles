@@ -177,16 +177,6 @@ local plgins = {
     after = "nvim-treesitter",
   },
 
-  -- coding gps
-  {
-    "SmiteshP/nvim-gps",
-    after = "nvim-treesitter",
-    config = function()
-      require('configs.gps').config()
-    end
-  },
-
-
   -- Snippet collection
   {
     "rafamadriz/friendly-snippets",
