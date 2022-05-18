@@ -12,7 +12,7 @@ cmd("TextYankPost", {
     require('vim.highlight').on_yank({ higroup = 'Visual', timeout = 200 })
   end,
 })
-cmd("BufWinEnter", {
+cmd("FileType", {
   desc = "Change formatoptions",
   group = gs_id,
   command = "set formatoptions-=cro",
