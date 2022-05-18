@@ -74,10 +74,7 @@ local plgins = {
     'folke/tokyonight.nvim',
     before = 'kanagawa.nvim',
   },
-  {
-    'rmehri01/onenord.nvim',
-    before = 'kanagawa.nvim',
-  },
+
   {
     'rebelot/kanagawa.nvim',
     config = function()
@@ -232,18 +229,22 @@ local plgins = {
     after = "nvim-cmp",
   },
 
-  {
-    'stevearc/aerial.nvim',
-    after = "nvim-treesitter",
-    config = function()
-      require('configs.aerial').config()
-    end
-  },
-
   -- Lsp manager
   {
     "williamboman/nvim-lsp-installer",
-    after = 'aerial.nvim',
+    event = { "BufEnter", "BufRead", "BufNewFile" },
+    config = function()
+      require('configs.lsp-installer').config()
+    end
+  },
+
+  {
+    'stevearc/aerial.nvim',
+    -- event = { "BufRead", "BufNewFile" },
+    after = 'nvim-lsp-installer',
+    config = function()
+      require('configs.aerial').config()
+    end
   },
 
   -- Built-in LSP

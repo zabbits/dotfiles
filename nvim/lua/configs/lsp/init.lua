@@ -5,16 +5,6 @@ if not lsp_installer or not lspconfig then
   return
 end
 
-lsp_installer.setup({
-  ui = {
-    icons = {
-      server_installed = "",
-      server_pending = "",
-      server_uninstalled = "",
-    },
-  },
-})
-
 local handlers = utils.safe_require('configs.lsp.handlers')
 if not handlers then
   return
