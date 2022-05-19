@@ -44,14 +44,23 @@ end
 
 local function lsp_highlight_document(client, bufnr)
   if client.server_capabilities.documentHighlightProvider then
-    vim.keymap.set("n", "<leader>lh", function()
-      vim.lsp.buf.document_highlight()
-    end, { desc = "Highlight Document" })
-
-    vim.keymap.set("n", "<ESC>", function()
-      vim.lsp.buf.clear_references()
-      vim.cmd [[nohlsearch]]
-    end)
+    local gid = vim.api.nvim_create_augroup("_lsp_highlight_document", {})
+    vim.api.nvim_create_autocmd("CursorHold", {
+      desc = "Highlight document on cursor hold",
+      group = gid,
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.document_highlight()
+      end,
+    })
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      desc = "Clear references on cursor hold",
+      group = gid,
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.clear_references()
+      end,
+    })
   end
 end
 
@@ -59,11 +68,12 @@ local function buffer_key_maps(client, bufnr)
   local bmap = vim.api.nvim_buf_set_keymap
   bmap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { desc = "Goto declaration" })
   bmap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { desc = "Goto definition" })
+  bmap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', { desc = "Goto implementation" })
+  bmap(bufnr, 'n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { desc = "Goto type definition" })
+  bmap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.hover()<CR>', { desc = "Hover diagnostic" })
   bmap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { desc = "Hover document" })
-  bmap(bufnr, 'n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<CR>', { desc = "Goto implementation" })
   bmap(bufnr, 'n', '<C-t>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = "Signature help" })
   bmap(bufnr, 'i', '<C-t>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = "Signature help" })
-  bmap(bufnr, 'n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { desc = "Goto type definition" })
   bmap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { desc = "Rename" })
 end
 
