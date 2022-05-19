@@ -156,7 +156,7 @@ local plgins = {
   {
     "nvim-treesitter/nvim-treesitter-context",
     after = "nvim-treesitter",
-    config = function ()
+    config = function()
       require('configs.treesitter-context').config()
     end
   },
@@ -226,10 +226,10 @@ local plgins = {
   -- Lsp manager
   {
     "williamboman/nvim-lsp-installer",
-    event = { "BufEnter", "BufRead", "BufNewFile" },
+    event = { "BufRead", "BufNewFile", },
     config = function()
       require('configs.lsp-installer').config()
-    end
+    end,
   },
 
   {
@@ -401,7 +401,7 @@ local plgins = {
   -- Indentation
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
+    event = { "BufRead", "BufNewFile" },
     config = function()
       require("configs.indent-line").config()
     end,
@@ -435,7 +435,10 @@ local plgins = {
   },
 
   -- Get extra JSON schemas
-  { "b0o/SchemaStore.nvim" },
+  {
+    "b0o/SchemaStore.nvim",
+    event = { "BufRead", "BufNewFile" },
+  },
 
   -- neorg for note
   {
@@ -460,6 +463,7 @@ local plgins = {
   -- harpoon
   {
     'ThePrimeagen/harpoon',
+    -- event = { "BufRead", "BufNewFile" },
     after = 'telescope.nvim',
     config = function()
       require('configs.harpoon').config()
@@ -511,12 +515,21 @@ local plgins = {
       require("configs.smart-splits").config()
     end,
   },
+  -- rearrange window location
   {
     "sindrets/winshift.nvim",
     event = { 'WinNew', 'TabNew' },
-    config = function ()
+    config = function()
       require('winshift').setup()
     end
+  },
+
+  -- ====================
+  --     Edit enhance
+  -- ====================
+  {
+    "tpope/vim-surround",
+    event = { "BufRead", "BufNewFile" },
   },
 }
 

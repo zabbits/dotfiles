@@ -13,6 +13,8 @@ function M.config()
       "quickfix",
       "qf",
       "prompt",
+      "neorg",
+      "norg",
     },
     -- Ignored buffer types (only while resizing)
     ignored_buftypes = { "nofile" },
