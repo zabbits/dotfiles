@@ -120,7 +120,9 @@ local plgins = {
     end,
   },
 
-  -- Treesitter
+  -- ====================
+  --      Treesitter
+  -- ====================
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
@@ -129,31 +131,40 @@ local plgins = {
       require("configs.treesitter").config()
     end,
   },
-  --
+
   -- Ts Playground
   {
     "nvim-treesitter/playground",
     after = "nvim-treesitter",
   },
-
   -- Parenthesis highlighting
   {
     "p00f/nvim-ts-rainbow",
     after = "nvim-treesitter",
   },
-
   -- Autoclose tags
   {
     "windwp/nvim-ts-autotag",
     after = "nvim-treesitter",
   },
-
   -- Context based commenting
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
     after = "nvim-treesitter",
   },
+  -- show match context
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    after = "nvim-treesitter",
+    config = function ()
+      require('configs.treesitter-context').config()
+    end
+  },
 
+
+  -- ====================
+  --      Completion
+  -- ====================
   -- Snippet collection
   {
     "rafamadriz/friendly-snippets",
@@ -209,6 +220,9 @@ local plgins = {
     after = "nvim-cmp",
   },
 
+  -- ====================
+  --         LSP
+  -- ====================
   -- Lsp manager
   {
     "williamboman/nvim-lsp-installer",
@@ -289,7 +303,6 @@ local plgins = {
     end
   },
 
-
   -- Formatting and linting
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -299,6 +312,9 @@ local plgins = {
     end,
   },
 
+  -- ====================
+  --      Telescope
+  -- ====================
   -- Fuzzy finder
   {
     "nvim-telescope/telescope.nvim",
