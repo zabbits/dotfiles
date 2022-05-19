@@ -23,25 +23,25 @@ function M.config()
     -- defined by this plugin. if you pass in a function to "filter_func"
     -- property, you are on your own
     filter_rules = {
-        -- filter using buffer options
-        bo = {
-            -- if the file type is one of following, the window will be ignored
-            filetype = { 'NvimTree', "neo-tree", "notify", "neo-tree-popup", "quickfix" },
+      -- filter using buffer options
+      bo = {
+        -- if the file type is one of following, the window will be ignored
+        filetype = { 'NvimTree', "neo-tree", "notify", "neo-tree-popup", "quickfix", 'aerial', 'Trouble' },
 
-            -- if the buffer type is one of following, the window will be ignored
-            buftype = { 'terminal' },
-        },
+        -- if the buffer type is one of following, the window will be ignored
+        buftype = { 'terminal' },
+      },
 
-        -- filter using window options
-        wo = {},
+      -- filter using window options
+      wo = {},
 
-        -- if the file path contains one of following names, the window
-        -- will be ignored
-        file_path_contains = {},
+      -- if the file path contains one of following names, the window
+      -- will be ignored
+      file_path_contains = {},
 
-        -- if the file name contains one of following names, the window will be
-        -- ignored
-        file_name_contains = {},
+      -- if the file name contains one of following names, the window will be
+      -- ignored
+      file_name_contains = {},
     },
 
     -- if you have include_current_win == true, then current_win_hl_color will
@@ -51,7 +51,7 @@ function M.config()
     -- all the windows except the curren window will be highlighted using this
     -- color
     other_win_hl_color = '#44cc41',
-})
+  })
 end
 
 return M

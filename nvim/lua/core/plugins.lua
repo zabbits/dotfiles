@@ -51,16 +51,6 @@ local plgins = {
     end,
   },
 
-  -- Smarter Splits
-  {
-    "mrjones2014/smart-splits.nvim",
-    module = "smart-splits",
-    event = { 'WinNew', 'TabNew' },
-    config = function()
-      require("configs.smart-splits").config()
-    end,
-  },
-
   -- Icons
   {
     "kyazdani42/nvim-web-devicons",
@@ -118,16 +108,6 @@ local plgins = {
     requires = "MunifTanjim/nui.nvim",
     config = function()
       require("configs.neo-tree").config()
-    end,
-  },
-
-  -- Window picker
-  {
-    's1n7ax/nvim-window-picker',
-    tag = 'v1.*',
-    after = 'neo-tree.nvim',
-    config = function()
-      require('configs.window-picker').config()
     end,
   },
 
@@ -492,6 +472,35 @@ local plgins = {
   {
     "axieax/urlview.nvim",
     after = "dressing.nvim",
+  },
+
+  -- ====================
+  --    Window manager
+  -- ====================
+  -- Window picker
+  {
+    's1n7ax/nvim-window-picker',
+    tag = 'v1.*',
+    after = 'neo-tree.nvim',
+    config = function()
+      require('configs.window-picker').config()
+    end,
+  },
+  -- Smarter Splits
+  {
+    "mrjones2014/smart-splits.nvim",
+    module = "smart-splits",
+    event = { 'WinNew', 'TabNew' },
+    config = function()
+      require("configs.smart-splits").config()
+    end,
+  },
+  {
+    "sindrets/winshift.nvim",
+    event = { 'WinNew', 'TabNew' },
+    config = function ()
+      require('winshift').setup()
+    end
   },
 }
 
