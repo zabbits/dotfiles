@@ -62,7 +62,7 @@ local function load_options(module, default)
   return default
 end
 
-M.base_notification = { title = "AstroNvim" }
+M.base_notification = { title = "Neovim" }
 
 function M.bootstrap()
   local fn = vim.fn
@@ -98,10 +98,6 @@ function M.disabled_builtins()
   g.loaded_vimball = false
   g.loaded_vimballPlugin = false
   g.zipPlugin = false
-end
-
-function M.user_settings()
-  return _user_settings
 end
 
 function M.user_plugin_opts(plugin, default)
@@ -142,21 +138,6 @@ function M.list_registered_linters(filetype)
   local formatter_method = null_ls_methods.internal["DIAGNOSTICS"]
   local registered_providers = M.list_registered_providers_names(filetype)
   return registered_providers[formatter_method] or {}
-end
-
-function M.toggle_term_cmd(cmd)
-  if _user_terminals[cmd] == nil then
-    _user_terminals[cmd] = require("toggleterm.terminal").Terminal:new { cmd = cmd, hidden = true }
-  end
-  _user_terminals[cmd]:toggle()
-end
-
-function M.label_plugins(plugins)
-  local labelled = {}
-  for _, plugin in ipairs(plugins) do
-    labelled[plugin[1]] = plugin
-  end
-  return labelled
 end
 
 function M.is_available(plugin)

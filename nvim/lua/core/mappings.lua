@@ -70,12 +70,12 @@ end
 -- === LSP Trouble ===
 if utils.is_available "trouble.nvim" then
   map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { desc = "TroubleToggle" })
-  map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Trouble Workspace" })
-  map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Trouble Document" })
-  map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { desc = "Trouble loclist" })
-  map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { desc = "Trouble quickfix" })
-  map("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { desc = "Trouble References" })
-  map("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", { desc = "Trouble References" })
+  map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", { desc = "Trouble Workspace" })
+  map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", { desc = "Trouble Document" })
+  map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", { desc = "Trouble loclist" })
+  map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", { desc = "Trouble quickfix" })
+  map("n", "gR", "<cmd>Trouble lsp_references<cr>", { desc = "Trouble References" })
+  map("n", "gr", "<cmd>Trouble lsp_references<cr>", { desc = "Trouble References" })
 end
 
 -- === LSP Preview ===

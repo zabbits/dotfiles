@@ -10,26 +10,6 @@ function M.config()
 
   local headers = require('configs.alpha-header').ascii_art
 
-  local leader = '<space>'
-
-  local function button(sc, txt)
-    local opts = {
-      position = 'center',
-      shortcut = sc,
-      cursor = 5,
-      width = 50,
-      align_shortcut = 'right',
-      hl_shortcut = 'Keyword',
-    }
-
-    return {
-      type = 'button',
-      val = txt,
-      -- on_press = on_press,
-      opts = opts,
-    }
-  end
-
   math.randomseed(os.time())
   dashboard.section.header.val = headers[math.random(1, #headers)]
 
