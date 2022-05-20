@@ -14,7 +14,7 @@ function M.config()
       ["function-name"] = ' ', -- Functions
       ["method-name"] = ' ', -- Methods (functions inside class-like objects)
       --         
-      ["container-name"] = ' ', -- Containers (example: lua tables)
+      ["container-name"] = ' ', -- Containers (example: lua tables)
       ["tag-name"] = '炙 ' -- Tags (example: html tags)
     },
 
@@ -88,24 +88,6 @@ function M.config()
           ["action-name"] = " ",
         }
       },
-
-      -- Disable for particular languages
-      -- ["bash"] = false, -- disables nvim-gps for bash
-      -- ["go"] = false,   -- disables nvim-gps for golang
-
-      -- Override default setting for particular languages
-      -- ["ruby"] = {
-      --	separator = '|', -- Overrides default separator with '|'
-      --	icons = {
-      --		-- Default icons not specified in the lang config
-      --		-- will fallback to the default value
-      --		-- "container-name" will fallback to default because it's not set
-      --		["function-name"] = '',    -- to ensure empty values, set an empty string
-      --		["tag-name"] = ''
-      --		["class-name"] = '::',
-      --		["method-name"] = '#',
-      --	}
-      --}
     },
 
     separator = ' > ',
@@ -120,8 +102,16 @@ function M.config()
 
   -- winbar
   _G.gps_location = function()
-    local gps = require "nvim-gps"
-    return gps.is_available() and "     " .. gps.get_location() or ""
+    local gps = require("nvim-gps")
+    --              﫴         
+    if not gps.is_available() then
+      return
+    end
+    local location = gps.get_location()
+    if location ~= "" then
+      return "    " .. gps.get_location()
+    end
+    return ""
   end
   vim.opt.winbar = "%{%v:lua.gps_location()%}"
 end
