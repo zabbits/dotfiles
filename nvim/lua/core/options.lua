@@ -60,4 +60,11 @@ vim.opt.shortmess:append "c"
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 
+-- winbar
+_G.gps_location = function()
+  local gps = require "nvim-gps"
+  return gps.is_available() and "     " .. gps.get_location() or ""
+end
+vim.opt.winbar = "%{%v:lua.gps_location()%}"
+
 return M
