@@ -7,6 +7,7 @@ function M.config()
   end
 
   neotree.setup({
+    use_default_mappings = false,
     close_if_last_window = true,
     popup_border_style = "rounded",
     enable_git_status = true,
@@ -30,9 +31,8 @@ function M.config()
       icon = {
         folder_closed = "",
         folder_open = "",
-        folder_empty = "ﰊ",
+        folder_empty = "",
         default = "",
-        -- default = "*",
         highlight = "NeoTreeFileIcon"
       },
       modified = {
@@ -66,10 +66,6 @@ function M.config()
         nowait = true,
       },
       mappings = {
-        ["<space>"] = {
-          "toggle_node",
-          nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
-        },
         ["<2-LeftMouse>"] = "open",
         ["<cr>"] = "open",
         ["S"] = "open_split",
@@ -152,7 +148,6 @@ function M.config()
           ["gr"] = "git_revert_file",
           ["gc"] = "git_commit",
           ["gp"] = "git_push",
-          ["gg"] = "git_commit_and_push",
         },
       },
     },
