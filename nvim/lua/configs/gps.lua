@@ -1,23 +1,21 @@
 local M = {}
 
 function M.config()
-  local utils = require("core.utils")
   local gps = _G.safe_require('nvim-gps')
   if not gps then
     return
   end
 
   gps.setup({
-
     disable_icons = false, -- Setting it to true will disable all icons
 
     icons = {
       ["class-name"] = ' ', -- Classes and class-like objects
       ["function-name"] = ' ', -- Functions
       ["method-name"] = ' ', -- Methods (functions inside class-like objects)
-      --          
+      --         
       ["container-name"] = ' ', -- Containers (example: lua tables)
-      ["tag-name"] = '炙 '-- Tags (example: html tags)
+      ["tag-name"] = '炙 ' -- Tags (example: html tags)
     },
 
     -- Add custom configuration per language or
@@ -119,6 +117,13 @@ function M.config()
     -- indicator used when context hits depth limit
     depth_limit_indicator = ".."
   })
+
+  -- winbar
+  _G.gps_location = function()
+    local gps = require "nvim-gps"
+    return gps.is_available() and "     " .. gps.get_location() or ""
+  end
+  vim.opt.winbar = "%{%v:lua.gps_location()%}"
 end
 
 return M
