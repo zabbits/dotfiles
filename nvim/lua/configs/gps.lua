@@ -105,7 +105,7 @@ function M.config()
     local gps = require("nvim-gps")
     --              﫴         
     if not gps.is_available() then
-      return
+      return ""
     end
     local location = gps.get_location()
     if location ~= "" then
