@@ -1,8 +1,7 @@
 local M = {}
 
 function M.config()
-  local utils = require("core.utils")
-  local alpha = utils.safe_require('alpha')
+  local alpha = _G.safe_require('alpha')
   if not alpha then
     return
   end

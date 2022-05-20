@@ -4,6 +4,9 @@ local utils = require "core.utils"
 local cmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
+-- ====================
+--   General Settings
+-- ====================
 local gs_id = augroup("_general_settings", {})
 cmd("TextYankPost", {
   desc = "Highlight on yank",
@@ -25,7 +28,6 @@ cmd("FileType", {
   group = gs_id,
   command = "nnoremap <silent> <buffer> q :close<cr>",
 })
-
 
 augroup("packer_user_config", {})
 cmd("BufWritePost", {
@@ -119,7 +121,7 @@ augroup("_luasnip", {})
 cmd("ModeChanged", {
   group = "_luasnip",
   callback = function()
-    local luasnip = utils.safe_require('luasnip')
+    local luasnip = _G.safe_require('luasnip')
     if not luasnip then
       return
     end

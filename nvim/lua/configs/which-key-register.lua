@@ -2,7 +2,7 @@ local M = {}
 
 local utils = require "core.utils"
 
-local which_key = utils.safe_require("which-key")
+local which_key = _G.safe_require("which-key")
 if not which_key then
   return
 end

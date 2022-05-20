@@ -1,13 +1,13 @@
 local M = {}
 
 function M.config()
-  local utils = require("core.utils")
-  local ctx = utils.safe_require('treesitter-context')
+  local ctx = _G.safe_require('treesitter-context')
   if not ctx then
     return
   end
   ctx.setup {
     enable = true,
+    max_lines = 1,
     patterns = {
       default = {
         'class',

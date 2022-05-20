@@ -171,4 +171,6 @@ function M.safe_require(modname)
   return nil
 end
 
+_G.safe_require = M.safe_require
+
 return M

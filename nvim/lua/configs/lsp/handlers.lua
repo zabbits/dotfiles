@@ -1,5 +1,4 @@
 local M = {}
-local utils = require('core.utils')
 
 function M.setup()
   local signs = {
@@ -84,7 +83,7 @@ M.on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
   end
 
-  local aerial = utils.safe_require('aerial')
+  local aerial = _G.safe_require('aerial')
   if aerial then
     aerial.on_attach(client, bufnr)
   end
@@ -94,7 +93,7 @@ end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local cmp_nvim_lsp = utils.safe_require("cmp_nvim_lsp")
+local cmp_nvim_lsp = _G.safe_require("cmp_nvim_lsp")
 if cmp_nvim_lsp then
   M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 end

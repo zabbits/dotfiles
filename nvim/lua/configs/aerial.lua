@@ -1,8 +1,7 @@
 local M = {}
 
 function M.config()
-  local utils = require('core.utils')
-  local aerial = utils.safe_require('aerial')
+  local aerial = _G.safe_require('aerial')
   if not aerial then
     return
   end
@@ -216,7 +215,7 @@ function M.config()
     },
   })
 
-  local telescope = utils.safe_require('telescope')
+  local telescope = _G.safe_require('telescope')
   if telescope then
     telescope.load_extension('aerial')
   end

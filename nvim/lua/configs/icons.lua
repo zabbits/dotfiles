@@ -1,8 +1,7 @@
 local M = {}
 
 function M.config()
-  local utils = require('core.utils')
-  local  icons = utils.safe_require("nvim-web-devicons")
+  local icons = _G.safe_require("nvim-web-devicons")
   if not icons then
     return
   end

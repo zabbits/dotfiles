@@ -1,8 +1,7 @@
 local M = {}
 
 function M.config()
-  local utils = require('core.utils')
-  local fold = utils.safe_require('pretty-fold')
+  local fold = _G.safe_require('pretty-fold')
   if not fold then
     return
   end

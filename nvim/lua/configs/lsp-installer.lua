@@ -1,8 +1,7 @@
 local M = {}
 
 function M.config()
-  local utils = require("core.utils")
-  local lsp_installer = utils.safe_require("nvim-lsp-installer")
+  local lsp_installer = _G.safe_require("nvim-lsp-installer")
   if not lsp_installer then
     return
   end
