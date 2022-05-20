@@ -87,7 +87,7 @@ local plgins = {
   {
     "akinsho/bufferline.nvim",
     after = "nvim-web-devicons",
-    event = 'BufRead',
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
       require("configs.bufferline").config()
     end,
@@ -114,7 +114,7 @@ local plgins = {
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
-    event = { 'BufRead' },
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
       require("configs.lualine").config()
     end,
@@ -164,7 +164,7 @@ local plgins = {
   {
     "SmiteshP/nvim-gps",
     after = "nvim-treesitter",
-    config = function ()
+    config = function()
       require("configs.gps").config()
     end
   },
@@ -240,6 +240,15 @@ local plgins = {
     end,
   },
 
+  -- Formatting and linting
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    after = 'nvim-lsp-installer',
+    config = function()
+      -- TODO
+    end,
+  },
+
   {
     'stevearc/aerial.nvim',
     -- event = { "BufRead", "BufNewFile" },
@@ -309,15 +318,6 @@ local plgins = {
     config = function()
       require("fidget").setup {}
     end
-  },
-
-  -- Formatting and linting
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      -- TODO
-    end,
   },
 
   -- ====================
@@ -418,6 +418,20 @@ local plgins = {
   -- Keymaps popup
   {
     "folke/which-key.nvim",
+    keys = {
+      "<space>",
+      "g",
+      "d",
+      "y",
+      "!",
+      "z",
+      ">",
+      "<",
+      "]",
+      "[",
+      "v",
+      "c",
+    },
     config = function()
       require("configs.which-key").config()
     end,

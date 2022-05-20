@@ -11,9 +11,9 @@ function M.config()
 
     icons = {
       ["class-name"] = ' ', -- Classes and class-like objects
-      ["function-name"] = ' ', -- Functions
+      ["function-name"] = ' ', -- Functions
       ["method-name"] = ' ', -- Methods (functions inside class-like objects)
-      --         
+      --           
       ["container-name"] = ' ', -- Containers (example: lua tables)
       ["tag-name"] = '炙 ' -- Tags (example: html tags)
     },
@@ -90,7 +90,7 @@ function M.config()
       },
     },
 
-    separator = ' > ',
+    separator = '  ',
 
     -- limit for amount of context shown
     -- 0 means no limit
