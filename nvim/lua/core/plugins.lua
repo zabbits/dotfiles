@@ -111,13 +111,12 @@ local plgins = {
     end,
   },
 
-  -- Statusline
   {
-    "nvim-lualine/lualine.nvim",
+    'feline-nvim/feline.nvim',
     event = { 'BufRead', 'BufNewFile' },
-    config = function()
-      require("configs.lualine").config()
-    end,
+    config = function ()
+      require('configs.feline').config()
+    end
   },
 
   -- ====================
@@ -418,20 +417,6 @@ local plgins = {
   -- Keymaps popup
   {
     "folke/which-key.nvim",
-    keys = {
-      "<space>",
-      "g",
-      "d",
-      "y",
-      "!",
-      "z",
-      ">",
-      "<",
-      "]",
-      "[",
-      "v",
-      "c",
-    },
     config = function()
       require("configs.which-key").config()
     end,

@@ -62,7 +62,7 @@ if utils.is_available "alpha-nvim" then
           pattern = "<buffer>",
           callback = function()
             vim.opt.showtabline = 2
-            vim.opt.laststatus = 2
+            vim.opt.laststatus = 3
           end
         })
       end

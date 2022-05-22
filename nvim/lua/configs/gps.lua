@@ -101,19 +101,19 @@ function M.config()
   })
 
   -- winbar
-  _G.gps_location = function()
-    local gps = require("nvim-gps")
-    --              﫴         
-    if not gps.is_available() then
-      return ""
-    end
-    local location = gps.get_location()
-    if location ~= "" then
-      return "    " .. gps.get_location()
-    end
-    return ""
-  end
-  vim.opt.winbar = "%{%v:lua.gps_location()%}"
+  -- _G.gps_location = function()
+  --   local gps = require("nvim-gps")
+  --   --              﫴         
+  --   if not gps or not gps.is_available() then
+  --     return ""
+  --   end
+  --   local location = gps.get_location()
+  --   if location ~= "" then
+  --     return "    " .. gps.get_location()
+  --   end
+  --   return ""
+  -- end
+  -- vim.opt.winbar = "%{%v:lua.gps_location()%}"
 end
 
 return M
