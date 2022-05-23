@@ -19,7 +19,10 @@ function M.config()
     violet = '#a9a1e1',
     magenta = '#c678dd',
     blue = '#61afef',
-    red = '#e86671'
+    red = '#e86671',
+    c1 = '#957FB8',
+    c2 = '#658594',
+    c3 = '#727169',
   }
 
   local left = {}
@@ -133,7 +136,6 @@ function M.config()
       },
     },
     {
-      provider = 'diagnostic_info',
       provider = function()
         return tostring(status.diagnostic.info.count())
       end,
@@ -148,9 +150,16 @@ function M.config()
     provider = 'lsp_client_names',
     icon = '  ',
     hl = {
-      fg = colors.yellow
+      -- fg = colors.yellow,
+      bg = colors.c1,
     },
-    right_sep = ' ',
+    right_sep = {
+      str = '',
+      hl = {
+        -- fg = colors.yellow,
+        bg = colors.c1,
+      },
+    },
   }
 
   local treesitter = {
@@ -158,18 +167,49 @@ function M.config()
       return status.treesitter_status()
     end,
     hl = {
-      fg = colors.yellow
-    }
+      -- fg = colors.yellow,
+      bg = colors.c1,
+    },
+    left_sep = {
+      str = 'left_filled',
+      hl = {
+        -- fg = colors.yellow,
+        fg = colors.c1,
+      },
+      always_visible = true,
+    },
+    right_sep = {
+      str = ' ',
+      hl = {
+        -- fg = colors.yellow,
+        bg = colors.c1,
+      },
+      always_visible = true,
+    },
   }
 
   local file_info = {
     {
       provider = file_osinfo,
       hl = {
-        fg = colors.fg,
+        bg = colors.c2,
         style = 'bold'
       },
-      right_sep = ' ',
+      left_sep = {
+        str = 'left_filled',
+        hl = {
+          fg = colors.c2,
+          bg = colors.c1,
+          -- fg = colors.yellow,
+          -- fg = colors.skyblue,
+        },
+      },
+      right_sep = {
+        str = ' ',
+        hl = {
+          bg = colors.c2,
+        },
+      },
     },
     {
       provider = {
@@ -180,43 +220,71 @@ function M.config()
         },
       },
       hl = {
-        fg = colors.fg,
+        bg = colors.c2,
         style = 'bold'
       },
-      right_sep = ' ',
+      right_sep = {
+        str = ' ',
+        hl = {
+          bg = colors.c2,
+        },
+      },
     },
     {
       provider = function()
         return vim.bo.fileencoding
       end,
       hl = {
-        fg = colors.fg,
+        bg = colors.c2,
         style = 'bold'
       },
-      right_sep = ' ',
+      right_sep = {
+        str = ' ',
+        hl = {
+          bg = colors.c2,
+        },
+      },
     },
   }
 
   local position = {
     {
       provider = 'position',
-      right_sep = ' ',
+      left_sep = {
+        str = 'left_filled',
+        hl = {
+          bg = colors.c2,
+          fg = colors.c3,
+        }
+      },
+      right_sep = {
+        str = ' ',
+        hl = {
+          bg = colors.c3,
+        },
+      },
       hl = {
-        fg = colors.blue,
+        bg = colors.c3,
       },
     },
     {
       provider = 'line_percentage',
       hl = {
-        fg = colors.blue,
+        bg = colors.c3,
         style = 'bold'
       },
-      right_sep = ' ',
+      right_sep = {
+        str = ' ',
+        hl = {
+          bg = colors.c3,
+        },
+      },
     },
     {
       provider = 'scroll_bar',
       hl = {
         fg = colors.blue,
+        bg = colors.c3,
         style = 'bold'
       },
     }
@@ -228,11 +296,11 @@ function M.config()
   -- ===================
   table.insert(left, vim_mode)
   table.insert(left, space)
-  for key, val in pairs(git) do
+  for _, val in pairs(git) do
     table.insert(left, val)
   end
   table.insert(left, space)
-  for idx, val in pairs(diagnostic) do
+  for _, val in pairs(diagnostic) do
     table.insert(left, val)
     table.insert(left, space)
   end
@@ -242,19 +310,17 @@ function M.config()
   -- ===================
   --        Middle
   -- ===================
-  table.insert(middle, treesitter)
-  table.insert(middle, space)
-  table.insert(middle, lsp)
 
 
   -- ===================
   --        Right
   -- ===================
-  for key, val in pairs(file_info) do
+  table.insert(right, treesitter)
+  table.insert(right, lsp)
+  for _, val in pairs(file_info) do
     table.insert(right, val)
   end
-  table.insert(right, space)
-  for key, val in pairs(position) do
+  for _, val in pairs(position) do
     table.insert(right, val)
   end
 
