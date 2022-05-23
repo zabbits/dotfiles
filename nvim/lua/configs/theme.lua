@@ -8,6 +8,19 @@ function M.config()
   if kanagawa and colors then
     scheme = 'kanagawa'
     kanagawa.setup({
+      undercurl = true, -- enable undercurls
+      commentStyle = "italic",
+      functionStyle = "NONE",
+      keywordStyle = "italic",
+      statementStyle = "bold",
+      typeStyle = "NONE",
+      variablebuiltinStyle = "italic",
+      specialReturn = true, -- special highlight for the return keyword
+      specialException = true, -- special highlight for exception handling keywords
+      transparent = false, -- do not set background color
+      dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+      globalStatus = true, -- adjust window separators highlight for laststatus=3
+      colors = {},
       overrides = {
         -- Manually add winbar highlight, wait for plugin update
         -- WinBar = { fg = colors.fg_dark, bg = colors.bg_visual, style = "NONE" },

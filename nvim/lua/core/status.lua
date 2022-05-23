@@ -72,4 +72,35 @@ function M.progress_bar()
   return chars[index]
 end
 
+local function get_diagnostics_count(severity)
+  return vim.tbl_count(vim.diagnostic.get(0, severity and { severity = severity }))
+end
+
+M.diagnostic = {
+  error = {
+    count = function ()
+      return get_diagnostics_count(vim.diagnostic.severity.ERROR)
+    end,
+    icon = '',
+  },
+  warning = {
+    count = function ()
+      return get_diagnostics_count(vim.diagnostic.severity.WARN)
+    end,
+    icon = '',
+  },
+  hint = {
+    count = function ()
+      return get_diagnostics_count(vim.diagnostic.severity.HINT)
+    end,
+    icon = '',
+  },
+  info = {
+    count = function ()
+      return get_diagnostics_count(vim.diagnostic.severity.INFO)
+    end,
+    icon = '',
+  },
+}
+
 return M

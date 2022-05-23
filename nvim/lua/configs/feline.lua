@@ -26,26 +26,8 @@ function M.config()
   local middle = {}
   local right = {}
 
-  local left_space = {
+  local space = {
     provider = '',
-    left_sep = {
-      str = ' ',
-      always_visible = true,
-    }
-  }
-  local right_space = {
-    provider = '',
-    right_sep = {
-      str = ' ',
-      always_visible = true,
-    }
-  }
-  local all_space = {
-    provider = '',
-    left_sep = {
-      str = ' ',
-      always_visible = true,
-    },
     right_sep = {
       str = ' ',
       always_visible = true,
@@ -94,48 +76,68 @@ function M.config()
         fg = colors.violet,
         style = 'bold'
       },
+      right_sep = ' ',
     },
     {
       provider = 'git_diff_added',
+      icon = ' ',
       hl = {
         fg = colors.green
       },
+      right_sep = ' ',
     },
     {
       provider = 'git_diff_changed',
+      icon = ' ',
       hl = {
         fg = colors.orange
       },
+      right_sep = ' ',
     },
     {
       provider = 'git_diff_removed',
+      icon = ' ',
       hl = {
         fg = colors.red
       },
+      right_sep = ' ',
     },
   }
 
   local diagnostic = {
     {
-      provider = 'diagnostic_errors',
+      provider = function()
+        return tostring(status.diagnostic.error.count())
+      end,
+      icon = status.diagnostic.error.icon .. ' ',
       hl = {
         fg = colors.red,
       },
     },
     {
-      provider = 'diagnostic_warnings',
+      provider = function()
+        return tostring(status.diagnostic.warning.count())
+      end,
+      icon = status.diagnostic.warning.icon .. ' ',
       hl = {
         fg = colors.yellow
       },
     },
     {
-      provider = 'diagnostic_hints',
+      provider = function()
+        return tostring(status.diagnostic.hint.count())
+      end,
+      icon = status.diagnostic.hint.icon .. ' ',
       hl = {
         fg = colors.blue
       },
     },
     {
       provider = 'diagnostic_info',
+      provider = function()
+        return tostring(status.diagnostic.info.count())
+      end,
+      icon = status.diagnostic.info.icon .. ' ',
       hl = {
         fg = colors.cyan
       },
@@ -225,21 +227,23 @@ function M.config()
   --        Left
   -- ===================
   table.insert(left, vim_mode)
+  table.insert(left, space)
   for key, val in pairs(git) do
     table.insert(left, val)
   end
-  table.insert(left, right_space)
+  table.insert(left, space)
   for idx, val in pairs(diagnostic) do
     table.insert(left, val)
+    table.insert(left, space)
   end
-  table.insert(left, right_space)
+  table.insert(left, space)
 
 
   -- ===================
   --        Middle
   -- ===================
   table.insert(middle, treesitter)
-  table.insert(middle, right_space)
+  table.insert(middle, space)
   table.insert(middle, lsp)
 
 
@@ -249,7 +253,7 @@ function M.config()
   for key, val in pairs(file_info) do
     table.insert(right, val)
   end
-  table.insert(right, right_space)
+  table.insert(right, space)
   for key, val in pairs(position) do
     table.insert(right, val)
   end
