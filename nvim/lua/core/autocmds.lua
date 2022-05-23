@@ -66,6 +66,10 @@ if utils.is_available "alpha-nvim" then
           end
         })
       end
+      if vim.bo.filetype == 'norg' then
+        vim.opt.showtabline = 2
+        vim.opt.laststatus = 3
+      end
     end
   })
 end
