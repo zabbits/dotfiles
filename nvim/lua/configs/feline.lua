@@ -362,6 +362,7 @@ function M.config()
     disable = {
       filetypes = {
         "^TelescopePrompt$",
+        "^neo%-tree%-popup$",
       }
     }
   })
