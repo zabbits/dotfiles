@@ -114,7 +114,7 @@ local plgins = {
   {
     'feline-nvim/feline.nvim',
     event = { 'BufRead', 'BufNewFile' },
-    config = function ()
+    config = function()
       require('configs.feline').config()
     end
   },
@@ -417,6 +417,7 @@ local plgins = {
   -- Keymaps popup
   {
     "folke/which-key.nvim",
+    event = "BufEnter",
     config = function()
       require("configs.which-key").config()
     end,
