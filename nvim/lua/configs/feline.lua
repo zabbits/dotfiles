@@ -342,10 +342,13 @@ function M.config()
             },
           },
           hl = {
-            fg = colors.blue,
+            -- fg = colors.blue,
+            bg = colors.blue,
             style = 'bold'
           },
-          right_sep = ' ',
+          right_sep = {
+            str = 'right_filled',
+          },
         },
       },
     },
@@ -357,12 +360,15 @@ function M.config()
       filetypes = {
         "^NvimTree$", "^neo%-tree$", "^dashboard$",
         "^Outline$", "^aerial$", "^Trouble$", "^help$",
+        "^harpoon$",
+        "^TelescopePrompt$",
+        "^neo%-tree%-popup$",
       }
     },
     disable = {
       filetypes = {
-        "^TelescopePrompt$",
-        "^neo%-tree%-popup$",
+        -- "^TelescopePrompt$",
+        -- "^neo%-tree%-popup$",
       }
     }
   })
@@ -388,20 +394,20 @@ function M.config()
     }
   }
 
-  feline.winbar.setup({
-    components = {
-      active = {
-        cpt_gps,
-      }
-    },
-    disable = {
-      filetypes = {
-        "^TelescopePrompt$",
-        "^NvimTree$", "^neo%-tree$", "^dashboard$",
-        "^Outline$", "^aerial$", "^Trouble$", "^help$",
-      }
-    },
-  })
+  -- feline.winbar.setup({
+  --   components = {
+  --     active = {
+  --       cpt_gps,
+  --     }
+  --   },
+  --   disable = {
+  --     filetypes = {
+  --       "^TelescopePrompt$",
+  --       "^NvimTree$", "^neo%-tree$", "^dashboard$",
+  --       "^Outline$", "^aerial$", "^Trouble$", "^help$",
+  --     }
+  --   },
+  -- })
 
 
 end

@@ -59,6 +59,13 @@ local plgins = {
     end,
   },
 
+  {
+    'onsails/lspkind.nvim',
+    config = function ()
+      require('configs.lsp-kind').config()
+    end
+  },
+
   -- Colorscheme
   {
     'folke/tokyonight.nvim',

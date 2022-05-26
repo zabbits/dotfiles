@@ -11,6 +11,11 @@ function M.config()
     return
   end
 
+  local lspkind = _G.safe_require('lspkind')
+  if not lspkind then
+    return
+  end
+
   local kind_icons = {
     Text = "",
     Method = "",
@@ -42,11 +47,9 @@ function M.config()
   cmp.setup({
     preselect = cmp.PreselectMode.None,
     formatting = {
-      format = function(entry, vim_item)
-        -- Kind icons
-        vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
-        -- Source
-        vim_item.menu = ({
+      format = lspkind.cmp_format({
+        mode = 'symbol_text',
+        menu = ({
           buffer = "[Buffer]",
           nvim_lsp = "[LSP]",
           luasnip = "[LuaSnip]",
@@ -54,9 +57,8 @@ function M.config()
           path = "[Path]",
           neorg = "[Neorg]",
           latex_symbols = "[LaTeX]",
-        })[entry.source.name]
-        return vim_item
-      end
+        }),
+      }),
     },
     snippet = {
       expand = function(args)
