@@ -374,7 +374,47 @@ function M.config()
   })
 
 
-  -- set winbar
+  local aerial = _G.safe_require('aerial')
+  if not aerial then
+    return
+  end
+  local function format_symbols(symbols, depth, separator, icons_enabled)
+    local parts = {}
+    depth = depth or #symbols
+
+    if depth > 0 then
+      symbols = { unpack(symbols, 1, depth) }
+    else
+      symbols = { unpack(symbols, #symbols + 1 + depth) }
+    end
+
+    for _, symbol in ipairs(symbols) do
+      if icons_enabled then
+        table.insert(parts, string.format("%s %s", symbol.icon, symbol.name))
+      else
+        table.insert(parts, symbol.name)
+      end
+    end
+
+    return table.concat(parts, separator)
+  end
+
+  local function get_file_path()
+    local path = vim.fn.expand('%')
+    if not path or path == '' then
+      return ''
+    end
+    local ret = path:gsub('/', '')
+    return ret
+  end
+
+  local function aerial_winbar()
+    local symbols = aerial.get_location(true)
+    local symbol_path = format_symbols(symbols, nil, '  ', true)
+
+    return symbol_path
+  end
+
   local gps_location = function()
     local gps = _G.safe_require("nvim-gps")
     --              﫴        
@@ -390,25 +430,48 @@ function M.config()
 
   local cpt_gps = {
     {
-      provider = gps_location,
-    }
+      provider = get_file_path,
+      hl = {
+        fg = colors.fg,
+      },
+    },
+    {
+      provider = aerial_winbar,
+      hl = {
+        fg = colors.violet,
+      },
+      left_sep = {
+        str = '  ',
+        hl = {
+          fg = colors.blue,
+        },
+      }
+    },
   }
 
-  -- feline.winbar.setup({
-  --   components = {
-  --     active = {
-  --       cpt_gps,
-  --     }
-  --   },
-  --   disable = {
-  --     filetypes = {
-  --       "^TelescopePrompt$",
-  --       "^NvimTree$", "^neo%-tree$", "^dashboard$",
-  --       "^Outline$", "^aerial$", "^Trouble$", "^help$",
-  --     }
-  --   },
-  -- })
+  local cpt_file_path = {
+    {
+      provider = get_file_path,
+    },
+  }
 
+  feline.winbar.setup({
+    components = {
+      active = {
+        cpt_gps,
+      },
+      inactive = {
+        cpt_file_path,
+      }
+    },
+    disable = {
+      filetypes = {
+        "^TelescopePrompt$",
+        "^NvimTree$", "^neo%-tree$", "^dashboard$",
+        "^Outline$", "^aerial$", "^Trouble$", "^help$",
+      }
+    },
+  })
 
 end
 

@@ -166,14 +166,6 @@ local plgins = {
       require('configs.treesitter-context').config()
     end
   },
-  -- gps, show where you are
-  {
-    "SmiteshP/nvim-gps",
-    after = "nvim-treesitter",
-    config = function()
-      require("configs.gps").config()
-    end
-  },
 
 
   -- ====================
