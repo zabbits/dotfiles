@@ -4,11 +4,14 @@ local utils = require "core.utils"
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- vim.keymap.set did not work for this
 map("", "<Space>", "<Nop>", opts)
 --Remap space as leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+-- BASH-style movement in insert mode
+vim.api.nvim_set_keymap("i", "<C-a>", "<C-o>^", opts)
+vim.api.nvim_set_keymap("i", "<C-e>", "<C-o>$", opts)
 
 -- ESC cancel higlight
 map("n", "<ESC>", ":nohlsearch<CR>", opts)

@@ -16,7 +16,7 @@ function M.config()
     --   auto    - aerial window will stay open as long as there is a visible
     --             buffer to attach to
     --   global  - same as 'persist', and will always show symbols for the current buffer
-    close_behavior = "auto",
+    close_behavior = "global",
 
     -- Set to false to remove the default keybindings for the aerial buffer
     default_bindings = true,
@@ -58,7 +58,7 @@ function M.config()
 
     -- When jumping to a symbol, highlight the line for this many ms.
     -- Set to false to disable
-    highlight_on_jump = 300,
+    highlight_on_jump = false,
 
     -- Define symbol icons. You can also specify "<Symbol>Collapsed" to change the
     -- icon when the tree is collapsed at that symbol, or "Collapsed" to specify a
@@ -121,7 +121,7 @@ function M.config()
     -- They can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
     -- min_width and max_width can be a list of mixed types.
     -- max_width = {40, 0.2} means "the lesser of 40 columns or 20% of total"
-    max_width = { 40, 0.2 },
+    max_width = { 80, 0.2 },
     width = nil,
     min_width = 10,
 
@@ -131,7 +131,9 @@ function M.config()
 
     -- Call this function when aerial attaches to a buffer.
     -- Useful for setting keymaps. Takes a single `bufnr` argument.
-    on_attach = nil,
+    on_attach = function ()
+      vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+    end,
 
     -- Automatically open aerial when entering supported buffers.
     -- This can be a function (see :help aerial-open-automatic)
