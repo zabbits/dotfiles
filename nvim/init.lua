@@ -15,7 +15,7 @@ local sources = {
   "core.autocmds",
   "core.usercommands",
   "core.mappings",
-  "configs.which-key-register",
+  -- "configs.which-key-register",
 }
 
 for _, source in ipairs(sources) do

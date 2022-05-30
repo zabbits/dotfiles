@@ -61,7 +61,7 @@ local plgins = {
 
   {
     'onsails/lspkind.nvim',
-    config = function ()
+    config = function()
       require('configs.lsp-kind').config()
     end
   },

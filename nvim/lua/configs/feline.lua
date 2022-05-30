@@ -455,23 +455,23 @@ function M.config()
     },
   }
 
-  feline.winbar.setup({
-    components = {
-      active = {
-        cpt_gps,
-      },
-      inactive = {
-        cpt_file_path,
-      }
-    },
-    disable = {
-      filetypes = {
-        "^TelescopePrompt$",
-        "^NvimTree$", "^neo%-tree$", "^dashboard$",
-        "^Outline$", "^aerial$", "^Trouble$", "^help$",
-      }
-    },
-  })
+  -- feline.winbar.setup({
+  --   components = {
+  --     active = {
+  --       cpt_gps,
+  --     },
+  --     inactive = {
+  --       cpt_file_path,
+  --     }
+  --   },
+  --   disable = {
+  --     filetypes = {
+  --       "^TelescopePrompt$",
+  --       "^NvimTree$", "^neo%-tree$", "^dashboard$",
+  --       "^Outline$", "^aerial$", "^Trouble$", "^help$",
+  --     }
+  --   },
+  -- })
 
 end
 

@@ -6,7 +6,7 @@ function M.config()
     return
   end
   ctx.setup {
-    enable = false,
+    enable = true,
     max_lines = 1,
     patterns = {
       default = {
