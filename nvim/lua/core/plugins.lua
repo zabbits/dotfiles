@@ -71,7 +71,11 @@ local plgins = {
     'folke/tokyonight.nvim',
     before = 'kanagawa.nvim',
   },
-
+  {
+    'catppuccin/nvim',
+    as = "catppuccin",
+    before = 'kanagawa.nvim',
+  },
   {
     'rebelot/kanagawa.nvim',
     config = function()
@@ -388,8 +392,9 @@ local plgins = {
   -- Terminal
   {
     "akinsho/nvim-toggleterm.lua",
-    cmd = "ToggleTerm",
-    module = { "toggleterm", "toggleterm.terminal" },
+    event = { "BufRead", "BufNewFile" },
+    -- cmd = "ToggleTerm",
+    -- module = { "toggleterm", "toggleterm.terminal" },
     config = function()
       require("configs.toggleterm").config()
     end,

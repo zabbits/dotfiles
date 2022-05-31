@@ -92,6 +92,7 @@ end
 -- === Terminal ===
 if utils.is_available "nvim-toggleterm.lua" then
   map("n", "<C-\\>", "<cmd>ToggleTerm<CR>")
+  map({"n", "i", "v", "x"}, "<F5>", '<ESC><cmd>TermExec cmd="cc % -o temp.out;./temp.out;rm ./temp.out"<CR>', { desc = "Run C" })
 end
 
 -- === Comment ===
@@ -183,9 +184,9 @@ end
 -- === Telescope ===
 if utils.is_available "telescope.nvim" then
   map("n", "<leader><leader>", function()
-    require("telescope.builtin").find_files()
+    require("telescope.builtin").commands()
   end,
-    { desc = "Find Files" })
+    { desc = "Commands" })
 
 
   map("n", "<leader>sb", function()
@@ -251,7 +252,7 @@ if utils.is_available "telescope.nvim" then
     { desc = "Find Words" })
 
   map("n", "<leader>fc", function()
-    require("telescope.builtin").find_files({cwd="$HOME/.config/nvim/"})
+    require("telescope.builtin").find_files({ cwd = "$HOME/.config/nvim/" })
   end,
     { desc = "Find Configurations" })
 
@@ -325,10 +326,11 @@ if utils.is_available("possession.nvim") then
     { desc = "Find Session" })
 
   -- map("n", "<leader>ss", ":PossessionSave <CR>", { desc = "Session Save" })
-  map("n", "<leader>ss", function ()
+  map("n", "<leader>ss", function()
     require('configs.posession-helper').save_session()
   end, { desc = "Session Save" })
   map("n", "<leader>sd", ":PossessionDelete <CR>", { desc = "Session Delete" })
 
 end
+
 return M

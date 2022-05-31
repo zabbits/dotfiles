@@ -9,12 +9,12 @@ function M.config()
     scheme = 'kanagawa'
     kanagawa.setup({
       undercurl = true, -- enable undercurls
-      commentStyle = "italic",
+      commentStyle = "NONE",
       functionStyle = "NONE",
-      keywordStyle = "italic",
+      keywordStyle = "NONE",
       statementStyle = "bold",
       typeStyle = "NONE",
-      variablebuiltinStyle = "italic",
+      variablebuiltinStyle = "NONE",
       specialReturn = true, -- special highlight for the return keyword
       specialException = true, -- special highlight for exception handling keywords
       transparent = false, -- do not set background color
@@ -28,6 +28,35 @@ function M.config()
       }
     })
   end
+  local catppuccin = _G.safe_require("catppuccin")
+  scheme = "catppuccin"
+  if catppuccin then
+    catppuccin.setup({
+      term_colors = true,
+      styles = {
+        comments = "NONE",
+        conditionals = "NONE",
+        loops = "NONE",
+        functions = "NONE",
+        keywords = "NONE",
+        strings = "NONE",
+        variables = "NONE",
+        numbers = "NONE",
+        booleans = "NONE",
+        properties = "NONE",
+        types = "NONE",
+        operators = "NONE",
+      },
+      lsp_trouble = true,
+      neotree = {
+        enabled = true,
+        show_root = true,
+        transparent_panel = false,
+      },
+      which_key = true,
+    })
+  end
+
   vim.cmd("colorscheme " .. scheme)
 end
 
