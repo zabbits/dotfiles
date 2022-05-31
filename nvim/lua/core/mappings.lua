@@ -113,7 +113,7 @@ map("n", "<leader>pu", "<cmd>PackerUpdate<cr>", { desc = "Update" })
 -- === Neo-tree ===
 if utils.is_available "neo-tree.nvim" then
   map("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Toggle Explorer" })
-  map("n", "<leader>oo", "<cmd>Neotree focus<CR>", { desc = "Focus Explorer" })
+  map("n", "<leader>oo", "<cmd>Neotree reveal toggle<CR>", { desc = "Toggle Reveal Explorer" })
   map("n", "<leader>og", "<cmd>Neotree toggle git_status<CR>", { desc = "Toggle Git Status" })
   map("n", "<leader>ob", "<cmd>Neotree toggle buffers<CR>", { desc = "Toggle Buffers" })
 end

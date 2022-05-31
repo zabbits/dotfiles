@@ -120,7 +120,7 @@ function M.config()
           "__pycache__",
         },
       },
-      follow_current_file = true,
+      follow_current_file = false,
       group_empty_dirs = false, -- when true, empty folders will be grouped together
       hijack_netrw_behavior = "open_current",
       use_libuv_file_watcher = true,
