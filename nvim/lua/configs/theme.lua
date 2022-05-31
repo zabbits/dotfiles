@@ -9,7 +9,7 @@ function M.config()
     scheme = 'kanagawa'
     kanagawa.setup({
       undercurl = true, -- enable undercurls
-      commentStyle = "NONE",
+      commentStyle = "italic",
       functionStyle = "NONE",
       keywordStyle = "NONE",
       statementStyle = "bold",
@@ -29,8 +29,8 @@ function M.config()
     })
   end
   local catppuccin = _G.safe_require("catppuccin")
-  scheme = "catppuccin"
   if catppuccin then
+    -- scheme = "catppuccin"
     catppuccin.setup({
       term_colors = true,
       styles = {
