@@ -30,7 +30,7 @@ function M.config()
   end
   local catppuccin = _G.safe_require("catppuccin")
   if catppuccin then
-    -- scheme = "catppuccin"
+    scheme = "catppuccin"
     catppuccin.setup({
       term_colors = true,
       styles = {

@@ -53,3 +53,4 @@ local function lsp_rename()
 end
 
 vim.api.nvim_create_user_command('LspRename', lsp_rename, {})
+

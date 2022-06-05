@@ -60,7 +60,7 @@ map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Diagnostic" })
 map("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format" })
 map("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
 map("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", { desc = "Installer Info" })
-map("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename" })
+map("n", "<leader>lr", "<cmd>IncRename<cr>", { desc = "Rename" })
 
 -- code action menu
 map("n", "<leader>xa", "<cmd>CodeActionMenu<CR>")

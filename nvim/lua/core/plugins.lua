@@ -253,10 +253,17 @@ local plgins = {
 
   {
     'stevearc/aerial.nvim',
-    -- event = { "BufRead", "BufNewFile" },
     after = 'nvim-lsp-installer',
     config = function()
       require('configs.aerial').config()
+    end
+  },
+
+  {
+    'smjonas/inc-rename.nvim',
+    after = 'nvim-lsp-installer',
+    config = function()
+      require("inc_rename").setup()
     end
   },
 
