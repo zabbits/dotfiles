@@ -28,34 +28,6 @@ function M.config()
       }
     })
   end
-  local catppuccin = _G.safe_require("catppuccin")
-  if catppuccin then
-    scheme = "catppuccin"
-    catppuccin.setup({
-      term_colors = true,
-      styles = {
-        comments = "NONE",
-        conditionals = "NONE",
-        loops = "NONE",
-        functions = "NONE",
-        keywords = "NONE",
-        strings = "NONE",
-        variables = "NONE",
-        numbers = "NONE",
-        booleans = "NONE",
-        properties = "NONE",
-        types = "NONE",
-        operators = "NONE",
-      },
-      lsp_trouble = true,
-      neotree = {
-        enabled = true,
-        show_root = true,
-        transparent_panel = false,
-      },
-      which_key = true,
-    })
-  end
 
   vim.cmd("colorscheme " .. scheme)
 end

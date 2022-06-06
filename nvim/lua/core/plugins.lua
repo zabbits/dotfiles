@@ -72,11 +72,6 @@ local plgins = {
     before = 'kanagawa.nvim',
   },
   {
-    'catppuccin/nvim',
-    as = "catppuccin",
-    before = 'kanagawa.nvim',
-  },
-  {
     'rebelot/kanagawa.nvim',
     config = function()
       require("configs.theme").config()
@@ -236,18 +231,8 @@ local plgins = {
   -- Lsp manager
   {
     "williamboman/nvim-lsp-installer",
-    event = { "BufRead", "BufNewFile", },
     config = function()
       require('configs.lsp-installer').config()
-    end,
-  },
-
-  -- Formatting and linting
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    after = 'nvim-lsp-installer',
-    config = function()
-      -- TODO
     end,
   },
 
@@ -259,21 +244,31 @@ local plgins = {
     end
   },
 
-  {
-    'smjonas/inc-rename.nvim',
-    after = 'nvim-lsp-installer',
-    config = function()
-      require("inc_rename").setup()
-    end
-  },
-
   -- Built-in LSP
   {
     "neovim/nvim-lspconfig",
-    after = 'nvim-lsp-installer',
+    event = { "BufRead", "BufNewFile", },
+    -- after = 'nvim-lsp-installer',
     config = function()
       require "configs.lsp"
     end,
+  },
+
+  -- Formatting and linting
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    after = 'nvim-lspconfig',
+    config = function()
+      -- TODO
+    end,
+  },
+
+  {
+    'smjonas/inc-rename.nvim',
+    after = 'nvim-lspconfig',
+    config = function()
+      require("inc_rename").setup()
+    end
   },
 
   -- lsp trouble
