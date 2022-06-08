@@ -324,6 +324,15 @@ local plgins = {
     end
   },
 
+  -- rust amend
+  {
+    'simrat39/rust-tools.nvim',
+    after = 'nvim-lspconfig',
+    config = function ()
+      require('rust-tools').setup({})
+    end
+  },
+
   -- ====================
   --      Telescope
   -- ====================
@@ -437,15 +446,6 @@ local plgins = {
       require("configs.neoscroll").config()
     end,
     disable = true,
-  },
-
-  -- Smooth escaping
-  {
-    "max397574/better-escape.nvim",
-    event = { "InsertEnter" },
-    config = function()
-      require("configs.better_escape").config()
-    end,
   },
 
   -- Get extra JSON schemas

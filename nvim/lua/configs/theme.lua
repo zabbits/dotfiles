@@ -9,12 +9,12 @@ function M.config()
     scheme = 'kanagawa'
     kanagawa.setup({
       undercurl = true, -- enable undercurls
-      commentStyle = "italic",
+      commentStyle = "NONE",
       functionStyle = "NONE",
       keywordStyle = "NONE",
       statementStyle = "bold",
       typeStyle = "NONE",
-      variablebuiltinStyle = "NONE",
+      variablebuiltinStyle = "bold",
       specialReturn = true, -- special highlight for the return keyword
       specialException = true, -- special highlight for exception handling keywords
       transparent = false, -- do not set background color
