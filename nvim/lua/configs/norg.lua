@@ -44,6 +44,8 @@ function M.config()
       },
       ["core.integrations.nvim-cmp"] = {},
       ["core.keybinds"] = {},
+      ["core.export"] = {},
+      ["core.export.markdown"] = {},
     }
   }
 end
