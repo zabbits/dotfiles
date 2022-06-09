@@ -468,7 +468,7 @@ local plgins = {
     ft = 'norg',
     after = "nvim-treesitter",
     config = function()
-      require('configs.norg').config()
+      require('configs.neorg').config()
     end,
   },
 
