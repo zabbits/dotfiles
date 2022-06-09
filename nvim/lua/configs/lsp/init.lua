@@ -21,6 +21,17 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     opts = vim.tbl_deep_extend("force", av_overrides, opts)
   end
 
+  if server.name == "sumneko_lua" then
+    local luadev = _G.safe_require("lua-dev")
+    if luadev then
+      opts = luadev.setup({
+        lspconfig = {
+          on_attach = handlers.on_attach,
+          capabilities = handlers.capabilities,
+        },
+      })
+    end
+  end
   lspconfig[server.name].setup(opts)
 end
 

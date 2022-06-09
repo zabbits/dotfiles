@@ -236,6 +236,13 @@ local plgins = {
     end,
   },
 
+  -- Lua dev
+  {
+    "folke/lua-dev.nvim",
+    after = 'nvim-lsp-installer',
+  },
+
+  -- Symbols
   {
     'stevearc/aerial.nvim',
     after = 'nvim-lsp-installer',
@@ -328,7 +335,7 @@ local plgins = {
   {
     'simrat39/rust-tools.nvim',
     after = 'nvim-lspconfig',
-    config = function ()
+    config = function()
       require('rust-tools').setup({})
     end
   },
