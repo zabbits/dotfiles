@@ -45,9 +45,8 @@ local plgins = {
   -- Cursorhold fix
   {
     "antoinemadec/FixCursorHold.nvim",
-    event = { "BufRead", "BufNewFile" },
     config = function()
-      vim.g.cursorhold_updatetime = 100
+      vim.g.cursorhold_updatetime = 200
     end,
   },
 
@@ -216,12 +215,6 @@ local plgins = {
   -- LSP completion source
   {
     "hrsh7th/cmp-nvim-lsp",
-    after = "nvim-cmp",
-  },
-
-  -- Lua completion source
-  {
-    "hrsh7th/cmp-nvim-lua",
     after = "nvim-cmp",
   },
 
@@ -551,6 +544,9 @@ local plgins = {
   {
     "tpope/vim-surround",
     event = { "BufRead", "BufNewFile" },
+  },
+  {
+    "~/github/command-palette/"
   },
 }
 

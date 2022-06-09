@@ -53,7 +53,6 @@ function M.config()
           buffer = "[Buffer]",
           nvim_lsp = "[LSP]",
           luasnip = "[LuaSnip]",
-          nvim_lua = "[Lua]",
           path = "[Path]",
           neorg = "[Neorg]",
           latex_symbols = "[LaTeX]",
@@ -90,7 +89,6 @@ function M.config()
     sources = {
       { name = "nvim_lsp" },
       { name = "luasnip" },
-      { name = "nvim_lua" },
       { name = "neorg" },
       { name = "buffer" },
       { name = "path" },

@@ -12,6 +12,7 @@ function M.config()
         { filetype = "NvimTree", text = "", padding = 1 },
         { filetype = "neo-tree", text = "Neo-Tree", padding = 1 },
         { filetype = "Outline", text = "Outline", padding = 1 },
+        { filetype = "Trouble", text = "Trouble", padding = 1 },
       },
       buffer_close_icon = "",
       modified_icon = "",
