@@ -9,12 +9,12 @@ function M.config()
     scheme = 'kanagawa'
     kanagawa.setup({
       undercurl = true, -- enable undercurls
-      commentStyle = "NONE",
-      functionStyle = "NONE",
-      keywordStyle = "NONE",
-      statementStyle = "bold",
-      typeStyle = "NONE",
-      variablebuiltinStyle = "bold",
+      commentStyle = { italic = false },
+      functionStyle = {},
+      keywordStyle = { italic = true },
+      statementStyle = { bold = true },
+      typeStyle = {},
+      variablebuiltinStyle = { italic = true },
       specialReturn = true, -- special highlight for the return keyword
       specialException = true, -- special highlight for exception handling keywords
       transparent = false, -- do not set background color
@@ -22,9 +22,6 @@ function M.config()
       globalStatus = true, -- adjust window separators highlight for laststatus=3
       colors = {},
       overrides = {
-        -- Manually add winbar highlight, wait for plugin update
-        -- WinBar = { fg = colors.fg_dark, bg = colors.bg_visual, style = "NONE" },
-        -- WinBarNC = { fg = colors.fg_comment, bg = colors.bg_status, style = "NONE" },
       }
     })
   end

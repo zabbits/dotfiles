@@ -14,7 +14,7 @@ function M.config()
     timeout = 5000,
     max_width = nil,
     max_height = nil,
-    background_colour = "Normal",
+    background_colour = "#000000",
     minimum_width = 50,
     icons = {
       ERROR = "",
