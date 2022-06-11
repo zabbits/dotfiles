@@ -546,7 +546,11 @@ local plgins = {
     event = { "BufRead", "BufNewFile" },
   },
   {
-    "~/github/command-palette/"
+    "in-a-day/command-palette",
+    after = "telescope.nvim",
+    config = function ()
+      require("configs.command-palette").config()
+    end
   },
 }
 
