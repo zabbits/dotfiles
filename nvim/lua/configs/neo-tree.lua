@@ -73,7 +73,7 @@ function M.config()
         -- ["S"] = "split_with_window_picker",
         -- ["s"] = "vsplit_with_window_picker",
         ["t"] = "open_tabnew",
-        ["w"] = "open_with_window_picker",
+        ["o"] = "open_with_window_picker",
         ["C"] = "close_node",
         ["a"] = {
           "add",

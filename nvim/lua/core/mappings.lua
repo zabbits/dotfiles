@@ -184,9 +184,15 @@ end
 -- === Telescope ===
 if utils.is_available "telescope.nvim" then
   map("n", "<leader><leader>", function()
-    require("telescope.builtin").commands()
+    local cp = require("command-palette")
+    local ft = vim.bo.ft
+    if ft == "rust" then
+      cp.palette:next("Rust"):open()
+    else
+      cp.palette:open()
+    end
   end,
-    { desc = "Commands" })
+    { desc = "Commands Palette" })
 
 
   map("n", "<leader>sb", function()
