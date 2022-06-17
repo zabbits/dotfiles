@@ -218,6 +218,11 @@ local plgins = {
     after = "nvim-cmp",
   },
 
+  {
+    "hrsh7th/cmp-nvim-lsp-signature-help",
+    after = "nvim-cmp"
+  },
+
   -- ====================
   --         LSP
   -- ====================
@@ -281,15 +286,6 @@ local plgins = {
     end
   },
 
-  -- lsp signature
-  {
-    "ray-x/lsp_signature.nvim",
-    after = 'nvim-lspconfig',
-    config = function()
-      require('configs.lsp-signature').config()
-    end
-  },
-
   -- lsp code action menu
   {
     'weilbith/nvim-code-action-menu',
@@ -329,7 +325,7 @@ local plgins = {
     'simrat39/rust-tools.nvim',
     after = 'nvim-lspconfig',
     config = function()
-      require('rust-tools').setup({})
+      require("configs.rust-tools").config()
     end
   },
 
@@ -547,8 +543,9 @@ local plgins = {
   },
   {
     "in-a-day/command-palette",
+    -- "~/github/command-palette",
     after = "telescope.nvim",
-    config = function ()
+    config = function()
       require("configs.command-palette").config()
     end
   },

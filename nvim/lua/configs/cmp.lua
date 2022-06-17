@@ -92,6 +92,7 @@ function M.config()
       { name = "neorg" },
       { name = "buffer" },
       { name = "path" },
+      { name = "nvim_lsp_signature_help" },
     },
     mapping = {
       ["<C-k>"] = cmp.mapping.select_prev_item(),

@@ -9,7 +9,12 @@ function M.config()
   local opts = {
     nodes = {
       {
-        label = "DiffView",
+        label = "Aerial",
+        auto_detect = true,
+      },
+      {
+        label = "Diffview",
+        auto_detect = true,
         children = {
           {
             label = "DiffviewOpen",
@@ -23,6 +28,7 @@ function M.config()
       },
       {
         label = "Rust",
+        auto_detect = true,
         children = {
           {
             label = "RustRunnables",
