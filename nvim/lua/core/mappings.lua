@@ -46,12 +46,12 @@ end
 
 -- === Navigate buffers ===
 if utils.is_available "bufferline.nvim" then
-  map("n", "]]", "<cmd>BufferLineCycleNext<cr>")
-  map("n", "[[", "<cmd>BufferLineCyclePrev<cr>")
+  map("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>")
+  map("n", "<leader>bb", "<cmd>BufferLineCyclePrev<cr>")
 else
-  map("n", "]]", "<cmd>bnext<CR>")
+  map("n", "<leader>bn", "<cmd>bnext<CR>")
   -- Normal Leader Mappings --
-  map("n", "[[", "<cmd>bprevious<CR>")
+  map("n", "<leader>bb", "<cmd>bprevious<CR>")
 end
 
 -- === LSP ===
