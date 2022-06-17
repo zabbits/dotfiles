@@ -32,7 +32,10 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
       })
     end
   end
-  lspconfig[server.name].setup(opts)
+  -- using rust tools
+  if server.name ~= "rust_analyzer" then
+    lspconfig[server.name].setup(opts)
+  end
 end
 
 

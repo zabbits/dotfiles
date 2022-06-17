@@ -73,6 +73,7 @@ local function buffer_key_maps(client, bufnr)
   bmap(bufnr, 'n', '<C-t>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = "Signature help" })
   bmap(bufnr, 'i', '<C-t>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = "Signature help" })
   bmap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { desc = "Rename" })
+  bmap(bufnr, 'n', '<leader>lc', '<cmd>lua vim.lsp.buf.clear_references()<CR>', { desc = "Clear" })
 end
 
 M.on_attach = function(client, bufnr)
