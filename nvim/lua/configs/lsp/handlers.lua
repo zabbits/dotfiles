@@ -98,4 +98,10 @@ if cmp_nvim_lsp then
   M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 end
 
+-- for fold
+M.capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true
+}
+
 return M

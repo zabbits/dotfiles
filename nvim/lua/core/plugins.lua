@@ -541,14 +541,25 @@ local plgins = {
     "tpope/vim-surround",
     event = { "BufRead", "BufNewFile" },
   },
+
   {
-    "in-a-day/command-palette",
-    -- "~/github/command-palette",
+    -- "in-a-day/command-palette",
+    "~/github/command-palette",
     after = "telescope.nvim",
     config = function()
       require("configs.command-palette").config()
     end
   },
+
+  {
+    'kevinhwang91/nvim-ufo',
+    after = "nvim-lspconfig",
+    requires = 'kevinhwang91/promise-async',
+    config = function ()
+      require("configs.ufo").config()
+    end
+  },
+
 }
 
 packer.startup {
