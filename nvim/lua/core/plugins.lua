@@ -543,8 +543,8 @@ local plgins = {
   },
 
   {
-    -- "in-a-day/command-palette",
-    "~/github/command-palette",
+    "in-a-day/command-palette",
+    -- "~/github/command-palette",
     after = "telescope.nvim",
     config = function()
       require("configs.command-palette").config()
