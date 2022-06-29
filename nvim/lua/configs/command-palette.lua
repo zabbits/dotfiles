@@ -9,6 +9,10 @@ function M.config()
   local opts = {
     nodes = {
       {
+        label = "Neorg",
+        auto_detect = true,
+      },
+      {
         label = "Aerial",
         auto_detect = true,
       },

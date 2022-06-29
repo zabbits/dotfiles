@@ -1,6 +1,7 @@
 local M = {}
 
 local options = {
+  laststatus = 3,
   belloff = "all",
   fileencoding = "utf-8",                     -- File content encoding for the buffer
   spelllang = "en",                           -- Support US english
