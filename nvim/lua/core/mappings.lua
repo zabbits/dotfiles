@@ -15,10 +15,13 @@ vim.api.nvim_set_keymap("i", "<C-e>", "<C-o>$", opts)
 
 -- ESC cancel higlight
 map("n", "<ESC>", ":nohlsearch<CR>", opts)
-map("x", "J", "<cmd>move '>+1<CR>gv-gv")
-map("x", "K", "<cmd>move '<-2<CR>gv-gv")
 map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
+
+-- Insert mode movement
+map("i", "<A-h>", "<esc>i", opts)
+map("i", "<A-l>", "<esc>la", opts)
+
 
 -- disable Ex mode:
 map("n", "Q", "<Nop>")

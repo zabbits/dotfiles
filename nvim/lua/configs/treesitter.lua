@@ -7,7 +7,12 @@ function M.config()
   end
 
 
-  local ensure_installed = { 'lua', 'python', 'vue', 'typescript', 'norg', 'html', 'css', 'go', }
+  local ensure_installed = { 
+    'lua', 'python', 'vue', 
+    'typescript', 'norg', 
+    'html', 'css', 'go',
+    'rust', 'c',
+  }
 
   local opts = {
     ensure_installed = ensure_installed,
@@ -29,7 +34,7 @@ function M.config()
     },
     indent = {
       enable = true,
-      disable = { "yaml" },
+      disable = { "yaml", "norg", "org" },
     },
     rainbow = {
       enable = true,

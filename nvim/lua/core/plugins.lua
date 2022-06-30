@@ -460,6 +460,16 @@ local plgins = {
     end,
   },
 
+  {
+    'dhruvasagar/vim-table-mode',
+    after = 'neorg',
+  },
+
+  {
+    'jbyuki/nabla.nvim',
+    after = 'neorg',
+  },
+
   -- better marks
   {
     'chentoast/marks.nvim',
@@ -545,7 +555,7 @@ local plgins = {
     "in-a-day/command-palette",
     -- "~/github/command-palette",
     after = "telescope.nvim",
-    config = function() 
+    config = function()
       require("configs.command-palette").config()
     end
   },

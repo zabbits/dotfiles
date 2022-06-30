@@ -31,7 +31,11 @@ function M.config()
         }
       },
       ["core.norg.manoeuvre"] = {},
-      ["core.norg.concealer"] = {},
+      ["core.norg.concealer"] = {
+        config = {
+          icon_preset = 'varied',
+        }
+      },
       ["core.norg.qol.toc"] = {},
       ["core.presenter"] = {
         config = {
