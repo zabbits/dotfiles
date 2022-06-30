@@ -165,7 +165,6 @@ local plgins = {
     end
   },
 
-
   -- ====================
   --      Completion
   -- ====================
@@ -546,7 +545,7 @@ local plgins = {
     "in-a-day/command-palette",
     -- "~/github/command-palette",
     after = "telescope.nvim",
-    config = function()
+    config = function() 
       require("configs.command-palette").config()
     end
   },
@@ -555,7 +554,7 @@ local plgins = {
     'kevinhwang91/nvim-ufo',
     after = "nvim-lspconfig",
     requires = 'kevinhwang91/promise-async',
-    config = function ()
+    config = function()
       require("configs.ufo").config()
     end
   },

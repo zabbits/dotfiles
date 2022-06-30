@@ -14,7 +14,7 @@ local options = {
   foldlevel = 99,
   foldlevelstart = 99,
   foldcolumn = "0",
-  foldenable = true,
+  foldenable = false,
 
   completeopt = { "menuone", "noselect", "menuone" },    -- Options for insert mode completion
   colorcolumn = "99999",                      -- Fix for the indentline problem
@@ -27,10 +27,10 @@ local options = {
   showmode = false,                           -- Disable showing modes in command line
 
   -- indent
+  smartindent = true,
   autoindent = true,
   expandtab = true,
   shiftwidth = 2,
-  smartindent = true,
   softtabstop = 2,
   tabstop = 2,
 
@@ -44,7 +44,6 @@ local options = {
   number = true,                              -- Show numberline
   relativenumber = true,                      -- Show relative numberline
   wrap = false,                               -- Disable wrapping of lines longer than the width of window
-  conceallevel = 0,                           -- Show text normally
   cmdheight = 1,                              -- Number of screen lines to use for the command line
   scrolloff = 2,                              -- Number of lines to keep above and below the cursor
   sidescrolloff = 2,                          -- Number of columns to keep at the sides of the cursor
@@ -53,6 +52,9 @@ local options = {
   timeoutlen = 300,                           -- Length of time to wait for a mapped sequence
   updatetime = 300,                           -- Length of time to wait before triggering the plugin
   fillchars = { eob = " " },                  -- Disable `~` on nonexistent lines
+
+  conceallevel = 2,                           -- Hide some text
+  concealcursor = "nc"                        -- Hide on normal and command line
 }
 
 for k, v in pairs(options) do

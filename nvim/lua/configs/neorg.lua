@@ -8,6 +8,7 @@ function M.config()
   norg.setup {
     load = {
       ["core.defaults"] = {},
+      ["core.norg.journal"] = {},
       ["core.norg.dirman"] = {
         config = {
           workspaces = {
