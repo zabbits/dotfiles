@@ -30,9 +30,9 @@ local options = {
   smartindent = true,
   autoindent = true,
   expandtab = true,
-  shiftwidth = 2,
-  softtabstop = 2,
-  tabstop = 2,
+  shiftwidth = 4,
+  softtabstop = 4,
+  tabstop = 4,
 
   splitbelow = true,                          -- Splitting a new window below the current one
   splitright = true,                          -- Splitting a new window at the right of the current one
