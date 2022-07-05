@@ -344,4 +344,10 @@ if utils.is_available("possession.nvim") then
 
 end
 
+-- === Fold ===
+if utils.is_available("ufo") then
+  vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+  vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+end
+
 return M

@@ -454,6 +454,21 @@ local plgins = {
     event = { "BufRead", "BufNewFile" },
   },
 
+  -- vim wiki
+  {
+    'vimwiki/vimwiki',
+    config = function ()
+      vim.g.vimwiki_list = {
+        {
+          path = '~/vimwiki/',
+          syntax = 'markdown',
+          ext = '.md'
+        }
+      }
+    end
+  },
+
+
   -- neorg for note
   {
     "nvim-neorg/neorg",

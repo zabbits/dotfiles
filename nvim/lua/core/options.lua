@@ -14,7 +14,7 @@ local options = {
   foldlevel = 99,
   foldlevelstart = 99,
   foldcolumn = "0",
-  foldenable = false,
+  foldenable = true,
 
   completeopt = { "menuone", "noselect", "menuone" },    -- Options for insert mode completion
   colorcolumn = "99999",                      -- Fix for the indentline problem
