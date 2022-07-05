@@ -71,6 +71,12 @@ local plgins = {
     before = 'kanagawa.nvim',
   },
   {
+    'Mofiqul/vscode.nvim',
+  },
+  {
+    'glepnir/zephyr-nvim',
+  },
+  {
     'rebelot/kanagawa.nvim',
     config = function()
       require("configs.theme").config()
@@ -130,7 +136,7 @@ local plgins = {
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    event = { "BufRead", "BufNewFile" },
+    -- event = { "BufRead", "BufNewFile" },
     config = function()
       require("configs.treesitter").config()
     end,
@@ -226,10 +232,17 @@ local plgins = {
   --         LSP
   -- ====================
   -- Lsp manager
+
+  -- Built-in LSP
+  {
+    "neovim/nvim-lspconfig",
+  },
+
   {
     "williamboman/nvim-lsp-installer",
     config = function()
       require('configs.lsp-installer').config()
+      require "configs.lsp"
     end,
   },
 
@@ -248,20 +261,10 @@ local plgins = {
     end
   },
 
-  -- Built-in LSP
-  {
-    "neovim/nvim-lspconfig",
-    event = { "BufRead", "BufNewFile", },
-    -- after = 'nvim-lsp-installer',
-    config = function()
-      require "configs.lsp"
-    end,
-  },
-
   -- Formatting and linting
   {
     "jose-elias-alvarez/null-ls.nvim",
-    after = 'nvim-lspconfig',
+    after = 'nvim-lsp-installer',
     config = function()
       -- TODO
     end,
@@ -269,7 +272,7 @@ local plgins = {
 
   {
     'smjonas/inc-rename.nvim',
-    after = 'nvim-lspconfig',
+    after = 'nvim-lsp-installer',
     config = function()
       require("inc_rename").setup()
     end
@@ -460,14 +463,14 @@ local plgins = {
     end,
   },
 
+  -- draw table
   {
     'dhruvasagar/vim-table-mode',
-    after = 'neorg',
   },
 
+  -- latex display
   {
     'jbyuki/nabla.nvim',
-    after = 'neorg',
   },
 
   -- better marks

@@ -40,12 +40,14 @@ if utils.is_available "smart-splits.nvim" then
   map("n", "<A-j>", ss.resize_down)
   map("n", "<A-k>", ss.resize_up)
   map("n", "<A-l>", ss.resize_right)
-  -- moving between splits
-  map('n', '<C-h>', ss.move_cursor_left)
-  map('n', '<C-j>', ss.move_cursor_down)
-  map('n', '<C-k>', ss.move_cursor_up)
-  map('n', '<C-l>', ss.move_cursor_right)
 end
+
+-- moving between windows
+map('n', '<C-h>', '<C-w>h')
+map('n', '<C-j>', '<C-w>j')
+map('n', '<C-k>', '<C-w>k')
+map('n', '<C-l>', '<C-w>l')
+
 
 -- === Navigate buffers ===
 if utils.is_available "bufferline.nvim" then
