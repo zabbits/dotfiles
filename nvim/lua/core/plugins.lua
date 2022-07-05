@@ -72,9 +72,11 @@ local plgins = {
   },
   {
     'Mofiqul/vscode.nvim',
+    before = 'kanagawa.nvim',
   },
   {
     'glepnir/zephyr-nvim',
+    before = 'kanagawa.nvim',
   },
   {
     'rebelot/kanagawa.nvim',
@@ -136,7 +138,7 @@ local plgins = {
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    -- event = { "BufRead", "BufNewFile" },
+    event = { "BufRead", "BufNewFile" },
     config = function()
       require("configs.treesitter").config()
     end,
@@ -466,11 +468,16 @@ local plgins = {
   -- draw table
   {
     'dhruvasagar/vim-table-mode',
+    after = 'neorg',
+    config = function ()
+      vim.g.table_mode_corner = '|'
+    end
   },
 
   -- latex display
   {
     'jbyuki/nabla.nvim',
+    after = 'neorg',
   },
 
   -- better marks
