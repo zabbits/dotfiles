@@ -11,6 +11,14 @@ function M.config()
       {
         label = "Neorg",
         auto_detect = true,
+        children = {
+          {
+            label = "RunCode",
+            cmd = function ()
+              _G.srn.norg()
+            end
+          }
+        }
       },
       {
         label = "Aerial",

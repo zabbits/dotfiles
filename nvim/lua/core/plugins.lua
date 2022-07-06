@@ -465,6 +465,20 @@ local plgins = {
     end,
   },
 
+  {
+    "nvim-neorg/neorg-telescope",
+    after = 'neorg',
+  },
+
+  {
+    'michaelb/sniprun', 
+    after = 'neorg',
+    run = 'bash ./install.sh',
+    config = function ()
+      require('configs.sniprun').config()
+    end
+  },
+
   -- draw table
   {
     'dhruvasagar/vim-table-mode',
