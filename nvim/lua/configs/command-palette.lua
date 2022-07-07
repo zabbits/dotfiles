@@ -15,7 +15,7 @@ function M.config()
           {
             label = "RunCode",
             cmd = function ()
-              _G.srn.norg()
+              _G.snr.norg()
             end
           }
         }

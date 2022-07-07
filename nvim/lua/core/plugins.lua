@@ -467,6 +467,13 @@ local plgins = {
   },
 
   {
+    "ziontee113/icon-picker.nvim",
+    config = function ()
+      require("icon-picker")
+    end
+  },
+
+  {
     "nvim-neorg/neorg-telescope",
     after = 'neorg',
   },

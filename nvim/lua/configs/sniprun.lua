@@ -26,8 +26,8 @@ local function run(pat_start, pat_end)
 end
 
 function M.config()
-  local srn = _G.safe_require('sniprun')
-  srn.setup({
+  local snr = _G.safe_require('sniprun')
+  snr.setup({
     display = {
       "NvimNotify",
     },
@@ -36,7 +36,7 @@ function M.config()
     }
   })
 
-  _G.srn = {
+  _G.snr = {
     norg = function()
       run('@code', '@end')
     end
