@@ -193,6 +193,8 @@ if utils.is_available "telescope.nvim" then
     local ft = vim.bo.ft
     if ft == "rust" then
       cp.palette:next("Rust"):open()
+    elseif ft == "norg" then
+      cp.palette:next("Neorg"):open()
     else
       cp.palette:open()
     end

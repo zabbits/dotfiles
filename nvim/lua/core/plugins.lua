@@ -236,12 +236,14 @@ local plgins = {
   -- Lsp manager
 
   -- Built-in LSP
-  {
-    "neovim/nvim-lspconfig",
-  },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  -- },
 
   {
     "williamboman/nvim-lsp-installer",
+    event = { 'BufNewFile', 'BufRead' },
+    requires = { "neovim/nvim-lspconfig" },
     config = function()
       require('configs.lsp-installer').config()
       require "configs.lsp"
@@ -284,7 +286,7 @@ local plgins = {
   {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
-    after = 'nvim-lspconfig',
+    after = 'nvim-lsp-installer',
     config = function()
       require('configs.lsp-trouble').config()
     end
@@ -293,13 +295,13 @@ local plgins = {
   -- lsp code action menu
   {
     'weilbith/nvim-code-action-menu',
-    after = 'nvim-lspconfig',
+    after = 'nvim-lsp-installer',
     cmd = 'CodeActionMenu',
   },
   -- lsp show code action hint
   {
     'kosayoda/nvim-lightbulb',
-    after = 'nvim-lspconfig',
+    after = 'nvim-lsp-installer',
     disable = true,
     config = function()
       require('configs.lightbulb').config()
@@ -309,7 +311,7 @@ local plgins = {
   -- lsp preview
   {
     'rmagatti/goto-preview',
-    after = 'nvim-lspconfig',
+    after = 'nvim-lsp-installer',
     config = function()
       require('configs.lsp-preview').config()
     end
@@ -318,7 +320,7 @@ local plgins = {
   -- lsp loading info
   {
     'j-hui/fidget.nvim',
-    after = 'nvim-lspconfig',
+    after = 'nvim-lsp-installer',
     config = function()
       require("fidget").setup {}
     end
@@ -327,7 +329,7 @@ local plgins = {
   -- rust amend
   {
     'simrat39/rust-tools.nvim',
-    after = 'nvim-lspconfig',
+    after = 'nvim-lsp-installer',
     config = function()
       require("configs.rust-tools").config()
     end
@@ -467,8 +469,13 @@ local plgins = {
   },
 
   {
+    "mattn/calendar-vim",
+  },
+
+  {
     "ziontee113/icon-picker.nvim",
-    config = function ()
+    event = { 'BufNewFile', 'BufRead' },
+    config = function()
       require("icon-picker")
     end
   },
@@ -479,10 +486,10 @@ local plgins = {
   },
 
   {
-    'michaelb/sniprun', 
+    'michaelb/sniprun',
     after = 'neorg',
     run = 'bash ./install.sh',
-    config = function ()
+    config = function()
       require('configs.sniprun').config()
     end
   },
@@ -491,7 +498,7 @@ local plgins = {
   {
     'dhruvasagar/vim-table-mode',
     after = 'neorg',
-    config = function ()
+    config = function()
       vim.g.table_mode_corner = '|'
     end
   },
@@ -593,9 +600,13 @@ local plgins = {
   },
 
   {
+    'kevinhwang91/promise-async',
+    after = 'nvim-lsp-installer',
+  },
+
+  {
     'kevinhwang91/nvim-ufo',
-    after = "nvim-lspconfig",
-    requires = 'kevinhwang91/promise-async',
+    after = 'promise-async',
     config = function()
       require("configs.ufo").config()
     end
