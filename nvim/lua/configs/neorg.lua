@@ -20,6 +20,7 @@ function M.config()
           zen_mode = 'truezen',
         }
       },
+      ["core.looking-glass"] = {},
       ["core.gtd.base"] = {
         config = {
           workspace = 'gtd',
