@@ -20,7 +20,7 @@ function M.config()
     dashboard.button('  s', 'ﮫ  Sessions', ':lua require("telescope").extensions.possession.list() <CR>'),
     dashboard.button('  p', '  Find projects', ':lua require("telescope._extensions").manager.projects.projects() <CR>'),
     dashboard.button('  c', '  Configurations', ':lua require("telescope.builtin").find_files({cwd="$HOME/.config/nvim/"}) <CR>'),
-    dashboard.button('  u', '  Sync plugins', ':PackerSync <CR>'),
+    dashboard.button('  u', '  Update plugins', ':PackerSync <CR>'),
     dashboard.button('  q', '  Quit', ':qa <CR>')
   }
 
