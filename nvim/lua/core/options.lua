@@ -74,4 +74,10 @@ vim.opt.fillchars:append({
   verthoriz = '╋',
 })
 
+
+local os = vim.loop.os_uname().sysname:lower()
+if os == 'darwin' then
+  vim.o.guifont = 'FiraCode Nerd Font Mono:h16'
+end
+
 return M
