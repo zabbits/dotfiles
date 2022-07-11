@@ -60,7 +60,7 @@ function M.config()
               },
 
               level_3 = {
-                icon = "  ﱫ",
+                icon = "  ",
               },
 
               level_4 = {
