@@ -78,6 +78,8 @@ vim.opt.fillchars:append({
 local os = vim.loop.os_uname().sysname:lower()
 if os == 'darwin' then
   vim.o.guifont = 'FiraCode Nerd Font Mono:h16'
+elseif os == 'windows_nt' then
+  vim.o.guifont = 'FiraCode NF'
 end
 
 return M

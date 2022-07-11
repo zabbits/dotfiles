@@ -27,6 +27,10 @@ end
 
 function M.config()
   local snr = _G.safe_require('sniprun')
+  if not snr then
+    return
+  end
+
   snr.setup({
     display = {
       "NvimNotify",
