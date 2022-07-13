@@ -1,10 +1,15 @@
 local M = {}
 function M.setup()
+  local status = require("core.status")
   local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    -- { name = "DiagnosticSignError", text = "" },
+    -- { name = "DiagnosticSignWarn", text = "" },
+    -- { name = "DiagnosticSignHint", text = "" },
+    -- { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignError", text = status.diagnostic.error.icon },
+    { name = "DiagnosticSignWarn", text = status.diagnostic.error.icon },
+    { name = "DiagnosticSignHint", text = status.diagnostic.error.icon },
+    { name = "DiagnosticSignInfo", text = status.diagnostic.error.icon },
   }
 
   for _, sign in ipairs(signs) do

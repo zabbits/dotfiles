@@ -81,25 +81,25 @@ M.diagnostic = {
     count = function ()
       return get_diagnostics_count(vim.diagnostic.severity.ERROR)
     end,
-    icon = '',
+    icon = '',
   },
   warning = {
     count = function ()
       return get_diagnostics_count(vim.diagnostic.severity.WARN)
     end,
-    icon = '',
+    icon = '',
   },
   hint = {
     count = function ()
       return get_diagnostics_count(vim.diagnostic.severity.HINT)
     end,
-    icon = '',
+    icon = '',
   },
   info = {
     count = function ()
       return get_diagnostics_count(vim.diagnostic.severity.INFO)
     end,
-    icon = '',
+    icon = '',
   },
 }
 

@@ -4,6 +4,7 @@ function M.config()
   if not present then
     return
   end
+  local status = require("core.status")
 
   trouble.setup({
     position = "bottom", -- position of the list can be: bottom, top, left, right
@@ -44,13 +45,13 @@ function M.config()
     auto_jump = {"lsp_definitions"}, -- for the given modes, automatically jump if there is only a single result
     signs = {
         -- icons / text used for a diagnostic
-        error = "",
-        warning = "",
-        hint = "",
-        information = "",
-        other = "﫠"
+        error = status.diagnostic.error.icon,
+        warning = status.diagnostic.warning.icon,
+        hint = status.diagnostic.hint.icon,
+        information = status.diagnostic.error.icon,
+        other = ""
     },
-    use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+    use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
   })
 end
 
