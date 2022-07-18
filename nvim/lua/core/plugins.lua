@@ -599,6 +599,17 @@ local plgins = {
     event = { "BufRead", "BufNewFile" },
   },
 
+  -- jump
+  {
+    'phaazon/hop.nvim',
+    event = { "BufRead", "BufNewFile" },
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      require('configs.hop').config()
+    end
+  },
+
+
   {
     "in-a-day/command-palette",
     -- "~/github/command-palette",
@@ -613,6 +624,7 @@ local plgins = {
     after = 'nvim-lsp-installer',
   },
 
+  -- fold
   {
     'kevinhwang91/nvim-ufo',
     after = 'promise-async',
