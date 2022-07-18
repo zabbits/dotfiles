@@ -25,8 +25,6 @@ map("i", "<A-l>", "<esc>la", opts)
 
 -- disable Ex mode:
 map("n", "Q", "<Nop>")
--- ForceWrite
-map("n", "<C-s>", "<cmd>w!<CR>")
 -- ForceQuit
 map("n", "<C-q>", "<cmd>q!<CR>")
 -- insert current time
@@ -348,8 +346,25 @@ end
 
 -- === Fold ===
 if utils.is_available("ufo") then
-  vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-  vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+  map('n', 'zR', require('ufo').openAllFolds)
+  map('n', 'zM', require('ufo').closeAllFolds)
+end
+
+-- === Jump ===
+if utils.is_available('hop.nvim') then
+  map('', 'f', function ()
+    require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })
+  end, opts)
+  map('', 'F', function()
+    require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })
+  end, opts)
+  map('', 't', function ()
+    require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+  end, opts)
+  map('', 'T', function ()
+    require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+  end, opts)
+  map('', '<C-s>', '<cmd>HopWord<cr>', opts)
 end
 
 return M
