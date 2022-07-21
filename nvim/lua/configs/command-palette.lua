@@ -17,7 +17,11 @@ function M.config()
             cmd = function ()
               _G.snr.norg()
             end
-          }
+          },
+          {
+            label = "EditCode",
+            cmd = "Neorg keybind norg core.looking-glass.magnify-code-block"
+          },
         }
       },
       {
