@@ -58,7 +58,8 @@ else
 end
 
 -- === LSP ===
-map("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code Action" })
+map("n", "<leader>la", "<cmd>CodeActionMenu<cr>", { desc = "Code Action" })
+-- map("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code Action" })
 map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Diagnostic" })
 map("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format" })
 map("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
@@ -66,7 +67,7 @@ map("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", { desc = "Installer Info" })
 map("n", "<leader>lr", "<cmd>IncRename<cr>", { desc = "Rename" })
 
 -- code action menu
-map("n", "<leader>xa", "<cmd>CodeActionMenu<CR>")
+-- map("n", "<leader>xa", "<cmd>CodeActionMenu<CR>")
 
 -- === LSP Symbols ===
 if utils.is_available "symbols-outline.nvim" then
@@ -134,6 +135,10 @@ end
 
 -- === GitSigns ===
 if utils.is_available "gitsigns.nvim" then
+  local function gitsigns()
+    return require("gitsigns")
+  end
+
   map("n", "<leader>gj", function()
     gitsigns().next_hunk()
   end,
@@ -159,19 +164,19 @@ if utils.is_available "gitsigns.nvim" then
   end, { desc = "Reset Hunk" })
 
   map("n", "<leader>gr", function()
-    gitsigns.reset_buffer()
+    gitsigns().reset_buffer()
   end, { desc = "Reset Buffer" })
 
   map("n", "<leader>gh", function()
-    gitsigns.stage_hunk()
+    gitsigns().stage_hunk()
   end, { desc = "Stage Hunk" })
 
   map("n", "<leader>gu", function()
-    gitsigns.undo_stage_hunk()
+    gitsigns().undo_stage_hunk()
   end, { desc = "Undo Stage Hunk" })
 
   map("n", "<leader>gd", function()
-    gitsigns.diffthis()
+    gitsigns().diffthis()
   end, { desc = "Diff" })
 end
 

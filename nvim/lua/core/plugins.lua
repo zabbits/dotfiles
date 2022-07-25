@@ -282,6 +282,14 @@ local plgins = {
     end
   },
 
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    after = 'nvim-lsp-installer',
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  },
+
   -- lsp trouble
   {
     "folke/trouble.nvim",
@@ -476,7 +484,7 @@ local plgins = {
   {
     "jbyuki/venn.nvim",
     after = 'neorg',
-    config = function ()
+    config = function()
       require("configs.venn").config()
     end
   },
