@@ -9,7 +9,7 @@ function M.config()
     scheme = 'kanagawa'
     kanagawa.setup({
       undercurl = true, -- enable undercurls
-      commentStyle = { italic = false },
+      commentStyle = { italic = true },
       functionStyle = {},
       keywordStyle = { italic = true },
       statementStyle = { bold = true },
