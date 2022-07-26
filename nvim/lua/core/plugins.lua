@@ -448,6 +448,14 @@ local plgins = {
     end,
   },
 
+  {
+    'anuvyklack/hydra.nvim',
+    event = { "BufRead", "BufNewFile" },
+    config = function ()
+      require('configs.hydra').config()
+    end
+  },
+
   -- Smooth scrolling
   {
     "karb94/neoscroll.nvim",
