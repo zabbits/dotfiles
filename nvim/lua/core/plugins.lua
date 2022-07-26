@@ -241,25 +241,41 @@ local plgins = {
   -- },
 
   {
-    "williamboman/nvim-lsp-installer",
+    "williamboman/mason.nvim",
     event = { 'BufNewFile', 'BufRead' },
-    requires = { "neovim/nvim-lspconfig" },
-    config = function()
-      require('configs.lsp-installer').config()
-      require "configs.lsp"
-    end,
+    config = function ()
+      require('configs.mason').config()
+    end
   },
+
+  {
+    "williamboman/mason-lspconfig.nvim",
+    after = "mason.nvim",
+    config = function ()
+      require('configs.mason-lspconfig').config()
+    end
+  },
+
+  -- Built-in LSP
+  {
+    "neovim/nvim-lspconfig",
+    after = "mason-lspconfig.nvim",
+    config = function ()
+      require "configs.lsp"
+    end
+  },
+
 
   -- Lua dev
   {
     "folke/lua-dev.nvim",
-    after = 'nvim-lsp-installer',
+    after = 'nvim-lspconfig',
   },
 
   -- Symbols
   {
     'stevearc/aerial.nvim',
-    after = 'nvim-lsp-installer',
+    after = 'nvim-lspconfig',
     config = function()
       require('configs.aerial').config()
     end
@@ -268,7 +284,7 @@ local plgins = {
   -- Formatting and linting
   {
     "jose-elias-alvarez/null-ls.nvim",
-    after = 'nvim-lsp-installer',
+    after = 'nvim-lspconfig',
     config = function()
       -- TODO
     end,
@@ -276,7 +292,7 @@ local plgins = {
 
   {
     'smjonas/inc-rename.nvim',
-    after = 'nvim-lsp-installer',
+    after = 'nvim-lspconfig',
     config = function()
       require("inc_rename").setup()
     end
@@ -284,8 +300,9 @@ local plgins = {
 
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    after = 'nvim-lsp-installer',
+    after = 'nvim-lspconfig',
     config = function()
+      vim.diagnostic.config({ virtual_lines = false })
       require("lsp_lines").setup()
     end,
   },
@@ -294,7 +311,7 @@ local plgins = {
   {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
-    after = 'nvim-lsp-installer',
+    after = 'nvim-lspconfig',
     config = function()
       require('configs.lsp-trouble').config()
     end
@@ -303,23 +320,14 @@ local plgins = {
   -- lsp code action menu
   {
     'weilbith/nvim-code-action-menu',
-    after = 'nvim-lsp-installer',
+    after = 'nvim-lspconfig',
     cmd = 'CodeActionMenu',
-  },
-  -- lsp show code action hint
-  {
-    'kosayoda/nvim-lightbulb',
-    after = 'nvim-lsp-installer',
-    disable = true,
-    config = function()
-      require('configs.lightbulb').config()
-    end
   },
 
   -- lsp preview
   {
     'rmagatti/goto-preview',
-    after = 'nvim-lsp-installer',
+    after = 'nvim-lspconfig',
     config = function()
       require('configs.lsp-preview').config()
     end
@@ -328,7 +336,7 @@ local plgins = {
   -- lsp loading info
   {
     'j-hui/fidget.nvim',
-    after = 'nvim-lsp-installer',
+    after = 'nvim-lspconfig',
     config = function()
       require("fidget").setup {}
     end
@@ -337,7 +345,8 @@ local plgins = {
   -- rust amend
   {
     'simrat39/rust-tools.nvim',
-    after = 'nvim-lsp-installer',
+    after = 'nvim-lspconfig',
+    disable = true,
     config = function()
       require("configs.rust-tools").config()
     end
@@ -451,19 +460,9 @@ local plgins = {
   {
     'anuvyklack/hydra.nvim',
     event = { "BufRead", "BufNewFile" },
-    config = function ()
+    config = function()
       require('configs.hydra').config()
     end
-  },
-
-  -- Smooth scrolling
-  {
-    "karb94/neoscroll.nvim",
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      require("configs.neoscroll").config()
-    end,
-    disable = true,
   },
 
   -- Get extra JSON schemas
@@ -632,7 +631,7 @@ local plgins = {
 
   {
     'kevinhwang91/promise-async',
-    after = 'nvim-lsp-installer',
+    after = 'nvim-lspconfig',
   },
 
   -- fold

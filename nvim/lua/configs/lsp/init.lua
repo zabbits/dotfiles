@@ -1,28 +1,29 @@
-local lsp_installer = _G.safe_require("nvim-lsp-installer")
-local lspconfig = _G.safe_require('lspconfig')
-if not lsp_installer or not lspconfig then
+-- local lsp_installer = safe_require("nvim-lsp-installer")
+local mason_lsp = safe_require("mason-lspconfig")
+local lspconfig = safe_require('lspconfig')
+if not mason_lsp or not lspconfig then
   return
 end
 
-local handlers = _G.safe_require('configs.lsp.handlers')
+local handlers = safe_require('configs.lsp.handlers')
 if not handlers then
   return
 end
 handlers.setup()
 
-for _, server in ipairs(lsp_installer.get_installed_servers()) do
+for _, server_name in ipairs(mason_lsp.get_installed_servers()) do
   local opts = {
     on_attach = handlers.on_attach,
     capabilities = handlers.capabilities,
   }
 
-  local present, av_overrides = pcall(require, "configs.lsp.server-settings." .. server.name)
+  local present, av_overrides = pcall(require, "configs.lsp.server-settings." .. server_name)
   if present then
     opts = vim.tbl_deep_extend("force", av_overrides, opts)
   end
 
-  if server.name == "sumneko_lua" then
-    local luadev = _G.safe_require("lua-dev")
+  if server_name == "sumneko_lua" then
+    local luadev = safe_require("lua-dev")
     if luadev then
       opts = luadev.setup({
         lspconfig = {
@@ -33,9 +34,9 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     end
   end
   -- using rust tools
-  if server.name ~= "rust_analyzer" then
-    lspconfig[server.name].setup(opts)
-  end
+  -- if server_name ~= "rust_analyzer" then
+    lspconfig[server_name].setup(opts)
+  -- end
 end
 
 
