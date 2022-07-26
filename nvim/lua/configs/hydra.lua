@@ -16,7 +16,7 @@ function M.config()
    ^^^^^^^^^^^^-------------  ^^-----------^^   ^^---------------
    ^ ^ _k_ ^ ^  ^ ^ _K_ ^ ^   ^   _<C-k>_   ^   _s_: horizontally 
    _h_ ^ ^ _l_  _H_ ^ ^ _L_   _<C-h>_ _<C-l>_   _v_: vertically
-   ^ ^ _j_ ^ ^  ^ ^ _J_ ^ ^   ^   _<C-j>_   ^   _q_, _c_: close
+   ^ ^ _j_ ^ ^  ^ ^ _J_ ^ ^   ^   _<C-j>_   ^   _c_: close
    focus^^^^^^  window^^^^^^  ^_=_: equalize^   _o_: remain only
    ^ ^ ^ ^ ^ ^  ^ ^ ^ ^ ^ ^   ^^ ^          ^   
   ]]
@@ -60,11 +60,11 @@ function M.config()
       { '<C-o>', '<C-w>o', { exit = true, desc = false } },
 
 
-      { 'c', cmd [[try | close | catch /^Vim\%((\a\+)\)\=:E444:/ | endtry]] },
-      { 'q', cmd [[try | close | catch /^Vim\%((\a\+)\)\=:E444:/ | endtry]], { desc = 'close window' } },
+      { 'c', cmd [[try | close | catch /^Vim\%((\a\+)\)\=:E444:/ | endtry]], { desc = 'close window'} },
       { '<C-q>', cmd [[try | close | catch /^Vim\%((\a\+)\)\=:E444:/ | endtry]], { desc = false } },
       { '<C-c>', cmd [[try | close | catch /^Vim\%((\a\+)\)\=:E444:/ | endtry]], { desc = false } },
 
+      { 'q', nil, { exit = true, desc = false } },
       { '<Esc>', nil, { exit = true, desc = false } }
     }
   })

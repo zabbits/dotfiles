@@ -40,21 +40,14 @@ if utils.is_available "smart-splits.nvim" then
   map("n", "<A-l>", ss.resize_right)
 end
 
--- moving between windows
-map('n', '<C-h>', '<C-w>h')
-map('n', '<C-j>', '<C-w>j')
-map('n', '<C-k>', '<C-w>k')
-map('n', '<C-l>', '<C-w>l')
-
 
 -- === Navigate buffers ===
 if utils.is_available "bufferline.nvim" then
-  map("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>")
-  map("n", "<leader>bb", "<cmd>BufferLineCyclePrev<cr>")
+  map('n', '<C-h>', '<cmd>BufferLineCyclePrev<cr>')
+  map('n', '<C-l>', '<cmd>BufferLineCycleNext<cr>')
 else
-  map("n", "<leader>bn", "<cmd>bnext<CR>")
-  -- Normal Leader Mappings --
-  map("n", "<leader>bb", "<cmd>bprevious<CR>")
+  map('n', '<C-h>', '<cmd>bprevious<CR>')
+  map('n', '<C-l>', '<cmd>bnext<CR>')
 end
 
 -- === LSP ===
