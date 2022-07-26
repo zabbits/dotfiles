@@ -352,16 +352,16 @@ end
 
 -- === Jump ===
 if utils.is_available('hop.nvim') then
-  map('', 'f', function ()
+  map('n', 'f', function ()
     require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })
   end, opts)
-  map('', 'F', function()
+  map('n', 'F', function()
     require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })
   end, opts)
-  map('', 't', function ()
+  map('n', 't', function ()
     require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
   end, opts)
-  map('', 'T', function ()
+  map('n', 'T', function ()
     require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
   end, opts)
   map('', '<C-s>', '<cmd>HopWord<cr>', opts)

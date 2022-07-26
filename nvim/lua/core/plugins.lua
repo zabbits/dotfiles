@@ -477,11 +477,6 @@ local plgins = {
   },
 
   {
-    "mattn/calendar-vim",
-    after = 'neorg',
-  },
-
-  {
     "jbyuki/venn.nvim",
     after = 'neorg',
     config = function ()
