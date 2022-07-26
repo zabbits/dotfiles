@@ -346,7 +346,6 @@ local plgins = {
   {
     'simrat39/rust-tools.nvim',
     after = 'nvim-lspconfig',
-    disable = true,
     config = function()
       require("configs.rust-tools").config()
     end

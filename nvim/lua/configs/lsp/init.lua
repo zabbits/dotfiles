@@ -33,10 +33,10 @@ for _, server_name in ipairs(mason_lsp.get_installed_servers()) do
       })
     end
   end
-  -- using rust tools
-  -- if server_name ~= "rust_analyzer" then
+  -- using rust tools for rust
+  if server_name ~= "rust_analyzer" then
     lspconfig[server_name].setup(opts)
-  -- end
+  end
 end
 
 
