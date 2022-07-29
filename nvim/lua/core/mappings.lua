@@ -40,14 +40,19 @@ if utils.is_available "smart-splits.nvim" then
   map("n", "<A-l>", ss.resize_right)
 end
 
+map('n', '<C-h>', '<C-w>h', opts);
+map('n', '<C-l>', '<C-w>l', opts);
+map('n', '<C-k>', '<C-w>k', opts);
+map('n', '<C-j>', '<C-w>j', opts);
+
 
 -- === Navigate buffers ===
 if utils.is_available "bufferline.nvim" then
-  map('n', '<C-h>', '<cmd>BufferLineCyclePrev<cr>')
-  map('n', '<C-l>', '<cmd>BufferLineCycleNext<cr>')
+  map('n', 'H', '<cmd>BufferLineCyclePrev<cr>')
+  map('n', 'L', '<cmd>BufferLineCycleNext<cr>')
 else
-  map('n', '<C-h>', '<cmd>bprevious<CR>')
-  map('n', '<C-l>', '<cmd>bnext<CR>')
+  map('n', 'H', '<cmd>bprevious<CR>')
+  map('n', 'L', '<cmd>bnext<CR>')
 end
 
 -- === LSP ===

@@ -64,6 +64,10 @@ function M.config()
           },
         },
       },
+      {
+        label = "Mason",
+        auto_detect = true,
+      },
     },
   }
 
