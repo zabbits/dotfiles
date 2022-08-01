@@ -233,12 +233,6 @@ local plgins = {
   -- ====================
   --         LSP
   -- ====================
-  -- Lsp manager
-
-  -- Built-in LSP
-  -- {
-  --   "neovim/nvim-lspconfig",
-  -- },
 
   {
     "williamboman/mason.nvim",
@@ -272,7 +266,7 @@ local plgins = {
     after = 'nvim-lspconfig',
   },
 
-  -- Symbols
+  -- Symbols outline
   {
     'stevearc/aerial.nvim',
     after = 'nvim-lspconfig',
@@ -290,11 +284,12 @@ local plgins = {
     end,
   },
 
+  -- misc of lsp
   {
-    'smjonas/inc-rename.nvim',
+    "glepnir/lspsaga.nvim",
     after = 'nvim-lspconfig',
-    config = function()
-      require("inc_rename").setup()
+    config = function ()
+      require("configs.lspsaga").config()
     end
   },
 
@@ -315,13 +310,6 @@ local plgins = {
     config = function()
       require('configs.lsp-trouble').config()
     end
-  },
-
-  -- lsp code action menu
-  {
-    'weilbith/nvim-code-action-menu',
-    after = 'nvim-lspconfig',
-    cmd = 'CodeActionMenu',
   },
 
   -- lsp preview

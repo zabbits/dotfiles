@@ -23,7 +23,8 @@ cmd("FileType", {
 cmd("FileType", {
   desc = "Use 'q' close in qf, help, man, lspinfo, notify",
   pattern = {
-    "qf", "help", "man", "lspinfo", "notify",
+    "qf", "help", "man", "lspinfo", "notify", 
+    "sagahover", "sagarename",
   },
   group = gs_id,
   command = "nnoremap <silent> <buffer> q :close<cr>",

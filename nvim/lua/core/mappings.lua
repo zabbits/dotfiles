@@ -56,21 +56,9 @@ else
 end
 
 -- === LSP ===
-map("n", "<leader>la", "<cmd>CodeActionMenu<cr>", { desc = "Code Action" })
--- map("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code Action" })
-map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Diagnostic" })
 map("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format" })
 map("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
 map("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", { desc = "Installer Info" })
-map("n", "<leader>lr", "<cmd>IncRename<cr>", { desc = "Rename" })
-
--- code action menu
--- map("n", "<leader>xa", "<cmd>CodeActionMenu<CR>")
-
--- === LSP Symbols ===
-if utils.is_available "symbols-outline.nvim" then
-  map("n", "gs", "<cmd>SymbolsOutline<CR>")
-end
 
 -- === LSP Trouble ===
 if utils.is_available "trouble.nvim" then

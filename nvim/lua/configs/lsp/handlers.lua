@@ -75,11 +75,30 @@ local function buffer_key_maps(client, bufnr)
   bmap(bufnr, 'n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { desc = "Goto type definition" })
   -- bmap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = "Hover diagnostic" })
   bmap(bufnr, 'n', 'gl', '<cmd>lua require("lsp_lines").toggle()<CR>', { desc = "Hover diagnostic" })
-  bmap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { desc = "Hover document" })
+  -- bmap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { desc = "Hover document" })
   bmap(bufnr, 'n', '<C-t>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = "Signature help" })
   bmap(bufnr, 'i', '<C-t>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = "Signature help" })
   bmap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { desc = "Rename" })
   bmap(bufnr, 'n', '<leader>lc', '<cmd>lua vim.lsp.buf.clear_references()<CR>', { desc = "Clear" })
+  -- lspsaga stuff
+  bmap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+  bmap(bufnr, "n", "gs", "<Cmd>Lspsaga signature_help<CR>", { silent = true, noremap = true })
+  bmap(bufnr, "n", "<leader>la", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true })
+  bmap(bufnr, "v", "<leader>la", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true, noremap = true })
+  bmap(bufnr, "n", "<leader>lr", "<cmd>Lspsaga rename<CR>", { silent = true, noremap = true })
+  bmap(bufnr, "n", "[e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, noremap = true })
+  bmap(bufnr, "n", "]e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true, noremap = true })
+  local action = safe_require("lspsaga.action")
+  if action then
+    -- scroll down hover doc or scroll in definition preview
+    vim.keymap.set("n", "<C-f>", function()
+      action.smart_scroll_with_saga(1)
+    end, { silent = true })
+    -- scroll up hover doc
+    vim.keymap.set("n", "<C-b>", function()
+      action.smart_scroll_with_saga(-1)
+    end, { silent = true })
+  end
 end
 
 M.on_attach = function(client, bufnr)
