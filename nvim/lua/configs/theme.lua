@@ -11,8 +11,8 @@ function M.config()
       undercurl = true, -- enable undercurls
       commentStyle = { italic = true },
       functionStyle = {},
-      keywordStyle = { italic = true },
-      statementStyle = { bold = true },
+      keywordStyle = { italic = true, bold = false },
+      statementStyle = { bold = false },
       typeStyle = {},
       variablebuiltinStyle = { italic = true },
       specialReturn = true, -- special highlight for the return keyword
@@ -26,7 +26,8 @@ function M.config()
     })
   end
 
-  vim.cmd("colorscheme " .. scheme)
+  -- vim.cmd("colorscheme " .. scheme)
+  vim.cmd("colorscheme zephyr")
 end
 
 return M

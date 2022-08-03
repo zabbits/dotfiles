@@ -75,11 +75,28 @@ vim.opt.fillchars:append({
 })
 
 
-local os = vim.loop.os_uname().sysname:lower()
-if os == 'darwin' then
-  vim.o.guifont = 'FiraCode Nerd Font Mono:h16'
-elseif os == 'windows_nt' then
-  vim.o.guifont = 'FiraCode NF'
+-- options for neovide
+if vim.g.neovide then
+  vim.cmd("colorscheme zephyr")
+
+  -- font
+  local os = vim.loop.os_uname().sysname:lower()
+  if os == 'darwin' then
+    vim.o.guifont = 'FiraCode Nerd Font Mono:h16'
+  elseif os == 'windows_nt' then
+    vim.o.guifont = 'FiraCode NF'
+  end
+
+  vim.g.neovide_remember_window_size = true
+  -- allow alt key, current do not support
+  vim.g.neovide_input_macos_alt_is_meta = true
+
+  -- allow clipboard copy paste in neovim
+  vim.g.neovide_input_use_logo = true
+  vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
+  vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+  vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+  vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 end
 
 return M
