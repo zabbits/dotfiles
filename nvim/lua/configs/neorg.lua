@@ -87,6 +87,14 @@ function M.config()
                 icon = " ",
               },
             },
+            delimiter = {
+              weak = {
+                icon = "⬸",
+              },
+              strong = {
+                icon = "↢",
+              },
+            }
 
           }
         }
