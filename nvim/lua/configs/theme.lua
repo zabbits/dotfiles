@@ -1,12 +1,9 @@
 local M = {}
 
-function M.config()
-  local scheme = 'default'
-
-  local kanagawa = _G.safe_require('kanagawa')
-  local colors = _G.safe_require('kanagawa.colors').setup()
-  if kanagawa and colors then
-    scheme = 'kanagawa'
+local function set_kanagawa()
+  local kanagawa = safe_require('kanagawa')
+  local colors = safe_require('kanagawa.colors').setup()
+  if kanagawa then
     kanagawa.setup({
       undercurl = true, -- enable undercurls
       commentStyle = { italic = true },
@@ -24,10 +21,30 @@ function M.config()
       overrides = {
       }
     })
+
+    M.bg = colors.bg
+    M.fg = colors.fg
+    return 'kanagawa'
   end
 
-  -- vim.cmd("colorscheme " .. scheme)
-  vim.cmd("colorscheme zephyr")
+  return 'default'
+end
+
+local function set_zephyr()
+  local zephyr = safe_require('zephyr')
+  if zephyr then
+    M.bg = zephyr.bg
+    M.fg = zephyr.fg
+
+    return 'zephyr'
+  end
+
+  return 'default'
+end
+
+function M.config()
+  vim.cmd("colorscheme " .. set_zephyr())
+  -- vim.cmd("colorscheme " .. set_kanagawa())
 end
 
 return M

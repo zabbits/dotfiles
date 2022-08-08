@@ -1,4 +1,3 @@
--- local lsp_installer = safe_require("nvim-lsp-installer")
 local mason_lsp = safe_require("mason-lspconfig")
 local lspconfig = safe_require('lspconfig')
 if not mason_lsp or not lspconfig then

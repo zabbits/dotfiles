@@ -373,6 +373,16 @@ function M.config()
     }
   })
 
+  local theme = safe_require('configs.theme')
+  if theme then
+    local t = {
+      bg = theme.bg,
+      fg = theme.fg,
+    }
+    feline.use_theme(t)
+  end
+
+
 end
 
 return M
