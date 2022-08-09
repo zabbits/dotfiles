@@ -1,3 +1,7 @@
+-- before using this install:
+-- npm install -g @volar/vue-language-server
+-- npm i -g typescript
+
 local lspconfig = require 'lspconfig'
 local lspconfig_configs = require 'lspconfig.configs'
 local lspconfig_util = require 'lspconfig.util'
