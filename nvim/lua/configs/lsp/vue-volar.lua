@@ -19,7 +19,6 @@ end
 
 local volar_cmd = { 'vue-language-server', '--stdio' }
 local volar_root_dir = lspconfig_util.root_pattern 'package.json'
-local ts_path = lspconfig_util.path.join(vim.fn.stdpath('data'), 'lsp_servers', 'neovolar', 'typescript', 'lib', 'tsserverlibrary.js')
 
 
 lspconfig_configs.volar_api = {
@@ -32,7 +31,7 @@ lspconfig_configs.volar_api = {
     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
     init_options = {
       typescript = {
-        serverPath = ts_path,
+        serverPath = '',
       },
       languageFeatures = {
         implementation = true, -- new in @volar/vue-language-server v0.33
@@ -59,7 +58,6 @@ lspconfig_configs.volar_api = {
     },
   }
 }
--- lspconfig.volar_api.setup {}
 
 lspconfig_configs.volar_doc = {
   default_config = {
@@ -72,7 +70,7 @@ lspconfig_configs.volar_doc = {
     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
     init_options = {
       typescript = {
-        serverPath = ts_path,
+        serverPath = '',
       },
       languageFeatures = {
         implementation = true, -- new in @volar/vue-language-server v0.33
@@ -87,7 +85,6 @@ lspconfig_configs.volar_doc = {
     },
   }
 }
--- lspconfig.volar_doc.setup {}
 
 lspconfig_configs.volar_html = {
   default_config = {
@@ -100,7 +97,7 @@ lspconfig_configs.volar_html = {
     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
     init_options = {
       typescript = {
-        serverPath = ts_path,
+        serverPath = '',
       },
       documentFeatures = {
         selectionRange = true,
@@ -116,4 +113,3 @@ lspconfig_configs.volar_html = {
     },
   }
 }
--- lspconfig.volar_html.setup {}
