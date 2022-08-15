@@ -1,9 +1,16 @@
 local wezterm = require 'wezterm'
 
 return {
-  -- font = "FiraCode",
-  font = wezterm.font("FiraCode Nerd Font Mono", { weight = "Regular", stretch = "Normal", style = "Normal" }),
-  font_size = 16,
+  font_size = 14.5,
+  font = wezterm.font_with_fallback {
+    {
+      family = 'Cascadia Mono',
+      weight = 'Regular',
+      stretch = 'Normal',
+      style = 'Normal',
+    },
+    'JetBrains Mono',
+  },
 
   window_decorations = "RESIZE",
   window_padding = {
@@ -14,7 +21,7 @@ return {
   },
   -- window_decorations = "NONE",
 
-  -- for kanagawa
+  -- for nvim kanagawa colorscheme
   force_reverse_video_cursor = true,
   colors = {
     foreground = "#dcd7ba",
