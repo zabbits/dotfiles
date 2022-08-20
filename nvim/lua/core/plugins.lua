@@ -71,10 +71,6 @@ local plgins = {
     before = 'kanagawa.nvim',
   },
   {
-    'Mofiqul/vscode.nvim',
-    before = 'kanagawa.nvim',
-  },
-  {
     'glepnir/zephyr-nvim',
     before = 'kanagawa.nvim',
   },
@@ -223,11 +219,6 @@ local plgins = {
   {
     "hrsh7th/cmp-nvim-lsp",
     after = "nvim-cmp",
-  },
-
-  {
-    "hrsh7th/cmp-nvim-lsp-signature-help",
-    after = "nvim-cmp"
   },
 
   -- ====================
