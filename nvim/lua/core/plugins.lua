@@ -221,6 +221,15 @@ local plgins = {
     after = "nvim-cmp",
   },
 
+  -- Autopairs
+  {
+    "windwp/nvim-autopairs",
+    after = "nvim-cmp",
+    config = function()
+      require("configs.autopairs").config()
+    end,
+  },
+
   -- ====================
   --         LSP
   -- ====================
@@ -228,7 +237,7 @@ local plgins = {
   {
     "williamboman/mason.nvim",
     event = { 'BufNewFile', 'BufRead' },
-    config = function ()
+    config = function()
       require('configs.mason').config()
     end
   },
@@ -236,7 +245,7 @@ local plgins = {
   {
     "williamboman/mason-lspconfig.nvim",
     after = "mason.nvim",
-    config = function ()
+    config = function()
       require('configs.mason-lspconfig').config()
     end
   },
@@ -245,11 +254,10 @@ local plgins = {
   {
     "neovim/nvim-lspconfig",
     after = "mason-lspconfig.nvim",
-    config = function ()
+    config = function()
       require "configs.lsp"
     end
   },
-
 
   -- Lua dev
   {
@@ -279,11 +287,12 @@ local plgins = {
   {
     "glepnir/lspsaga.nvim",
     after = 'nvim-lspconfig',
-    config = function ()
+    config = function()
       require("configs.lspsaga").config()
     end
   },
 
+  -- lsp diagnostic
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     after = 'nvim-lspconfig',
@@ -291,6 +300,15 @@ local plgins = {
       vim.diagnostic.config({ virtual_lines = false })
       require("lsp_lines").setup()
     end,
+  },
+
+
+  {
+    "ray-x/lsp_signature.nvim",
+    after = 'nvim-lspconfig',
+    config = function ()
+      require("configs.lsp-signature").config()
+    end
   },
 
   -- lsp trouble
@@ -385,15 +403,6 @@ local plgins = {
     event = { "BufRead", "BufNewFile" },
     config = function()
       require("configs.colorizer").config()
-    end,
-  },
-
-  -- Autopairs
-  {
-    "windwp/nvim-autopairs",
-    after = "nvim-cmp",
-    config = function()
-      require("configs.autopairs").config()
     end,
   },
 
