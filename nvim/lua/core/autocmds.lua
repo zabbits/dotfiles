@@ -87,7 +87,7 @@ cmd("FileType", {
 -- relative number
 local exclude_filetype = {
   "NvimTree", "neo-tree", "neo-tree-popup", "dashboard",
-  "Outline", "Trouble",
+  "Outline", "Trouble", "notify",
 }
 local function disable_number()
   local ft = vim.bo.filetype
