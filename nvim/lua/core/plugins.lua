@@ -67,10 +67,6 @@ local plgins = {
 
   -- Colorscheme
   {
-    'folke/tokyonight.nvim',
-    before = 'kanagawa.nvim',
-  },
-  {
     'glepnir/zephyr-nvim',
     before = 'kanagawa.nvim',
   },
@@ -140,11 +136,6 @@ local plgins = {
     end,
   },
 
-  -- Ts Playground
-  {
-    "nvim-treesitter/playground",
-    after = "nvim-treesitter",
-  },
   -- Parenthesis highlighting
   {
     "p00f/nvim-ts-rainbow",
@@ -471,14 +462,6 @@ local plgins = {
   },
 
   {
-    "jbyuki/venn.nvim",
-    after = 'neorg',
-    config = function()
-      require("configs.venn").config()
-    end
-  },
-
-  {
     "ziontee113/icon-picker.nvim",
     event = { 'BufNewFile', 'BufRead' },
     config = function()
@@ -507,12 +490,6 @@ local plgins = {
     config = function()
       vim.g.table_mode_corner = '|'
     end
-  },
-
-  -- latex display
-  {
-    'jbyuki/nabla.nvim',
-    after = 'neorg',
   },
 
   -- better marks
