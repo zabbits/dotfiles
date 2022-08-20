@@ -43,8 +43,8 @@ local function set_zephyr()
 end
 
 function M.config()
-  vim.cmd("colorscheme " .. set_zephyr())
-  -- vim.cmd("colorscheme " .. set_kanagawa())
+  --[[ vim.cmd("colorscheme " .. set_zephyr()) ]]
+  vim.cmd("colorscheme " .. set_kanagawa())
 end
 
 return M
