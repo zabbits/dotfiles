@@ -330,12 +330,23 @@ local plgins = {
     end
   },
 
-  -- rust amend
+  -- rust tools
   {
     'simrat39/rust-tools.nvim',
     after = 'nvim-lspconfig',
     config = function()
       require("configs.rust-tools").config()
+    end
+  },
+
+  -- go tools
+  {
+    'ray-x/go.nvim',
+    config = function ()
+      local go = safe_require('go')
+      if go then
+        go.setup()
+      end
     end
   },
 
