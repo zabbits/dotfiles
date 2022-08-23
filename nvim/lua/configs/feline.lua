@@ -189,28 +189,29 @@ function M.config()
   }
 
   local file_info = {
-    {
-      provider = file_osinfo,
-      hl = {
-        bg = colors.c2,
-        style = 'bold'
-      },
-      left_sep = {
-        str = 'left_filled',
-        hl = {
-          fg = colors.c2,
-          bg = colors.c1,
-          -- fg = colors.yellow,
-          -- fg = colors.skyblue,
-        },
-      },
-      right_sep = {
-        str = ' ',
-        hl = {
-          bg = colors.c2,
-        },
-      },
-    },
+    --[[ hide os info ]]
+    --[[ { ]]
+    --[[   provider = file_osinfo, ]]
+    --[[   hl = { ]]
+    --[[     bg = colors.c2, ]]
+    --[[     style = 'bold' ]]
+    --[[   }, ]]
+    --[[   left_sep = { ]]
+    --[[     str = 'left_filled', ]]
+    --[[     hl = { ]]
+    --[[       fg = colors.c2, ]]
+    --[[       bg = colors.c1, ]]
+    --[[       -- fg = colors.yellow, ]]
+    --[[       -- fg = colors.skyblue, ]]
+    --[[     }, ]]
+    --[[   }, ]]
+    --[[   right_sep = { ]]
+    --[[     str = ' ', ]]
+    --[[     hl = { ]]
+    --[[       bg = colors.c2, ]]
+    --[[     }, ]]
+    --[[   }, ]]
+    --[[ }, ]]
     {
       provider = {
         name = 'file_type',
@@ -222,6 +223,15 @@ function M.config()
       hl = {
         bg = colors.c2,
         style = 'bold'
+      },
+      left_sep = {
+        str = 'left_filled',
+        hl = {
+          fg = colors.c2,
+          --[[ bg = colors.c1, ]]
+          -- fg = colors.yellow,
+          -- fg = colors.skyblue,
+        },
       },
       right_sep = {
         str = ' ',
@@ -280,14 +290,14 @@ function M.config()
         },
       },
     },
-    {
-      provider = 'scroll_bar',
-      hl = {
-        fg = colors.blue,
-        bg = colors.c3,
-        style = 'bold'
-      },
-    }
+    --[[ { ]]
+    --[[   provider = 'scroll_bar', ]]
+    --[[   hl = { ]]
+    --[[     fg = colors.blue, ]]
+    --[[     bg = colors.c3, ]]
+    --[[     style = 'bold' ]]
+    --[[   }, ]]
+    --[[ } ]]
   }
 
 
@@ -310,13 +320,20 @@ function M.config()
   -- ===================
   --        Middle
   -- ===================
+  table.insert(middle,
+    {
+      provider = {
+        name = 'file_info',
+      },
+    }
+  )
 
 
   -- ===================
   --        Right
   -- ===================
-  table.insert(right, treesitter)
-  table.insert(right, lsp)
+  --[[ table.insert(right, treesitter) ]]
+  --[[ table.insert(right, lsp) ]]
   for _, val in pairs(file_info) do
     table.insert(right, val)
   end
