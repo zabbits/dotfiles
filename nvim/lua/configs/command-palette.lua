@@ -25,10 +25,6 @@ function M.config()
         }
       },
       {
-        label = "Aerial",
-        auto_detect = true,
-      },
-      {
         label = "Diffview",
         auto_detect = true,
         children = {
@@ -63,6 +59,10 @@ function M.config()
             cmd = "RustHoverActions",
           },
         },
+      },
+      {
+        label = "Go",
+        auto_detect = true,
       },
       {
         label = "Mason",

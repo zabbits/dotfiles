@@ -179,11 +179,15 @@ end
 if utils.is_available "telescope.nvim" then
   map("n", "<leader><leader>", function()
     local cp = require("command-palette")
+    local ft2label = {
+      rust = "Rust",
+      norg = "Noerg",
+      go = "Go",
+    }
     local ft = vim.bo.ft
-    if ft == "rust" then
-      cp.palette:next("Rust"):open()
-    elseif ft == "norg" then
-      cp.palette:next("Neorg"):open()
+    local label = ft2label[ft]
+    if label then
+      cp.palette:next(label):open()
     else
       cp.palette:open()
     end
