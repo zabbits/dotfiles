@@ -159,6 +159,11 @@ local plgins = {
       require('configs.treesitter-context').config()
     end
   },
+  -- textobject
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = "nvim-treesitter",
+  },
 
   -- ====================
   --      Completion
