@@ -91,6 +91,7 @@ local plgins = {
   -- Bufferline
   {
     "akinsho/bufferline.nvim",
+    tag = "v2.*",
     after = "nvim-web-devicons",
     event = { 'BufRead', 'BufNewFile' },
     config = function()
