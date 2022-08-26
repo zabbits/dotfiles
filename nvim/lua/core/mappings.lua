@@ -181,7 +181,7 @@ if utils.is_available "telescope.nvim" then
     local cp = require("command-palette")
     local ft2label = {
       rust = "Rust",
-      norg = "Noerg",
+      norg = "Neorg",
       go = "Go",
     }
     local ft = vim.bo.ft
