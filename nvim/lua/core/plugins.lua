@@ -272,13 +272,13 @@ local plgins = {
   },
 
   -- Formatting and linting
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    after = 'nvim-lspconfig',
-    config = function()
-      -- TODO
-    end,
-  },
+  -- {
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   after = 'nvim-lspconfig',
+  --   config = function()
+  --     -- TODO
+  --   end,
+  -- },
 
   -- misc of lsp
   {
@@ -303,7 +303,7 @@ local plgins = {
   {
     "ray-x/lsp_signature.nvim",
     after = 'nvim-lspconfig',
-    config = function ()
+    config = function()
       require("configs.lsp-signature").config()
     end
   },
@@ -348,7 +348,7 @@ local plgins = {
   -- go tools
   {
     'ray-x/go.nvim',
-    config = function ()
+    config = function()
       local go = safe_require('go')
       if go then
         go.setup()
@@ -501,13 +501,13 @@ local plgins = {
   },
 
   -- draw table
-  {
-    'dhruvasagar/vim-table-mode',
-    after = 'neorg',
-    config = function()
-      vim.g.table_mode_corner = '|'
-    end
-  },
+  -- {
+  --   'dhruvasagar/vim-table-mode',
+  --   after = 'neorg',
+  --   config = function()
+  --     vim.g.table_mode_corner = '|'
+  --   end
+  -- },
 
   -- better marks
   {
