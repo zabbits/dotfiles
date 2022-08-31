@@ -88,17 +88,6 @@ local function buffer_key_maps(client, bufnr)
   bmap(bufnr, "n", "<leader>lr", "<cmd>Lspsaga rename<CR>", { silent = true, noremap = true })
   bmap(bufnr, "n", "[e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, noremap = true })
   bmap(bufnr, "n", "]e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true, noremap = true })
-  local action = safe_require("lspsaga.action")
-  if action then
-    -- scroll down hover doc or scroll in definition preview
-    vim.keymap.set("n", "<C-f>", function()
-      action.smart_scroll_with_saga(1)
-    end, { silent = true })
-    -- scroll up hover doc
-    vim.keymap.set("n", "<C-b>", function()
-      action.smart_scroll_with_saga(-1)
-    end, { silent = true })
-  end
 end
 
 M.on_attach = function(client, bufnr)
