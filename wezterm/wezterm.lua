@@ -1,16 +1,21 @@
 local wezterm = require 'wezterm'
 
 return {
-  font_size = 16.7,
+  font_size = 17.5,
   font = wezterm.font_with_fallback {
     {
-      --[[ family = 'Cascadia Code', ]]
+      family = "Maple Mono SC NF",
+      weight = "Regular", 
+      stretch = "Normal", 
+      style = "Normal"
+    },
+    {
       family = 'FiraCode Nerd Font Mono',
-      weight = 'Regular',
+      weight = 'Bold',
       weight = 450,
       stretch = 'Normal',
       style = 'Normal',
-      harfbuzz_features = { 
+      harfbuzz_features = {
       },
     },
     'JetBrains Mono',
