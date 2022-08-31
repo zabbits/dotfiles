@@ -76,7 +76,7 @@ function M.bootstrap()
       "https://github.com/wbthomason/packer.nvim",
       install_path,
     }
-    print "Cloning packer...\nSetup AstroNvim"
+    print "Cloning packer...\nSetup Neovim"
     vim.cmd "packadd packer.nvim"
   end
 end
@@ -172,5 +172,13 @@ function M.safe_require(modname)
 end
 
 _G.safe_require = M.safe_require
+
+_G.packer_load = function (plugin_name)
+  require("packer").loader(plugin_name)
+end
+
+_G.is_plugin_load = function (plugin_name)
+    return packer_plugins[plugin_name].loaded
+end
 
 return M

@@ -348,6 +348,7 @@ local plgins = {
   -- go tools
   {
     'ray-x/go.nvim',
+    after = 'nvim-lspconfig',
     config = function()
       local go = safe_require('go')
       if go then

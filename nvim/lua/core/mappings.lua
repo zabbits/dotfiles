@@ -178,6 +178,9 @@ end
 -- === Telescope ===
 if utils.is_available "telescope.nvim" then
   map("n", "<leader><leader>", function()
+    if not is_plugin_load("telescope.nvim") then
+      packer_load("telescope.nvim")
+    end
     local cp = require("command-palette")
     local ft2label = {
       rust = "Rust",
@@ -270,7 +273,12 @@ end
 
 -- === Neorg ===
 if utils.is_available('neorg') then
-  map("n", "<leader>nv", "<cmd>Neorg gtd views<cr>", { desc = "Gtd views" })
+  map("n", "<leader>nv", function ()
+    if not is_plugin_load("nvim-treesitter") then
+      packer_load("nvim-treesitter")
+    end
+    vim.cmd("Neorg gtd views")
+  end, { desc = "Gtd views" })
   map("n", "<leader>ne", "<cmd>Neorg gtd edit<cr>", { desc = "Gtd edit" })
   map("n", "<leader>nc", "<cmd>Neorg gtd capture<cr>", { desc = "Gtd capture" })
 end
