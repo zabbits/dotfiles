@@ -71,6 +71,9 @@ local plgins = {
     before = 'kanagawa.nvim',
   },
   {
+    'sam4llis/nvim-tundra',
+  },
+  {
     'rebelot/kanagawa.nvim',
     config = function()
       require("configs.theme").config()
@@ -625,6 +628,12 @@ local plgins = {
     end
   },
 
+  -- ssh yank
+  {
+    'ojroques/vim-oscyank',
+    event = { "BufRead", "BufNewFile" },
+    branch = 'main',
+  }
 }
 
 packer.startup {

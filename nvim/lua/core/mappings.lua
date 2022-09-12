@@ -370,4 +370,11 @@ if utils.is_available('hop.nvim') then
   map('', '<C-s>', '<cmd>HopWord<cr>', opts)
 end
 
+
+-- === OS Yank ===
+if utils.is_available("vim-oscyank") then
+  map('v', '<leader>y', ':OSCYank<CR>', opts)
+end
+
+
 return M

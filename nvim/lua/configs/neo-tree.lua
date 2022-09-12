@@ -122,7 +122,7 @@ function M.config()
       },
       follow_current_file = false,
       group_empty_dirs = false, -- when true, empty folders will be grouped together
-      hijack_netrw_behavior = "open_current",
+      hijack_netrw_behavior = "open_default",
       use_libuv_file_watcher = true,
     },
     buffers = {
