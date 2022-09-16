@@ -13,7 +13,7 @@ function M.config()
         'class',
         'function',
         'method',
-        'for', -- These won't appear in the context
+        'for',
         'while',
         'if',
         'switch',

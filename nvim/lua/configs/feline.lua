@@ -112,6 +112,9 @@ function M.config()
       provider = function()
         return tostring(status.diagnostic.error.count())
       end,
+      enabled = function ()
+        return status.diagnostic.error.count() > 0
+      end,
       icon = status.diagnostic.error.icon .. ' ',
       hl = {
         fg = colors.red,
@@ -120,6 +123,9 @@ function M.config()
     {
       provider = function()
         return tostring(status.diagnostic.warning.count())
+      end,
+      enabled = function ()
+        return status.diagnostic.warning.count() > 0
       end,
       icon = status.diagnostic.warning.icon .. ' ',
       hl = {
@@ -130,6 +136,9 @@ function M.config()
       provider = function()
         return tostring(status.diagnostic.hint.count())
       end,
+      enabled = function ()
+        return status.diagnostic.hint.count() > 0
+      end,
       icon = status.diagnostic.hint.icon .. ' ',
       hl = {
         fg = colors.blue
@@ -138,6 +147,9 @@ function M.config()
     {
       provider = function()
         return tostring(status.diagnostic.info.count())
+      end,
+      enabled = function ()
+        return status.diagnostic.info.count() > 0
       end,
       icon = status.diagnostic.info.icon .. ' ',
       hl = {
@@ -243,6 +255,21 @@ function M.config()
     {
       provider = function()
         return vim.bo.fileencoding
+      end,
+      hl = {
+        bg = colors.c2,
+        style = 'bold'
+      },
+      right_sep = {
+        str = ' ',
+        hl = {
+          bg = colors.c2,
+        },
+      },
+    },
+    {
+      provider = function()
+        return 'space:'..vim.bo.tabstop
       end,
       hl = {
         bg = colors.c2,

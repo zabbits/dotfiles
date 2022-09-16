@@ -71,9 +71,6 @@ local plgins = {
     before = 'kanagawa.nvim',
   },
   {
-    'sam4llis/nvim-tundra',
-  },
-  {
     'rebelot/kanagawa.nvim',
     config = function()
       require("configs.theme").config()
@@ -359,6 +356,27 @@ local plgins = {
       end
     end
   },
+
+
+  -- ====================
+  --      Debug
+  -- ====================
+  {
+    'mfussenegger/nvim-dap',
+    ft = 'rust',
+    config = function ()
+      require('configs.dap').config()
+    end
+  },
+
+  {
+    "rcarriga/nvim-dap-ui",
+    after = "nvim-dap",
+    config = function ()
+      require('configs.dap.dap-ui').config()
+    end
+  },
+
 
   -- ====================
   --      Telescope
