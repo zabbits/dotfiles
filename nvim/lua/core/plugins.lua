@@ -363,7 +363,7 @@ local plgins = {
   -- ====================
   {
     'mfussenegger/nvim-dap',
-    ft = 'rust',
+    disable = true,
     config = function ()
       require('configs.dap').config()
     end
@@ -372,6 +372,7 @@ local plgins = {
   {
     "rcarriga/nvim-dap-ui",
     after = "nvim-dap",
+    disable = true,
     config = function ()
       require('configs.dap.dap-ui').config()
     end
@@ -427,13 +428,18 @@ local plgins = {
     end
   },
 
-  -- Color highlighting
+  -- color picker and highlighting
   {
-    "norcalli/nvim-colorizer.lua",
+    'uga-rosa/ccc.nvim',
     event = { "BufRead", "BufNewFile" },
-    config = function()
-      require("configs.colorizer").config()
-    end,
+    config = function ()
+      local ccc = safe_require('ccc')
+      if not ccc then
+        return
+      end
+      ccc.setup({})
+      vim.cmd("CccHighlighterEnable")
+    end
   },
 
   -- Terminal
@@ -615,6 +621,7 @@ local plgins = {
   -- jump
   {
     'phaazon/hop.nvim',
+    disable = true,
     event = { "BufRead", "BufNewFile" },
     branch = 'v2', -- optional but strongly recommended
     config = function()
