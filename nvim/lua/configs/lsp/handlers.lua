@@ -7,9 +7,9 @@ function M.setup()
     -- { name = "DiagnosticSignHint", text = "" },
     -- { name = "DiagnosticSignInfo", text = "" },
     { name = "DiagnosticSignError", text = status.diagnostic.error.icon },
-    { name = "DiagnosticSignWarn", text = status.diagnostic.error.icon },
-    { name = "DiagnosticSignHint", text = status.diagnostic.error.icon },
-    { name = "DiagnosticSignInfo", text = status.diagnostic.error.icon },
+    { name = "DiagnosticSignWarn", text = status.diagnostic.warning.icon },
+    { name = "DiagnosticSignHint", text = status.diagnostic.hint.icon },
+    { name = "DiagnosticSignInfo", text = status.diagnostic.info.icon },
   }
 
   for _, sign in ipairs(signs) do

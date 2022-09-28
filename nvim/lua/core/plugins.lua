@@ -20,6 +20,10 @@ local plgins = {
   -- Popup API
   { "nvim-lua/popup.nvim" },
 
+  {
+    'dstein64/vim-startuptime'
+  },
+
   -- Boost startup time
   {
     "nathom/filetype.nvim",
@@ -507,14 +511,6 @@ local plgins = {
   },
 
   {
-    "ziontee113/icon-picker.nvim",
-    event = { 'BufNewFile', 'BufRead' },
-    config = function()
-      require("icon-picker")
-    end
-  },
-
-  {
     "nvim-neorg/neorg-telescope",
     after = 'neorg',
   },
@@ -527,15 +523,6 @@ local plgins = {
       require('configs.sniprun').config()
     end
   },
-
-  -- draw table
-  -- {
-  --   'dhruvasagar/vim-table-mode',
-  --   after = 'neorg',
-  --   config = function()
-  --     vim.g.table_mode_corner = '|'
-  --   end
-  -- },
 
   -- better marks
   {
@@ -574,12 +561,6 @@ local plgins = {
     end
   },
 
-  -- plugin browser
-  {
-    "axieax/urlview.nvim",
-    after = "dressing.nvim",
-  },
-
   -- ====================
   --    Window manager
   -- ====================
@@ -616,17 +597,6 @@ local plgins = {
   {
     "tpope/vim-surround",
     event = { "BufRead", "BufNewFile" },
-  },
-
-  -- jump
-  {
-    'phaazon/hop.nvim',
-    disable = true,
-    event = { "BufRead", "BufNewFile" },
-    branch = 'v2', -- optional but strongly recommended
-    config = function()
-      require('configs.hop').config()
-    end
   },
 
 

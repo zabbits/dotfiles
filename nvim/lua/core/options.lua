@@ -7,7 +7,7 @@ local options = {
   spelllang = "en",                           -- Support US english
   clipboard = "unnamedplus",                  -- Connection to the system clipboard
   mouse = "a",                                -- Enable mouse support
-  signcolumn = "no",                          -- Hide the sign column
+  signcolumn = "auto:1",                          -- Hide the sign column
 
   -- foldmethod = "expr",                        -- Treesitter fold
   -- foldexpr = "nvim_treesitter#foldexpr()",
