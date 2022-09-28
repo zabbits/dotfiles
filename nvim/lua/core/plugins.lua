@@ -20,9 +20,10 @@ local plgins = {
   -- Popup API
   { "nvim-lua/popup.nvim" },
 
-  {
-    'dstein64/vim-startuptime'
-  },
+  -- startuptime
+  -- {
+  --   'dstein64/vim-startuptime'
+  -- },
 
   -- Boost startup time
   {
