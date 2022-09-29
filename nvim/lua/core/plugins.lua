@@ -350,6 +350,17 @@ local plgins = {
     end
   },
 
+  {
+    'saecki/crates.nvim',
+    event = { "BufRead Cargo.toml" },
+    config = function()
+      local crates = safe_require('crates')
+      if crates then
+        crates.setup()
+      end
+    end,
+  },
+
   -- go tools
   {
     'ray-x/go.nvim',
@@ -369,7 +380,7 @@ local plgins = {
   {
     'mfussenegger/nvim-dap',
     disable = true,
-    config = function ()
+    config = function()
       require('configs.dap').config()
     end
   },
@@ -378,7 +389,7 @@ local plgins = {
     "rcarriga/nvim-dap-ui",
     after = "nvim-dap",
     disable = true,
-    config = function ()
+    config = function()
       require('configs.dap.dap-ui').config()
     end
   },
@@ -437,7 +448,7 @@ local plgins = {
   {
     'uga-rosa/ccc.nvim',
     event = { "BufRead", "BufNewFile" },
-    config = function ()
+    config = function()
       local ccc = safe_require('ccc')
       if not ccc then
         return

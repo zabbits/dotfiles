@@ -86,8 +86,8 @@ local function buffer_key_maps(client, bufnr)
   bmap(bufnr, "n", "<leader>la", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true })
   bmap(bufnr, "v", "<leader>la", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true, noremap = true })
   bmap(bufnr, "n", "<leader>lr", "<cmd>Lspsaga rename<CR>", { silent = true, noremap = true })
-  bmap(bufnr, "n", "[e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, noremap = true })
-  bmap(bufnr, "n", "]e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true, noremap = true })
+  bmap(bufnr, "n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true, noremap = true })
+  bmap(bufnr, "n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, noremap = true })
 end
 
 M.on_attach = function(client, bufnr)

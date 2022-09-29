@@ -56,6 +56,7 @@ function M.config()
           path = "[Path]",
           neorg = "[Neorg]",
           latex_symbols = "[LaTeX]",
+          crates = "[Crates]",
         }),
       }),
     },
@@ -93,6 +94,7 @@ function M.config()
       { name = "buffer" },
       { name = "path" },
       { name = "nvim_lsp_signature_help" },
+      { name = "crates" },
     },
     mapping = {
       ["<C-k>"] = cmp.mapping.select_prev_item(),
