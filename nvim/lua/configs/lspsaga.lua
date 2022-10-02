@@ -12,10 +12,10 @@ function M.config()
       enable = true,
       enable_in_insert = true,
       cache_code_action = true,
-      sign = true,
+      sign = false,
       update_time = 150,
       sign_priority = 20,
-      virtual_text = false,
+      virtual_text = true,
     },
     scroll_in_preview = {
       scroll_down = '<C-d>',
