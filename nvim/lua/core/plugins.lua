@@ -450,11 +450,10 @@ local plgins = {
     event = { "BufRead", "BufNewFile" },
     config = function()
       local ccc = safe_require('ccc')
-      if not ccc then
-        return
+      if ccc then
+        ccc.setup({})
+        vim.cmd [["CccHighlighterEnable"]]
       end
-      ccc.setup({})
-      vim.cmd("CccHighlighterEnable")
     end
   },
 

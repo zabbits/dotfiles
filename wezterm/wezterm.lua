@@ -5,8 +5,8 @@ return {
   font = wezterm.font_with_fallback {
     {
       family = "Maple Mono SC NF",
-      weight = "Regular", 
-      stretch = "Normal", 
+      weight = "Regular",
+      stretch = "Normal",
       style = "Normal"
     },
     {
