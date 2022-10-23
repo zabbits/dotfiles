@@ -109,7 +109,7 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local cmp_nvim_lsp = _G.safe_require("cmp_nvim_lsp")
 if cmp_nvim_lsp then
-  M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+  M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 end
 
 -- for fold
