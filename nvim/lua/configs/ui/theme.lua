@@ -57,8 +57,6 @@ local function set_cat()
       term_colors = true,
       styles = {
         comments = { 'italic' },
-        conditionals = { 'italic' },
-        keywords = { 'italic' },
       },
       integrations = {
         aerial = true,
