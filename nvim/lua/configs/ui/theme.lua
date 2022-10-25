@@ -68,7 +68,7 @@ local function set_cat()
         coc_nvim = false,
         dashboard = false,
         fern = false,
-        fidget = true,
+        fidget = false,
         gitgutter = false,
         gitsigns = true,
         harpoon = true,
