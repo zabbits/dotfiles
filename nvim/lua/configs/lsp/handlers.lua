@@ -97,17 +97,18 @@ M.on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
   end
 
-  local aerial = _G.safe_require('aerial')
+  local aerial = safe_require('aerial')
   if aerial then
     aerial.on_attach(client, bufnr)
   end
+
   lsp_highlight_document(client, bufnr)
   buffer_key_maps(client, bufnr)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local cmp_nvim_lsp = _G.safe_require("cmp_nvim_lsp")
+local cmp_nvim_lsp = safe_require("cmp_nvim_lsp")
 if cmp_nvim_lsp then
   M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 end

@@ -417,7 +417,7 @@ function M.config()
     }
   })
 
-  local theme = safe_require('configs.theme')
+  local theme = safe_require('configs.ui.theme')
   if theme then
     local t = {
       bg = theme.bg,

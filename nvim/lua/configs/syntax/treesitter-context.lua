@@ -1,7 +1,7 @@
 local M = {}
 
 function M.config()
-  local ctx = _G.safe_require('treesitter-context')
+  local ctx = safe_require('treesitter-context')
   if not ctx then
     return
   end
