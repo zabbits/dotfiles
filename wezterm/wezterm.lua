@@ -24,7 +24,6 @@ return {
     },
     {
       family = 'FiraCode Nerd Font Mono',
-      weight = 'Bold',
       weight = 450,
       stretch = 'Normal',
       style = 'Normal',
