@@ -6,7 +6,7 @@ function M.config()
     return
   end
 
-  bufferline.setup({
+  local options = {
     options = {
       offsets = {
         { filetype = "NvimTree", text = "", padding = 1 },
@@ -31,8 +31,15 @@ function M.config()
       separator_style = "thin",
       always_show_bufferline = true,
       diagnostics = false,
-    },
-  })
+    }
+  }
+
+  local hi = safe_require('catppuccin.groups.integrations.bufferline')
+  if hi then
+    options.highlights = hi.get()
+  end
+
+  bufferline.setup(options)
 end
 
 return M

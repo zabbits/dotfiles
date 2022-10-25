@@ -7,7 +7,7 @@ function M.config()
   end
   local dashboard = require('alpha.themes.dashboard')
 
-  local headers = require('configs.alpha-header').ascii_art
+  local headers = require('configs.ui.alpha-header').ascii_art
 
   math.randomseed(os.time())
   dashboard.section.header.val = headers[math.random(1, #headers)]

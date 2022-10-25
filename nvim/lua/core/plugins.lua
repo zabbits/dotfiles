@@ -37,7 +37,7 @@ local plgins = {
   {
     "rcarriga/nvim-notify",
     config = function()
-      require("configs.notify").config()
+      require("configs.ui.notify").config()
     end,
   },
 
@@ -59,18 +59,25 @@ local plgins = {
   {
     "kyazdani42/nvim-web-devicons",
     config = function()
-      require("configs.icons").config()
+      require("configs.ui.icons").config()
     end,
   },
 
   {
     'onsails/lspkind.nvim',
     config = function()
-      require('configs.lsp-kind').config()
+      require('configs.lsp.lsp-kind').config()
     end
   },
 
   -- Colorscheme
+  {
+    'folke/tokyonight.nvim',
+  },
+  {
+    'catppuccin/nvim',
+    as = 'catppuccin',
+  },
   {
     'glepnir/zephyr-nvim',
     before = 'kanagawa.nvim',
@@ -78,7 +85,7 @@ local plgins = {
   {
     'rebelot/kanagawa.nvim',
     config = function()
-      require("configs.theme").config()
+      require("configs.ui.theme").config()
     end
   },
 
@@ -88,7 +95,7 @@ local plgins = {
     "stevearc/dressing.nvim",
     event = 'BufEnter',
     config = function()
-      require("configs.dressing").config()
+      require("configs.ui.dressing").config()
     end
   },
 
@@ -100,7 +107,7 @@ local plgins = {
     after = "nvim-web-devicons",
     event = { 'BufRead', 'BufNewFile' },
     config = function()
-      require("configs.bufferline").config()
+      require("configs.ui.bufferline").config()
     end,
   },
 
@@ -126,7 +133,7 @@ local plgins = {
     'feline-nvim/feline.nvim',
     event = { 'BufRead', 'BufNewFile' },
     config = function()
-      require('configs.feline').config()
+      require('configs.ui.feline').config()
     end
   },
 
@@ -138,7 +145,7 @@ local plgins = {
     run = ":TSUpdate",
     event = { "BufRead", "BufNewFile" },
     config = function()
-      require("configs.treesitter").config()
+      require("configs.syntax.treesitter").config()
     end,
   },
 
@@ -162,7 +169,7 @@ local plgins = {
     "nvim-treesitter/nvim-treesitter-context",
     after = "nvim-treesitter",
     config = function()
-      require('configs.treesitter-context').config()
+      require('configs.syntax.treesitter-context').config()
     end
   },
   -- textobject
@@ -185,7 +192,7 @@ local plgins = {
     "L3MON4D3/LuaSnip",
     after = "friendly-snippets",
     config = function()
-      require("configs.luasnip").config()
+      require("configs.edit.luasnip").config()
     end,
   },
 
@@ -195,7 +202,7 @@ local plgins = {
     after = "LuaSnip",
     -- event = { "BufRead", "BufNewFile" },
     config = function()
-      require("configs.cmp").config()
+      require("configs.edit.cmp").config()
     end,
   },
 
@@ -228,7 +235,7 @@ local plgins = {
     "windwp/nvim-autopairs",
     after = "nvim-cmp",
     config = function()
-      require("configs.autopairs").config()
+      require("configs.edit.autopairs").config()
     end,
   },
 
@@ -240,7 +247,7 @@ local plgins = {
     "williamboman/mason.nvim",
     event = { 'BufNewFile', 'BufRead' },
     config = function()
-      require('configs.mason').config()
+      require('configs.lsp.mason').config()
     end
   },
 
@@ -248,7 +255,7 @@ local plgins = {
     "williamboman/mason-lspconfig.nvim",
     after = "mason.nvim",
     config = function()
-      require('configs.mason-lspconfig').config()
+      require('configs.lsp.mason-lspconfig').config()
     end
   },
 
@@ -272,7 +279,7 @@ local plgins = {
     'stevearc/aerial.nvim',
     after = 'nvim-lspconfig',
     config = function()
-      require('configs.aerial').config()
+      require('configs.lsp.aerial').config()
     end
   },
 
@@ -290,7 +297,7 @@ local plgins = {
     "glepnir/lspsaga.nvim",
     after = 'nvim-lspconfig',
     config = function()
-      require("configs.lspsaga").config()
+      require("configs.lsp.lspsaga").config()
     end
   },
 
@@ -309,7 +316,7 @@ local plgins = {
     "ray-x/lsp_signature.nvim",
     after = 'nvim-lspconfig',
     config = function()
-      require("configs.lsp-signature").config()
+      require("configs.lsp.lsp-signature").config()
     end
   },
 
@@ -319,7 +326,7 @@ local plgins = {
     requires = "kyazdani42/nvim-web-devicons",
     after = 'nvim-lspconfig',
     config = function()
-      require('configs.lsp-trouble').config()
+      require('configs.lsp.lsp-trouble').config()
     end
   },
 
@@ -328,7 +335,7 @@ local plgins = {
     'rmagatti/goto-preview',
     after = 'nvim-lspconfig',
     config = function()
-      require('configs.lsp-preview').config()
+      require('configs.lsp.lsp-preview').config()
     end
   },
 
@@ -337,7 +344,11 @@ local plgins = {
     'j-hui/fidget.nvim',
     after = 'nvim-lspconfig',
     config = function()
-      require("fidget").setup {}
+      require("fidget").setup {
+        window = {
+          blend = 0,
+        },
+      }
     end
   },
 
@@ -346,7 +357,7 @@ local plgins = {
     'simrat39/rust-tools.nvim',
     after = 'nvim-lspconfig',
     config = function()
-      require("configs.rust-tools").config()
+      require("configs.syntax.rust-tools").config()
     end
   },
 
@@ -359,18 +370,6 @@ local plgins = {
         crates.setup()
       end
     end,
-  },
-
-  -- go tools
-  {
-    'ray-x/go.nvim',
-    after = 'nvim-lspconfig',
-    config = function()
-      local go = safe_require('go')
-      if go then
-        go.setup()
-      end
-    end
   },
 
 
@@ -440,7 +439,7 @@ local plgins = {
     'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
-      require('configs.alpha').config()
+      require('configs.ui.alpha').config()
     end
   },
 
@@ -473,7 +472,7 @@ local plgins = {
     "numToStr/Comment.nvim",
     event = { "BufRead", "BufNewFile" },
     config = function()
-      require("configs.comment").config()
+      require("configs.edit.comment").config()
     end,
   },
 
@@ -482,7 +481,7 @@ local plgins = {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufRead", "BufNewFile" },
     config = function()
-      require("configs.indent-line").config()
+      require("configs.ui.indent-line").config()
     end,
   },
 
@@ -491,7 +490,7 @@ local plgins = {
     "folke/which-key.nvim",
     event = "BufEnter",
     config = function()
-      require("configs.which-key").config()
+      require("configs.keymap.which-key").config()
     end,
   },
 
@@ -499,7 +498,7 @@ local plgins = {
     'anuvyklack/hydra.nvim',
     event = { "BufRead", "BufNewFile" },
     config = function()
-      require('configs.hydra').config()
+      require('configs.keymap.hydra').config()
     end
   },
 
@@ -550,7 +549,7 @@ local plgins = {
     -- event = { "BufRead", "BufNewFile" },
     after = 'telescope.nvim',
     config = function()
-      require('configs.harpoon').config()
+      require('configs.project.harpoon').config()
     end
   },
 
@@ -559,7 +558,7 @@ local plgins = {
     'ahmedkhalf/project.nvim',
     after = 'telescope.nvim',
     config = function()
-      require('configs.project').config()
+      require('configs.project.project').config()
     end
   },
 
@@ -568,7 +567,7 @@ local plgins = {
     'jedrzejboczar/possession.nvim',
     after = 'telescope.nvim',
     config = function()
-      require('configs.session').config()
+      require('configs.project.session').config()
     end
   },
 
@@ -581,7 +580,7 @@ local plgins = {
     tag = 'v1.*',
     after = 'neo-tree.nvim',
     config = function()
-      require('configs.window-picker').config()
+      require('configs.win.window-picker').config()
     end,
   },
   -- Smarter Splits
@@ -590,7 +589,7 @@ local plgins = {
     module = "smart-splits",
     event = { 'WinNew', 'TabNew' },
     config = function()
-      require("configs.smart-splits").config()
+      require("configs.win.smart-splits").config()
     end,
   },
   -- rearrange window location
@@ -630,7 +629,7 @@ local plgins = {
     'kevinhwang91/nvim-ufo',
     after = 'promise-async',
     config = function()
-      require("configs.ufo").config()
+      require("configs.edit.ufo").config()
     end
   },
 
