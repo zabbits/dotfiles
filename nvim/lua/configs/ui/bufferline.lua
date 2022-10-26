@@ -34,11 +34,6 @@ function M.config()
     }
   }
 
-  local hi = safe_require('catppuccin.groups.integrations.bufferline')
-  if hi then
-    options.highlights = hi.get()
-  end
-
   bufferline.setup(options)
 end
 

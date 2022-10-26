@@ -7,6 +7,10 @@ function M.config()
   end
 
   neotree.setup({
+    source_selector = {
+      winbar = true,
+      statusline = false
+    },
     use_default_mappings = false,
     close_if_last_window = true,
     popup_border_style = "rounded",
@@ -46,15 +50,15 @@ function M.config()
       },
       git_status = {
         symbols = {
-          added = "",
-          modified = "",
-          deleted = "",
-          renamed = "➜",
-          untracked = "★",
+          added = "",
+          modified = "",
+          deleted = "ﮖ",
+          renamed = "",
+          untracked = "",
           ignored = "◌",
-          unstaged = "✗",
-          staged = "✓",
-          conflict = "",
+          unstaged = "",
+          staged = "",
+          conflict = "",
         },
       },
     },
@@ -66,12 +70,13 @@ function M.config()
         nowait = true,
       },
       mappings = {
+        ["e"] = function() vim.api.nvim_exec("Neotree focus filesystem left", true) end,
+        ["b"] = function() vim.api.nvim_exec("Neotree focus buffers left", true) end,
+        ["g"] = function() vim.api.nvim_exec("Neotree focus git_status left", true) end,
         ["<2-LeftMouse>"] = "open",
         ["<cr>"] = "open",
         ["S"] = "open_split",
         ["s"] = "open_vsplit",
-        -- ["S"] = "split_with_window_picker",
-        -- ["s"] = "vsplit_with_window_picker",
         ["t"] = "open_tabnew",
         ["o"] = "open_with_window_picker",
         ["C"] = "close_node",
