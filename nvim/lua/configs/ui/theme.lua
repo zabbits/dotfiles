@@ -54,11 +54,20 @@ local function set_cat()
     M.bg = color.base
     cat.setup({
       flavour = 'mocha',
-      term_colors = true,
+      term_colors = false,
       styles = {
-        comments = { 'italic' },
-        conditionals = { 'italic' },
-        keywords = { 'italic' },
+        comments = { "italic" },
+        properties = { "italic" },
+        functions = {},
+        keywords = { "italic" },
+        operators = {},
+        conditionals = {},
+        loops = {},
+        booleans = {},
+        numbers = {},
+        types = {},
+        strings = {},
+        variables = {},
       },
       integrations = {
         aerial = true,
@@ -107,7 +116,7 @@ local function set_cat()
           enabled = true,
           custom_bg = 'NONE',
         },
-      }
+      },
     })
 
     return 'catppuccin'
@@ -117,7 +126,8 @@ local function set_cat()
 end
 
 function M.config()
-  vim.cmd.colorscheme(set_cat())
+  -- vim.cmd.colorscheme(set_cat())
+  vim.cmd.colorscheme('tokyodark')
 end
 
 return M

@@ -72,6 +72,9 @@ local plgins = {
 
   -- Colorscheme
   {
+    'tiagovla/tokyodark.nvim',
+  },
+  {
     'folke/tokyonight.nvim',
   },
   {
