@@ -93,7 +93,6 @@ function M.config()
       { name = "neorg" },
       { name = "buffer" },
       { name = "path" },
-      { name = "nvim_lsp_signature_help" },
       { name = "crates" },
     },
     mapping = {

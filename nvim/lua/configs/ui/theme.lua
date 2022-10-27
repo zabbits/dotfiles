@@ -126,8 +126,8 @@ local function set_cat()
 end
 
 function M.config()
-  -- vim.cmd.colorscheme(set_cat())
   vim.cmd.colorscheme('tokyodark')
 end
+
 
 return M

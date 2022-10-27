@@ -55,6 +55,14 @@ local plgins = {
     end,
   },
 
+  {
+    "folke/noice.nvim",
+    event = "VimEnter",
+    config = function()
+      require('configs.ui.noice').config()
+    end,
+  },
+
   -- Icons
   {
     "kyazdani42/nvim-web-devicons",
@@ -73,17 +81,6 @@ local plgins = {
   -- Colorscheme
   {
     'tiagovla/tokyodark.nvim',
-  },
-  {
-    'folke/tokyonight.nvim',
-  },
-  {
-    'catppuccin/nvim',
-    as = 'catppuccin',
-  },
-  {
-    'glepnir/zephyr-nvim',
-    before = 'kanagawa.nvim',
   },
   {
     'rebelot/kanagawa.nvim',
