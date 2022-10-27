@@ -341,7 +341,7 @@ if utils.is_available("possession.nvim") then
 
   -- map("n", "<leader>ss", ":PossessionSave <CR>", { desc = "Session Save" })
   map("n", "<leader>ss", function()
-    require('configs.posession-helper').save_session()
+    require('configs.project.posession-helper').save_session()
   end, { desc = "Session Save" })
   map("n", "<leader>sd", ":PossessionDelete <CR>", { desc = "Session Delete" })
 
