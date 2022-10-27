@@ -97,11 +97,6 @@ M.on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
   end
 
-  local aerial = safe_require('aerial')
-  if aerial then
-    aerial.on_attach(client, bufnr)
-  end
-
   lsp_highlight_document(client, bufnr)
   buffer_key_maps(client, bufnr)
 end

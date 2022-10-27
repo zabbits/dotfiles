@@ -14,7 +14,13 @@ function M.config()
     lsp = {
       progress = {
         enabled = false,
-      }
+      },
+      hover = {
+        enabled = false,
+      },
+      signatrue = {
+        enabled =false,
+      },
     },
     routes = {
       -- show @record
