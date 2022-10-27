@@ -2,7 +2,8 @@ local M = {}
 
 function M.config()
   local noice = safe_require('noice');
-  if not noice then
+  local cfg = require('core.configs')
+  if not noice or not cfg.noice then
     return
   end
 

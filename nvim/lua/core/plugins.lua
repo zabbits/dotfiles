@@ -5,6 +5,8 @@ if not packer_status_ok then
   return
 end
 
+local cfg = require('core.configs')
+
 local plgins = {
   -- Plugin manager
   {
@@ -58,6 +60,7 @@ local plgins = {
   {
     "folke/noice.nvim",
     event = "VimEnter",
+    disable = not cfg.noice,
     config = function()
       require('configs.ui.noice').config()
     end,
