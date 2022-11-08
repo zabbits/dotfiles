@@ -107,6 +107,7 @@ if utils.is_available "neo-tree.nvim" then
   map("n", "<leader>oo", "<cmd>Neotree reveal toggle<CR>", { desc = "Toggle Reveal Explorer" })
   map("n", "<leader>og", "<cmd>Neotree toggle git_status<CR>", { desc = "Toggle Git Status" })
   map("n", "<leader>ob", "<cmd>Neotree toggle buffers<CR>", { desc = "Toggle Buffers" })
+  map("n", "<leader>of", "<cmd>NeoTreeFocus<CR>", { desc = "Focus" })
 end
 
 -- === Dashboard ===
