@@ -2,82 +2,45 @@ local M = {}
 
 local g = vim.g
 
-local function load_module_file(module)
-  local module_path = vim.fn.stdpath "config" .. "/lua/" .. module:gsub("%.", "/") .. ".lua"
-  local out = nil
-  if vim.fn.empty(vim.fn.glob(module_path)) == 0 then
-    local status_ok, loaded_module = pcall(require, module)
-    if status_ok then
-      out = loaded_module
-    else
-      vim.notify("Error loading " .. module_path, "error", M.base_notification)
-    end
-  end
-  return out
-end
-
-local function load_user_settings()
-  local user_settings = load_module_file "user.init"
-  local defaults = require "core.defaults"
-  if user_settings ~= nil and type(user_settings) == "table" then
-    defaults = vim.tbl_deep_extend("force", defaults, user_settings)
-  end
-  return defaults
-end
-
-local _user_settings = load_user_settings()
-
-local _user_terminals = {}
-
-local function func_or_extend(overrides, default)
-  if default == nil then
-    default = overrides
-  elseif type(overrides) == "table" then
-    default = vim.tbl_deep_extend("force", default, overrides)
-  elseif type(overrides) == "function" then
-    default = overrides(default)
-  end
-  return default
-end
-
-local function user_setting_table(module)
-  local settings = _user_settings
-  for tbl in string.gmatch(module, "([^%.]+)") do
-    settings = settings[tbl]
-    if settings == nil then
-      break
-    end
-  end
-  return settings
-end
-
-local function load_options(module, default)
-  local user_settings = load_module_file("user." .. module)
-  if user_settings == nil then
-    user_settings = user_setting_table(module)
-  end
-  if user_settings ~= nil then
-    default = func_or_extend(user_settings, default)
-  end
-  return default
-end
-
-M.base_notification = { title = "Neovim" }
-
-function M.bootstrap()
-  local fn = vim.fn
-  local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-  if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system {
+--- Check if packer is installed and loadable, if not then install it and make sure it loads
+function M.initialize_packer()
+  local stdpath = vim.fn.stdpath 
+  -- try loading packer
+  local packer_avail, _ = pcall(require, "packer")
+  -- if packer isn't availble, reinstall it
+  if not packer_avail then
+    -- set the location to install packer
+    local packer_path = stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+    -- delete the old packer install if one exists
+    vim.fn.delete(packer_path, "rf")
+    -- clone packer
+    vim.fn.system {
       "git",
       "clone",
       "--depth",
       "1",
       "https://github.com/wbthomason/packer.nvim",
-      install_path,
+      packer_path,
     }
-    print "Cloning packer...\nSetup Neovim"
-    vim.cmd "packadd packer.nvim"
+    print({ { "Initializing Packer...\n\n" } })
+    -- add packer and try loading it
+    vim.cmd.packadd "packer.nvim"
+    packer_avail, _ = pcall(require, "packer")
+    -- if packer didn't load, print error
+    if not packer_avail then vim.api.nvim_err_writeln("Failed to load packer at:" .. packer_path) end
+  end
+  -- if packer is available, check if there is a compiled packer file
+  if packer_avail then
+    -- try to load the packer compiled file
+
+    local run_me, _ = loadfile(stdpath("config") .. "/lua/packer_compiled.lua")
+    -- if the file loads, run the compiled function
+    if run_me then
+      run_me()
+      -- if there is no compiled file, prompt the user to run :PackerSync
+    else
+      print({ { "Please run " }, { ":PackerSync", "Title" } })
+    end
   end
 end
 
@@ -98,19 +61,6 @@ function M.disabled_builtins()
   g.loaded_vimball = false
   g.loaded_vimballPlugin = false
   g.zipPlugin = false
-end
-
-function M.user_plugin_opts(plugin, default)
-  return load_options(plugin, default)
-end
-
-function M.compiled()
-  local run_me, _ = loadfile(M.user_plugin_opts("plugins.packer", {}).compile_path)
-  if run_me then
-    run_me()
-  else
-    print "Please run :PackerSync"
-  end
 end
 
 function M.list_registered_providers_names(filetype)
@@ -142,25 +92,6 @@ end
 
 function M.is_available(plugin)
   return packer_plugins ~= nil and packer_plugins[plugin] ~= nil
-end
-
-function M.update()
-  local Job = require "plenary.job"
-
-  Job
-    :new({
-      command = "git",
-      args = { "pull", "--ff-only" },
-      cwd = vim.fn.stdpath "config",
-      on_exit = function(_, return_val)
-        if return_val == 0 then
-          vim.notify("Updated!", "info", M.base_notification)
-        else
-          vim.notify("Update failed! Please try pulling manually.", "error", M.base_notification)
-        end
-      end,
-    })
-    :sync()
 end
 
 function M.safe_require(modname)

@@ -46,7 +46,7 @@ function M.config()
     signs = {
         -- icons / text used for a diagnostic
         error = status.diagnostic.error.icon,
-        warning = status.diagnostic.warning.icon,
+        warning = status.diagnostic.warn.icon,
         hint = status.diagnostic.hint.icon,
         information = status.diagnostic.error.icon,
         other = ""

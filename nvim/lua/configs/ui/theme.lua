@@ -129,5 +129,4 @@ function M.config()
   vim.cmd.colorscheme('tokyodark')
 end
 
-
 return M
