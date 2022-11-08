@@ -1,28 +1,5 @@
 local M = {}
-
-function M.lsp_progress(_)
-  local Lsp = vim.lsp.util.get_progress_messages()[1]
-
-  if Lsp then
-    local msg = Lsp.message or ""
-    local percentage = Lsp.percentage or 0
-    local title = Lsp.title or ""
-
-    local spinners = { "", "", "" }
-    local success_icon = { "", "", "" }
-
-    local ms = vim.loop.hrtime() / 1000000
-    local frame = math.floor(ms / 120) % #spinners
-
-    if percentage >= 70 then
-      return string.format(" %%<%s %s %s (%s%%%%) ", success_icon[frame + 1], title, msg, percentage)
-    end
-
-    return string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
-  end
-
-  return ""
-end
+local icons = require("core.icons")
 
 function M.lsp_name(msg)
   msg = msg or "Inactive"
@@ -56,9 +33,7 @@ end
 function M.treesitter_status()
   local b = vim.api.nvim_get_current_buf()
   if vim.treesitter.highlighter.active[b] and next(vim.treesitter.highlighter.active[b]) then
-    return "  "
-    -- return "滑 "
-    -- return "串 "
+    return ' ' .. icons.treesitter.base .. ' '
   end
   return ""
 end
@@ -72,34 +47,36 @@ function M.progress_bar()
   return chars[index]
 end
 
-local function get_diagnostics_count(severity)
-  return vim.tbl_count(vim.diagnostic.get(0, severity and { severity = severity }))
+local function get_diagnostics_count(severity, bufnr)
+  bufnr = bufnr or 0
+  return vim.tbl_count(vim.diagnostic.get(bufnr, severity and { severity = severity }))
 end
+
 
 M.diagnostic = {
   error = {
-    count = function ()
-      return get_diagnostics_count(vim.diagnostic.severity.ERROR)
+    count = function(bufnr)
+      return get_diagnostics_count(vim.diagnostic.severity.ERROR, bufnr)
     end,
-    icon = '',
+    icon = icons.lsp.error,
   },
-  warning = {
-    count = function ()
-      return get_diagnostics_count(vim.diagnostic.severity.WARN)
+  warn = {
+    count = function(bufnr)
+      return get_diagnostics_count(vim.diagnostic.severity.WARN, bufnr)
     end,
-    icon = '',
+    icon = icons.lsp.warn,
   },
   hint = {
-    count = function ()
-      return get_diagnostics_count(vim.diagnostic.severity.HINT)
+    count = function(bufnr)
+      return get_diagnostics_count(vim.diagnostic.severity.HINT, bufnr)
     end,
-    icon = '',
+    icon = icons.lsp.hint,
   },
   info = {
-    count = function ()
-      return get_diagnostics_count(vim.diagnostic.severity.INFO)
+    count = function(bufnr)
+      return get_diagnostics_count(vim.diagnostic.severity.INFO, bufnr)
     end,
-    icon = '',
+    icon = icons.lsp.info,
   },
 }
 

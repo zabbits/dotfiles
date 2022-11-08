@@ -6,6 +6,7 @@ function M.config()
     return
   end
   local status = require "core.status"
+  local icons = require("core.icons")
 
   local vi_mode_utils = require 'feline.providers.vi_mode'
   local colors = {
@@ -42,11 +43,11 @@ function M.config()
     local os = vim.loop.os_uname().sysname:lower()
     local icon
     if os == 'linux' then
-      icon = ' '
+      icon = icons.os.linux .. ' '
     elseif os == 'darwin' then
-      icon = ' '
+      icon = icons.os.darwin .. ' '
     else
-      icon = ' '
+      icon = icons.os.windows .. ' '
     end
     return icon .. os
   end
@@ -73,8 +74,7 @@ function M.config()
   local git = {
     {
       provider = 'git_branch',
-      icon = ' ',
-      left_sep = ' ',
+      icon = icons.git.base .. ' ',
       hl = {
         fg = colors.violet,
         style = 'bold'
@@ -83,7 +83,7 @@ function M.config()
     },
     {
       provider = 'git_diff_added',
-      icon = ' ',
+      icon = icons.git.added .. ' ',
       hl = {
         fg = colors.green
       },
@@ -91,7 +91,7 @@ function M.config()
     },
     {
       provider = 'git_diff_changed',
-      icon = ' ',
+      icon = icons.git.modified .. ' ',
       hl = {
         fg = colors.orange
       },
@@ -99,7 +99,7 @@ function M.config()
     },
     {
       provider = 'git_diff_removed',
-      icon = ' ',
+      icon = icons.git.deleted .. ' ',
       hl = {
         fg = colors.red
       },
@@ -107,56 +107,6 @@ function M.config()
     },
   }
 
-  local diagnostic = {
-    {
-      provider = function()
-        return tostring(status.diagnostic.error.count())
-      end,
-      enabled = function ()
-        return status.diagnostic.error.count() > 0
-      end,
-      icon = status.diagnostic.error.icon .. ' ',
-      hl = {
-        fg = colors.red,
-      },
-    },
-    {
-      provider = function()
-        return tostring(status.diagnostic.warning.count())
-      end,
-      enabled = function ()
-        return status.diagnostic.warning.count() > 0
-      end,
-      icon = status.diagnostic.warning.icon .. ' ',
-      hl = {
-        fg = colors.yellow
-      },
-    },
-    {
-      provider = function()
-        return tostring(status.diagnostic.hint.count())
-      end,
-      enabled = function ()
-        return status.diagnostic.hint.count() > 0
-      end,
-      icon = status.diagnostic.hint.icon .. ' ',
-      hl = {
-        fg = colors.blue
-      },
-    },
-    {
-      provider = function()
-        return tostring(status.diagnostic.info.count())
-      end,
-      enabled = function ()
-        return status.diagnostic.info.count() > 0
-      end,
-      icon = status.diagnostic.info.icon .. ' ',
-      hl = {
-        fg = colors.cyan
-      },
-    },
-  }
 
   local lsp = {
     provider = 'lsp_client_names',
@@ -201,29 +151,6 @@ function M.config()
   }
 
   local file_info = {
-    --[[ hide os info ]]
-    --[[ { ]]
-    --[[   provider = file_osinfo, ]]
-    --[[   hl = { ]]
-    --[[     bg = colors.c2, ]]
-    --[[     style = 'bold' ]]
-    --[[   }, ]]
-    --[[   left_sep = { ]]
-    --[[     str = 'left_filled', ]]
-    --[[     hl = { ]]
-    --[[       fg = colors.c2, ]]
-    --[[       bg = colors.c1, ]]
-    --[[       -- fg = colors.yellow, ]]
-    --[[       -- fg = colors.skyblue, ]]
-    --[[     }, ]]
-    --[[   }, ]]
-    --[[   right_sep = { ]]
-    --[[     str = ' ', ]]
-    --[[     hl = { ]]
-    --[[       bg = colors.c2, ]]
-    --[[     }, ]]
-    --[[   }, ]]
-    --[[ }, ]]
     {
       provider = {
         name = 'file_type',
@@ -240,9 +167,6 @@ function M.config()
         str = 'left_filled',
         hl = {
           fg = colors.c2,
-          --[[ bg = colors.c1, ]]
-          -- fg = colors.yellow,
-          -- fg = colors.skyblue,
         },
       },
       right_sep = {
@@ -317,14 +241,6 @@ function M.config()
         },
       },
     },
-    --[[ { ]]
-    --[[   provider = 'scroll_bar', ]]
-    --[[   hl = { ]]
-    --[[     fg = colors.blue, ]]
-    --[[     bg = colors.c3, ]]
-    --[[     style = 'bold' ]]
-    --[[   }, ]]
-    --[[ } ]]
   }
 
 
@@ -335,11 +251,6 @@ function M.config()
   table.insert(left, space)
   for _, val in pairs(git) do
     table.insert(left, val)
-  end
-  table.insert(left, space)
-  for _, val in pairs(diagnostic) do
-    table.insert(left, val)
-    table.insert(left, space)
   end
   table.insert(left, space)
 
@@ -359,8 +270,6 @@ function M.config()
   -- ===================
   --        Right
   -- ===================
-  --[[ table.insert(right, treesitter) ]]
-  --[[ table.insert(right, lsp) ]]
   for _, val in pairs(file_info) do
     table.insert(right, val)
   end
@@ -411,8 +320,6 @@ function M.config()
     },
     disable = {
       filetypes = {
-        -- "^TelescopePrompt$",
-        -- "^neo%-tree%-popup$",
       }
     }
   })

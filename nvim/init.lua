@@ -7,7 +7,8 @@ local utils = require "core.utils"
 
 utils.disabled_builtins()
 
-utils.bootstrap()
+-- utils.bootstrap()
+utils.initialize_packer()
 
 local sources = {
   "core.options",
@@ -15,14 +16,9 @@ local sources = {
   "core.autocmds",
   "core.usercommands",
   "core.mappings",
-  -- "configs.which-key-register",
 }
 
-for _, source in ipairs(sources) do
-  local status_ok, fault = pcall(require, source)
-  if not status_ok then
-    error("Failed to load " .. source .. "\n\n" .. fault)
-  elseif source == "core.plugins" then
-    utils.compiled()
-  end
+for _, cfg in ipairs(sources) do 
+	require(cfg)
 end
+
