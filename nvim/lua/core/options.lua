@@ -77,13 +77,11 @@ vim.opt.fillchars:append({
 
 -- options for neovide
 if vim.g.neovide then
-  vim.cmd("colorscheme zephyr")
-
   -- font
   local os = vim.loop.os_uname().sysname:lower()
   if os == 'darwin' then
     -- vim.o.guifont = 'FiraCode Nerd Font Mono:h16'
-    vim.o.guifont = 'Maple Mono SC NF:h16'
+    vim.o.guifont = 'Maple Mono SC NF:h18'
   elseif os == 'windows_nt' then
     vim.o.guifont = 'FiraCode NF'
   end

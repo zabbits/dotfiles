@@ -6,6 +6,7 @@ function M.config()
     return
   end
 
+  vim.opt.termguicolors = true
   notify.setup({
     stages = "fade",
     on_open = nil,
