@@ -31,15 +31,6 @@ map("n", "<C-q>", "<cmd>q!<CR>")
 map("n", "<A-i>", ":put =strftime('%Y-%m-%d %H:%M:%S')<CR>", opts)
 
 -- === Window navigation ===
-if utils.is_available "smart-splits.nvim" then
-  -- Better window navigation
-  local ss = require("smart-splits")
-  map("n", "<A-h>", ss.resize_left)
-  map("n", "<A-j>", ss.resize_down)
-  map("n", "<A-k>", ss.resize_up)
-  map("n", "<A-l>", ss.resize_right)
-end
-
 map('n', '<C-h>', '<C-w>h', opts);
 map('n', '<C-l>', '<C-w>l', opts);
 map('n', '<C-k>', '<C-w>k', opts);
@@ -109,11 +100,6 @@ if utils.is_available "neo-tree.nvim" then
   map("n", "<leader>ob", "<cmd>Neotree toggle buffers<CR>", { desc = "Toggle Buffers" })
 end
 
--- === Dashboard ===
-if utils.is_available "dashboard-nvim" then
-  map("n", "<leader>fn", "<cmd>DashboardNewFile<CR>", { desc = "New File" })
-end
-
 -- === Close Buffer ===
 if utils.is_available "bufdelete.nvim" then
   map("n", "<leader>c", "<cmd>Bdelete<CR>", { desc = "Close Buffer" })
@@ -166,14 +152,6 @@ if utils.is_available "gitsigns.nvim" then
   end, { desc = "Diff" })
 end
 
--- === ToggleTerm ===
-if utils.is_available "nvim-toggleterm.lua" then
-end
-
--- === UrlView ===
-if utils.is_available "urlview.nvim" then
-  map("n", "<leader>sp", "<cmd>UrlView packer<cr>", { desc = "Search Plugin" })
-end
 
 -- === Telescope ===
 if utils.is_available "telescope.nvim" then
@@ -339,7 +317,6 @@ if utils.is_available("possession.nvim") then
   end,
     { desc = "Find Session" })
 
-  -- map("n", "<leader>ss", ":PossessionSave <CR>", { desc = "Session Save" })
   map("n", "<leader>ss", function()
     require('configs.project.posession-helper').save_session()
   end, { desc = "Session Save" })
@@ -351,23 +328,6 @@ end
 if utils.is_available("ufo") then
   map('n', 'zR', require('ufo').openAllFolds)
   map('n', 'zM', require('ufo').closeAllFolds)
-end
-
--- === Jump ===
-if utils.is_available('hop.nvim') then
-  map('n', 'f', function ()
-    require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })
-  end, opts)
-  map('n', 'F', function()
-    require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })
-  end, opts)
-  map('n', 't', function ()
-    require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
-  end, opts)
-  map('n', 'T', function ()
-    require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
-  end, opts)
-  map('', '<C-s>', '<cmd>HopWord<cr>', opts)
 end
 
 

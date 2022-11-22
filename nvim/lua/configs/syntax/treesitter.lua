@@ -34,7 +34,7 @@ function M.config()
     },
     indent = {
       enable = true,
-      disable = { "yaml", "norg", "org", "rust", "python", "c", "lua", "json", "go", "java" },
+      disable = { "yaml", "norg", "org", "python", "c", "lua", "json", "go", "java" },
     },
     rainbow = {
       enable = true,
