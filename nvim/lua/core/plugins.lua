@@ -187,7 +187,6 @@ local plgins = {
   -- textobject
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    disable = true,
     after = "nvim-treesitter",
   },
 
