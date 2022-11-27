@@ -11,6 +11,9 @@ function M.config()
       ["core.keybinds"] = {
         config = {
           default_keybinds = true,
+          hook = function(keybinds)
+            keybinds.remap("norg", "n", "<CR>", "<cmd>Neorg keybind norg core.norg.esupports.hop.hop-link<CR>")
+          end,
         }
       },
       ["core.export"] = {},
