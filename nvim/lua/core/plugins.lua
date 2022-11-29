@@ -83,6 +83,10 @@ local plgins = {
 
   -- Colorscheme
   {
+    "catppuccin/nvim",
+    as = "catppuccin",
+  },
+  {
     'tiagovla/tokyodark.nvim',
   },
   {

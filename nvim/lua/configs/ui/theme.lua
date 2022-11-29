@@ -34,27 +34,27 @@ local function set_kanagawa()
   return 'default'
 end
 
-local function set_zephyr()
-  local zephyr = safe_require('zephyr')
-  if zephyr then
-    M.bg = zephyr.bg
-    M.fg = zephyr.fg
-
-    return 'zephyr'
-  end
-
-  return 'default'
-end
 
 local function set_cat()
   local cat = safe_require('catppuccin')
   if cat then
-    local color = require("catppuccin.palettes").get_palette()
-    M.fg = color.text
-    M.bg = color.base
     cat.setup({
       flavour = 'mocha',
       term_colors = false,
+      color_overrides = {
+        all = {
+          base = "#161823",
+          text = "#ae7000",
+          -- yellow = "#7397ab",
+          yellow = "#e29c45",
+          peach = "#7397ab",
+          green = "#a29b7c",
+          mauve = "#00bc12",
+          flamingo = "#25f8cb",
+          lavender =  "#48c0a3",
+          teal = "#4c8dae",
+        },
+      },
       styles = {
         comments = { "italic" },
         properties = { "italic" },
@@ -119,6 +119,10 @@ local function set_cat()
       },
     })
 
+    local color = require("catppuccin.palettes").get_palette()
+    M.fg = color.text
+    M.bg = color.base
+
     return 'catppuccin'
   end
 
@@ -126,7 +130,7 @@ local function set_cat()
 end
 
 function M.config()
-  vim.cmd.colorscheme('tokyodark')
+  vim.cmd.colorscheme(set_cat())
 end
 
 return M
