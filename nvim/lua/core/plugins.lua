@@ -83,6 +83,9 @@ local plgins = {
 
   -- Colorscheme
   {
+    'rktjmp/lush.nvim',
+  },
+  {
     "catppuccin/nvim",
     as = "catppuccin",
   },

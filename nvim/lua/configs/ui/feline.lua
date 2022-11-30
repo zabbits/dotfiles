@@ -77,7 +77,6 @@ function M.config()
       icon = icons.git.base .. ' ',
       hl = {
         fg = colors.violet,
-        style = 'bold'
       },
       right_sep = ' ',
     },
@@ -155,56 +154,29 @@ function M.config()
       provider = {
         name = 'file_type',
         opts = {
-          filetype_icon = true,
+          filetype_icon = false,
           case = 'lowercase',
         },
       },
-      hl = {
-        bg = colors.c2,
-        style = 'bold'
-      },
       left_sep = {
-        str = 'left_filled',
-        hl = {
-          fg = colors.c2,
-        },
+        str = ' ',
       },
       right_sep = {
         str = ' ',
-        hl = {
-          bg = colors.c2,
-        },
       },
     },
     {
       provider = function()
         return vim.bo.fileencoding
       end,
-      hl = {
-        bg = colors.c2,
-        style = 'bold'
-      },
       right_sep = {
         str = ' ',
-        hl = {
-          bg = colors.c2,
-        },
       },
     },
     {
       provider = function()
         return 'space:'..vim.bo.tabstop
       end,
-      hl = {
-        bg = colors.c2,
-        style = 'bold'
-      },
-      right_sep = {
-        str = ' ',
-        hl = {
-          bg = colors.c2,
-        },
-      },
     },
   }
 
@@ -212,33 +184,16 @@ function M.config()
     {
       provider = 'position',
       left_sep = {
-        str = 'left_filled',
-        hl = {
-          bg = colors.c2,
-          fg = colors.c3,
-        }
+        str = ' ',
       },
       right_sep = {
         str = ' ',
-        hl = {
-          bg = colors.c3,
-        },
-      },
-      hl = {
-        bg = colors.c3,
       },
     },
     {
       provider = 'line_percentage',
-      hl = {
-        bg = colors.c3,
-        style = 'bold'
-      },
       right_sep = {
         str = ' ',
-        hl = {
-          bg = colors.c3,
-        },
       },
     },
   }
