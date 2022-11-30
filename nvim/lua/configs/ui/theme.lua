@@ -34,27 +34,83 @@ local function set_kanagawa()
   return 'default'
 end
 
-local function set_zephyr()
-  local zephyr = safe_require('zephyr')
-  if zephyr then
-    M.bg = zephyr.bg
-    M.fg = zephyr.fg
+-- base = "#161823",
+-- text = "#ae7000",
+-- yellow = "#549688",
+-- peach = "#7397ab",
+-- green = "#a29b7c",
+-- mauve = "#00bc12",
+-- flamingo = "#25f8cb",
+-- lavender = "#48c0a3",
+-- teal = "#4c8dae",
+-- blue = "#5976ba",
 
-    return 'zephyr'
-  end
-
-  return 'default'
-end
+local cnc = {
+  liqiu = {
+    cangcang = '#5976ba',
+  },
+  yushui = {
+    kujin = '#e18a3b',
+  },
+  daxue = {
+    quemei = '#788a6f',
+    meirenji = '#c35c6a',
+  },
+  lichun = {
+    liuhuang = '#8b7042',
+  },
+  qiufen = {
+    rauncui = '#006d87',
+  },
+  shuangjiang = {
+    chenxiang = '#99806c',
+  },
+  jingzhe = {
+    tuohuang = '#c67915',
+  },
+  chushu = {
+    facui = '#108b96',
+  },
+  xiaoshu = {
+    chiling = '#954024',
+  }
+}
 
 local function set_cat()
   local cat = safe_require('catppuccin')
   if cat then
-    local color = require("catppuccin.palettes").get_palette()
-    M.fg = color.text
-    M.bg = color.base
     cat.setup({
       flavour = 'mocha',
       term_colors = false,
+      color_overrides = {
+        all = {
+          base = "#151d29",
+          text = cnc.liqiu.cangcang,
+          yellow = cnc.jingzhe.tuohuang,
+          peach = cnc.daxue.meirenji,
+          green = cnc.daxue.quemei,
+          mauve = cnc.chushu.facui,
+          lavender = cnc.xiaoshu.chiling,
+          teal = cnc.shuangjiang.chenxiang,
+          blue = cnc.lichun.liuhuang,
+          sky = cnc.liqiu.cangcang,
+        },
+      },
+      custom_highlights = function(colors)
+        return {
+          Visual = {
+            style = {}
+          },
+          VisualNOS = {
+            style = {}
+          },
+          TelescopeSelection = {
+            fg = colors.green,
+            bg = colors.base,
+            style = { "bold" },
+          }
+        }
+      end,
       styles = {
         comments = { "italic" },
         properties = { "italic" },
@@ -119,6 +175,10 @@ local function set_cat()
       },
     })
 
+    local color = require("catppuccin.palettes").get_palette()
+    M.fg = color.text
+    M.bg = color.base
+
     return 'catppuccin'
   end
 
@@ -126,7 +186,7 @@ local function set_cat()
 end
 
 function M.config()
-  vim.cmd.colorscheme('tokyodark')
+  vim.cmd.colorscheme(set_cat())
 end
 
 return M

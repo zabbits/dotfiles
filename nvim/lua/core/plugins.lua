@@ -83,6 +83,13 @@ local plgins = {
 
   -- Colorscheme
   {
+    'rktjmp/lush.nvim',
+  },
+  {
+    "catppuccin/nvim",
+    as = "catppuccin",
+  },
+  {
     'tiagovla/tokyodark.nvim',
   },
   {
@@ -187,7 +194,6 @@ local plgins = {
   -- textobject
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    disable = true,
     after = "nvim-treesitter",
   },
 
