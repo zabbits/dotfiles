@@ -84,7 +84,10 @@ local function set_cat()
       term_colors = false,
       color_overrides = {
         all = {
-          base = "#151d29",
+          -- base = "#151d29",
+          base = "#06080a",
+          mantle = "#080808",
+          crust = "#000000",
           text = cnc.liqiu.cangcang,
           yellow = cnc.jingzhe.tuohuang,
           peach = cnc.daxue.meirenji,
@@ -163,7 +166,7 @@ local function set_cat()
         ts_rainbow = true,
         vim_sneak = false,
         vimwiki = false,
-        which_key = false,
+        which_key = true,
         indent_blankline = {
           enabled = true,
           colored_indent_levels = false,
