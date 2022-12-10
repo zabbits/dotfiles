@@ -13,6 +13,9 @@ function M.config()
       -- CHANGE THIS to your path!
       command = 'codelldb',
       args = { "--port", "${port}" },
+
+      -- On windows you may have to uncomment this:
+      -- detached = false,
     }
   }
 
@@ -25,10 +28,9 @@ function M.config()
         return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
       end,
       cwd = '${workspaceFolder}',
-      stopOnEntry = true,
+      stopOnEntry = false,
     },
   }
-
 end
 
 return M

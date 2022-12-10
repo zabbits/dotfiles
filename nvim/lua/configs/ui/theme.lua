@@ -71,9 +71,9 @@ local function set_cat()
         all = {
           -- base = "#16161D",
           -- base = "#151d29",
-          base = "#06080a",
-          mantle = "#080808",
-          crust = "#000000",
+          base = "#181a1f",
+          mantle = "#181a1f",
+          crust = "#181a1f",
           text = cnc.liqiu.cangcang,
           yellow = cnc.jingzhe.tuohuang,
           peach = cnc.daxue.meirenji,

@@ -6,9 +6,6 @@ function M.config()
   if not rt or not handlers then
     return
   end
-  local path = vim.env.HOME .. '/home/zbs/.local/share/nvim/mason/packages/codelldb'
-  local codelldb_path = path .. 'codelldb'
-  local liblldb_path = path .. '/extension/lldb/lib/liblldb.so'
 
   rt.setup({
     tools = {
@@ -75,10 +72,6 @@ function M.config()
       on_attach = handlers.on_attach,
       capabilities = handlers.capabilities,
     },
-    -- dap = {
-    --   adapter = require('rust-tools.dap').get_codelldb_adapter(
-    --     codelldb_path, liblldb_path)
-    -- }
   })
 end
 

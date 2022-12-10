@@ -258,15 +258,15 @@ local plgins = {
     end,
   },
 
-  -- ====================
-  --         LSP
-  -- ====================
 
+  -- ====================
+  --         MASON
+  -- ====================
   {
     "williamboman/mason.nvim",
     event = { 'BufNewFile', 'BufRead' },
     config = function()
-      require('configs.lsp.mason').config()
+      require('configs.mason.mason').config()
     end
   },
 
@@ -274,10 +274,22 @@ local plgins = {
     "williamboman/mason-lspconfig.nvim",
     after = "mason.nvim",
     config = function()
-      require('configs.lsp.mason-lspconfig').config()
+      require('configs.mason.mason-lspconfig').config()
     end
   },
 
+  {
+    "jayp0521/mason-nvim-dap.nvim",
+    after = "nvim-dap",
+    config = function()
+      require('configs.mason.mason-dap').config()
+    end
+  },
+
+
+  -- ====================
+  --         LSP
+  -- ====================
   -- Built-in LSP
   {
     "neovim/nvim-lspconfig",
@@ -420,7 +432,7 @@ local plgins = {
   -- ====================
   {
     'mfussenegger/nvim-dap',
-    disable = true,
+    disable = false,
     config = function()
       require('configs.dap').config()
     end
@@ -429,7 +441,7 @@ local plgins = {
   {
     "rcarriga/nvim-dap-ui",
     after = "nvim-dap",
-    disable = true,
+    disable = false,
     config = function()
       require('configs.dap.dap-ui').config()
     end

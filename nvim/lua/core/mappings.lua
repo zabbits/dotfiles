@@ -65,7 +65,8 @@ end
 -- === LSP Preview ===
 if utils.is_available "goto-preview" then
   map("n", "gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", { desc = "Preview Definition" })
-  map("n", "gpi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", { desc = "Preview Implementation" })
+  map("n", "gpi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>",
+    { desc = "Preview Implementation" })
   map("n", "gq", "<cmd>lua require('goto-preview').close_all_win()<CR>", { desc = "Preview Close" })
   map("n", "gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", { desc = "Preview References" })
 end
@@ -73,7 +74,8 @@ end
 -- === Terminal ===
 if utils.is_available "nvim-toggleterm.lua" then
   map("n", "<C-\\>", "<cmd>ToggleTerm<CR>")
-  map({"n", "i", "v", "x"}, "<F5>", '<ESC><cmd>TermExec cmd="cc % -o temp.out;./temp.out;rm ./temp.out"<CR>', { desc = "Run C" })
+  map({ "n", "i", "v", "x" }, "<F5>", '<ESC><cmd>TermExec cmd="cc % -o temp.out;./temp.out;rm ./temp.out"<CR>',
+    { desc = "Run C" })
 end
 
 -- === Comment ===
@@ -252,7 +254,7 @@ end
 
 -- === Neorg ===
 if utils.is_available('neorg') then
-  map("n", "<leader>nv", function ()
+  map("n", "<leader>nv", function()
     if not is_plugin_load("nvim-treesitter") then
       packer_load("nvim-treesitter")
     end
@@ -335,6 +337,36 @@ end
 -- === OS Yank ===
 if utils.is_available("vim-oscyank") then
   map('v', '<leader>y', ':OSCYank<CR>', opts)
+end
+
+
+-- === DAP ===
+if utils.is_available("nvim-dap") then
+  -- modified function keys found with `showkey -a` in the terminal to get key code
+  -- run `nvim -V3log +quit` and search through the "Terminal info" in the `log` file for the correct keyname
+  map('n', "<F5>", function() require("dap").continue() end, { desc = "Debugger: Start" })
+  map('n', "<F17>", function() require("dap").terminate() end, { desc = "Debugger: Stop" }) -- Shift+F5
+  map('n', "<F29>", function() require("dap").restart_frame() end, { desc = "Debugger: Restart" }) -- Control+F5
+  map('n', "<F6>", function() require("dap").pause() end, { desc = "Debugger: Pause" })
+  map('n', "<F9>", function() require("dap").toggle_breakpoint() end, { desc = "Debugger: Toggle Breakpoint" })
+  map('n', "<F10>", function() require("dap").step_over() end, { desc = "Debugger: Step Over" })
+  map('n', "<F11>", function() require("dap").step_into() end, { desc = "Debugger: Step Into" })
+  map('n', "<F23>", function() require("dap").step_out() end, { desc = "Debugger: Step Out" }) -- Shift+F11
+  map('n', "<leader>db", function() require("dap").toggle_breakpoint() end, { desc = "Toggle Breakpoint (F9)" })
+  map('n', "<leader>dB", function() require("dap").clear_breakpoints() end, { desc = "Clear Breakpoints" })
+  map('n', "<leader>dc", function() require("dap").continue() end, { desc = "Start/Continue (F5)" })
+  map('n', "<leader>di", function() require("dap").step_into() end, { desc = "Step Into (F11)" })
+  map('n', "<leader>do", function() require("dap").step_over() end, { desc = "Step Over (F10)" })
+  map('n', "<leader>dO", function() require("dap").step_out() end, { desc = "Step Out (S-F11)" })
+  map('n', "<leader>dq", function() require("dap").close() end, { desc = "Close Session" })
+  map('n', "<leader>dQ", function() require("dap").terminate() end, { desc = "Terminate Session (S-F5)" })
+  map('n', "<leader>dp", function() require("dap").pause() end, { desc = "Pause (F6)" })
+  map('n', "<leader>dr", function() require("dap").restart_frame() end, { desc = "Restart (C-F5)" })
+  map('n', "<leader>dR", function() require("dap").repl.toggle() end, { desc = "Toggle REPL" })
+  if utils.is_available("nvim-dap-ui") then
+    map('n', "<leader>du", function() require("dapui").toggle() end, { desc = "Toggle Debugger UI" })
+    map('n', "<leader>dh", function() require("dap.ui.widgets").hover() end, { desc = "Debugger Hover" })
+  end
 end
 
 
