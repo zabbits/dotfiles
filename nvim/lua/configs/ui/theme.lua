@@ -19,11 +19,7 @@ local function set_kanagawa()
       globalStatus = true, -- adjust window separators highlight for laststatus=3
       terminalColors = true, -- define vim.g.terminal_color_{0,17}
       colors = {},
-      overrides = {
-        TreesitterContext = { bg = colors.bg_menu_sel },
-        TreesitterContextLineNumber = { fg = colors.fn }
-      },
-      theme = "default" -- Load "default" theme or the experimental "light" theme
+      theme = "default", -- Load "default" theme or the experimental "light" theme
     })
 
     M.bg = colors.bg
@@ -33,17 +29,6 @@ local function set_kanagawa()
 
   return 'default'
 end
-
--- base = "#161823",
--- text = "#ae7000",
--- yellow = "#549688",
--- peach = "#7397ab",
--- green = "#a29b7c",
--- mauve = "#00bc12",
--- flamingo = "#25f8cb",
--- lavender = "#48c0a3",
--- teal = "#4c8dae",
--- blue = "#5976ba",
 
 local cnc = {
   liqiu = {
@@ -81,9 +66,10 @@ local function set_cat()
   if cat then
     cat.setup({
       flavour = 'mocha',
-      term_colors = false,
+      term_colors = true,
       color_overrides = {
         all = {
+          -- base = "#16161D",
           -- base = "#151d29",
           base = "#06080a",
           mantle = "#080808",
@@ -190,6 +176,7 @@ end
 
 function M.config()
   vim.cmd.colorscheme(set_cat())
+  -- vim.cmd.colorscheme(set_kanagawa())
 end
 
 return M
