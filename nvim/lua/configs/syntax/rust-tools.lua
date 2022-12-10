@@ -7,6 +7,10 @@ function M.config()
     return
   end
 
+  local mason_path = vim.env.HOME .. '/.local/share/nvim/mason/packages'
+  local codelldb_path = mason_path .. '/codelldb/extension/adapter/codelldb'
+  local liblldb_path = mason_path .. '/codelldb/extension/lldb/lib/liblldb.dylib'
+
   rt.setup({
     tools = {
       -- These apply to the default RustSetInlayHints command
@@ -71,6 +75,10 @@ function M.config()
     server = {
       on_attach = handlers.on_attach,
       capabilities = handlers.capabilities,
+    },
+    dap = {
+      adapter = require('rust-tools.dap').get_codelldb_adapter(
+        codelldb_path, liblldb_path)
     },
   })
 end

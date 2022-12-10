@@ -280,7 +280,7 @@ local plgins = {
 
   {
     "jayp0521/mason-nvim-dap.nvim",
-    after = "nvim-dap",
+    after = "mason.nvim",
     config = function()
       require('configs.mason.mason-dap').config()
     end
@@ -432,7 +432,6 @@ local plgins = {
   -- ====================
   {
     'mfussenegger/nvim-dap',
-    disable = false,
     config = function()
       require('configs.dap').config()
     end
@@ -441,7 +440,6 @@ local plgins = {
   {
     "rcarriga/nvim-dap-ui",
     after = "nvim-dap",
-    disable = false,
     config = function()
       require('configs.dap.dap-ui').config()
     end
