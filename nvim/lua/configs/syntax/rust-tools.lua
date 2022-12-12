@@ -9,7 +9,14 @@ function M.config()
 
   local mason_path = vim.env.HOME .. '/.local/share/nvim/mason/packages'
   local codelldb_path = mason_path .. '/codelldb/extension/adapter/codelldb'
-  local liblldb_path = mason_path .. '/codelldb/extension/lldb/lib/liblldb.dylib'
+
+  local os = vim.loop.os_uname().sysname:lower()
+  local postfix = '.so'
+  if os == 'darwin' then
+    postfix = 'dylib'
+  end
+
+  local liblldb_path = mason_path .. '/codelldb/extension/lldb/lib/liblldb' .. postfix
 
   rt.setup({
     tools = {

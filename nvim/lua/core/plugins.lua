@@ -409,6 +409,7 @@ local plgins = {
   -- rust tools
   {
     'simrat39/rust-tools.nvim',
+    ft = 'rust',
     after = 'nvim-lspconfig',
     config = function()
       require("configs.syntax.rust-tools").config()
@@ -432,6 +433,7 @@ local plgins = {
   -- ====================
   {
     'mfussenegger/nvim-dap',
+    event = { 'BufNewFile', 'BufRead' },
     config = function()
       require('configs.dap').config()
     end

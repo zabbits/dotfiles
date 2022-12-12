@@ -61,6 +61,43 @@ local cnc = {
   }
 }
 
+-- 浅灰色：#D3D3D3
+-- 淡紫色：#D8BFD8
+-- 淡粉色：#FFB6C1
+-- 淡黄色：#FFFFE0
+-- 淡绿色：#90EE90
+-- 淡蓝色：#ADD8E6
+-- 淡紫红色：#DB7093
+-- 淡紫罗兰色：#E6E6FA
+-- 淡青色：#D1EEEE
+-- 淡棕色：#F5F5DC
+-- 淡红色：#FFE4E1
+-- 淡橙色：#FFEBCD
+-- 淡黄绿色：#98FB98
+-- 淡靛蓝：#87CEEB
+-- 淡紫紫：#E0FFFF
+-- 淡紫棕色：#E6E6CD
+-- 淡紫褐色：#EBCCD1
+-- 淡紫灰色：#DCD0FF
+-- 淡紫黑色：#DDA0DD
+-- 淡紫金色：#DDA0DD
+-- 浅黄色：#FFFACD
+-- 淡红褐色：#F5DEB3
+-- 淡绿青色：#00FFFF
+-- 淡黄绿色：#7FFFD4
+-- 淡紫红色：#DDA0DD
+-- 淡紫棕色：#D2B48C
+-- 淡紫灰色：#BEBEBE
+-- 淡紫黑色：#6B8E23
+-- 淡紫金色：#EEE8AA
+-- 淡紫银色：#C0C0C0
+-- 淡紫青色：#87CEEB
+-- 淡紫褐色：#B0C4DE
+-- 淡紫绿色：#00FF00
+-- 淡紫蓝色：#00FFFF
+-- 淡紫紫色：#E0FFFF
+-- 淡紫黑色：#000000
+
 local function set_cat()
   local cat = safe_require('catppuccin')
   if cat then
@@ -71,18 +108,18 @@ local function set_cat()
         all = {
           -- base = "#16161D",
           -- base = "#151d29",
-          base = "#181a1f",
-          mantle = "#181a1f",
-          crust = "#181a1f",
+          base = "#161A17",
+          mantle = "#212420",
+          crust = "#2A262A",
           text = cnc.liqiu.cangcang,
-          yellow = cnc.jingzhe.tuohuang,
-          peach = cnc.daxue.meirenji,
-          green = cnc.daxue.quemei,
-          mauve = cnc.chushu.facui,
-          lavender = cnc.xiaoshu.chiling,
-          teal = cnc.shuangjiang.chenxiang,
-          blue = cnc.lichun.liuhuang,
-          sky = cnc.liqiu.cangcang,
+          yellow = '#FFFFE0',
+          peach = '#FFB6C1',
+          green = '#90EE90',
+          mauve = '#E6E6CD',
+          lavender = '#00FFFF',
+          teal = '#DDA0DD',
+          blue = '#ADD8E6',
+          sky = '#00FFFF',
         },
       },
       custom_highlights = function(colors)
@@ -175,7 +212,7 @@ local function set_cat()
 end
 
 function M.config()
-  vim.cmd.colorscheme(set_cat())
+  vim.cmd.colorscheme("tokyodark")
   -- vim.cmd.colorscheme(set_kanagawa())
 end
 
