@@ -1,27 +1,26 @@
 local wezterm = require 'wezterm'
 
 return {
-  font_size = 19.5,
-  -- // 哈哈哈哈
+  font_size = 18.5,
   font = wezterm.font_with_fallback {
-    {
-      family = "Comic Shanns",
-      weight = "Regular", 
-      stretch = "Normal",
-      style = "Normal"
-    },
-    {
-      family = "Comic Mono",
-      weight = "Regular", 
-      stretch = "Normal",
-      style = "Normal"
-    },
-    {
-      family = "Maple Mono SC NF",
-      weight = "Regular",
-      stretch = "Normal",
-      style = "Normal"
-    },
+    -- {
+    --   family = "Comic Shanns",
+    --   weight = "Regular", 
+    --   stretch = "Normal",
+    --   style = "Normal"
+    -- },
+    -- {
+    --   family = "Comic Mono",
+    --   weight = "Regular", 
+    --   stretch = "Normal",
+    --   style = "Normal"
+    -- },
+    -- {
+    --   family = "Maple Mono SC NF",
+    --   weight = "Regular",
+    --   stretch = "Normal",
+    --   style = "Normal"
+    -- },
     {
       family = 'FiraCode Nerd Font Mono',
       weight = 450,

@@ -1,31 +1,14 @@
-M = {}
-
-local packer_status_ok, packer = pcall(require, "packer")
-if not packer_status_ok then
-  return
-end
-
-local cfg = require('core.configs')
-
-local plgins = {
+require('lazy').setup({
   -- Plugin manager
   {
     "wbthomason/packer.nvim",
   },
-
-  -- Optimiser
-  { "lewis6991/impatient.nvim" },
 
   -- Lua functions
   { "nvim-lua/plenary.nvim" },
 
   -- Popup API
   { "nvim-lua/popup.nvim" },
-
-  -- startuptime
-  -- {
-  --   'dstein64/vim-startuptime'
-  -- },
 
   -- Boost startup time
   {
@@ -46,7 +29,7 @@ local plgins = {
   -- Neovim UI Enhancer
   {
     "MunifTanjim/nui.nvim",
-    module = "nui",
+    -- module = "nui",
   },
 
   -- Cursorhold fix
@@ -60,7 +43,7 @@ local plgins = {
   {
     "folke/noice.nvim",
     event = "VimEnter",
-    disable = not cfg.noice,
+    enabled = false,
     config = function()
       require('configs.ui.noice').config()
     end,
@@ -87,7 +70,7 @@ local plgins = {
   },
   {
     "catppuccin/nvim",
-    as = "catppuccin",
+    name = "catppuccin",
   },
   {
     'tiagovla/tokyodark.nvim',
@@ -114,7 +97,7 @@ local plgins = {
   {
     "akinsho/bufferline.nvim",
     tag = "v2.*",
-    after = "nvim-web-devicons",
+    dependencies = { "nvim-web-devicons" },
     event = { 'BufRead', 'BufNewFile' },
     config = function()
       require("configs.ui.bufferline").config()
@@ -131,9 +114,9 @@ local plgins = {
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
-    module = "neo-tree",
+    -- module = "neo-tree",
     cmd = "Neotree",
-    requires = "MunifTanjim/nui.nvim",
+    dependencies = {"MunifTanjim/nui.nvim"},
     config = function()
       require("configs.neo-tree").config()
     end,
@@ -161,7 +144,7 @@ local plgins = {
   -- ====================
   {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    build = ":TSUpdate",
     event = { "BufRead", "BufNewFile" },
     config = function()
       require("configs.syntax.treesitter").config()
@@ -171,22 +154,22 @@ local plgins = {
   -- Parenthesis highlighting
   {
     "p00f/nvim-ts-rainbow",
-    after = "nvim-treesitter",
+    dependencies = {"nvim-treesitter"},
   },
   -- Autoclose tags
   {
     "windwp/nvim-ts-autotag",
-    after = "nvim-treesitter",
+    dependencies = {"nvim-treesitter"},
   },
   -- Context based commenting
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
-    after = "nvim-treesitter",
+    dependencies = {"nvim-treesitter"},
   },
   -- show match context
   {
     "nvim-treesitter/nvim-treesitter-context",
-    after = "nvim-treesitter",
+    dependencies = {"nvim-treesitter"},
     config = function()
       require('configs.syntax.treesitter-context').config()
     end
@@ -194,7 +177,7 @@ local plgins = {
   -- textobject
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    after = "nvim-treesitter",
+    dependencies = {"nvim-treesitter"},
   },
 
   -- ====================
@@ -209,7 +192,7 @@ local plgins = {
   -- Snippet engine
   {
     "L3MON4D3/LuaSnip",
-    after = "friendly-snippets",
+    dependencies = {"friendly-snippets"},
     config = function()
       require("configs.edit.luasnip").config()
     end,
@@ -218,7 +201,7 @@ local plgins = {
   -- Completion engine
   {
     "hrsh7th/nvim-cmp",
-    after = "LuaSnip",
+    dependencies = {"LuaSnip"},
     -- event = { "BufRead", "BufNewFile" },
     config = function()
       require("configs.edit.cmp").config()
@@ -228,31 +211,31 @@ local plgins = {
   -- Snippet completion source
   {
     "saadparwaiz1/cmp_luasnip",
-    after = "nvim-cmp",
+    dependencies = {"nvim-cmp"},
   },
 
   -- Buffer completion source
   {
     "hrsh7th/cmp-buffer",
-    after = "nvim-cmp",
+    dependencies = {"nvim-cmp"},
   },
 
   -- Path completion source
   {
     "hrsh7th/cmp-path",
-    after = "nvim-cmp",
+    dependencies = {"nvim-cmp"},
   },
 
   -- LSP completion source
   {
     "hrsh7th/cmp-nvim-lsp",
-    after = "nvim-cmp",
+    dependencies = {"nvim-cmp"},
   },
 
   -- Autopairs
   {
     "windwp/nvim-autopairs",
-    after = "nvim-cmp",
+    dependencies = {"nvim-cmp"},
     config = function()
       require("configs.edit.autopairs").config()
     end,
@@ -272,7 +255,7 @@ local plgins = {
 
   {
     "williamboman/mason-lspconfig.nvim",
-    after = "mason.nvim",
+    dependencies = {"mason.nvim"},
     config = function()
       require('configs.mason.mason-lspconfig').config()
     end
@@ -280,7 +263,7 @@ local plgins = {
 
   {
     "jayp0521/mason-nvim-dap.nvim",
-    after = "mason.nvim",
+    dependencies = {"mason.nvim"},
     config = function()
       require('configs.mason.mason-dap').config()
     end
@@ -293,7 +276,7 @@ local plgins = {
   -- Built-in LSP
   {
     "neovim/nvim-lspconfig",
-    after = "mason-lspconfig.nvim",
+    dependencies = {"mason-lspconfig.nvim"},
     config = function()
       require "configs.lsp"
     end
@@ -302,13 +285,13 @@ local plgins = {
   -- Lua dev
   {
     "folke/lua-dev.nvim",
-    after = 'nvim-lspconfig',
+    dependencies = {'nvim-lspconfig'},
   },
 
   -- Symbols outline
   {
     'stevearc/aerial.nvim',
-    after = 'nvim-lspconfig',
+    dependencies = {'nvim-lspconfig'},
     config = function()
       require('configs.lsp.aerial').config()
     end
@@ -317,7 +300,7 @@ local plgins = {
   -- Formatting and linting
   -- {
   --   "jose-elias-alvarez/null-ls.nvim",
-  --   after = 'nvim-lspconfig',
+  --   dependencies = 'nvim-lspconfig',
   --   config = function()
   --     -- TODO
   --   end,
@@ -326,7 +309,7 @@ local plgins = {
   -- misc of lsp
   {
     "glepnir/lspsaga.nvim",
-    after = 'nvim-lspconfig',
+    dependencies = {'nvim-lspconfig'},
     config = function()
       require("configs.lsp.lspsaga").config()
     end
@@ -335,7 +318,8 @@ local plgins = {
   -- lsp diagnostic
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    after = 'nvim-lspconfig',
+    url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    dependencies = {'nvim-lspconfig'},
     config = function()
       vim.diagnostic.config({ virtual_lines = false })
       require("lsp_lines").setup()
@@ -345,7 +329,7 @@ local plgins = {
 
   {
     "ray-x/lsp_signature.nvim",
-    after = 'nvim-lspconfig',
+    dependencies = {'nvim-lspconfig'},
     config = function()
       require("configs.lsp.lsp-signature").config()
     end
@@ -354,8 +338,7 @@ local plgins = {
   -- lsp trouble
   {
     "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    after = 'nvim-lspconfig',
+    dependencies = {"kyazdani42/nvim-web-devicons", 'nvim-lspconfig'},
     config = function()
       require('configs.lsp.lsp-trouble').config()
     end
@@ -364,7 +347,7 @@ local plgins = {
   -- lsp preview
   {
     'rmagatti/goto-preview',
-    after = 'nvim-lspconfig',
+    dependencies = {'nvim-lspconfig'},
     config = function()
       require('configs.lsp.lsp-preview').config()
     end
@@ -373,7 +356,7 @@ local plgins = {
   -- lsp loading info
   {
     'j-hui/fidget.nvim',
-    after = 'nvim-lspconfig',
+    dependencies = {'nvim-lspconfig'},
     config = function()
       require("fidget").setup {
         text = {
@@ -386,8 +369,8 @@ local plgins = {
   -- inlay hint
   {
     'lvimuser/lsp-inlayhints.nvim',
-    after = 'nvim-lspconfig',
-    disable = true,
+    dependencies = {'nvim-lspconfig'},
+    enabled = false,
     config = function ()
       require("lsp-inlayhints").setup()
       vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
@@ -410,7 +393,7 @@ local plgins = {
   {
     'simrat39/rust-tools.nvim',
     ft = 'rust',
-    after = 'nvim-lspconfig',
+    dependencies = {'nvim-lspconfig'},
     config = function()
       require("configs.syntax.rust-tools").config()
     end
@@ -441,7 +424,7 @@ local plgins = {
 
   {
     "rcarriga/nvim-dap-ui",
-    after = "nvim-dap",
+    dependencies = {"nvim-dap"},
     config = function()
       require('configs.dap.dap-ui').config()
     end
@@ -454,7 +437,7 @@ local plgins = {
   -- Fuzzy finder
   {
     "nvim-telescope/telescope.nvim",
-    module = "telescope",
+    -- module = "telescope",
     config = function()
       require("configs.telescope").config()
     end,
@@ -463,8 +446,8 @@ local plgins = {
   -- Fuzzy finder syntax support
   {
     "nvim-telescope/telescope-fzf-native.nvim",
-    after = "telescope.nvim",
-    run = "make",
+    dependencies = {"telescope.nvim"},
+    build = "make",
     config = function()
       require("telescope").load_extension "fzf"
     end,
@@ -491,7 +474,7 @@ local plgins = {
   -- Start screen
   {
     'goolord/alpha-nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require('configs.ui.alpha').config()
     end
@@ -568,7 +551,7 @@ local plgins = {
     "nvim-neorg/neorg",
     cmd = "NeorgStart",
     ft = 'norg',
-    after = "nvim-treesitter",
+    dependencies = {"nvim-treesitter"},
     config = function()
       require('configs.neorg').config()
     end,
@@ -576,13 +559,13 @@ local plgins = {
 
   {
     "nvim-neorg/neorg-telescope",
-    after = 'neorg',
+    dependencies = {'neorg'},
   },
 
   {
     'michaelb/sniprun',
-    after = 'neorg',
-    run = 'bash ./install.sh',
+    dependencies = {'neorg'},
+    build = 'bash ./install.sh',
     config = function()
       require('configs.sniprun').config()
     end
@@ -601,7 +584,7 @@ local plgins = {
   {
     'ThePrimeagen/harpoon',
     -- event = { "BufRead", "BufNewFile" },
-    after = 'telescope.nvim',
+    dependencies = {'telescope.nvim'},
     config = function()
       require('configs.project.harpoon').config()
     end
@@ -610,7 +593,7 @@ local plgins = {
   -- manage project
   {
     'ahmedkhalf/project.nvim',
-    after = 'telescope.nvim',
+    dependencies = {'telescope.nvim'},
     config = function()
       require('configs.project.project').config()
     end
@@ -619,7 +602,7 @@ local plgins = {
   -- manage session
   {
     'jedrzejboczar/possession.nvim',
-    after = 'telescope.nvim',
+    dependencies = {'telescope.nvim'},
     config = function()
       require('configs.project.session').config()
     end
@@ -632,7 +615,7 @@ local plgins = {
   {
     's1n7ax/nvim-window-picker',
     tag = 'v1.*',
-    after = 'neo-tree.nvim',
+    dependencies = {'neo-tree.nvim'},
     config = function()
       require('configs.win.window-picker').config()
     end,
@@ -640,7 +623,7 @@ local plgins = {
   -- Smarter Splits
   {
     "mrjones2014/smart-splits.nvim",
-    module = "smart-splits",
+    -- module = "smart-splits",
     event = { 'WinNew', 'TabNew' },
     config = function()
       require("configs.win.smart-splits").config()
@@ -667,7 +650,7 @@ local plgins = {
   {
     "in-a-day/command-palette",
     -- "~/github/command-palette",
-    after = "telescope.nvim",
+    dependencies = {"telescope.nvim"},
     config = function()
       require("configs.command-palette").config()
     end
@@ -675,13 +658,13 @@ local plgins = {
 
   {
     'kevinhwang91/promise-async',
-    after = 'nvim-lspconfig',
+    dependencies = {'nvim-lspconfig'},
   },
 
   -- fold
   {
     'kevinhwang91/nvim-ufo',
-    after = 'promise-async',
+    dependencies = {'promise-async'},
     config = function()
       require("configs.edit.ufo").config()
     end
@@ -693,35 +676,4 @@ local plgins = {
     event = { "BufRead", "BufNewFile" },
     branch = 'main',
   },
-}
-
-packer.startup {
-  function(use)
-    -- Load plugins!
-    for _, plugin in pairs(plgins) do
-      use(plugin)
-    end
-  end,
-  config = {
-    compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
-    display = {
-      open_fn = function()
-        return require("packer.util").float { border = "rounded" }
-      end,
-    },
-    profile = {
-      enable = true,
-      threshold = 0.0001,
-    },
-    git = {
-      clone_timeout = 300,
-      subcommands = {
-        update = "pull --ff-only --progress --rebase=true",
-      },
-    },
-    auto_clean = true,
-    compile_on_sync = true,
-  },
-}
-
-return M
+})
