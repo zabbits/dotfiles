@@ -1,5 +1,6 @@
 local M = {
   "rcarriga/nvim-notify",
+  event = "VeryLazy",
 }
 
 function M.config()

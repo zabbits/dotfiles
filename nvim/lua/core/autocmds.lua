@@ -28,14 +28,6 @@ cmd("FileType", {
   command = "nnoremap <silent> <buffer> q :close<cr>",
 })
 
-augroup("packer_user_config", {})
-cmd("BufWritePost", {
-  desc = "Auto Compile plugins.lua file",
-  group = "packer_user_config",
-  command = "source <afile> | PackerCompile",
-  pattern = "plugins.lua",
-})
-
 local as_id = augroup("alpha_settings", {})
 cmd("User", {
   desc = "",
@@ -118,23 +110,23 @@ cmd({ "InsertLeave", }, {
 })
 
 -- fix luasnip use tab go to history
-augroup("_luasnip", {})
-cmd("ModeChanged", {
-  group = "_luasnip",
-  callback = function()
-    local luasnip = _G.safe_require('luasnip')
-    if not luasnip then
-      return
-    end
-
-    if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-        and luasnip.session.current_nodes[vim.api.nvim_get_current_buf()]
-        and not luasnip.session.jump_active
-    then
-      luasnip.unlink_current()
-    end
-  end
-})
+-- augroup("_luasnip", {})
+-- cmd("ModeChanged", {
+--   group = "_luasnip",
+--   callback = function()
+--     local luasnip = _G.safe_require('luasnip')
+--     if not luasnip then
+--       return
+--     end
+--
+--     if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+--         and luasnip.session.current_nodes[vim.api.nvim_get_current_buf()]
+--         and not luasnip.session.jump_active
+--     then
+--       luasnip.unlink_current()
+--     end
+--   end
+-- })
 
 
 -- open file in last edit place

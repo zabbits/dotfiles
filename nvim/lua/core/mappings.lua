@@ -68,14 +68,6 @@ map('n', '<C-/>', '<CMD>lua require("Comment.api").toggle_current_linewise()<CR>
 -- Linewise toggle using C-/
 map('x', '<C-/>', '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
 
--- === Packer ===
-map("n", "<leader>pc", "<cmd>PackerCompile<cr>", { desc = "Compile" })
-map("n", "<leader>pd", "<cmd>PackerClean<cr>", { desc = "Clean" })
-map("n", "<leader>pi", "<cmd>PackerInstall<cr>", { desc = "Install" })
-map("n", "<leader>ps", "<cmd>PackerSync<cr>", { desc = "Sync" })
-map("n", "<leader>pS", "<cmd>PackerStatus<cr>", { desc = "Status" })
-map("n", "<leader>pu", "<cmd>PackerUpdate<cr>", { desc = "Update" })
-
 -- === Neo-tree ===
 map("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Toggle Explorer" })
 map("n", "<leader>oo", "<cmd>Neotree reveal toggle<CR>", { desc = "Toggle Reveal Explorer" })
@@ -318,7 +310,7 @@ map('n', "<leader>dQ", function() require("dap").terminate() end, { desc = "Term
 map('n', "<leader>dp", function() require("dap").pause() end, { desc = "Pause (F6)" })
 map('n', "<leader>dr", function() require("dap").restart_frame() end, { desc = "Restart (C-F5)" })
 map('n', "<leader>dR", function() require("dap").repl.toggle() end, { desc = "Toggle REPL" })
-map('n', "<leader>du", function() require("dapui").toggle() end, { desc = "Toggle Debugger UI" })
+map('n', "<leader>du", function() require("dapui").toggle({}) end, { desc = "Toggle Debugger UI" })
 map('n', "<leader>dh", function() require("dap.ui.widgets").hover() end, { desc = "Debugger Hover" })
 
 

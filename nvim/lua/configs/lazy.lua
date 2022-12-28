@@ -15,4 +15,19 @@ vim.opt.runtimepath:prepend(lazypath)
 require("lazy").setup("configs.plugins", {
   defaults = { lazy = true },
   debug = false,
+  performance = {
+    rtp = {
+      ---@type string[] list any plugins you want to disable here
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
 })

@@ -24,7 +24,6 @@ function M.config()
     n = {
       ["<leader>"] = {
         f = { name = "File" },
-        p = { name = "Packer" },
         l = { name = "LSP" },
         e = { name = "Neotree" }
       },

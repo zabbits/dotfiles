@@ -1,9 +1,4 @@
 return {
-  -- Plugin manager
-  {
-    "wbthomason/packer.nvim",
-  },
-
   -- Lua functions
   { "nvim-lua/plenary.nvim" },
 
@@ -19,21 +14,10 @@ return {
   -- Cursorhold fix
   {
     "antoinemadec/FixCursorHold.nvim",
+    event = "VeryLazy",
     config = function()
       vim.g.cursorhold_updatetime = 200
     end,
-  },
-
-  -- Colorscheme
-  {
-    "olimorris/onedarkpro.nvim"
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-  },
-  {
-    'tiagovla/tokyodark.nvim',
   },
 
 
