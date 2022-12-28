@@ -1,5 +1,3 @@
-local utils = require "core.utils"
-
 -- see h: api-autocmd
 local cmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
@@ -23,7 +21,7 @@ cmd("FileType", {
 cmd("FileType", {
   desc = "Use 'q' close in qf, help, man, lspinfo, notify",
   pattern = {
-    "qf", "help", "man", "lspinfo", "notify", 
+    "qf", "help", "man", "lspinfo", "notify",
     "sagahover", "sagarename",
   },
   group = gs_id,
@@ -38,42 +36,40 @@ cmd("BufWritePost", {
   pattern = "plugins.lua",
 })
 
-if utils.is_available "alpha-nvim" then
-  local as_id = augroup("alpha_settings", {})
-  cmd("User", {
-    desc = "",
-    group = as_id,
-    pattern = "AlphaReady",
-    callback = function()
+local as_id = augroup("alpha_settings", {})
+cmd("User", {
+  desc = "",
+  group = as_id,
+  pattern = "AlphaReady",
+  callback = function()
+    vim.opt.showtabline = 0
+    vim.opt.laststatus = 0
+  end
+})
+cmd("BufEnter", {
+  desc = "Disable tabline and statusline in alpha",
+  group = as_id,
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype == 'alpha' then
       vim.opt.showtabline = 0
       vim.opt.laststatus = 0
+      cmd("BufUnload", {
+        desc = "Reset",
+        group = "alpha_settings",
+        pattern = "<buffer>",
+        callback = function()
+          vim.opt.showtabline = 2
+          vim.opt.laststatus = 3
+        end
+      })
     end
-  })
-  cmd("BufEnter", {
-    desc = "Disable tabline and statusline in alpha",
-    group = as_id,
-    pattern = "*",
-    callback = function()
-      if vim.bo.filetype == 'alpha' then
-        vim.opt.showtabline = 0
-        vim.opt.laststatus = 0
-        cmd("BufUnload", {
-          desc = "Reset",
-          group = "alpha_settings",
-          pattern = "<buffer>",
-          callback = function()
-            vim.opt.showtabline = 2
-            vim.opt.laststatus = 3
-          end
-        })
-      end
-      if vim.bo.filetype == 'norg' then
-        vim.opt.showtabline = 2
-        vim.opt.laststatus = 3
-      end
+    if vim.bo.filetype == 'norg' then
+      vim.opt.showtabline = 2
+      vim.opt.laststatus = 3
     end
-  })
-end
+  end
+})
 
 -- fix telescope cannot use <C-R>, which-key hiject it.
 augroup("_telescope", {})

@@ -1,44 +1,17 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "--single-branch",
-    "https://github.com/folke/lazy.nvim.git",
-    lazypath,
-  })
+function _G.safe_require(modname)
+  local present, mod = pcall(require, modname)
+  if present then
+    return mod
+  end
+  return nil
 end
-vim.opt.runtimepath:prepend(lazypath)
+
+--Remap space as leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 require('core.options')
-local utils = require "core.utils"
-utils.disabled_builtins()
-require("core.mappings")
 require('configs.lazy')
-require("core.plugins")
+require("core.mappings")
 require("core.autocmds")
 require("core.usercommands")
-
--- local impatient_ok, impatient = pcall(require, "impatient")
--- if impatient_ok then
---   impatient.enable_profile()
--- end
---
--- local utils = require "core.utils"
---
---
--- utils.initialize_packer()
---
--- local sources = {
---   "core.options",
---   "core.plugins",
---   "core.autocmds",
---   "core.usercommands",
---   "core.mappings",
--- }
---
--- for _, cfg in ipairs(sources) do 
--- 	require(cfg)
--- end
-

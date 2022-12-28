@@ -19,14 +19,6 @@ function M.lsp_name(msg)
     end
   end
 
-  local formatters = require "core.utils"
-  local supported_formatters = formatters.list_registered_formatters(buf_ft)
-  vim.list_extend(buf_client_names, supported_formatters)
-
-  local linters = require "core.utils"
-  local supported_linters = linters.list_registered_linters(buf_ft)
-  vim.list_extend(buf_client_names, supported_linters)
-
   return table.concat(buf_client_names, ", ")
 end
 
