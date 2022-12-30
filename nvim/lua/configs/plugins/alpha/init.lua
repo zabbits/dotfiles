@@ -26,7 +26,7 @@ function M.config()
       ':lua require("telescope._extensions").manager.projects.projects() <CR>'),
     dashboard.button('  c', '  Configurations',
       ':lua require("telescope.builtin").find_files({cwd="$HOME/.config/nvim/"}) <CR>'),
-    dashboard.button('  u', '  Update plugins', ':PackerSync <CR>'),
+    dashboard.button('  l', '  Lazy', ':Lazy <CR>'),
     dashboard.button('  q', '  Quit', ':qa <CR>')
   }
 
