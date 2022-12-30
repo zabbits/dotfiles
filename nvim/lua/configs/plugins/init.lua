@@ -147,4 +147,10 @@ return {
     event = { "BufRead", "BufNewFile" },
     branch = 'main',
   },
+
+  -- undo tree
+  {
+    'mbbill/undotree',
+    event = { "BufRead", "BufNewFile" },
+  }
 }
