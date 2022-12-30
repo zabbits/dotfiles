@@ -1,11 +1,11 @@
 local M = {
   "folke/which-key.nvim",
-  event = "BufEnter",
+  keys = "<leader>",
 }
 
 function M.config()
-  local status_ok, which_key = pcall(require, "which-key")
-  if not status_ok then
+  local which_key = safe_require("which-key")
+  if not which_key then
     return
   end
   which_key.setup({

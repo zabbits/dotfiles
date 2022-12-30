@@ -1,6 +1,12 @@
 local M = {
   'sindrets/diffview.nvim',
-  event = { "BufRead", "BufNewFile" },
+  cmd = {
+    'DiffviewOpen',
+    'DiffviewFocusFiles',
+    'DiffviewToggleFiles',
+    'DiffviewLog',
+    'DiffviewFileHistory',
+  },
 }
 
 function M.config()

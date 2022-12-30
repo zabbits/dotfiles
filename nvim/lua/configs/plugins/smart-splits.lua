@@ -1,6 +1,5 @@
 local M = {
   "mrjones2014/smart-splits.nvim",
-  -- module = "smart-splits",
   event = { 'WinNew', 'TabNew' },
 }
 

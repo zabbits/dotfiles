@@ -1,6 +1,7 @@
 local M = {
   "williamboman/mason.nvim",
-  event = { 'BufNewFile', 'BufRead' },
+  -- event = { 'BufNewFile', 'BufRead' },
+  cmd = "Mason",
 }
 
 function M.config()

@@ -1,11 +1,16 @@
 local M = {
   "numToStr/Comment.nvim",
-  event = { "BufRead", "BufNewFile" },
+  -- event = { "BufRead", "BufNewFile" },
+  keys = {
+    { "gc", mode = { "n", "v" } },
+    { "gb", mode = { "n", "v" } },
+    { "<C-/>", mode = { "n", "v", "i" } },
+  },
 }
 
 function M.config()
-  local status_ok, comment = pcall(require, "Comment")
-  if not status_ok then
+  local comment = safe_require("Comment")
+  if not comment then
     return
   end
 
@@ -14,13 +19,13 @@ function M.config()
   })
 
   local function map(mode, lhs, rhs)
-    vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true, silent = true })
+    vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true })
   end
 
   -- Linewise toggle current line using C-/
-  map('i', '<C-_>', '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>')
-  map('n', '<C-_>', '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>')
-  map('x', '<C-_>', '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
+  map('i', '<C-/>', function() require("Comment.api").toggle.linewise.current() end)
+  map('n', '<C-/>', function() require("Comment.api").toggle.linewise.current() end)
+  map('x', '<C-/>', function() require("Comment.api").toggle.linewise(vim.fn.visualmode()) end)
 end
 
 return M

@@ -1,6 +1,5 @@
 local M = {
   'b0o/incline.nvim',
-  event = { 'BufRead', 'BufNewFile' },
 }
 
 local function get_diagnostic_label(props)

@@ -1,7 +1,8 @@
 local M = {
   "in-a-day/command-palette",
   -- "~/github/command-palette",
-  event = { "BufRead", "BufNewFile" },
+  keys = "<leader><space>",
+  -- event = { "BufRead", "BufNewFile" },
   dependencies = { "telescope.nvim" },
 }
 

@@ -1,7 +1,5 @@
 local M = {
   "folke/trouble.nvim",
-  event = { 'BufRead', 'BufNewFile' },
-  dependencies = { "kyazdani42/nvim-web-devicons", 'nvim-lspconfig' },
 }
 function M.config()
   local present, trouble = pcall(require, 'trouble')

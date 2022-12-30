@@ -1,6 +1,5 @@
 local M = {
   'onsails/lspkind.nvim',
-  event = { 'BufRead', 'BufNewFile' },
 }
 
 function M.config()

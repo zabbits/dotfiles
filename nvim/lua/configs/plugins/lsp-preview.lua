@@ -1,7 +1,5 @@
 local M = {
   'rmagatti/goto-preview',
-  event = { 'BufRead', 'BufNewFile' },
-  dependencies = { 'nvim-lspconfig' },
 }
 
 function M.config()

@@ -1,5 +1,6 @@
 local M = {
   "kyazdani42/nvim-web-devicons",
+  config = { default = true },
 }
 
 function M.config()

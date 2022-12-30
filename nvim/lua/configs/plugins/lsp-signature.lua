@@ -1,7 +1,5 @@
 local M = {
   "ray-x/lsp_signature.nvim",
-  event = { 'BufRead', 'BufNewFile' },
-  dependencies = { 'nvim-lspconfig' },
 }
 
 function M.config()

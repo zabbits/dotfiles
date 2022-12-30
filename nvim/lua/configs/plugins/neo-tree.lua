@@ -1,14 +1,13 @@
 local M = {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v2.x",
-  -- module = "neo-tree",
   cmd = "Neotree",
   dependencies = { "MunifTanjim/nui.nvim" },
 }
 
 function M.config()
-  local status_ok, neotree = pcall(require, "neo-tree")
-  if not status_ok then
+  local neotree = safe_require("neo-tree")
+  if not neotree then
     return
   end
 

@@ -1,11 +1,11 @@
 local M = {
   "akinsho/nvim-toggleterm.lua",
-  event = { "BufRead", "BufNewFile" },
+  cmd = "ToggleTerm",
 }
 
 function M.config()
-  local status_ok, toggleterm = pcall(require, "toggleterm")
-  if not status_ok then
+  local toggleterm = safe_require("toggleterm")
+  if not toggleterm then
     return
   end
 

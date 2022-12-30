@@ -1,7 +1,5 @@
 local M = {
   "glepnir/lspsaga.nvim",
-  event = { 'BufRead', 'BufNewFile' },
-  dependencies = { 'nvim-lspconfig' },
 }
 
 function M.config()

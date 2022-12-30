@@ -2,29 +2,15 @@ return {
   -- Lua functions
   { "nvim-lua/plenary.nvim" },
 
-  -- Popup API
-  { "nvim-lua/popup.nvim" },
-
   -- Neovim UI Enhancer
   {
     "MunifTanjim/nui.nvim",
-    -- module = "nui",
   },
-
-  -- Cursorhold fix
-  {
-    "antoinemadec/FixCursorHold.nvim",
-    event = "VeryLazy",
-    config = function()
-      vim.g.cursorhold_updatetime = 200
-    end,
-  },
-
 
   -- Better buffer closing
   {
     "famiu/bufdelete.nvim",
-    event = 'BufRead',
+    cmd = 'Bdelete',
   },
 
 
@@ -36,8 +22,6 @@ return {
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    event = { "BufRead", "BufNewFile" },
-    dependencies = {'nvim-lspconfig'},
     config = function()
       vim.diagnostic.config({ virtual_lines = false })
       require("lsp_lines").setup()
@@ -48,8 +32,6 @@ return {
   -- lsp loading info
   {
     'j-hui/fidget.nvim',
-    event = { "BufRead", "BufNewFile" },
-    dependencies = {'nvim-lspconfig'},
     config = function()
       require("fidget").setup {
         text = {

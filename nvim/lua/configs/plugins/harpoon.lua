@@ -1,7 +1,6 @@
 local M = {
   'ThePrimeagen/harpoon',
-  -- event = { "BufRead", "BufNewFile" },
-  event = { "BufRead", "BufNewFile" },
+  keys = "<leader>h",
   dependencies = { 'telescope.nvim' },
 }
 

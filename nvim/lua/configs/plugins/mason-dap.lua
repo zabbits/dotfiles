@@ -1,6 +1,5 @@
 local M = {
   "jayp0521/mason-nvim-dap.nvim",
-  event = { 'BufRead', 'BufNewFile' },
   dependencies = { "mason.nvim" },
 }
 

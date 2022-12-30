@@ -1,8 +1,8 @@
 local M = {
-  'rebelot/kanagawa.nvim',
+  'tiagovla/tokyodark.nvim',
   lazy = false,
   dependencies = {
-    'tiagovla/tokyodark.nvim',
+    'rebelot/kanagawa.nvim',
   },
 }
 
