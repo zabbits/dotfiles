@@ -133,6 +133,7 @@ return {
   -- undo tree
   {
     'mbbill/undotree',
+    enabled = false,
     event = { "BufRead", "BufNewFile" },
   }
 }

@@ -36,6 +36,9 @@ map('n', '<C-j>', '<C-w>j', opts);
 map('n', 'H', '<cmd>BufferLineCyclePrev<cr>')
 map('n', 'L', '<cmd>BufferLineCycleNext<cr>')
 
+-- === Lazy ===
+map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
+
 -- === LSP ===
 map("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format" })
 map("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
@@ -209,6 +212,11 @@ map("n", "<leader>fc", function()
   require("telescope.builtin").find_files({ cwd = "$HOME/.config/nvim/" })
 end,
   { desc = "Find Configurations" })
+
+map("n", "<leader>fu", function()
+  require("telescope").extensions.undo.undo()
+end,
+  { desc = "Find Undo" })
 
 map("n", "<leader>ls", function()
   require("telescope.builtin").lsp_document_symbols()

@@ -3,6 +3,7 @@ local M = {
   cmd = { "Telescope" },
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    { "debugloop/telescope-undo.nvim" },
   },
 }
 
@@ -16,11 +17,11 @@ function M.config()
   --   telescope.load_extension "notify"
   -- end
 
-  --                勉  切 黎      
+  --                勉  切 黎        
   telescope.setup({
     defaults = {
       file_ignore_patterns = { "node_modules", "dist" },
-      prompt_prefix = "  ",
+      prompt_prefix = "  ",
       selection_caret = "  ",
       path_display = { "truncate" },
       selection_strategy = "reset",
@@ -100,10 +101,14 @@ function M.config()
       },
     },
     pickers = {},
-    extensions = {},
+    extensions = {
+      undo = {
+      },
+    },
   })
 
   telescope.load_extension("fzf")
+  telescope.load_extension("undo")
 end
 
 return M
