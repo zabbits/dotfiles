@@ -123,11 +123,9 @@ return {
     event = { "BufRead", "BufNewFile" },
   },
 
-  -- ssh yank
-  {
-    'ojroques/vim-oscyank',
+  { 
+    'ojroques/nvim-osc52',
     event = { "BufRead", "BufNewFile" },
-    branch = 'main',
   },
 
   -- undo tree

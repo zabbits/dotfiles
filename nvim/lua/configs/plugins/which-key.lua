@@ -1,6 +1,8 @@
 local M = {
   "folke/which-key.nvim",
-  keys = "<leader>",
+  keys = {
+    { "<leader>", mode = { "n", "v" } },
+  }
 }
 
 function M.config()

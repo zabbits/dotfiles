@@ -26,6 +26,9 @@ function M.config()
   local liblldb_path = mason_path .. '/codelldb/extension/lldb/lib/liblldb' .. postfix
 
   rt.setup({
+    hover_actions = {
+      auto_focus = true,
+    },
     server = {
       settings = {
         ["rust-analyzer"] = {

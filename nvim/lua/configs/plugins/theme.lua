@@ -7,9 +7,9 @@ local M = {
 }
 
 function M.config()
-  -- vim.cmd.colorscheme("tokyodark")
-  vim.g.enfocado_style = 'nature' 
-  vim.cmd.colorscheme("enfocado")
+  vim.cmd.colorscheme("tokyodark")
+  -- vim.g.enfocado_style = 'nature' 
+  -- vim.cmd.colorscheme("enfocado")
 end
 
 return M

@@ -293,7 +293,7 @@ map('n', 'zM', function() require('ufo').closeAllFolds() end)
 
 
 -- === OS Yank ===
-map('v', '<leader>y', ':OSCYank<CR>', opts)
+map('v', '<leader>y', function() require('osc52').copy_visual() end, { desc = "OSYank" })
 
 
 -- === DAP ===

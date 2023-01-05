@@ -1,6 +1,7 @@
 local M = {
   'feline-nvim/feline.nvim',
   event = { 'BufRead', 'BufNewFile' },
+  enabled = true,
 }
 
 function M.config()
