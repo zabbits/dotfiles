@@ -123,9 +123,17 @@ return {
     event = { "BufRead", "BufNewFile" },
   },
 
+  -- yank did not work
   { 
     'ojroques/nvim-osc52',
     event = { "BufRead", "BufNewFile" },
+  },
+  -- yank did not work
+  {
+    'greymd/oscyank.vim',
+    event = { "BufRead", "BufNewFile" },
+    config = function()
+    end,
   },
 
   -- undo tree
