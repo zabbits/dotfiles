@@ -322,4 +322,15 @@ map('n', "<leader>du", function() require("dapui").toggle({}) end, { desc = "Tog
 map('n', "<leader>dh", function() require("dap.ui.widgets").hover() end, { desc = "Debugger Hover" })
 
 
+-- === comment ===
+-- Linewise toggle current line using C-/
+local comment_key = '<C-_>'
+local os = vim.loop.os_uname().sysname:lower()
+if os == 'darwin' then
+  comment_key = '<C-/>'
+end
+map('i', comment_key, function() require("Comment.api").toggle.linewise.current() end)
+map('n', comment_key, function() require("Comment.api").toggle.linewise.current() end)
+map('x', comment_key, function() require("Comment.api").toggle.linewise(vim.fn.visualmode()) end)
+
 return M
