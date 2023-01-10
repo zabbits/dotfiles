@@ -128,7 +128,7 @@ end, { desc = "Diff" })
 
 
 -- === Telescope ===
-map("n", "<leader><leader>", function()
+map("n", "<leader>z", function()
   local cp = require("command-palette")
   local ft2label = {
     rust = "Rust",
