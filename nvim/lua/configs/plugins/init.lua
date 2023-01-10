@@ -124,16 +124,9 @@ return {
   },
 
   -- yank did not work
-  { 
-    'ojroques/nvim-osc52',
-    event = { "BufRead", "BufNewFile" },
-  },
-  -- yank did not work
   {
-    'greymd/oscyank.vim',
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-    end,
+    'in-a-day/nvim-osc52',
+    keys = "<leader>y",
   },
 
   -- undo tree
