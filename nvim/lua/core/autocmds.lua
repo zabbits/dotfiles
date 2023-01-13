@@ -109,25 +109,6 @@ cmd({ "InsertLeave", }, {
   end,
 })
 
--- fix luasnip use tab go to history
--- augroup("_luasnip", {})
--- cmd("ModeChanged", {
---   group = "_luasnip",
---   callback = function()
---     local luasnip = _G.safe_require('luasnip')
---     if not luasnip then
---       return
---     end
---
---     if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
---         and luasnip.session.current_nodes[vim.api.nvim_get_current_buf()]
---         and not luasnip.session.jump_active
---     then
---       luasnip.unlink_current()
---     end
---   end
--- })
-
 
 -- open file in last edit place
 augroup("_last_edit", {})

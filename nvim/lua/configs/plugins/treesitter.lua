@@ -4,7 +4,7 @@ local M = {
   event = { 'BufRead', 'BufNewFile' },
   dependencies = {
     -- Parenthesis highlighting
-    "p00f/nvim-ts-rainbow",
+    -- "p00f/nvim-ts-rainbow",
     -- Autoclose tags
     "windwp/nvim-ts-autotag",
     -- Context based commenting
@@ -40,9 +40,9 @@ function M.config()
       enable = true,
       enable_autocmd = false,
     },
-    autopairs = {
-      enable = true,
-    },
+    -- autopairs = {
+    --   enable = true,
+    -- },
     incremental_selection = {
       enable = true,
     },
