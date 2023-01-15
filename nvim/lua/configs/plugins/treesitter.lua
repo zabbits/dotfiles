@@ -25,7 +25,7 @@ function M.config()
     'lua', 'python', 'vue',
     'typescript', 'norg',
     'html', 'css', 'go',
-    'rust', 'c',
+    'rust', 'c', 'markdown',
   }
 
   local opts = {

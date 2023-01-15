@@ -3,25 +3,26 @@ local M = {
 }
 
 function M.config()
-  local saga = safe_require('lspsaga')
-  if not saga then
-    return
-  end
-
-  saga.init_lsp_saga({
-    code_action_icon = "",
-    code_action_lightbulb = {
+  local saga = require("lspsaga")
+  saga.setup({
+    ui = {
+      code_action = '',
+    },
+    lightbulb = {
       enable = true,
       enable_in_insert = true,
-      cache_code_action = true,
       sign = false,
-      update_time = 150,
-      sign_priority = 20,
+      sign_priority = 40,
       virtual_text = true,
     },
-    scroll_in_preview = {
-      scroll_down = '<C-d>',
-      scroll_up = '<C-u>',
+    symbol_in_winbar = {
+      enable = true,
+      separator = '  ',
+      hide_keyword = true,
+      show_file = true,
+      folder_level = 2,
+      respect_root = false,
+      color_mode = true,
     },
   })
 end
