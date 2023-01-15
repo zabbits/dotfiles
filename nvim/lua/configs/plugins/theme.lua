@@ -2,14 +2,13 @@ local M = {
   'tiagovla/tokyodark.nvim',
   lazy = false,
   dependencies = {
-    'wuelnerdotexe/vim-enfocado',
+    'noorwachid/nvim-nightsky',
   },
 }
 
 function M.config()
   vim.cmd.colorscheme("tokyodark")
-  -- vim.g.enfocado_style = 'nature' 
-  -- vim.cmd.colorscheme("enfocado")
+  -- vim.cmd.colorscheme("nightsky")
 end
 
 return M

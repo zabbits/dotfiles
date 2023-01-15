@@ -26,6 +26,7 @@ function M.config()
     'typescript', 'norg',
     'html', 'css', 'go',
     'rust', 'c', 'markdown',
+    'markdown_inline',
   }
 
   local opts = {
@@ -45,6 +46,12 @@ function M.config()
     -- },
     incremental_selection = {
       enable = true,
+      keymaps = {
+        init_selection = '<CR>',
+        node_incremental = '<CR>',
+        scope_incremental = '<S-CR>',
+        node_decremental = '<BS>',
+      },
     },
     indent = {
       enable = true,
