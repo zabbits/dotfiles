@@ -293,7 +293,7 @@ map('n', 'zM', function() require('ufo').closeAllFolds() end)
 
 
 -- === OSC Yank ===
-map('n', '<leader>y', function() require('osc52').copy_operator() end, {expr = true})
+map('n', '<leader>yy', function() require('osc52').copy_operator() end, { desc = "OSYank", expr = true})
 map('x', '<leader>y', function() require('osc52').copy_visual() end, { desc = "OSYank" })
 
 
