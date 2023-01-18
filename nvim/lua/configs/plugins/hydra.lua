@@ -1,7 +1,6 @@
 local M = {
   'anuvyklack/hydra.nvim',
-  keys = "<C-w>",
-  dependencies = { 'which-key.nvim' },
+  event = { 'BufNewFile', 'BufRead' },
 }
 
 local function cmd(command)

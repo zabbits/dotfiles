@@ -7,6 +7,7 @@ function _G.safe_require(modname)
 end
 
 --Remap space as leader key
+vim.keymap.set("", "<Space>", "<Nop>", { noremap = true, silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 

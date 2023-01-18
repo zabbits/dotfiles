@@ -2,14 +2,11 @@ local M = {
   "folke/which-key.nvim",
   keys = {
     { "<leader>", mode = { "n", "v" } },
-  }
+  },
 }
 
 function M.config()
   local which_key = safe_require("which-key")
-  if not which_key then
-    return
-  end
   which_key.setup({
     plugins = {
       spelling = { enabled = true },
@@ -40,6 +37,7 @@ function M.config()
     h = "Harpoon",
     n = "Neorg",
     o = "Open",
+    y = "Yank",
   }
 
   local function init_table(mode, prefix, idx)
@@ -53,6 +51,7 @@ function M.config()
   init_table("n", "<leader>", "s")
   init_table("n", "<leader>", "n")
   init_table("n", "<leader>", "h")
+  init_table("n", "<leader>", "y")
 
   for mode, prefixes in pairs(mappings) do
     for prefix, mapping_table in pairs(prefixes) do

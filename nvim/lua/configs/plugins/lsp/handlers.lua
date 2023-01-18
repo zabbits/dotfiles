@@ -78,7 +78,11 @@ local function buffer_key_maps(client, bufnr)
   bmap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { desc = "Rename" })
   bmap(bufnr, 'n', '<leader>lc', '<cmd>lua vim.lsp.buf.clear_references()<CR>', { desc = "Clear" })
   -- lspsaga stuff
-  bmap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+  if client.name == 'rust_analyzer' then
+    bmap(bufnr, "n", "K", "<cmd>RustHoverActions<CR>", { silent = true })
+  else
+    bmap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+  end
   bmap(bufnr, "n", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, noremap = true })
   bmap(bufnr, "i", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, noremap = true })
   bmap(bufnr, "n", "<leader>la", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true })
