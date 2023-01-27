@@ -54,7 +54,8 @@ local options = {
   fillchars = { eob = " " },                  -- Disable `~` on nonexistent lines
 
   conceallevel = 2,                           -- Hide some text
-  concealcursor = "nc"                        -- Hide on normal and command line
+  concealcursor = "nc",                       -- Hide on normal and command line
+  mousemoveevent = true,
 }
 
 for k, v in pairs(options) do

@@ -1,6 +1,7 @@
 local M = {
   "akinsho/bufferline.nvim",
   dependencies = { "nvim-web-devicons" },
+  enabled = false,
   event = { 'BufRead', 'BufNewFile' },
 
 }
@@ -19,7 +20,9 @@ function M.config()
         { filetype = "Outline", text = "Outline", padding = 1 },
         { filetype = "Trouble", text = "Trouble", padding = 1 },
       },
+      separator_style = { '^', '^' },
       buffer_close_icon = "",
+      show_buffer_close_icons = false,
       modified_icon = "",
       close_icon = "",
       show_close_icon = true,
@@ -32,11 +35,25 @@ function M.config()
       enforce_regular_tabs = false,
       view = "multiwindow",
       show_buffer_icons = true,
-      show_buffer_close_icons = true,
-      separator_style = "thin",
       always_show_bufferline = true,
       diagnostics = false,
-    }
+    },
+    -- highlights = {
+    --   buffer_selected = {
+    --     fg = '#000000',
+    --     bg = '#986fec',
+    --     bold = true,
+    --     italic = true,
+    --   },
+    --   close_button = {
+    --     fg = '#000000',
+    --     bg = '#986fec',
+    --   },
+    --   -- close_button_visible = {
+    --   --   fg = '#000000',
+    --   --   bg = '#986fec',
+    --   -- },
+    -- },
   }
 
   bufferline.setup(options)

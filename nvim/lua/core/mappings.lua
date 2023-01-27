@@ -16,6 +16,8 @@ map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 -- Insert mode movement
 map("i", "<A-h>", "<esc>i", opts)
 map("i", "<A-l>", "<esc>la", opts)
+map("i", "<D-h>", "<esc>i", opts)
+map("i", "<D-l>", "<esc>la", opts)
 
 
 -- disable Ex mode:
@@ -33,8 +35,12 @@ map('n', '<C-j>', '<C-w>j', opts);
 
 
 -- === Navigate buffers ===
-map('n', 'H', '<cmd>BufferLineCyclePrev<cr>')
-map('n', 'L', '<cmd>BufferLineCycleNext<cr>')
+-- map('n', 'H', '<cmd>BufferLineCyclePrev<cr>')
+-- map('n', 'L', '<cmd>BufferLineCycleNext<cr>')
+map('n', 'H', '<cmd>bp<cr>')
+map('n', 'L', '<cmd>bn<cr>')
+map('n', '<C-,>', '<cmd>bp<cr>')
+map('n', '<C-.>', '<cmd>bn<cr>')
 
 -- === Lazy ===
 map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })

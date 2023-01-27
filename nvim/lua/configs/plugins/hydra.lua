@@ -35,7 +35,7 @@ function M.config()
       }
     },
     mode = 'n',
-    body = '<C-w>',
+    body = '<C-m>',
     heads = {
       { 'h', '<C-w>h' },
       { 'j', '<C-w>j' },
