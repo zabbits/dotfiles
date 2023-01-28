@@ -2,14 +2,14 @@ local M = {
   "williamboman/mason.nvim",
   -- event = { 'BufNewFile', 'BufRead' },
   cmd = "Mason",
+  dependencies = {
+    "williamboman/mason-lspconfig.nvim",
+    -- "williamboman/mason-nvim-dap.nvim",
+  },
 }
 
 function M.config()
   local mason = safe_require('mason')
-  if not mason then
-    return
-  end
-
   mason.setup({
     ui = {
       icons = {
@@ -39,6 +39,9 @@ function M.config()
       },
     },
   })
+
+  local mason_lsp = safe_require('mason-lspconfig')
+  mason_lsp.setup()
 end
 
 return M

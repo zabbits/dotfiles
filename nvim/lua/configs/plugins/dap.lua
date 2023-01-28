@@ -1,5 +1,6 @@
 local M = {
   'mfussenegger/nvim-dap',
+  enabled = false,
   event = { 'BufRead', 'BufNewFile' },
   dependencies = { "mason-nvim-dap.nvim" },
 }

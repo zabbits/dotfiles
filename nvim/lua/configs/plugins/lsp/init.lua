@@ -2,7 +2,7 @@ local M = {
   "neovim/nvim-lspconfig",
   event = { "BufRead", "BufNewFile" },
   dependencies = {
-    "mason-lspconfig.nvim",
+    "mason.nvim",
     "folke/neodev.nvim",
     "incline.nvim",
     "lspkind.nvim",

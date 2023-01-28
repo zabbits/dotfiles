@@ -10,9 +10,14 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 
-vim.opt.runtimepath:prepend(lazypath)
+vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("configs.plugins", {
+require("lazy").setup({
+  spec = { 
+    {
+      import = "configs.plugins",
+    }
+  },
   defaults = { lazy = true },
   debug = false,
   performance = {
@@ -22,7 +27,7 @@ require("lazy").setup("configs.plugins", {
         "gzip",
         "matchit",
         "matchparen",
-        "netrwPlugin",
+        -- "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",

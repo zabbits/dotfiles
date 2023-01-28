@@ -1,5 +1,6 @@
 local M = {
   "rcarriga/nvim-dap-ui",
+  enabled = false,
   event = { 'BufRead', 'BufNewFile' },
   dependencies = { "nvim-dap" },
 }

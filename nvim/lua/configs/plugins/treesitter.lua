@@ -15,12 +15,6 @@ local M = {
 }
 
 function M.config()
-  local status_ok, treesitter = pcall(require, "nvim-treesitter.configs")
-  if not status_ok then
-    return
-  end
-
-
   local ensure_installed = {
     'lua', 'python', 'vue',
     'typescript', 'norg',
@@ -123,6 +117,7 @@ function M.config()
     },
   }
 
+  local treesitter = require("nvim-treesitter.configs")
   treesitter.setup(opts)
 end
 
