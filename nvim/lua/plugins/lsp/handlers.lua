@@ -68,7 +68,7 @@ local function buffer_key_maps(client, bufnr)
   local bmap = vim.api.nvim_buf_set_keymap
   bmap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { desc = "Goto declaration" })
   bmap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { desc = "Goto definition" })
-  bmap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', { desc = "Goto implementation" })
+  bmap(bufnr, 'n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<CR>', { desc = "Goto implementation" })
   bmap(bufnr, 'n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { desc = "Goto type definition" })
   -- bmap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = "Hover diagnostic" })
   bmap(bufnr, 'n', 'gl', '<cmd>lua require("lsp_lines").toggle()<CR>', { desc = "Hover diagnostic" })
@@ -105,8 +105,8 @@ end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local cmp_nvim_lsp = safe_require("cmp_nvim_lsp")
-if cmp_nvim_lsp then
+local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if ok then
   M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 end
 
