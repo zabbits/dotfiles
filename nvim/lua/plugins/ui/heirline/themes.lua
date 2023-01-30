@@ -15,10 +15,10 @@ do
   colors.bg_yellow = '#e9b143'
   colors.blue      = '#80aa9e'
   colors.aqua      = '#8bba7f'
-  colors.orange    = '#f2853'
-  colors.purple    = '#d3869'
-  colors.red       = '#f2594'
-  colors.yellow    = '#e9b14'
+  colors.orange    = '#f28534'
+  colors.purple    = '#d3869b'
+  colors.red       = '#f2594b'
+  colors.yellow    = '#e9b143'
   colors.green     = '#b0b846'
 
   colors.onedark = {
