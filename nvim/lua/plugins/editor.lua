@@ -124,17 +124,6 @@ local which_key_conf = {
   end
 }
 
-local diffview_conf = {
-  'sindrets/diffview.nvim',
-  cmd = {
-    'DiffviewOpen',
-    'DiffviewFocusFiles',
-    'DiffviewToggleFiles',
-    'DiffviewLog',
-    'DiffviewFileHistory',
-  },
-}
-
 local git_conf = {
   "lewis6991/gitsigns.nvim",
   keys = "<leader>g",
@@ -481,39 +470,11 @@ local split_conf = {
   }
 }
 
-local win_conf = {
-  's1n7ax/nvim-window-picker',
-  event = { 'WinNew', 'TabNew' },
-  dependencies = { 'neo-tree.nvim' },
-  opts = {
-    autoselect_one = true,
-    include_current_win = false,
-    selection_chars = 'FJDKSLA;CMRUEIWOQP',
-    filter_rules = {
-      bo = {
-        filetype = { 'NvimTree', "neo-tree", "notify", "neo-tree-popup", "quickfix", 'aerial', 'Trouble' },
-        buftype = { 'terminal' },
-      },
-      wo = {},
-      file_path_contains = {},
-      file_name_contains = {},
-    },
-    current_win_hl_color = '#e35e4f',
-    other_win_hl_color = '#44cc41',
-  },
-}
-
 local winshift_conf = {
   "sindrets/winshift.nvim",
   event = { 'WinNew', 'TabNew' },
 }
 
-
--- better marks
-local marks_conf = {
-  'chentoast/marks.nvim',
-  event = { "BufRead", "BufNewFile" },
-}
 
 -- Better buffer closing
 local buf_conf = {
@@ -564,36 +525,17 @@ local yank_conf = {
   keys = "<leader>y",
 }
 
-local todo_conf = {
-  "folke/todo-comments.nvim",
-  cmd = { "TodoTrouble", "TodoTelescope" },
-  event = "BufReadPost",
-  config = true,
-  -- stylua: ignore
-  keys = {
-    { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-    { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
-    { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
-    { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
-    { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
-  },
-}
-
 return {
   { "nvim-lua/plenary.nvim" },
   telescope_conf,
   which_key_conf,
-  diffview_conf,
   git_conf,
   hydra_conf,
   filetree_conf,
   term_conf,
   split_conf,
-  win_conf,
-  marks_conf,
   winshift_conf,
   buf_conf,
   mason_conf,
   yank_conf,
-  todo_conf,
 }

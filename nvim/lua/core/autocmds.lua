@@ -5,27 +5,40 @@ local augroup = vim.api.nvim_create_augroup
 -- ====================
 --   General Settings
 -- ====================
-local gs_id = augroup("_general_settings", {})
+-- Check if we need to reload the file when it changed
+cmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
+
+-- Highlight on yank
 cmd("TextYankPost", {
-  desc = "Highlight on yank",
-  group = gs_id,
   callback = function()
-    require('vim.highlight').on_yank({ higroup = 'Visual', timeout = 200 })
+    vim.highlight.on_yank()
   end,
 })
+
+-- close some filetypes with <q>
 cmd("FileType", {
-  desc = "Change formatoptions",
-  group = gs_id,
-  command = "set formatoptions-=cro",
-})
-cmd("FileType", {
-  desc = "Use 'q' close in qf, help, man, lspinfo, notify",
   pattern = {
-    "qf", "help", "man", "lspinfo", "notify",
-    "sagahover", "sagarename",
+    "qf",
+    "help",
+    "man",
+    "notify",
+    "lspinfo",
+    "spectre_panel",
+    "startuptime",
+    "tsplayground",
+    "PlenaryTestPopup",
+    "notify",
+    "sagahover",
+    "sagarename",
   },
-  group = gs_id,
-  command = "nnoremap <silent> <buffer> q :close<cr>",
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+  end,
+})
+
+cmd("FileType", {
+  command = "set formatoptions-=cro",
 })
 
 local as_id = augroup("alpha_settings", {})
@@ -75,7 +88,7 @@ cmd("FileType", {
 -- relative number
 local exclude_filetype = {
   "NvimTree", "neo-tree", "neo-tree-popup", "dashboard",
-  "Outline", "Trouble", "notify",
+  "Outline", "Trouble", "notify", "mason"
 }
 local function disable_number()
   local ft = vim.bo.filetype
@@ -110,13 +123,13 @@ cmd({ "InsertLeave", }, {
 })
 
 
--- open file in last edit place
-augroup("_last_edit", {})
-cmd('BufReadPost', {
-  desc = "Return to last edit position when opening files",
-  group = "_last_edit",
-  pattern = '*',
-  command = [[if line("'\"") > 0 && line("'\"") <= line("$") && expand('%:t') != 'COMMIT_EDITMSG' | exe "normal! g`\"" | endif]],
+-- go to last loc when opening a buffer
+vim.api.nvim_create_autocmd("BufReadPost", {
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local lcount = vim.api.nvim_buf_line_count(0)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
 })
-
-return M

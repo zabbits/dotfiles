@@ -1,6 +1,5 @@
 local M = {}
 function M.setup()
-  local status = require("core.status")
   local icons = require("core.icons")
   local signs = {
     { name = "DiagnosticSignError", text = icons.lsp.error },
@@ -70,35 +69,27 @@ local function buffer_key_maps(client, bufnr)
   bmap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { desc = "Goto definition" })
   bmap(bufnr, 'n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<CR>', { desc = "Goto implementation" })
   bmap(bufnr, 'n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { desc = "Goto type definition" })
-  -- bmap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = "Hover diagnostic" })
   bmap(bufnr, 'n', 'gl', '<cmd>lua require("lsp_lines").toggle()<CR>', { desc = "Hover diagnostic" })
-  -- bmap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { desc = "Hover document" })
-  bmap(bufnr, 'n', '<C-t>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = "Signature help" })
-  bmap(bufnr, 'i', '<C-t>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = "Signature help" })
-  bmap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { desc = "Rename" })
+  bmap(bufnr, 'n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', { desc = "Rename" })
+  bmap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = "Signature help" })
   bmap(bufnr, 'n', '<leader>lc', '<cmd>lua vim.lsp.buf.clear_references()<CR>', { desc = "Clear" })
+  bmap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Format" })
   -- lspsaga stuff
   if client.name == 'rust_analyzer' then
     bmap(bufnr, "n", "K", "<cmd>RustHoverActions<CR>", { silent = true })
   else
     bmap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
   end
-  bmap(bufnr, "n", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, noremap = true })
-  bmap(bufnr, "i", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, noremap = true })
-  bmap(bufnr, "n", "<leader>la", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true })
-  bmap(bufnr, "v", "<leader>la", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true, noremap = true })
+  bmap(bufnr, "n", "ga", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true })
+  bmap(bufnr, "v", "ga", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true, noremap = true })
+  bmap(bufnr, "n", "gr", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, noremap = true })
+  bmap(bufnr, "n", "go", "<cmd>Lspsaga outline<CR>", { silent = true, noremap = true })
   bmap(bufnr, "n", "<leader>lr", "<cmd>Lspsaga rename<CR>", { silent = true, noremap = true })
   bmap(bufnr, "n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true, noremap = true })
   bmap(bufnr, "n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, noremap = true })
 end
 
 M.on_attach = function(client, bufnr)
-  if client.name == "tsserver"
-      or client.name == "jsonls"
-      or client.name == "html" then
-    client.server_capabilities.documentFormattingProvider = false
-  end
-
   lsp_highlight_document(client, bufnr)
   buffer_key_maps(client, bufnr)
 end
