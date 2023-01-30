@@ -346,7 +346,7 @@ local rust_conf = {
   },
   config = function()
     local rt = require("rust-tools")
-    local handlers = require('configs.plugins.lsp.handlers')
+    local handlers = require('plugins.lsp.handlers')
 
     local mason_path = vim.env.HOME .. '/.local/share/nvim/mason/packages'
     local codelldb_path = mason_path .. '/codelldb/extension/adapter/codelldb'

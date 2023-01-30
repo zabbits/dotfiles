@@ -176,7 +176,7 @@ local indent_conf = {
   },
   config = function(_, opts)
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+      pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason", "lspsagafinder", "lspsaga", },
       callback = function()
         vim.b.miniindentscope_disable = true
       end,
@@ -185,6 +185,8 @@ local indent_conf = {
   end,
 }
 
+local heirline_conf = require('plugins.ui.heirline')
+
 
 return {
   theme_conf,
@@ -192,8 +194,9 @@ return {
   alpha_conf,
   dressing_conf,
   notify_conf,
-  feline_conf,
+  -- feline_conf,
   bufferline_conf,
   nui_conf,
   indent_conf,
+  heirline_conf,
 }
