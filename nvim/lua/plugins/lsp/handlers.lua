@@ -66,7 +66,6 @@ end
 local function buffer_key_maps(client, bufnr)
   local bmap = vim.api.nvim_buf_set_keymap
   bmap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { desc = "Goto declaration" })
-  bmap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { desc = "Goto definition" })
   bmap(bufnr, 'n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<CR>', { desc = "Goto implementation" })
   bmap(bufnr, 'n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { desc = "Goto type definition" })
   bmap(bufnr, 'n', 'gl', '<cmd>lua require("lsp_lines").toggle()<CR>', { desc = "Hover diagnostic" })
@@ -80,6 +79,7 @@ local function buffer_key_maps(client, bufnr)
   else
     bmap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
   end
+  bmap(bufnr, 'n', 'gd', '<cmd>Lspsaga goto_definition<CR>', { desc = "Goto definition" })
   bmap(bufnr, "n", "ga", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true })
   bmap(bufnr, "v", "ga", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true, noremap = true })
   bmap(bufnr, "n", "gr", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, noremap = true })

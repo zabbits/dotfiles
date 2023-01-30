@@ -5,6 +5,7 @@ local telescope_conf = {
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "debugloop/telescope-undo.nvim" },
+    { "nvim-notify" },
   },
   config = function()
     local telescope = require("telescope")
@@ -35,11 +36,11 @@ local telescope_conf = {
 
         mappings = {
           i = {
-            ["<C-n>"] = actions.cycle_history_next,
-            ["<C-p>"] = actions.cycle_history_prev,
+            ["<C-n>"] = actions.move_selection_next,
+            ["<C-p>"] = actions.move_selection_previous,
 
-            ["<C-j>"] = actions.move_selection_next,
-            ["<C-k>"] = actions.move_selection_previous,
+            ["<C-j>"] = actions.cycle_history_next,
+            ["<C-k>"] = actions.cycle_history_prev,
 
             ["<C-c>"] = actions.close,
 
@@ -85,6 +86,7 @@ local telescope_conf = {
 
     telescope.load_extension("fzf")
     telescope.load_extension("undo")
+    telescope.load_extension("notify")
   end
 }
 
@@ -126,6 +128,7 @@ local which_key_conf = {
 
 local git_conf = {
   "lewis6991/gitsigns.nvim",
+  event = { 'BufRead', 'BufNewFile' },
   keys = "<leader>g",
   opts = {
     signs = {

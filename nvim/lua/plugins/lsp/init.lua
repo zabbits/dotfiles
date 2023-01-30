@@ -2,6 +2,7 @@ local lsp_conf = {
   "neovim/nvim-lspconfig",
   event = { "BufRead", "BufNewFile" },
   dependencies = {
+    "mason.nvim",
     "mason-lspconfig.nvim",
     "folke/neodev.nvim",
     "lspkind.nvim",
