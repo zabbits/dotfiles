@@ -18,8 +18,9 @@ local ts_conf = {
       'lua', 'python', 'vue',
       'typescript', 'norg',
       'html', 'css', 'go',
-      'rust', 'c', 'markdown',
-      'markdown_inline',
+      'rust', 'c', 'vim',
+      'regex', 'lua', 'bash',
+      'markdown', 'markdown_inline',
     }
 
     local opts = {

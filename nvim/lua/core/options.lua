@@ -14,8 +14,6 @@ local options = {
   mouse = "a",                                -- Enable mouse support
   signcolumn = "auto:1",                          -- Hide the sign column
 
-  -- foldmethod = "expr",                        -- Treesitter fold
-  -- foldexpr = "nvim_treesitter#foldexpr()",
   foldlevel = 99,
   foldlevelstart = 99,
   foldcolumn = "0",
