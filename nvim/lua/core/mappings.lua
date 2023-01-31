@@ -11,6 +11,7 @@ vim.api.nvim_set_keymap("i", "<C-e>", "<C-o>$", opts)
 -- ESC cancel higlight
 map("n", "<ESC>", ":nohlsearch<CR>", opts)
 map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
+map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 
 -- Insert mode movement

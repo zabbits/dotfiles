@@ -494,6 +494,18 @@ return {
       Align, ScrollPercentage
     }
 
+    local MicroRecord = {
+      condition = require("noice").api.statusline.mode.has,
+      {
+        provider = require("noice").api.statusline.mode.get,
+        hl = {
+          fg = "#ff9e64"
+        }
+      },
+      Space,
+    }
+
+
     local StatusLines = {
       init = function(self)
         local pwd = fn.getcwd(0) -- Present working directory.
@@ -535,11 +547,12 @@ return {
         Space(4),
         -- GPS,
         Align,
+        MicroRecord,
         DapMessages,
         Diagnostics, Git, Lsp,
         FileProperties,
         -- Ruler, ScrollBar, ScrollPercentage
-        Ruler, ScrollPercentage
+        Ruler, ScrollPercentage,
       }
     }
 

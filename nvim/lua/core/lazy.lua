@@ -4,21 +4,22 @@ if not vim.loop.fs_stat(lazypath) then
     "git",
     "clone",
     "--filter=blob:none",
-    "--single-branch",
     "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
     lazypath,
   })
 end
-
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  spec = { 
+  spec = {
     {
       import = "plugins",
     }
   },
   defaults = { lazy = true },
+  install = { colorscheme = { "tokyodark" } },
+  checker = { enabled = true },
   performance = {
     rtp = {
       ---@type string[] list any plugins you want to disable here
