@@ -221,8 +221,8 @@ return {
       FileNameBlock = {
         {
           FileIcon,
-          -- WorkDir,
-          -- CurrentPath,
+          WorkDir,
+          CurrentPath,
           FileName
         },
         -- This means that the statusline is cut here when there's not enough space.
@@ -260,7 +260,7 @@ return {
       Space,
       {
         provider = function()
-          return 'SP: ' .. tostring(vim.bo.tabstop)
+          return 'TAB:' .. tostring(vim.bo.tabstop)
         end
       },
     }
@@ -453,14 +453,7 @@ return {
     }
 
     local Ruler = {
-      -- :help 'statusline'
-      -- ------------------
-      -- %-2 : make item takes at least 2 cells and be left justified
-      -- %l  : current line number
-      -- %L  : number of lines in the buffer
-      -- %c  : column number
-      -- %V  : virtual column number as -{num}.  Not displayed if equal to '%c'.
-      provider = ' %9(%l:%L%)  %-3(%c%V%) ',
+      provider = "%7(%l/%3L%):%2c %P",
       hl = { bold = true }
     }
 
@@ -547,11 +540,10 @@ return {
       hl = hl.StatusLine,
       {
         LeftCap, Indicator,
-        Space,
         Git,
         Lsp,
         Treesitter,
-        Space,
+        Space(2),
         {
           fallthrough = false,
           {
@@ -576,6 +568,7 @@ return {
             fg = colors.green,
           },
           FileInfo,
+          Space,
           Ruler,
         },
         {
