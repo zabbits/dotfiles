@@ -1,9 +1,9 @@
 local M = {
   git = {
     base = '',
-    added = "",
+    added = "",
     modified = "",
-    deleted = "ﮖ",
+    deleted = "",
     renamed = "",
     untracked = "",
     ignored = "◌",

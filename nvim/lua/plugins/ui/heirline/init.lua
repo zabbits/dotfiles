@@ -6,14 +6,12 @@ return {
     local api = vim.api
     local fn = vim.fn
     local bo = vim.bo
+    local status = require('core.status')
 
     local core_icons = require('core.icons')
     local conditions = require('heirline.conditions')
     local heirline = require("heirline.utils")
     local devicons = require('nvim-web-devicons')
-    -- local dap_available, dap = pcall(require, 'dap')
-    -- local dap = require('dap')
-    local dap = {}
     local util = require('plugins.ui.heirline.util')
     local icons = util.icons
     local mode = util.mode
@@ -39,7 +37,7 @@ return {
       Lsp = 10,
     }
 
-    local Align, Space, Null, ReadOnly
+    local Align, Space, Null, ReadOnly, VerticalBar
     do
       Null = { provider = '' }
 
@@ -55,6 +53,10 @@ return {
         condition = function() return not bo.modifiable or bo.readonly end,
         provider = icons.padlock,
         hl = hl.ReadOnly
+      }
+
+      VerticalBar = {
+        provider = icons.powerline.vertical_bar
       }
     end
 
@@ -217,7 +219,12 @@ return {
       }
 
       FileNameBlock = {
-        { FileIcon, WorkDir, CurrentPath, FileName },
+        {
+          FileIcon,
+          -- WorkDir,
+          -- CurrentPath,
+          FileName
+        },
         -- This means that the statusline is cut here when there's not enough space.
         { provider = '%<' }
       }
@@ -225,71 +232,70 @@ return {
 
     --------------------------------------------------------------------------------
 
-    local FileProperties = {
-      condition = function(self)
-        self.filetype = bo.filetype
-
-        local encoding = (bo.fileencoding ~= '' and bo.fileencoding) or vim.o.encoding
-        self.encoding = (encoding ~= 'utf-8') and encoding or nil
-
-        local fileformat = bo.fileformat
-
-        -- if fileformat == 'dos' then
-        --    fileformat = ' '
-        -- elseif fileformat == 'mac' then
-        --    fileformat = ' '
-        -- else  -- unix'
-        --    fileformat = ' '
-        --    -- fileformat = nil
-        -- end
-
-        if fileformat == 'dos' then
-          fileformat = 'CRLF'
-        elseif fileformat == 'mac' then
-          fileformat = 'CR'
-        else -- 'unix'
-          -- fileformat = 'LF'
-          fileformat = nil
+    local FileInfo = {
+      hl = {
+        bold = true,
+      },
+      {
+        condition = function()
+          return vim.bo.fileencoding ~= '' and vim.bo.fileencoding ~= nil
+        end,
+        provider = function()
+          return vim.bo.fileencoding:upper()
+        end,
+      },
+      Space,
+      {
+        provider = function()
+          local fileformat = vim.bo.fileformat
+          if fileformat == 'dos' then
+            return 'CRLF'
+          elseif fileformat == 'mac' then
+            return 'CR'
+          else -- 'unix'
+            return 'LF'
+          end
         end
-
-        self.fileformat = fileformat
-
-        return self.fileformat or self.encoding
-      end,
-      provider = function(self)
-        local sep = (self.fileformat and self.encoding) and ' ' or ''
-        return table.concat { ' ', self.fileformat or '', sep, self.encoding or '', ' ' }
-      end,
-      hl = hl.FileProperties,
+      },
+      Space,
+      {
+        provider = function()
+          return 'SP: ' .. tostring(vim.bo.tabstop)
+        end
+      },
     }
 
-    local DapMessages = {
-      -- display the dap messages only on the debugged file
-      condition = function()
-        -- local session = dap_available and dap.session()
-        -- local session = dap.session()
-        -- if session then
-        --    local filename = api.nvim_buf_get_name(0)
-        --    if session.config then
-        --       local progname = session.config.program
-        --       return filename == progname
-        --    end
-        -- end
-        return false
-      end,
+    local Treesitter = {
+      condition = status.treesitter.exist,
+      hl = {
+        bold = true,
+        fg = colors.purple,
+      },
       provider = function()
-        return ' ' .. dap.status() .. ' '
+        return status.treesitter.icon .. ' TS' .. ' ' .. (vim.bo.filetype or '')
       end,
-      hl = hl.DapMessages
+      on_click = {
+        callback = function()
+          vim.cmd('TSModuleInfo')
+        end,
+        name = 'heirline_ts_click',
+      }
     }
+
 
     local Diagnostics = {
       condition = conditions.has_diagnostics,
+      on_click = {
+        callback = function()
+          require("trouble").toggle({ mode = "document_diagnostics" })
+        end,
+        name = 'heirline_diagnostics_click',
+      },
       static = {
-        error_icon = core_icons.lsp.error .. ' ',
-        warn_icon  = core_icons.lsp.warn .. ' ',
-        info_icon  = core_icons.lsp.info .. ' ',
-        hint_icon  = core_icons.lsp.hint .. ' ',
+        error_icon = core_icons.lsp.error,
+        warn_icon  = core_icons.lsp.warn,
+        info_icon  = core_icons.lsp.info,
+        hint_icon  = core_icons.lsp.hint,
       },
       init = function(self)
         self.errors   = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
@@ -301,7 +307,7 @@ return {
         provider = function(self)
           -- 0 is just another output, we can decide to print it or not!
           if self.errors > 0 then
-            return table.concat { self.error_icon, self.errors, ' ' }
+            return table.concat { self.error_icon, ' ', self.errors, ' ' }
           end
         end,
         hl = hl.Diagnostic.error
@@ -309,7 +315,7 @@ return {
       {
         provider = function(self)
           if self.warnings > 0 then
-            return table.concat { self.warn_icon, self.warnings, ' ' }
+            return table.concat { self.warn_icon, ' ', self.warnings, ' ' }
           end
         end,
         hl = hl.Diagnostic.warn
@@ -317,7 +323,7 @@ return {
       {
         provider = function(self)
           if self.info > 0 then
-            return table.concat { self.info_icon, self.info, ' ' }
+            return table.concat { self.info_icon, ' ', self.info, ' ' }
           end
         end,
         hl = hl.Diagnostic.info
@@ -325,13 +331,32 @@ return {
       {
         provider = function(self)
           if self.hints > 0 then
-            return table.concat { self.hint_icon, self.hints, ' ' }
+            return table.concat { self.hint_icon, ' ', self.hints, ' ' }
           end
         end,
         hl = hl.Diagnostic.hint
       },
-      Space(2)
     }
+
+    local Lsp
+    do
+      local LspIndicator = {
+        provider = "לּ LSP",
+        hl = hl.LspIndicator
+      }
+
+      Lsp = {
+        condition = conditions.lsp_attached,
+        hl = {
+          bold = true,
+        },
+        -- flexible = priority.Lsp,
+        LspIndicator,
+        Space,
+        Diagnostics,
+      }
+    end
+
 
     local Git
     do
@@ -342,84 +367,53 @@ return {
         end,
         hl = hl.Git.branch,
         provider = function(self)
-          return table.concat { ' ', self.git_status.head }
+          return table.concat { ' ', core_icons.git.base, ' ', self.git_status.head }
         end,
       }
 
-      local GitChanges = {
+      local GitStatus = {
         condition = function(self)
           if conditions.is_git_repo() then
             self.git_status = vim.b.gitsigns_status_dict
-            local has_changes = self.git_status.added ~= 0 or
+            return self.git_status.added ~= 0 or
                 self.git_status.removed ~= 0 or
                 self.git_status.changed ~= 0
-            return has_changes
           end
         end,
-        provider = '  ',
-        -- hl = hl.Git.branch
-        -- hl = hl.Git.changed
-        -- hl = hl.Git.added
-        -- hl = hl.Git.removed
-        hl = hl.Git.dirty
-      }
-
-      Git = { GitBranch, GitChanges, Space }
-    end
-
-    local Lsp
-    do
-      local LspIndicator = {
-        provider = icons.circle_small .. ' ',
-        hl = hl.LspIndicator
-      }
-
-      local LspServer = {
-        Space,
         {
-          provider = function(self)
-            local names = self.lsp_names
-            if #names == 1 then
-              names = names[1]
-            else
-              -- names = table.concat(vim.tbl_flatten({ '[', names, ']' }), ' ')
-              names = table.concat(names, ', ')
+          provider = function(_)
+            -- 0 is just another output, we can decide to print it or not!
+            local git_mode = status.git.added
+            if git_mode.count() > 0 then
+              return table.concat { git_mode.icon, ' ', tostring(git_mode.count()), ' ' }
             end
-            return names
           end,
+          hl = hl.Git.added
         },
-        Space(2),
-        hl = hl.LspServer
-      }
-
-      Lsp = {
-        condition = conditions.lsp_attached,
-        init = function(self)
-          local names = {}
-          for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
-            table.insert(names, server.name)
-          end
-          self.lsp_names = names
-        end,
-        hl = function(self)
-          local color
-          for _, name in ipairs(self.lsp_names) do
-            if lsp_colors[name] then
-              color = lsp_colors[name]
-              break
+        {
+          provider = function(_)
+            -- 0 is just another output, we can decide to print it or not!
+            local git_mode = status.git.removed
+            if git_mode.count() > 0 then
+              return table.concat { git_mode.icon, ' ', tostring(git_mode.count()), ' ' }
             end
-          end
-          if color then
-            return { fg = color, bold = true, force = true }
-          else
-            return hl.LspServer
-          end
-        end,
-        flexible = priority.Lsp,
-
-        LspServer,
-        LspIndicator
+          end,
+          hl = hl.Git.removed
+        },
+        {
+          provider = function(_)
+            -- 0 is just another output, we can decide to print it or not!
+            local git_mode = status.git.changed
+            if git_mode.count() > 0 then
+              return table.concat { git_mode.icon, ' ', tostring(git_mode.count()), ' ' }
+            end
+          end,
+          hl = hl.Git.changed
+        },
       }
+
+
+      Git = { GitBranch, Space, GitStatus, Space }
     end
 
     local SearchResults = {
@@ -495,11 +489,26 @@ return {
     }
 
     local MicroRecord = {
-      condition = require("noice").api.statusline.mode.has,
+      condition = require("noice").api.status.mode.has,
       {
-        provider = require("noice").api.statusline.mode.get,
+        provider = icons.powerline.left_rounded,
         hl = {
-          fg = "#ff9e64"
+          fg = colors.black,
+          bg = colors.green,
+        }
+      },
+      {
+        provider = require("noice").api.status.mode.get,
+        hl = {
+          fg = colors.green,
+          bg = colors.black,
+        }
+      },
+      {
+        provider = icons.powerline.right_rounded,
+        hl = {
+          fg = colors.black,
+          bg = colors.green,
         }
       },
       Space,
@@ -539,20 +548,43 @@ return {
       {
         LeftCap, Indicator,
         Space,
+        Git,
+        Lsp,
+        Treesitter,
+        Space,
         {
           fallthrough = false,
-          HydraHint,
-          { SearchResults, FileNameBlock, }
+          {
+            SearchResults,
+            FileNameBlock,
+          }
         },
         Space(4),
-        -- GPS,
         Align,
         MicroRecord,
-        DapMessages,
-        Diagnostics, Git, Lsp,
-        FileProperties,
-        -- Ruler, ScrollBar, ScrollPercentage
-        Ruler, ScrollPercentage,
+        Space,
+        {
+          provider = icons.powerline.left_rounded,
+          hl = {
+            fg = colors.black,
+            bg = colors.green,
+          }
+        },
+        {
+          hl = {
+            bg = colors.black,
+            fg = colors.green,
+          },
+          FileInfo,
+          Ruler,
+        },
+        {
+          provider = icons.powerline.right_rounded,
+          hl = {
+            fg = colors.black,
+            bg = colors.green,
+          }
+        },
       }
     }
 

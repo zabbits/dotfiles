@@ -1,6 +1,18 @@
 local M = {}
 local icons = require("core.icons")
+local b = vim.b
 
+-- ========== treesitter =========
+M.treesitter = {
+  exist = function()
+    local buf = vim.api.nvim_get_current_buf()
+    return vim.treesitter.highlighter.active[buf] and next(vim.treesitter.highlighter.active[buf])
+  end,
+  icon = icons.treesitter.base,
+}
+
+
+-- ========== lsp =========
 function M.lsp_name(msg)
   msg = msg or "Inactive"
   local buf_clients = vim.lsp.buf_get_clients()
@@ -22,28 +34,10 @@ function M.lsp_name(msg)
   return table.concat(buf_client_names, ", ")
 end
 
-function M.treesitter_status()
-  local b = vim.api.nvim_get_current_buf()
-  if vim.treesitter.highlighter.active[b] and next(vim.treesitter.highlighter.active[b]) then
-    return ' ' .. icons.treesitter.base .. ' '
-  end
-  return ""
-end
-
-function M.progress_bar()
-  local current_line = vim.fn.line "."
-  local total_lines = vim.fn.line "$"
-  local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-  local line_ratio = current_line / total_lines
-  local index = math.ceil(line_ratio * #chars)
-  return chars[index]
-end
-
 local function get_diagnostics_count(severity, bufnr)
   bufnr = bufnr or 0
   return vim.tbl_count(vim.diagnostic.get(bufnr, severity and { severity = severity }))
 end
-
 
 M.diagnostic = {
   error = {
@@ -70,6 +64,40 @@ M.diagnostic = {
     end,
     icon = icons.lsp.info,
   },
+}
+
+-- ========== git =========
+-- Common function used by the git providers
+local function git_diff(type)
+  local gsd = b.gitsigns_status_dict
+
+  if gsd and gsd[type] then
+    return gsd[type]
+  end
+
+  return 0
+end
+
+M.git = {
+  exist = b.gitsigns_head or b.gitsigns_status_dict,
+  added = {
+    count = function()
+      return git_diff("added")
+    end,
+    icon = icons.git.added,
+  },
+  removed = {
+    count = function()
+      return git_diff("removed")
+    end,
+    icon = icons.git.deleted
+  },
+  changed = {
+    count = function()
+      return git_diff("changed")
+    end,
+    icon = icons.git.modified,
+  }
 }
 
 return M
