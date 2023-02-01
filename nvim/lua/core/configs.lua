@@ -3,7 +3,7 @@ local M = {
     volar = false,
   },
   nonicons = false,
-  noice = false,
+  noice = true,
 }
 
 return M

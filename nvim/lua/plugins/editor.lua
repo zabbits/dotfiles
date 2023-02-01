@@ -119,8 +119,8 @@ local which_key_conf = {
       ["<leader>g"] = { name = "Git" },
       ["<leader>s"] = { name = "Search" },
       ["<leader>t"] = { name = "Terminal" },
-      ["<leader>h"] = { name = "Harpoon" },
       ["<leader>n"] = { name = "Neorg" },
+      ["<leader>nw"] = { name = "Workspace" },
       ["<leader>o"] = { name = "Open" },
       ["<leader>y"] = { name = "Yank" },
     })
@@ -426,7 +426,7 @@ local filetree_conf = {
 
 local term_conf = {
   "akinsho/nvim-toggleterm.lua",
-  cmd = "ToggleTerm",
+  cmd = { "ToggleTerm", "TermExec" },
   opts = {
     size = 10,
     open_mapping = [[<c-\>]],

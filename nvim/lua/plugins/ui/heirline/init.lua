@@ -238,11 +238,26 @@ return {
       },
       {
         condition = function()
+          return vim.bo.filetype and vim.bo.filetype ~= ''
+        end,
+        provider = function()
+          return vim.bo.filetype
+        end,
+      },
+      Space,
+      {
+        condition = function()
           return vim.bo.fileencoding ~= '' and vim.bo.fileencoding ~= nil
         end,
         provider = function()
-          return vim.bo.fileencoding:upper()
+          return vim.bo.fileencoding:lower()
         end,
+      },
+      Space,
+      {
+        provider = function()
+          return 'tab:' .. tostring(vim.bo.tabstop)
+        end
       },
       Space,
       {
@@ -257,12 +272,6 @@ return {
           end
         end
       },
-      Space,
-      {
-        provider = function()
-          return 'TAB:' .. tostring(vim.bo.tabstop)
-        end
-      },
     }
 
     local Treesitter = {
@@ -272,11 +281,12 @@ return {
         fg = colors.purple,
       },
       provider = function()
-        return status.treesitter.icon .. ' TS' .. ' ' .. (vim.bo.filetype or '')
+        return status.treesitter.icon .. ' TS'
       end,
       on_click = {
         callback = function()
-          vim.cmd('TSModuleInfo')
+          util.ts.buf_module_info()
+          -- vim.cmd("TSModuleInfo")
         end,
         name = 'heirline_ts_click',
       }
@@ -342,7 +352,13 @@ return {
     do
       local LspIndicator = {
         provider = "לּ LSP",
-        hl = hl.LspIndicator
+        hl = hl.LspIndicator,
+        on_click = {
+          callback = function()
+            vim.cmd("LspInfo")
+          end,
+          name = "heirline_lsp_click",
+        }
       }
 
       Lsp = {
@@ -413,7 +429,15 @@ return {
       }
 
 
-      Git = { GitBranch, Space, GitStatus, Space }
+      Git = {
+        on_click = {
+          callback = function()
+            vim.cmd("TermExec cmd='gitui'")
+          end,
+          name = "heirline_git_click",
+        },
+        GitBranch, Space, GitStatus, Space
+      }
     end
 
     local SearchResults = {

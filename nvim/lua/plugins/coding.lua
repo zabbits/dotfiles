@@ -394,8 +394,7 @@ local crate_conf = {
 
 local neorg_conf = {
   "nvim-neorg/neorg",
-  cmd = "NeorgStart",
-  enabled = false,
+  cmd = "Neorg",
   ft = 'norg',
   dependencies = { "nvim-treesitter" },
   opts = {
@@ -417,7 +416,11 @@ local neorg_conf = {
         }
       },
       ["core.looking-glass"] = {},
-      ["core.norg.journal"] = {},
+      ["core.norg.journal"] = {
+        config = {
+          workspace = 'gtd',
+        }
+      },
       ["core.norg.dirman"] = {
         config = {
           workspaces = {

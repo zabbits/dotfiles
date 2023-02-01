@@ -211,6 +211,10 @@ map("n", "<leader>nv", function()
 end, { desc = "Gtd views" })
 map("n", "<leader>ne", "<cmd>Neorg gtd edit<cr>", { desc = "Gtd edit" })
 map("n", "<leader>nc", "<cmd>Neorg gtd capture<cr>", { desc = "Gtd capture" })
+map("n", "<leader>nj", "<cmd>Neorg journal today<cr>", {desc = "Journal Today"})
+map("n", "<leader>nwn", "<cmd>Neorg workspace note<cr>", {desc = "Workspace note"})
+map("n", "<leader>nwg", "<cmd>Neorg workspace gtd<cr>", {desc = "Workspace gtd"})
+map("n", "<leader>nww", "<cmd>Neorg workspace work<cr>", {desc = "Workspace work"})
 
 -- === Session ===
 map("n", "<leader>fs", function()

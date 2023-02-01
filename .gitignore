@@ -3,3 +3,4 @@ nvim/lua/packer_compiled.lua
 packer_compiled.lua
 .luarc.json
 nvim/lazy-lock.json
+nvim
