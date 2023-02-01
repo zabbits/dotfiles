@@ -1,3 +1,54 @@
+local function nui_popup(title, lines)
+  local Popup = require("nui.popup")
+  local event = require("nui.utils.autocmd").event
+
+  local popup = Popup({
+    position = {
+      row = "50%",
+      col = "50%",
+    },
+    size = {
+      width = 40,
+      height = 10,
+    },
+    enter = true,
+    focusable = true,
+    zindex = 50,
+    relative = "win",
+    border = {
+      padding = {
+        top = 2,
+        bottom = 2,
+        left = 3,
+        right = 3,
+      },
+      style = "rounded",
+      text = {
+        top = title,
+        top_align = "center",
+      },
+    },
+  })
+
+  popup:mount()
+
+  popup:on(event.BufLeave, function()
+    popup:unmount()
+  end)
+
+  popup:map("n", "q", function()
+    popup:unmount()
+  end, { noremap = true })
+
+  for i, line in pairs(lines) do
+    local bufnr, ns_id, linenr_start = popup.bufnr, -1, i
+    line:render(bufnr, ns_id, linenr_start)
+  end
+
+  vim.api.nvim_buf_set_option(popup.bufnr, "modifiable", false)
+  vim.api.nvim_buf_set_option(popup.bufnr, "readonly", true)
+end
+
 local util = {}
 
 util.icons = {
@@ -95,21 +146,23 @@ util.ts = {
     local parsers = require("nvim-treesitter.parsers")
     local modules = configs.available_modules()
     local lang = parsers.get_buf_lang()
+    local NuiLine = require("nui.line")
 
     local count = #modules
     local result = ""
+    local lines = {}
     for i, module in ipairs(modules) do
+      local line = NuiLine()
       if configs.is_enabled(module, lang, 0) then
-        result = result .. "✓" .. ' '
+        line:append("" .. ' ')
       else
-        result = result .. "✗" .. ' '
+        line:append("" .. ' ', "Error")
       end
-      result = result .. module
-      if i ~= count then
-        result = result .. '\n\n'
-      end
+      line:append(module)
+
+      table.insert(lines, line)
     end
-    vim.notify(result)
+    nui_popup("TSModuleInfo", lines)
   end
 }
 
