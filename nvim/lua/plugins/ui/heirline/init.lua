@@ -234,7 +234,6 @@ return {
 
     local FileInfo = {
       hl = {
-        bold = true,
       },
       {
         condition = function()
@@ -531,6 +530,25 @@ return {
       Space,
     }
 
+    local SpecialBuf = {
+      heirline.surround(
+        { icons.powerline.left_rounded, icons.powerline.right_rounded },
+        colors.green,
+        {
+          Space,
+          {
+            provider = function()
+              return vim.bo.filetype
+            end,
+            hl = {
+              fg = colors.black,
+            }
+          },
+          Space,
+        }
+      )
+    }
+
 
     local StatusLines = {
       init = function(self)
@@ -563,6 +581,9 @@ return {
       end,
       hl = hl.StatusLine,
       {
+        condition = function()
+          return not util.is_special_buf(vim.bo.filetype)
+        end,
         LeftCap, Indicator,
         Git,
         Lsp,
@@ -602,7 +623,14 @@ return {
             bg = colors.green,
           }
         },
-      }
+      },
+      {
+        condition = function()
+          return util.is_special_buf(vim.bo.filetype)
+        end,
+        LeftCap,
+        SpecialBuf,
+      },
     }
 
     --------------------------------------------------------------------------------

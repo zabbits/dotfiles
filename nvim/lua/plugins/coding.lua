@@ -436,6 +436,57 @@ local neorg_conf = {
         config = {
           -- icon_preset = 'varied',
           icons = {
+            todo = {
+              enabled = true,
+
+              done = {
+                enabled = true,
+                icon = "",
+                query = "(todo_item_done) @icon",
+              },
+
+              pending = {
+                enabled = true,
+                icon = "",
+                query = "(todo_item_pending) @icon",
+              },
+
+              undone = {
+                enabled = true,
+                icon = "",
+                query = "(todo_item_undone) @icon",
+              },
+
+              uncertain = {
+                enabled = true,
+                icon = "",
+                query = "(todo_item_uncertain) @icon",
+              },
+
+              on_hold = {
+                enabled = true,
+                icon = "",
+                query = "(todo_item_on_hold) @icon",
+              },
+
+              cancelled = {
+                enabled = true,
+                icon = "",
+                query = "(todo_item_cancelled) @icon",
+              },
+
+              recurring = {
+                enabled = true,
+                icon = "↺",
+                query = "(todo_item_recurring) @icon",
+              },
+
+              urgent = {
+                enabled = true,
+                icon = "⚠",
+                query = "(todo_item_urgent) @icon",
+              },
+            },
             heading = {
               enabled = true,
 

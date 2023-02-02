@@ -166,4 +166,30 @@ util.ts = {
   end
 }
 
+local special_bufs = {
+    "qf",
+    "help",
+    "man",
+    "notify",
+    "lspinfo",
+    "spectre_panel",
+    "startuptime",
+    "tsplayground",
+    "PlenaryTestPopup",
+    "notify",
+    "sagahover",
+    "sagarename",
+    "lspsagaoutline",
+    "neo-tree",
+    "neo-tree-popup",
+    "TelescopePrompt",
+    "mason",
+    "lazy",
+    "Trouble",
+}
+
+util.is_special_buf = function(buf_type)
+  return vim.tbl_contains(special_bufs, buf_type)
+end
+
 return util
