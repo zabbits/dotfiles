@@ -123,35 +123,24 @@ local ts_conf = {
 }
 
 
--- ============ luasnip =============
-local luasnip_conf = {
-  "L3MON4D3/LuaSnip",
-  lazy = true,
+-- ============ snip =============
+local snip_conf = {
+  'dcampos/nvim-snippy',
   event = "InsertEnter",
   dependencies = {
-    "rafamadriz/friendly-snippets",
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-    end
+    'honza/vim-snippets',
   },
-  config = function()
-    require("luasnip.loaders.from_lua").lazy_load()
-
-    -- fix luasnip use tab go to history
-    vim.api.nvim_create_augroup("_luasnip", {})
-    vim.api.nvim_create_autocmd("ModeChanged", {
-      group = "_luasnip",
-      callback = function()
-        local luasnip = require('luasnip')
-        if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-            and luasnip.session.current_nodes[vim.api.nvim_get_current_buf()]
-            and not luasnip.session.jump_active
-        then
-          luasnip.unlink_current()
-        end
-      end
-    })
-  end
+  opts = {
+    mappings = {
+      is = {
+        ['<Tab>'] = 'expand_or_advance',
+        ['<S-Tab>'] = 'previous',
+      },
+      nx = {
+        ['<Tab>'] = 'cut_text',
+      },
+    },
+  }
 }
 
 -- ============ cmp =============
@@ -159,14 +148,19 @@ local cmp_conf = {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
   dependencies = {
-    "saadparwaiz1/cmp_luasnip",
+    'dcampos/cmp-snippy',
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-nvim-lsp",
   },
   config = function()
     local cmp = require("cmp")
-    local luasnip = require("luasnip")
+    local snippy = require("snippy")
+    local has_words_before = function()
+      unpack = unpack or table.unpack
+      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    end
 
     cmp.setup({
       preselect = cmp.PreselectMode.None,
@@ -176,6 +170,7 @@ local cmp_conf = {
           menu = ({
             buffer = "[Buffer]",
             nvim_lsp = "[LSP]",
+            snippy = "[Snippy]",
             luasnip = "[LuaSnip]",
             path = "[Path]",
             neorg = "[Neorg]",
@@ -186,11 +181,12 @@ local cmp_conf = {
       },
       snippet = {
         expand = function(args)
-          require("luasnip").lsp_expand(args.body)
+          snippy.expand_snippet(args.body)
         end,
       },
       duplicates = {
         nvim_lsp = 1,
+        snippy = 1,
         luasnip = 1,
         cmp_tabnine = 1,
         buffer = 1,
@@ -213,6 +209,7 @@ local cmp_conf = {
       },
       sources = {
         { name = "nvim_lsp" },
+        { name = "snippy" },
         { name = "luasnip" },
         { name = "neorg" },
         { name = "buffer" },
@@ -235,29 +232,24 @@ local cmp_conf = {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          elseif luasnip.expandable() then
-            luasnip.expand()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
+          elseif snippy.can_expand_or_advance() then
+            snippy.expand_or_advance()
+          elseif has_words_before() then
+            cmp.complete()
           else
             fallback()
           end
-        end, {
-          "i",
-          "s",
-        }),
+        end, { "i", "s" }),
+
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
+          elseif snippy.can_jump(-1) then
+            snippy.previous()
           else
             fallback()
           end
-        end, {
-          "i",
-          "s",
-        }),
+        end, { "i", "s" }),
       },
     })
   end
@@ -573,4 +565,5 @@ return {
   neorg_conf,
   json_conf,
   surround_conf,
+  snip_conf,
 }
