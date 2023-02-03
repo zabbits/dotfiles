@@ -10,6 +10,7 @@ local lsp_conf = {
     "lspsaga.nvim",
     "lsp_lines.nvim",
     "fidget.nvim",
+    "vim-illuminate",
   },
   config = function()
     require("neodev").setup({})
@@ -121,10 +122,29 @@ local lines_conf = {
 local fidget_conf = {
   'j-hui/fidget.nvim',
   opts = {
-      text = {
-        done = "",
-      },
+    text = {
+      done = "",
+    },
   },
+}
+
+local illuminate_conf = {
+  "RRethy/vim-illuminate",
+  config = function()
+    require('illuminate').configure({
+      providers = {
+        'lsp',
+      },
+      delay = 200,
+      filetypes_denylist = {
+        'dirvish',
+        'fugitive',
+        'lazy',
+        'neo-tree',
+      },
+      under_cursor = true,
+    })
+  end
 }
 
 return {
@@ -134,4 +154,5 @@ return {
   trouble_conf,
   lines_conf,
   fidget_conf,
+  illuminate_conf,
 }

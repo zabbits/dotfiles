@@ -10,7 +10,7 @@ return {
 
     local core_icons = require('core.icons')
     local conditions = require('heirline.conditions')
-    local heirline = require("heirline.utils")
+    local heirline_utils = require("heirline.utils")
     local devicons = require('nvim-web-devicons')
     local util = require('plugins.ui.heirline.util')
     local icons = util.icons
@@ -73,7 +73,7 @@ return {
           return hydra.is_active() and hydra.get_name()
               and not hydras_to_ignore[hydra.get_name()]
         end,
-        heirline.surround(
+        heirline_utils.surround(
           { icons.powerline.left_rounded, icons.powerline.right_rounded },
           function() return theme.hydra[hydra.get_color()] end, -- color
           {
@@ -118,7 +118,7 @@ return {
             return self.mode ~= 'normal'
           end,
           hl = { bg = hl.StatusLine.bg },
-          heirline.surround(
+          heirline_utils.surround(
             { icons.powerline.left_rounded, icons.powerline.right_rounded },
             function(self) -- color
               return hl.Mode[self.mode].bg
@@ -233,15 +233,11 @@ return {
     --------------------------------------------------------------------------------
 
     local FileInfo = {
-      hl = {
-      },
       {
-        condition = function()
-          return vim.bo.filetype and vim.bo.filetype ~= ''
-        end,
         provider = function()
           return vim.bo.filetype
         end,
+       hl = { fg = heirline_utils.get_highlight("Type").fg, bold = true },
       },
       Space,
       {
@@ -285,7 +281,6 @@ return {
       on_click = {
         callback = function()
           util.ts.buf_module_info()
-          -- vim.cmd("TSModuleInfo")
         end,
         name = 'heirline_ts_click',
       }
@@ -314,34 +309,25 @@ return {
       end,
       {
         provider = function(self)
-          -- 0 is just another output, we can decide to print it or not!
-          if self.errors > 0 then
-            return table.concat { self.error_icon, ' ', self.errors, ' ' }
-          end
+          return self.errors > 0 and table.concat { self.error_icon, ' ', self.errors, ' ' }
         end,
         hl = hl.Diagnostic.error
       },
       {
         provider = function(self)
-          if self.warnings > 0 then
-            return table.concat { self.warn_icon, ' ', self.warnings, ' ' }
-          end
+          return self.warnings > 0 and table.concat { self.warn_icon, ' ', self.warnings, ' ' }
         end,
         hl = hl.Diagnostic.warn
       },
       {
         provider = function(self)
-          if self.info > 0 then
-            return table.concat { self.info_icon, ' ', self.info, ' ' }
-          end
+          return self.info > 0 and table.concat { self.info_icon, ' ', self.info, ' ' }
         end,
         hl = hl.Diagnostic.info
       },
       {
         provider = function(self)
-          if self.hints > 0 then
-            return table.concat { self.hint_icon, ' ', self.hints, ' ' }
-          end
+          return self.hints > 0 and table.concat { self.hint_icon, ' ', self.hints, ' ' }
         end,
         hl = hl.Diagnostic.hint
       },
@@ -365,7 +351,6 @@ return {
         hl = {
           bold = true,
         },
-        -- flexible = priority.Lsp,
         LspIndicator,
         Space,
         Diagnostics,
@@ -386,6 +371,12 @@ return {
         end,
       }
 
+      local function git_mode_provider(git_mode)
+        return function ()
+          return git_mode.count() > 0 and table.concat { git_mode.icon, ' ', tostring(git_mode.count()), ' ' }
+        end
+      end
+
       local GitStatus = {
         condition = function(self)
           if conditions.is_git_repo() then
@@ -396,33 +387,15 @@ return {
           end
         end,
         {
-          provider = function(_)
-            -- 0 is just another output, we can decide to print it or not!
-            local git_mode = status.git.added
-            if git_mode.count() > 0 then
-              return table.concat { git_mode.icon, ' ', tostring(git_mode.count()), ' ' }
-            end
-          end,
+          provider = git_mode_provider(status.git.added),
           hl = hl.Git.added
         },
         {
-          provider = function(_)
-            -- 0 is just another output, we can decide to print it or not!
-            local git_mode = status.git.removed
-            if git_mode.count() > 0 then
-              return table.concat { git_mode.icon, ' ', tostring(git_mode.count()), ' ' }
-            end
-          end,
+          provider = git_mode_provider(status.git.removed),
           hl = hl.Git.removed
         },
         {
-          provider = function(_)
-            -- 0 is just another output, we can decide to print it or not!
-            local git_mode = status.git.changed
-            if git_mode.count() > 0 then
-              return table.concat { git_mode.icon, ' ', tostring(git_mode.count()), ' ' }
-            end
-          end,
+          provider = git_mode_provider(status.git.changed),
           hl = hl.Git.changed
         },
       }
@@ -476,7 +449,7 @@ return {
     }
 
     local Ruler = {
-      provider = "%7(%l/%3L%):%2c %P",
+      provider = "%7(%l/%L%):%c %P",
       hl = { bold = true }
     }
 
@@ -488,21 +461,6 @@ return {
     }
 
     --------------------------------------------------------------------------------
-
-    local HelpBufferStatusline = {
-      condition = function()
-        return bo.filetype == "help"
-      end,
-      Space, Indicator,
-      {
-        provider = function()
-          local filename = api.nvim_buf_get_name(0)
-          return fn.fnamemodify(filename, ":t")
-        end,
-        hl = hl.FileName
-      },
-      Align, ScrollPercentage
-    }
 
     local MicroRecord = {
       condition = require("noice").api.status.mode.has,
@@ -531,7 +489,7 @@ return {
     }
 
     local SpecialBuf = {
-      heirline.surround(
+      heirline_utils.surround(
         { icons.powerline.left_rounded, icons.powerline.right_rounded },
         colors.green,
         {

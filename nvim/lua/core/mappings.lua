@@ -42,7 +42,8 @@ map('n', 'H', '<cmd>bp<cr>')
 map('n', 'L', '<cmd>bn<cr>')
 
 -- === Close Buffer ===
-map("n", "<leader>c", "<cmd>Bdelete<CR>", { desc = "Close Buffer" })
+map("n", "<leader>c", function() require('mini.bufremove').delete(0, false) end, { desc = "Close Buffer" })
+map("n", "<leader>C", function() require('mini.bufremove').delete(0, true) end, { desc = "Close Buffer" })
 
 -- === Lazy ===
 map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
@@ -211,10 +212,10 @@ map("n", "<leader>nv", function()
 end, { desc = "Gtd views" })
 map("n", "<leader>ne", "<cmd>Neorg gtd edit<cr>", { desc = "Gtd edit" })
 map("n", "<leader>nc", "<cmd>Neorg gtd capture<cr>", { desc = "Gtd capture" })
-map("n", "<leader>nj", "<cmd>Neorg journal today<cr>", {desc = "Journal Today"})
-map("n", "<leader>nwn", "<cmd>Neorg workspace note<cr>", {desc = "Workspace note"})
-map("n", "<leader>nwg", "<cmd>Neorg workspace gtd<cr>", {desc = "Workspace gtd"})
-map("n", "<leader>nww", "<cmd>Neorg workspace work<cr>", {desc = "Workspace work"})
+map("n", "<leader>nj", "<cmd>Neorg journal today<cr>", { desc = "Journal Today" })
+map("n", "<leader>nwn", "<cmd>Neorg workspace note<cr>", { desc = "Workspace note" })
+map("n", "<leader>nwg", "<cmd>Neorg workspace gtd<cr>", { desc = "Workspace gtd" })
+map("n", "<leader>nww", "<cmd>Neorg workspace work<cr>", { desc = "Workspace work" })
 
 -- === Session ===
 map("n", "<leader>fs", function()
@@ -232,13 +233,13 @@ map('x', '<leader>y', function() require('osc52').copy_visual() end, { desc = "O
 
 -- === comment ===
 -- Linewise toggle current line using C-/
-local comment_key = '<C-_>'
-local os = vim.loop.os_uname().sysname:lower()
-if os == 'darwin' then
-  comment_key = '<C-/>'
-end
-map('i', comment_key, function() require("Comment.api").toggle.linewise.current() end)
-map('n', comment_key, function() require("Comment.api").toggle.linewise.current() end)
-map('x', comment_key, function() require("Comment.api").toggle.linewise(vim.fn.visualmode()) end)
+-- local comment_key = '<C-_>'
+-- local os = vim.loop.os_uname().sysname:lower()
+-- if os == 'darwin' then
+--   comment_key = '<C-/>'
+-- end
+-- map('i', comment_key, function() require("Comment.api").toggle.linewise.current() end)
+-- map('n', comment_key, function() require("Comment.api").toggle.linewise.current() end)
+-- map('x', comment_key, function() require("Comment.api").toggle.linewise(vim.fn.visualmode()) end)
 
 return M

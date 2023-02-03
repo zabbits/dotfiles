@@ -4,13 +4,8 @@ local ts_conf = {
   build = ":TSUpdate",
   event = { 'BufRead', 'BufNewFile' },
   dependencies = {
-    -- Parenthesis highlighting
-    -- "p00f/nvim-ts-rainbow",
-    -- Autoclose tags
     "windwp/nvim-ts-autotag",
-    -- Context based commenting
     "JoosepAlviste/nvim-ts-context-commentstring",
-    -- textobject
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
   config = function()
@@ -35,9 +30,6 @@ local ts_conf = {
         enable = true,
         enable_autocmd = false,
       },
-      -- autopairs = {
-      --   enable = true,
-      -- },
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -49,7 +41,7 @@ local ts_conf = {
       },
       indent = {
         enable = true,
-        disable = { "yaml", "norg", "org", "python", "c", "lua", "json", "go", "java" },
+        disable = { "yaml", "norg", "org", "python", "c", "json", "go", "java" },
       },
       rainbow = {
         enable = true,
@@ -88,10 +80,6 @@ local ts_conf = {
             ['@function.outer'] = 'V', -- linewise
             ['@class.outer'] = '<c-v>', -- blockwise
           },
-          -- If you set this to `true` (default is `false`) then any textobject is
-          -- extended to include preceding xor succeeding whitespace. Succeeding
-          -- whitespace has priority in order to act similarly to eg the built-in
-          -- `ap`.
           include_surrounding_whitespace = false,
         },
         move = {
@@ -293,15 +281,23 @@ local pair_conf = {
 }
 
 local comment_conf = {
-  "numToStr/Comment.nvim",
+  'echasnovski/mini.comment',
+  -- lazy = false,
   keys = {
     { "gc", mode = { "n", "v" } },
     { "gb", mode = { "n", "v" } },
     { "<C-/>", mode = { "n", "v", "i" } },
   },
   config = function()
-    require('Comment').setup({
-      pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
+    require('mini.comment').setup({
+      mappings = {
+        comment = 'gc',
+        comment_line = 'gcc',
+        textobject = 'gc',
+      },
+      hooks = {
+        pre_hook = require('ts_context_commentstring.internal').update_commentstring
+      },
     })
   end,
 }
@@ -555,7 +551,7 @@ local surround_conf = {
 
 return {
   ts_conf,
-  luasnip_conf,
+  snip_conf,
   cmp_conf,
   pair_conf,
   comment_conf,
@@ -565,5 +561,4 @@ return {
   neorg_conf,
   json_conf,
   surround_conf,
-  snip_conf,
 }

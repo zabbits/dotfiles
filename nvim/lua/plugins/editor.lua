@@ -481,9 +481,8 @@ local winshift_conf = {
 
 
 -- Better buffer closing
-local buf_conf = {
-  "famiu/bufdelete.nvim",
-  cmd = 'Bdelete',
+local buffer_conf = {
+  'echasnovski/mini.bufremove'
 }
 
 local mason_conf = {
@@ -539,7 +538,7 @@ return {
   term_conf,
   split_conf,
   winshift_conf,
-  buf_conf,
+  buffer_conf,
   mason_conf,
   yank_conf,
 }

@@ -3,6 +3,14 @@ local theme_conf = {
   lazy = false,
   config = function()
     vim.cmd.colorscheme("tokyodark")
+    local p = require("tokyodark.palette")
+    -- highlight for illuminate
+    for _, group in pairs({
+      'illuminatedWord', 'illuminatedCurWord', 'IlluminatedWordText',
+      'IlluminatedWordRead', 'IlluminatedWordWrite'
+    }) do
+      vim.api.nvim_set_hl(0, group, { bg = p.grey })
+    end
   end
 }
 
@@ -219,6 +227,14 @@ local noice_conf = {
       lsp_doc_border = true, -- add a border to hover docs and signature help
     },
     routes = {
+      {
+        view = "mini",
+        filter = {
+          event = "msg_show",
+          kind = "",
+          find = "written",
+        },
+      },
       {
         view = "mini",
         filter = {

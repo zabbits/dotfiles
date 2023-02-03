@@ -31,36 +31,6 @@ function M.setup()
   }
 
   vim.diagnostic.config(config)
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-  })
-
-  -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  --   border = "rounded",
-  -- })
-end
-
-local function lsp_highlight_document(client, bufnr)
-  if client.server_capabilities.documentHighlightProvider then
-    local gid = vim.api.nvim_create_augroup("_lsp_highlight_document", {})
-    vim.api.nvim_create_autocmd("CursorHold", {
-      desc = "Highlight document on cursor hold",
-      group = gid,
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.document_highlight()
-      end,
-    })
-    vim.api.nvim_create_autocmd("CursorMoved", {
-      desc = "Clear references on cursor hold",
-      group = gid,
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.clear_references()
-      end,
-    })
-  end
 end
 
 local function buffer_key_maps(client, bufnr)
@@ -91,7 +61,6 @@ local function buffer_key_maps(client, bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  lsp_highlight_document(client, bufnr)
   buffer_key_maps(client, bufnr)
 end
 

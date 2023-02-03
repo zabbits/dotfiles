@@ -37,6 +37,7 @@ local options = {
   softtabstop = 4,
   tabstop = 4,
 
+  confirm = true,
   splitbelow = true,                          -- Splitting a new window below the current one
   splitright = true,                          -- Splitting a new window at the right of the current one
   swapfile = false,                           -- Disable use of swapfile for the buffer
@@ -53,10 +54,10 @@ local options = {
   pumheight = 10,                             -- Height of the pop up menu
   history = 100,                              -- Number of commands to remember in a history table
   timeoutlen = 300,                           -- Length of time to wait for a mapped sequence
-  updatetime = 300,                           -- Length of time to wait before triggering the plugin
+  updatetime = 200,                           -- Length of time to wait before triggering the plugin
   fillchars = { eob = " " },                  -- Disable `~` on nonexistent lines
 
-  conceallevel = 2,                           -- Hide some text
+  conceallevel = 3,                           -- Hide some text
   concealcursor = "nc",                       -- Hide on normal and command line
   mousemoveevent = true,
 }
@@ -65,7 +66,7 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append { c = true }
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.opt.fillchars:append({
@@ -77,29 +78,5 @@ vim.opt.fillchars:append({
   vertright = '┣',
   verthoriz = '╋',
 })
-
-
--- options for neovide
-if vim.g.neovide then
-  -- font
-  local os = vim.loop.os_uname().sysname:lower()
-  if os == 'darwin' then
-    -- vim.o.guifont = 'FiraCode Nerd Font Mono:h16'
-    vim.o.guifont = 'Maple Mono SC NF:h18'
-  elseif os == 'windows_nt' then
-    vim.o.guifont = 'FiraCode NF'
-  end
-
-  vim.g.neovide_remember_window_size = true
-  -- allow alt key, current do not support
-  vim.g.neovide_input_macos_alt_is_meta = true
-
-  -- allow clipboard copy paste in neovim
-  vim.g.neovide_input_use_logo = true
-  vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-end
 
 return M
