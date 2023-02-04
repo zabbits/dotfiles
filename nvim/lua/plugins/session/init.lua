@@ -2,14 +2,18 @@ return {
   'jedrzejboczar/possession.nvim',
   dependencies = { 'telescope.nvim' },
   opts = {
+    autosave = {
+      current = false,
+      tmp = true,
+      on_load = false,
+      on_quit = true,
+    },
     plugins = {
-      close_windows = false,
-      delete_hidden_buffers = false,
       nvim_tree = false,
       tabby = false,
     }
   },
-  config = function (_, opts)
+  config = function(_, opts)
     require('possession').setup(opts)
     require('telescope').load_extension('possession')
   end

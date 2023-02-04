@@ -59,6 +59,7 @@ local alpha_conf = {
       dashboard.button('  w', 'ﭨ  Live grep', ':lua require("telescope.builtin").live_grep() <CR>'),
       dashboard.button('  s', 'ﮫ  Sessions',
         ':lua require("telescope").extensions.possession.list({initial_mode="normal"}) <CR>'),
+      dashboard.button('  r', 'ﮫ  Temp sessions', ':lua require("possession.session").load("tmp") <CR>'),
       -- dashboard.button('  p', '  Find projects',
       --   ':lua require("telescope._extensions").manager.projects.projects() <CR>'),
       dashboard.button('  c', '  Configurations',

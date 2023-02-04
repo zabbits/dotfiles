@@ -218,11 +218,9 @@ map("n", "<leader>nwg", "<cmd>Neorg workspace gtd<cr>", { desc = "Workspace gtd"
 map("n", "<leader>nww", "<cmd>Neorg workspace work<cr>", { desc = "Workspace work" })
 
 -- === Session ===
-map("n", "<leader>fs", function()
-  require('telescope').extensions.possession.list()
-end,
-  { desc = "Find Session" })
-
+map("n", "<leader>sl", function()
+  require("telescope").extensions.possession.list({ initial_mode = "normal" })
+end, { desc = "Session Load" })
 map("n", "<leader>ss", function()
   require('plugins.session.posession-helper').save_session()
 end, { desc = "Session Save" })
@@ -230,16 +228,5 @@ map("n", "<leader>sd", ":PossessionDelete <CR>", { desc = "Session Delete" })
 
 -- === OSC Yank ===
 map('x', '<leader>y', function() require('osc52').copy_visual() end, { desc = "OSYank" })
-
--- === comment ===
--- Linewise toggle current line using C-/
--- local comment_key = '<C-_>'
--- local os = vim.loop.os_uname().sysname:lower()
--- if os == 'darwin' then
---   comment_key = '<C-/>'
--- end
--- map('i', comment_key, function() require("Comment.api").toggle.linewise.current() end)
--- map('n', comment_key, function() require("Comment.api").toggle.linewise.current() end)
--- map('x', comment_key, function() require("Comment.api").toggle.linewise(vim.fn.visualmode()) end)
 
 return M
