@@ -1,0 +1,16 @@
+snippet mt "mod tests"
+	#[cfg(test)]
+	mod tests {
+		use super::*;
+
+		#[test]
+		fn $1() {
+			$2
+		}
+	}
+
+snippet tt "test"
+	#[test]
+	fn $1() {
+		$2
+	}
