@@ -124,9 +124,6 @@ local snip_conf = {
         ['<Tab>'] = 'expand_or_advance',
         ['<S-Tab>'] = 'previous',
       },
-      nx = {
-        ['<Tab>'] = 'cut_text',
-      },
     },
   }
 }
@@ -248,10 +245,7 @@ local pair_conf = {
   event = "InsertEnter",
   dependencies = { "nvim-cmp" },
   config = function()
-    local status_ok, npairs = pcall(require, "nvim-autopairs")
-    if not status_ok then
-      return
-    end
+    local npairs = require("nvim-autopairs")
 
     npairs.setup {
       check_ts = true,
