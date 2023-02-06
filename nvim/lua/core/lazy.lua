@@ -19,7 +19,7 @@ require("lazy").setup({
   },
   defaults = { lazy = true },
   install = { colorscheme = { "tokyodark" } },
-  checker = { enabled = true },
+  checker = { enabled = false },
   performance = {
     rtp = {
       ---@type string[] list any plugins you want to disable here

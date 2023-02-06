@@ -48,6 +48,9 @@ map("n", "<leader>C", function() require('mini.bufremove').delete(0, true) end, 
 -- === Lazy ===
 map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
+-- === Mason ===
+map("n", "<leader>M", "<cmd>Mason<cr>", { desc = "Mason" })
+
 -- === LSP ===
 map("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
 map("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", { desc = "Installer Info" })

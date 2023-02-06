@@ -189,7 +189,8 @@ local indent_conf = {
         "help", "alpha", "dashboard",
         "neo-tree", "Trouble", "lazy",
         "mason", "lspsagafinder", "lspsaga",
-        "markdown", "noice",
+        "markdown", "noice", "norg",
+        "lspinfo",
       },
       callback = function()
         vim.b.miniindentscope_disable = true
