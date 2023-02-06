@@ -1,5 +1,6 @@
 return {
   'jedrzejboczar/possession.nvim',
+	event = { "BufRead", "BufNewFile" },
   dependencies = { 'telescope.nvim' },
   opts = {
     autosave = {
