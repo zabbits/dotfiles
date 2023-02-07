@@ -14,3 +14,8 @@ snippet tt "test"
 	fn $1() {
 		$2
 	}
+
+snippet scope "scope"
+	thread::scope(|s| {
+		$1
+	});

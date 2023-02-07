@@ -4,6 +4,9 @@ local M = {
   },
   nonicons = false,
   noice = true,
+  posession = {
+    auto_save_name = 'tmp_',
+  }
 }
 
 return M

@@ -1,6 +1,6 @@
 return {
   "rebelot/heirline.nvim",
-  event = { 'BufRead', 'BufNewFile' },
+  event = { "BufAdd", "BufReadPre", 'BufRead', 'BufNewFile' },
   config = function()
     local os_sep = package.config:sub(1, 1)
     local api = vim.api
