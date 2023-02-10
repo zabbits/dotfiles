@@ -598,6 +598,14 @@ local surround_conf = {
 	event = { "BufRead", "BufNewFile" },
 }
 
+local table_conf = {
+  'dhruvasagar/vim-table-mode',
+  ft = 'markdown',
+  config = function ()
+    vim.g.table_mode_corner='|'
+  end
+}
+
 return {
 	ts_conf,
 	snip_conf,
@@ -610,4 +618,5 @@ return {
 	neorg_conf,
 	json_conf,
 	surround_conf,
+  table_conf,
 }
