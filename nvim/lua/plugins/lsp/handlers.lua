@@ -59,6 +59,7 @@ local function buffer_key_maps(client, bufnr)
 	bmap(bufnr, "i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { desc = "Signature help" })
 	bmap(bufnr, "n", "<leader>lc", "<cmd>lua vim.lsp.buf.clear_references()<CR>", { desc = "Clear" })
 	vim.keymap.set("n", "<leader>lf", format, { desc = "LSP Format", buffer = true })
+	vim.keymap.set("n", "gq", format, { desc = "LSP Format", buffer = true })
 	-- lspsaga stuff
 	if client.name == "rust_analyzer" then
 		bmap(bufnr, "n", "K", "<cmd>RustHoverActions<CR>", { silent = true })

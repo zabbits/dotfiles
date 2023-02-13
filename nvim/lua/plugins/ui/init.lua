@@ -188,6 +188,7 @@ local indent_conf = {
 				"noice",
 				"norg",
 				"lspinfo",
+        "lspsagaoutline",
 			},
 			callback = function()
 				vim.b.miniindentscope_disable = true
