@@ -1,6 +1,7 @@
 local theme_conf = {
 	"tiagovla/tokyodark.nvim",
 	lazy = false,
+	dependencies = {},
 	config = function()
 		vim.cmd.colorscheme("tokyodark")
 		local p = require("tokyodark.palette")
@@ -55,18 +56,24 @@ local alpha_conf = {
 
 		dashboard.section.header.val = header
 
-    dashboard.section.buttons.val = {
-      dashboard.button('  e', 'ﱐ  New file', ':ene <BAR> startinsert <CR>'),
-      dashboard.button('  f', '  Find files', ':lua require("telescope.builtin").find_files() <CR>'),
-      dashboard.button('  o', '  Find old files', ':lua require("telescope.builtin").oldfiles() <CR>'),
-      dashboard.button('  w', 'ﭨ  Live grep', ':lua require("telescope.builtin").live_grep() <CR>'),
-      dashboard.button('  s', 'ﮫ  Sessions',
-        ':lua require("telescope").extensions.possession.list({initial_mode="normal"}) <CR>'),
-      dashboard.button('  c', '  Configurations',
-        ':lua require("telescope.builtin").find_files({cwd="$HOME/.config/nvim/"}) <CR>'),
-      dashboard.button('  l', '  Lazy', ':Lazy <CR>'),
-      dashboard.button('  q', '  Quit', ':qa <CR>')
-    }
+		dashboard.section.buttons.val = {
+			dashboard.button("  e", "ﱐ  New file", ":ene <BAR> startinsert <CR>"),
+			dashboard.button("  f", "  Find files", ':lua require("telescope.builtin").find_files() <CR>'),
+			dashboard.button("  o", "  Find old files", ':lua require("telescope.builtin").oldfiles() <CR>'),
+			dashboard.button("  w", "ﭨ  Live grep", ':lua require("telescope.builtin").live_grep() <CR>'),
+			dashboard.button(
+				"  s",
+				"ﮫ  Sessions",
+				':lua require("telescope").extensions.possession.list({initial_mode="normal"}) <CR>'
+			),
+			dashboard.button(
+				"  c",
+				"  Configurations",
+				':lua require("telescope.builtin").find_files({cwd="$HOME/.config/nvim/"}) <CR>'
+			),
+			dashboard.button("  l", "  Lazy", ":Lazy <CR>"),
+			dashboard.button("  q", "  Quit", ":qa <CR>"),
+		}
 
 		-- Foot must be a table so that its height is correctly measured
 		-- local num_plugins_loaded = #vim.fn.globpath(vim.fn.stdpath('data') .. '/site/pack/packer/start', '*', 0, 1)
@@ -188,7 +195,7 @@ local indent_conf = {
 				"noice",
 				"norg",
 				"lspinfo",
-        "lspsagaoutline",
+				"lspsagaoutline",
 			},
 			callback = function()
 				vim.b.miniindentscope_disable = true

@@ -122,19 +122,15 @@ local ts_conf = {
 
 -- ============ snip =============
 local snip_conf = {
-	"dcampos/nvim-snippy",
-	event = "InsertEnter",
+	"L3MON4D3/LuaSnip",
+	version = "<CurrentMajor>.*",
+	build = "make install_jsregexp",
 	dependencies = {
 		"honza/vim-snippets",
 	},
-	opts = {
-		mappings = {
-			is = {
-				["<Tab>"] = "expand_or_advance",
-				["<S-Tab>"] = "previous",
-			},
-		},
-	},
+	config = function()
+		require("luasnip.loaders.from_snipmate").lazy_load()
+	end,
 }
 
 -- ============ cmp =============
@@ -142,14 +138,14 @@ local cmp_conf = {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
-		"dcampos/cmp-snippy",
+		"saadparwaiz1/cmp_luasnip",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-nvim-lsp",
 	},
 	config = function()
 		local cmp = require("cmp")
-		local snippy = require("snippy")
+		local luasnip = require("luasnip")
 		local has_words_before = function()
 			unpack = unpack or table.unpack
 			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -164,7 +160,6 @@ local cmp_conf = {
 					menu = {
 						buffer = "[Buffer]",
 						nvim_lsp = "[LSP]",
-						snippy = "[Snippy]",
 						luasnip = "[LuaSnip]",
 						path = "[Path]",
 						neorg = "[Neorg]",
@@ -175,7 +170,7 @@ local cmp_conf = {
 			},
 			snippet = {
 				expand = function(args)
-					snippy.expand_snippet(args.body)
+					luasnip.lsp_expand(args.body) -- For `luasnip` users.
 				end,
 			},
 			duplicates = {
@@ -203,7 +198,6 @@ local cmp_conf = {
 			},
 			sources = {
 				{ name = "nvim_lsp" },
-				{ name = "snippy" },
 				{ name = "luasnip" },
 				{ name = "neorg" },
 				{ name = "buffer" },
@@ -226,8 +220,10 @@ local cmp_conf = {
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
-					elseif snippy.can_expand_or_advance() then
-						snippy.expand_or_advance()
+					-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+					-- they way you will only jump inside the snippet region
+					elseif luasnip.expand_or_jumpable() then
+						luasnip.expand_or_jump()
 					elseif has_words_before() then
 						cmp.complete()
 					else
@@ -238,8 +234,8 @@ local cmp_conf = {
 				["<S-Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
-					elseif snippy.can_jump(-1) then
-						snippy.previous()
+					elseif luasnip.jumpable(-1) then
+						luasnip.jump(-1)
 					else
 						fallback()
 					end
@@ -599,11 +595,11 @@ local surround_conf = {
 }
 
 local table_conf = {
-  'dhruvasagar/vim-table-mode',
-  ft = 'markdown',
-  config = function ()
-    vim.g.table_mode_corner='|'
-  end
+	"dhruvasagar/vim-table-mode",
+	ft = "markdown",
+	config = function()
+		vim.g.table_mode_corner = "|"
+	end,
 }
 
 return {
@@ -618,5 +614,5 @@ return {
 	neorg_conf,
 	json_conf,
 	surround_conf,
-  table_conf,
+	table_conf,
 }

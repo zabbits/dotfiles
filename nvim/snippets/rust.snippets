@@ -19,3 +19,8 @@ snippet scope "scope"
 	thread::scope(|s| {
 		$1
 	});
+
+snippet fns "rust-fn-self"
+	fn $1(&$2self$3) {
+		$4
+	}
