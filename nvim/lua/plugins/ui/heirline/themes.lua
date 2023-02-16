@@ -37,12 +37,11 @@ local hl = {
 
   ReadOnly = { fg = colors.red },
 
-  -- WorkDir = { fg = get_highlight('Comment').fg, bold = true },
-  WorkDir = { fg = colors.grey3, bold = true },
+  WorkDir = { fg = colors.grey3, bold = true, italic = true },
 
-  CurrentPath = { fg = get_hl('Directory').fg, bold = true },
+  CurrentPath = { fg = get_hl('Directory').fg, bold = true, italic = true },
 
-  FileName = { fg = get_hl('Statusline').fg, bold = true },
+  FileName = { fg = get_hl('Statusline').fg, bold = true, italic = true },
 
   -- GPS = { fg = colors.grey2 },
 

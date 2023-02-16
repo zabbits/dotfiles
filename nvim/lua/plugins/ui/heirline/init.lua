@@ -64,7 +64,6 @@ return {
 
 		local LeftCap = {
 			provider = "▌",
-			-- provider = '',
 			hl = hl.Mode.normal,
 		}
 
@@ -193,7 +192,7 @@ return {
 					end
 				end,
 				hl = function(self)
-					return { fg = self.icon_color, italic = true }
+					return { fg = self.icon_color, italic = false, bold = false }
 				end,
 			}
 
@@ -265,7 +264,6 @@ return {
 				provider = function()
 					return vim.bo.filetype
 				end,
-				hl = { fg = heirline_utils.get_highlight("Type").fg, bold = true },
 			},
 			Space,
 			{
@@ -275,9 +273,6 @@ return {
 				provider = function()
 					return vim.bo.fileencoding:lower()
 				end,
-				hl = {
-					fg = colors.yellow,
-				},
 			},
 		}
 
@@ -296,7 +291,7 @@ return {
 				end,
 				name = "heirline_ts_click",
 			},
-			Space(2),
+			Space,
 		}
 
 		local Diagnostics = {
@@ -365,7 +360,7 @@ return {
 				},
 				LspIndicator,
 				Space,
-				Diagnostics,
+				-- Diagnostics,
 			}
 		end
 
@@ -422,7 +417,6 @@ return {
 				GitBranch,
 				Space,
 				GitStatus,
-				Space,
 			}
 		end
 
@@ -475,7 +469,7 @@ return {
 		}
 
 		local Ruler = {
-			provider = "%2(%l/%L%):%c %P",
+			provider = "%2(%l/%L%) %P",
 			hl = {
 				fg = colors.black,
 				bold = true,
@@ -487,7 +481,7 @@ return {
 				return conditions.width_percent_below(4, 0.035)
 			end,
 			-- %P  : percentage through file of displayed window
-			provider = " %3(%P%) ",
+			provider = " %2(%P%) ",
 			hl = hl.StatusLine,
 		}
 
@@ -520,18 +514,9 @@ return {
 		}
 
 		local SpecialBuf = {
-			heirline_utils.surround({ icons.powerline.left_rounded, icons.powerline.right_rounded }, colors.green, {
-				Space,
-				{
-					provider = function()
-						return util.get_special_buf_text(vim.bo.filetype)
-					end,
-					hl = {
-						fg = colors.black,
-					},
-				},
-				Space,
-			}),
+			provider = function()
+				return util.get_special_buf_text(vim.bo.filetype)
+			end,
 		}
 
 		local StatusLines = {
@@ -571,8 +556,6 @@ return {
 				LeftCap,
 				Indicator,
 				Git,
-				Lsp,
-				Treesitter,
 				{
 					fallthrough = false,
 					{
@@ -580,21 +563,51 @@ return {
 						FileNameBlock,
 					},
 				},
-				Space(4),
 				Align,
 				MicroRecord,
-				heirline_utils.surround({ icons.powerline.left_rounded, icons.powerline.right_rounded }, "#6E75A4", {
+				{
+					hl = {
+						bg = "#2d361c",
+					},
+					Space,
+					Lsp,
+					Treesitter,
+				},
+				{
+					Space,
+					hl = {
+						bg = "#4d772a",
+						fg = "#00008b",
+						bold = true,
+						italic = true,
+					},
 					FileInfo,
 					Space,
+				},
+				{
+					Space,
+					hl = {
+						bg = "#73b839",
+						italic = true,
+					},
 					Ruler,
-				}),
+				},
 			},
 			{
 				condition = function()
 					return util.is_special_buf(vim.bo.filetype)
 				end,
+				hl = {
+					bold = true,
+					italic = true,
+				},
 				Align,
-				SpecialBuf,
+				{
+					SpecialBuf,
+					hl = {
+						fg = colors.green,
+					},
+				},
 				Align,
 			},
 		}
@@ -603,9 +616,6 @@ return {
 
 		require("heirline").setup({
 			statusline = StatusLines,
-			-- winbar = WinBars,
-			-- tabline = ...,
-			-- statuscolumn = ...
 		})
 	end,
 }

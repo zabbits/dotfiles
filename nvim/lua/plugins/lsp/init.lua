@@ -141,6 +141,7 @@ local illuminate_conf = {
 				"fugitive",
 				"lazy",
 				"neo-tree",
+        "mason",
 			},
 			under_cursor = true,
 		})
@@ -175,8 +176,8 @@ local incline_conf = {
 			local icons = {
 				Error = ics.lsp.error,
 				Warn = ics.lsp.warn,
-				Info = ics.lsp.info,
 				Hint = ics.lsp.hint,
+				Info = ics.lsp.info,
 			}
 			local label = {}
 			for severity, icon in pairs(icons) do
