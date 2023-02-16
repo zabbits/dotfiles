@@ -1,6 +1,6 @@
 local lsp_conf = {
 	"neovim/nvim-lspconfig",
-	event = {"BufRead", "BufNewFile" },
+	event = { "BufRead", "BufNewFile" },
 	dependencies = {
 		"mason.nvim",
 		"mason-lspconfig.nvim",
@@ -11,7 +11,8 @@ local lsp_conf = {
 		"lsp_lines.nvim",
 		"fidget.nvim",
 		"vim-illuminate",
-    "null-ls.nvim",
+		"null-ls.nvim",
+		"incline.nvim",
 	},
 	config = function()
 		require("neodev").setup({})
@@ -21,7 +22,7 @@ local lsp_conf = {
 		local handlers = require("plugins.lsp.handlers")
 		handlers.setup()
 
-    local servers = mason_lsp.get_installed_servers() or {}
+		local servers = mason_lsp.get_installed_servers() or {}
 		for _, server_name in ipairs(servers) do
 			local opts = {
 				on_attach = handlers.on_attach,
@@ -157,11 +158,39 @@ local null_ls = {
 		null_ls.setup({
 			sources = {
 				null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.prettier,
+				null_ls.builtins.formatting.prettier,
 			},
 		})
 		require("mason-null-ls").setup({
 			automatic_setup = false,
+		})
+	end,
+}
+
+local incline_conf = {
+	"b0o/incline.nvim",
+	config = function()
+		local function get_diagnostic_label(props)
+			local ics = require("core.icons")
+			local icons = {
+				Error = ics.lsp.error,
+				Warn = ics.lsp.warn,
+				Info = ics.lsp.info,
+				Hint = ics.lsp.hint,
+			}
+			local label = {}
+			for severity, icon in pairs(icons) do
+				local n = #vim.diagnostic.get(props.buf, { severity = vim.diagnostic.severity[string.upper(severity)] })
+				if n > 0 then
+					table.insert(label, { icon .. " " .. n .. " ", group = "DiagnosticSign" .. severity })
+				end
+			end
+			return label
+		end
+
+		require("incline").setup({
+			debounce_threshold = { falling = 500, rising = 250 },
+			render = get_diagnostic_label,
 		})
 	end,
 }
@@ -174,5 +203,6 @@ return {
 	lines_conf,
 	fidget_conf,
 	illuminate_conf,
-  null_ls,
+	null_ls,
+	incline_conf,
 }

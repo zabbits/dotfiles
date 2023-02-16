@@ -7,6 +7,8 @@ local ts_conf = {
 		"windwp/nvim-ts-autotag",
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		"nvim-treesitter/nvim-treesitter-textobjects",
+    -- FIX: for now must using norg as dependencies, otherwise openning neorg file can not get ts info
+		"nvim-neorg/neorg",
 	},
 	config = function()
 		local ensure_installed = {
@@ -123,7 +125,6 @@ local ts_conf = {
 -- ============ snip =============
 local snip_conf = {
 	"L3MON4D3/LuaSnip",
-	version = "<CurrentMajor>.*",
 	build = "make install_jsregexp",
 	dependencies = {
 		"honza/vim-snippets",
@@ -386,9 +387,9 @@ local crate_conf = {
 
 local neorg_conf = {
 	"nvim-neorg/neorg",
+	run = ":Neorg sync-parsers", -- This is the important bit!
 	cmd = "Neorg",
 	ft = "norg",
-	dependencies = { "nvim-treesitter" },
 	opts = {
 		load = {
 			["core.defaults"] = {},

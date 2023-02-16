@@ -159,10 +159,8 @@ util.ts = {
 		local lang = parsers.get_buf_lang()
 		local NuiLine = require("nui.line")
 
-		local count = #modules
-		local result = ""
 		local lines = {}
-		for i, module in ipairs(modules) do
+		for _, module in ipairs(modules) do
 			local line = NuiLine()
 			if configs.is_enabled(module, lang, 0) then
 				line:append("" .. " ")
@@ -177,9 +175,19 @@ util.ts = {
 	end,
 }
 
-local special_bufs = require('core.configs').heirline.special_buf_name
+local special_bufs = require("core.configs").heirline.special_buf
+local buf_names = vim.tbl_keys(special_bufs)
+
 util.is_special_buf = function(buf_type)
-	return vim.tbl_contains(special_bufs, buf_type)
+	return vim.tbl_contains(buf_names, buf_type)
+end
+
+util.get_special_buf_text = function(buf_type)
+  local sp = special_bufs[buf_type]
+  if sp ~= nil and sp ~= '' then
+    return special_bufs[buf_type] .. " " .. buf_type
+  end
+	return buf_type
 end
 
 return util
