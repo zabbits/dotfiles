@@ -247,6 +247,12 @@ return {
 
 			FileNameBlock = {
 				{
+					on_click = {
+						callback = function()
+							vim.cmd("Neotree action=show source=filesystem reveal=true")
+						end,
+						name = "heirline_file_click",
+					},
 					FileIcon,
 					WorkDir,
 					CurrentPath,
@@ -559,13 +565,16 @@ return {
 				{
 					fallthrough = false,
 					{
-						SearchResults,
 						FileNameBlock,
 					},
 				},
 				Align,
 				MicroRecord,
+				SearchResults,
 				{
+          condition = function ()
+            return conditions.lsp_attached() or status.treesitter.exist()
+          end,
 					hl = {
 						bg = "#2d361c",
 					},
