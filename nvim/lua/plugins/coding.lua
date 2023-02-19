@@ -42,6 +42,9 @@ local ts_conf = {
 				enable = true,
 				enable_autocmd = false,
 			},
+      matchup = {
+        enable = true,
+      },
 			incremental_selection = {
 				enable = true,
 				keymaps = {
@@ -54,12 +57,6 @@ local ts_conf = {
 			indent = {
 				enable = true,
 				disable = { "yaml", "norg", "org", "python", "c", "json", "go", "java" },
-			},
-			rainbow = {
-				enable = true,
-				disable = { "html" },
-				extended_mode = false,
-				max_file_lines = nil,
 			},
 			autotag = {
 				enable = true,

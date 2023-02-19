@@ -562,6 +562,15 @@ local chatgpt_conf = {
 	opts = {},
 }
 
+local matchup_conf = {
+	"andymass/vim-matchup",
+	event = { "BufRead", "BufNewFile" },
+	keys = "%",
+	config = function()
+		vim.g.matchup_matchparen_offscreen = { method = "popup" }
+	end,
+}
+
 return {
 	{ "nvim-lua/plenary.nvim" },
 	telescope_conf,
@@ -576,4 +585,5 @@ return {
 	mason_conf,
 	yank_conf,
 	chatgpt_conf,
+	matchup_conf,
 }
