@@ -40,6 +40,8 @@ map('n', '<C-j>', '<C-w>j', opts);
 -- map('n', 'L', '<cmd>BufferLineCycleNext<cr>')
 map('n', 'H', '<cmd>bp<cr>')
 map('n', 'L', '<cmd>bn<cr>')
+map('n', '<TAB>', '<cmd>bp<cr>')
+map('n', '<S-TAB>', '<cmd>bn<cr>')
 
 -- === Close Buffer ===
 map("n", "<leader>c", function() require('mini.bufremove').delete(0, false) end, { desc = "Close Buffer" })
