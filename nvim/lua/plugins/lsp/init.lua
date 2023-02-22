@@ -141,7 +141,7 @@ local illuminate_conf = {
 				"fugitive",
 				"lazy",
 				"neo-tree",
-        "mason",
+				"mason",
 			},
 			under_cursor = true,
 		})
