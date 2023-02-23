@@ -159,7 +159,11 @@ local null_ls = {
 		null_ls.setup({
 			sources = {
 				null_ls.builtins.formatting.stylua,
-				null_ls.builtins.formatting.prettier,
+				null_ls.builtins.formatting.prettierd.with({
+					condition = function(utils)
+						return utils.has_file({ ".prettierrc.js", ".prettierrc" })
+					end,
+				}),
 			},
 		})
 		require("mason-null-ls").setup({
