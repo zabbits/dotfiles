@@ -13,6 +13,7 @@ local lsp_conf = {
 		"vim-illuminate",
 		"null-ls.nvim",
 		"incline.nvim",
+		"typescript.nvim",
 	},
 	config = function()
 		require("neodev").setup({})
@@ -33,8 +34,12 @@ local lsp_conf = {
 			if present then
 				opts = vim.tbl_deep_extend("force", av_overrides, opts)
 			end
-			-- using rust tools for rust
-			if server_name ~= "rust_analyzer" then
+			-- set servers manully
+			local independent_servers = {
+				"rust_analyzer",
+				"typescript",
+			}
+			if not vim.tbl_contains(independent_servers, server_name) then
 				lspconfig[server_name].setup(opts)
 			end
 		end
@@ -158,6 +163,7 @@ local null_ls = {
 		local null_ls = require("null-ls")
 		null_ls.setup({
 			sources = {
+				require("typescript.extensions.null-ls.code-actions"),
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.prettierd.with({
 					condition = function(utils)
@@ -200,6 +206,13 @@ local incline_conf = {
 	end,
 }
 
+local typescript_conf = {
+	"jose-elias-alvarez/typescript.nvim",
+	opts = {
+		on_attach = require("plugins.lsp.handlers").on_attach,
+	},
+}
+
 return {
 	lsp_conf,
 	lspkind_conf,
@@ -210,4 +223,5 @@ return {
 	illuminate_conf,
 	null_ls,
 	incline_conf,
+	typescript_conf,
 }
