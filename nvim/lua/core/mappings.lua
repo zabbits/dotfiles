@@ -212,12 +212,12 @@ end,
   { desc = "Document Symbols" })
 
 -- === Neorg ===
-map("n", "<leader>nv", function()
-  vim.cmd("Neorg gtd views")
-end, { desc = "Gtd views" })
-map("n", "<leader>ne", "<cmd>Neorg gtd edit<cr>", { desc = "Gtd edit" })
-map("n", "<leader>nc", "<cmd>Neorg gtd capture<cr>", { desc = "Gtd capture" })
+map("n", "<leader>ngv", "<cmd>Neorg gtd views<cr>", { desc = "Gtd views" })
+map("n", "<leader>nge", "<cmd>Neorg gtd edit<cr>", { desc = "Gtd edit" })
+map("n", "<leader>ngc", "<cmd>Neorg gtd capture<cr>", { desc = "Gtd capture" })
 map("n", "<leader>nj", "<cmd>Neorg journal today<cr>", { desc = "Journal Today" })
+map("n", "<leader>nr", "<cmd>Neorg return<cr>", { desc = "Return from Neorg" })
+map("n", "<leader>ni", "<cmd>Neorg index<cr>", { desc = "Workspace index file" })
 map("n", "<leader>nwn", "<cmd>Neorg workspace note<cr>", { desc = "Workspace note" })
 map("n", "<leader>nwg", "<cmd>Neorg workspace gtd<cr>", { desc = "Workspace gtd" })
 map("n", "<leader>nww", "<cmd>Neorg workspace work<cr>", { desc = "Workspace work" })

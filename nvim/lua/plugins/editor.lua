@@ -119,6 +119,7 @@ local which_key_conf = {
 			["<leader>t"] = { name = "Terminal" },
 			["<leader>n"] = { name = "Neorg" },
 			["<leader>nw"] = { name = "Workspace" },
+			["<leader>ng"] = { name = "Gtd" },
 			["<leader>o"] = { name = "Open" },
 			["<leader>y"] = { name = "Yank" },
 		})
