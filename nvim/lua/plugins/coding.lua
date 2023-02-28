@@ -7,7 +7,7 @@ local ts_conf = {
 		"windwp/nvim-ts-autotag",
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		"nvim-treesitter/nvim-treesitter-textobjects",
-    -- FIX: for now must using norg as dependencies, otherwise openning neorg file can not get ts info
+		-- FIX: for now must using norg as dependencies, otherwise openning neorg file can not get ts info
 		"nvim-neorg/neorg",
 	},
 	config = function()
@@ -43,9 +43,9 @@ local ts_conf = {
 				enable = true,
 				enable_autocmd = false,
 			},
-      matchup = {
-        enable = true,
-      },
+			matchup = {
+				enable = true,
+			},
 			incremental_selection = {
 				enable = true,
 				keymaps = {
@@ -279,23 +279,15 @@ local pair_conf = {
 }
 
 local comment_conf = {
-	"echasnovski/mini.comment",
-	-- lazy = false,
+	"numToStr/Comment.nvim",
 	keys = {
 		{ "gc", mode = { "n", "v" } },
 		{ "gb", mode = { "n", "v" } },
 		{ "<C-/>", mode = { "n", "v", "i" } },
 	},
 	config = function()
-		require("mini.comment").setup({
-			mappings = {
-				comment = "gc",
-				comment_line = "gcc",
-				textobject = "gc",
-			},
-			hooks = {
-				pre_hook = require("ts_context_commentstring.internal").update_commentstring,
-			},
+		require("Comment").setup({
+			pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 		})
 	end,
 }
@@ -425,6 +417,8 @@ local neorg_conf = {
 						note = "~/norg/note",
 						gtd = "~/norg/gtd",
 					},
+					default_workspace = "note",
+					-- open_last_workspace = "default",
 				},
 			},
 			["core.norg.manoeuvre"] = {},
