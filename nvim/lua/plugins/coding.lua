@@ -15,7 +15,7 @@ local ts_conf = {
 			"lua",
 			"python",
 			"vue",
-      "svelte",
+			"svelte",
 			"typescript",
 			"javascript",
 			"html",
@@ -155,7 +155,6 @@ local cmp_conf = {
 			preselect = cmp.PreselectMode.None,
 			formatting = {
 				format = require("lspkind").cmp_format({
-					mode = "symbol_text",
 					menu = {
 						buffer = "[Buffer]",
 						nvim_lsp = "[LSP]",
@@ -165,6 +164,8 @@ local cmp_conf = {
 						latex_symbols = "[LaTeX]",
 						crates = "[Crates]",
 					},
+          maxwidth = 25,
+          ellipsis_char = '...',
 				}),
 			},
 			snippet = {
