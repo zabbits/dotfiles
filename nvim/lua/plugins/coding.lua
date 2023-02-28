@@ -15,8 +15,9 @@ local ts_conf = {
 			"lua",
 			"python",
 			"vue",
+      "svelte",
 			"typescript",
-			"norg",
+			"javascript",
 			"html",
 			"css",
 			"go",
@@ -24,10 +25,10 @@ local ts_conf = {
 			"c",
 			"vim",
 			"regex",
-			"lua",
 			"bash",
 			"markdown",
 			"markdown_inline",
+			"norg",
 		}
 
 		local opts = {
