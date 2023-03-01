@@ -12,6 +12,10 @@ local ts_conf = {
 	},
 	config = function()
 		local ensure_installed = {
+			"c",
+			"cpp",
+			"rust",
+			"go",
 			"lua",
 			"python",
 			"vue",
@@ -20,9 +24,6 @@ local ts_conf = {
 			"javascript",
 			"html",
 			"css",
-			"go",
-			"rust",
-			"c",
 			"vim",
 			"regex",
 			"bash",

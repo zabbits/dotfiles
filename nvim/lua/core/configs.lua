@@ -23,6 +23,7 @@ local M = {
 			["sagahover"] = icons.lsp.base,
 			["sagarename"] = icons.lsp.base,
 			["lspsagaoutline"] = icons.lsp.base,
+			["sagacodeaction"] = icons.lsp.base,
 			["neo-tree"] = icons.file.directory,
 			["neo-tree-popup"] = icons.file.directory,
 			["TelescopePrompt"] = icons.telescope.base,

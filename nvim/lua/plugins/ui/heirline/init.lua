@@ -471,7 +471,6 @@ return {
 				end,
 				hl = hl.SearchResults,
 			},
-			Space,
 		}
 
 		local Ruler = {
@@ -516,7 +515,6 @@ return {
 					bg = colors.green,
 				},
 			},
-			Space(2),
 		}
 
 		local SpecialBuf = {
