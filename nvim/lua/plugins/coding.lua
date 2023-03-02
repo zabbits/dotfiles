@@ -165,8 +165,8 @@ local cmp_conf = {
 						latex_symbols = "[LaTeX]",
 						crates = "[Crates]",
 					},
-          maxwidth = 25,
-          ellipsis_char = '...',
+					maxwidth = 25,
+					ellipsis_char = "...",
 				}),
 			},
 			snippet = {
@@ -189,6 +189,9 @@ local cmp_conf = {
 			window = {
 				documentation = {
 					border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+				},
+				completion = {
+					border = "rounded",
 				},
 			},
 			experimental = {

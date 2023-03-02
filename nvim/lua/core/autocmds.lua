@@ -11,7 +11,7 @@ cmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
 -- Highlight on yank
 cmd("TextYankPost", {
 	callback = function()
-		vim.highlight.on_yank()
+		vim.highlight.on_yank({ higroup = "Visual" })
 	end,
 })
 
