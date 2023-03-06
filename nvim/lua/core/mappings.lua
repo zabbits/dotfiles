@@ -36,12 +36,16 @@ map('n', '<C-j>', '<C-w>j', opts);
 
 
 -- === Navigate buffers ===
--- map('n', 'H', '<cmd>BufferLineCyclePrev<cr>')
--- map('n', 'L', '<cmd>BufferLineCycleNext<cr>')
 map('n', 'H', '<cmd>bp<cr>')
 map('n', 'L', '<cmd>bn<cr>')
-map('n', '<TAB>', '<cmd>bp<cr>')
-map('n', '<S-TAB>', '<cmd>bn<cr>')
+map('n', '<TAB>', '<cmd>bn<cr>')
+map('n', '<S-TAB>', '<cmd>bp<cr>')
+
+-- === Navigate tabs ===
+map('n', '<leader>tn', '<cmd>tabnext<cr>')
+map('n', '<leader>tp', '<cmd>tabprev<cr>')
+map('n', '<leader>tt', '<cmd>tabnew<cr>')
+
 
 -- === Close Buffer ===
 map("n", "<leader>c", function() require('mini.bufremove').delete(0, false) end, { desc = "Close Buffer" })
@@ -133,6 +137,11 @@ map("n", "<leader>/", function()
   require("telescope.builtin").live_grep()
 end,
   { desc = "Words" })
+
+map("n", "<leader>b", function()
+  require("telescope.builtin").buffers()
+end,
+  { desc = "Find Buffers" })
 
 map("n", "<leader>sb", function()
   require("telescope.builtin").git_branches()

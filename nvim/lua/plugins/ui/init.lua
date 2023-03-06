@@ -180,7 +180,7 @@ local notify_conf = {
 
 local bufferline_conf = {
 	"akinsho/bufferline.nvim",
-	dependencies = { "nvim-web-devicons" },
+	dependencies = { "nvim-web-devicons", { "tiagovla/scope.nvim", opts = {} } },
 	event = { "BufRead", "BufNewFile" },
 	opts = {
 		options = {
