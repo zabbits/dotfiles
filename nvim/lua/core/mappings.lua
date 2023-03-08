@@ -36,8 +36,6 @@ map('n', '<C-j>', '<C-w>j', opts);
 
 
 -- === Navigate buffers ===
-map('n', 'H', '<cmd>bp<cr>')
-map('n', 'L', '<cmd>bn<cr>')
 map('n', '<TAB>', '<cmd>bn<cr>')
 map('n', '<S-TAB>', '<cmd>bp<cr>')
 

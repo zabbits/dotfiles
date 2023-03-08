@@ -1,38 +1,3 @@
-local hexChars = "0123456789abcdef"
-local function hex_to_rgb(hex)
-	hex = string.lower(hex)
-	local ret = {}
-	for i = 0, 2 do
-		local char1 = string.sub(hex, i * 2 + 2, i * 2 + 2)
-		local char2 = string.sub(hex, i * 2 + 3, i * 2 + 3)
-		local digit1 = string.find(hexChars, char1) - 1
-		local digit2 = string.find(hexChars, char2) - 1
-		ret[i + 1] = (digit1 * 16 + digit2) / 255.0
-	end
-	return ret
-end
-
-local rgb_to_hex = function(tuple)
-	local h = "#"
-	for i = 1, 3 do
-		local c = math.floor(tuple[i] * 255 + 0.5)
-		local digit2 = math.fmod(c, 16)
-		local x = (c - digit2) / 16
-		local digit1 = math.floor(x)
-		h = h .. string.sub(hexChars, digit1 + 1, digit1 + 1)
-		h = h .. string.sub(hexChars, digit2 + 1, digit2 + 1)
-	end
-	return h
-end
-
-local fade = function(hex, factor)
-	if not factor then
-		factor = 0.2
-	end
-	local rgb = hex_to_rgb(hex)
-	return rgb_to_hex({ rgb[1] * (1 - factor), rgb[2] * (1 - factor), rgb[3] * (1 - factor) })
-end
-
 local theme_conf = {
 	"tiagovla/tokyodark.nvim",
 	lazy = false,
