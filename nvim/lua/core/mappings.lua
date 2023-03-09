@@ -40,9 +40,11 @@ map('n', '<TAB>', '<cmd>bn<cr>')
 map('n', '<S-TAB>', '<cmd>bp<cr>')
 
 -- === Navigate tabs ===
+map('n', '<leader>tc', '<cmd>tabnew<cr>')
 map('n', '<leader>tn', '<cmd>tabnext<cr>')
 map('n', '<leader>tp', '<cmd>tabprev<cr>')
-map('n', '<leader>tt', '<cmd>tabnew<cr>')
+map('n', '<leader>]', '<cmd>tabnext<cr>')
+map('n', '<leader>[', '<cmd>tabprev<cr>')
 
 
 -- === Close Buffer ===
