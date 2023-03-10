@@ -289,7 +289,7 @@ return {
 				fg = colors.purple,
 			},
 			provider = function()
-				return status.treesitter.icon .. " TS"
+				return status.treesitter.icon
 			end,
 			on_click = {
 				callback = function()
@@ -344,12 +344,36 @@ return {
 				end,
 				hl = hl.Diagnostic.hint,
 			},
+			{
+				provider = function()
+					--     
+					return " "
+				end,
+				on_click = {
+					callback = function()
+						vim.cmd("Lspsaga diagnostic_jump_prev")
+					end,
+					name = "heirline_diagnostics_prev",
+				},
+			},
+			{
+				provider = function()
+					--     
+					return " "
+				end,
+				on_click = {
+					callback = function()
+						vim.cmd("Lspsaga diagnostic_jump_next")
+					end,
+					name = "heirline_diagnostics_next",
+				},
+			},
 		}
 
 		local Lsp
 		do
 			local LspIndicator = {
-				provider = core_icons.lsp.base .. " LSP",
+				provider = core_icons.lsp.base,
 				hl = hl.LspIndicator,
 				on_click = {
 					callback = function()
@@ -570,15 +594,15 @@ return {
 				MicroRecord,
 				SearchResults,
 				{
-          condition = function ()
-            return conditions.lsp_attached() or status.treesitter.exist()
-          end,
+					condition = function()
+						return conditions.lsp_attached() or status.treesitter.exist()
+					end,
 					hl = {
 						bg = "#2d361c",
 					},
 					Space,
-					Lsp,
 					Treesitter,
+					Lsp,
 				},
 				{
 					Space,
