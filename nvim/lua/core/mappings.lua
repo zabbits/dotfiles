@@ -8,6 +8,11 @@ local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("i", "<C-a>", "<C-o>^", opts)
 vim.api.nvim_set_keymap("i", "<C-e>", "<C-o>$", opts)
 
+-- insert
+map("i", "<C-;>", "<ESC>A;<ESC>", opts)
+map("n", "<C-;>", "<ESC>A;<ESC>", opts)
+
+
 -- ESC cancel higlight
 map("n", "<ESC>", ":nohlsearch<CR>", opts)
 map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
