@@ -248,4 +248,13 @@ map("n", "<leader>sd", ":PossessionDelete <CR>", { desc = "Session Delete" })
 -- === OSC Yank ===
 map('x', '<leader>y', function() require('osc52').copy_visual() end, { desc = "OSYank" })
 
+-- toggle conceal
+map('n', '<leader>nt', function()
+  if vim.o.conceallevel ~= 0 then
+    vim.o.conceallevel = 0
+  else
+    vim.o.conceallevel = 3
+  end
+end, {desc = 'Toggle conceal'})
+
 return M
