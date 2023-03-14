@@ -1,9 +1,10 @@
 local theme_conf = {
 	"tiagovla/tokyodark.nvim",
 	lazy = false,
-	dependencies = {},
+	dependencies = { "rebelot/kanagawa.nvim" },
 	config = function()
 		vim.cmd.colorscheme("tokyodark")
+		-- vim.cmd.colorscheme("kanagawa")
 		local p = require("tokyodark.palette")
 		-- highlight for illuminate
 		for _, group in pairs({

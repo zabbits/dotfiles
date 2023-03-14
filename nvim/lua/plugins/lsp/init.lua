@@ -88,6 +88,9 @@ local lspsaga_conf = {
 			respect_root = false,
 			color_mode = true,
 		},
+		diagnostic = {
+			on_insert = false,
+		},
 	},
 }
 

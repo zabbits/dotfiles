@@ -565,6 +565,7 @@ local chatgpt_conf = {
 
 local matchup_conf = {
 	"andymass/vim-matchup",
+  enabled = false,
 	event = { "BufRead", "BufNewFile" },
 	keys = "%",
 	config = function()
