@@ -238,8 +238,9 @@ local cmp_conf = {
 					-- they way you will only jump inside the snippet region
 					elseif luasnip.expand_or_locally_jumpable() then
 						luasnip.expand_or_jump()
-					elseif has_words_before() then
-						cmp.complete()
+          -- this will make tab to open cmp
+					-- elseif has_words_before() then
+					-- 	cmp.complete()
 					else
 						fallback()
 					end
@@ -338,7 +339,7 @@ local dap_conf = {
 }
 
 local rust_conf = {
-	"simrat39/rust-tools.nvim",
+	"in-a-day/rust-tools.nvim",
 	ft = "rust",
 	dependencies = {
 		"nvim-lspconfig",
