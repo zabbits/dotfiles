@@ -30,6 +30,9 @@ cmd("FileType", {
 		"notify",
 		"sagahover",
 		"sagarename",
+    "neotest-summary",
+    "neotest-output",
+    "neotest-output-panel",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false

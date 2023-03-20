@@ -257,4 +257,12 @@ map('n', '<leader>nt', function()
   end
 end, {desc = 'Toggle conceal'})
 
+-- === neotest ===
+map('n', '<leader>;;', function ()
+  require('neotest').run.run()
+end, { desc = "Test current" })
+map('n', '<leader>;s', function () require('neotest').summary.open() end, { desc = "Summary" })
+map('n', '<leader>;o', function () require('neotest').output_panel.open() end, { desc = "Output panel" })
+map('n', '<leader>;l', function () require('neotest').output.open() end, { desc = "Last output" })
+
 return M

@@ -622,6 +622,10 @@ local test_conf = {
 					args = { "--no-capture" },
 				}),
 			},
+      output = {
+        enabled = true,
+        open_on_run = true,
+      },
 		})
 	end,
 }
