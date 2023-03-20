@@ -238,7 +238,7 @@ local cmp_conf = {
 					-- they way you will only jump inside the snippet region
 					elseif luasnip.expand_or_locally_jumpable() then
 						luasnip.expand_or_jump()
-          -- this will make tab to open cmp
+					-- this will make tab to open cmp
 					-- elseif has_words_before() then
 					-- 	cmp.complete()
 					else
@@ -611,6 +611,21 @@ local table_conf = {
 	end,
 }
 
+local test_conf = {
+	"nvim-neotest/neotest",
+	ft = "rust",
+	dependencies = { "rouge8/neotest-rust" },
+	config = function()
+		require("neotest").setup({
+			adapters = {
+				require("neotest-rust")({
+					args = { "--no-capture" },
+				}),
+			},
+		})
+	end,
+}
+
 return {
 	ts_conf,
 	snip_conf,
@@ -624,4 +639,5 @@ return {
 	json_conf,
 	surround_conf,
 	table_conf,
+	test_conf,
 }
