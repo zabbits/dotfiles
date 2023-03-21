@@ -565,12 +565,39 @@ local chatgpt_conf = {
 
 local matchup_conf = {
 	"andymass/vim-matchup",
-  enabled = false,
+	enabled = false,
 	event = { "BufRead", "BufNewFile" },
 	keys = "%",
 	config = function()
 		vim.g.matchup_matchparen_offscreen = { method = "popup" }
 	end,
+}
+
+local todo_conf = {
+	"folke/todo-comments.nvim",
+	event = { "BufRead", "BufNewFile" },
+	dependencies = {
+		"trouble.nvim",
+	},
+	opts = {
+		signs = false, -- show icons in the signs column
+		-- highlighting of the line containing the todo comment
+		-- * before: highlights before the keyword (typically comment characters)
+		-- * keyword: highlights of the keyword
+		-- * after: highlights after the keyword (todo text)
+		highlight = {
+			multiline = false, -- enable multine todo comments
+			multiline_pattern = "^.", -- lua pattern to match the next multiline from the start of the matched keyword
+			multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
+			before = "", -- "fg" or "bg" or empty
+			keyword = "wide", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+			after = "fg", -- "fg" or "bg" or empty
+			pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
+			comments_only = true, -- uses treesitter to match keywords in comments only
+			max_line_len = 400, -- ignore lines longer than this
+			exclude = {}, -- list of file types to exclude highlighting
+		},
+	},
 }
 
 return {
@@ -588,4 +615,5 @@ return {
 	yank_conf,
 	chatgpt_conf,
 	matchup_conf,
+	todo_conf,
 }

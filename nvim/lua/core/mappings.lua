@@ -72,6 +72,7 @@ map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", { desc = "Troub
 map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", { desc = "Trouble Document" })
 map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", { desc = "Trouble loclist" })
 map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", { desc = "Trouble quickfix" })
+map("n", "<leader>xt", "<cmd>TodoTrouble<cr>", { desc = "Todo" })
 
 
 -- === Terminal ===
