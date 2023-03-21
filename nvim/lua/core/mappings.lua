@@ -29,7 +29,7 @@ map("i", "<D-l>", "<esc>la", opts)
 -- disable Ex mode:
 map("n", "Q", "<Nop>")
 -- ForceQuit
-map("n", "<C-q>", "<cmd>q!<CR>")
+map("n", "<C-q>", "<cmd>qa!<CR>")
 -- insert current time
 map("n", "<A-i>", ":put =strftime('%Y-%m-%d %H:%M:%S')<CR>", opts)
 
@@ -147,6 +147,11 @@ map("n", "<leader>b", function()
   require("telescope.builtin").buffers()
 end,
   { desc = "Find Buffers" })
+
+map("n", "<leader>:", function()
+  require("telescope.builtin").commands()
+end,
+  { desc = "Commands" })
 
 map("n", "<leader>sb", function()
   require("telescope.builtin").git_branches()

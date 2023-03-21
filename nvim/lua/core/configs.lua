@@ -31,6 +31,9 @@ local M = {
 			["lazy"] = icons.lazy.base,
 			["Trouble"] = icons.lsp.base,
 			["TSModuleInfo"] = icons.treesitter.base,
+      ["neotest-summary"] = "",
+      ["neotest-output"] = "",
+      ["neotest-output-panel"] = "",
 		},
 	},
 }

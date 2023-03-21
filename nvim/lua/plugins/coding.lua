@@ -622,10 +622,13 @@ local test_conf = {
 					args = { "--no-capture" },
 				}),
 			},
-      output = {
-        enabled = true,
-        open_on_run = true,
-      },
+			icons = {
+				failed = "",
+				passed = "",
+				running = "",
+				skipped = "",
+				unknown = "",
+			},
 		})
 	end,
 }

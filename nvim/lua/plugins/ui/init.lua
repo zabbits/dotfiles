@@ -197,6 +197,9 @@ local indent_conf = {
 				"norg",
 				"lspinfo",
 				"lspsagaoutline",
+        "neotest-summary",
+        "neotest-output",
+        "neotest-output-panel",
 			},
 			callback = function()
 				vim.b.miniindentscope_disable = true
