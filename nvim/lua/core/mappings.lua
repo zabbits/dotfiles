@@ -14,9 +14,8 @@ map("n", "<C-;>", "<ESC>A;<ESC>", opts)
 
 
 -- ESC cancel higlight
-map("n", "<ESC>", ":nohlsearch<CR>", opts)
+map("n", "<ESC>", "<cmd>nohlsearch<CR>", opts)
 map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
-map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 
 -- Insert mode movement

@@ -189,7 +189,7 @@ local hydra_conf = {
 	dependencies = {
 		"sindrets/winshift.nvim",
 	},
-	keys = "M",
+	keys = "<C-s>",
 	config = function()
 		local hydra = require("hydra")
 		local splits = require("smart-splits")
@@ -478,7 +478,7 @@ local term_conf = {
 
 local split_conf = {
 	"mrjones2014/smart-splits.nvim",
-	event = { "WinNew", "TabNew" },
+	-- event = { "WinNew", "TabNew" },
 	opts = {
 		-- Ignored filetypes (only while resizing)
 		ignored_filetypes = {
@@ -501,7 +501,8 @@ local split_conf = {
 
 local winshift_conf = {
 	"sindrets/winshift.nvim",
-	event = { "WinNew", "TabNew" },
+  cmd = "WinShift",
+	-- event = { "WinNew", "TabNew" },
 }
 
 -- Better buffer closing
@@ -575,7 +576,8 @@ local matchup_conf = {
 
 local todo_conf = {
 	"folke/todo-comments.nvim",
-	event = { "BufRead", "BufNewFile" },
+  cmd = "TodoTrouble",
+	-- event = { "BufRead", "BufNewFile" },
 	dependencies = {
 		"trouble.nvim",
 	},
