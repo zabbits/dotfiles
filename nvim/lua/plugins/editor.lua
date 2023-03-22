@@ -13,7 +13,7 @@ local telescope_conf = {
 
 		telescope.setup({
 			defaults = {
-				file_ignore_patterns = { "node_modules", "dist" },
+				file_ignore_patterns = { "node_modules", "dist", "build" },
 				prompt_prefix = "  ",
 				selection_caret = "  ",
 				path_display = { "truncate" },
@@ -501,7 +501,7 @@ local split_conf = {
 
 local winshift_conf = {
 	"sindrets/winshift.nvim",
-  cmd = "WinShift",
+	cmd = "WinShift",
 	-- event = { "WinNew", "TabNew" },
 }
 
@@ -576,17 +576,24 @@ local matchup_conf = {
 
 local todo_conf = {
 	"folke/todo-comments.nvim",
-  cmd = "TodoTrouble",
+	cmd = "TodoTrouble",
 	-- event = { "BufRead", "BufNewFile" },
 	dependencies = {
 		"trouble.nvim",
 	},
 	opts = {
 		signs = false, -- show icons in the signs column
-		-- highlighting of the line containing the todo comment
-		-- * before: highlights before the keyword (typically comment characters)
-		-- * keyword: highlights of the keyword
-		-- * after: highlights after the keyword (todo text)
+		search = {
+			command = "rg",
+			args = {
+				"--color=never",
+				"--no-heading",
+				"--with-filename",
+				"--line-number",
+				"--column",
+				"--glob=!{node_modules,build,dist}/",
+			},
+		},
 		highlight = {
 			multiline = false, -- enable multine todo comments
 			multiline_pattern = "^.", -- lua pattern to match the next multiline from the start of the matched keyword
