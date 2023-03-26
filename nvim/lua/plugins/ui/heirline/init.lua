@@ -3,7 +3,6 @@ return {
 	event = { "BufAdd", "BufReadPre", "BufRead", "BufNewFile" },
 	config = function()
 		local os_sep = package.config:sub(1, 1)
-		local api = vim.api
 		local fn = vim.fn
 		local bo = vim.bo
 		local status = require("core.status")
@@ -15,19 +14,12 @@ return {
 		local util = require("plugins.ui.heirline.util")
 		local icons = util.icons
 		local mode = util.mode
-		local hydra = require("hydra.statusline")
 
 		local theme = require("plugins.ui.heirline.themes")
 		local hl = theme.highlight
 		local colors = theme.colors
-		local lsp_colors = theme.lsp_colors
 
 		vim.o.showmode = false
-
-		local hydras_to_ignore = {
-			Barbar = true,
-			-- Folds = true
-		}
 
 		-- Flexible components priorities
 		local priority = {
@@ -69,32 +61,6 @@ return {
 
 		local Indicator
 		do
-			local HydraName = {
-				condition = function()
-					return hydra.is_active() and hydra.get_name() and not hydras_to_ignore[hydra.get_name()]
-				end,
-				heirline_utils.surround(
-					{ icons.powerline.left_rounded, icons.powerline.right_rounded },
-					function()
-						return theme.hydra[hydra.get_color()]
-					end, -- color
-					{
-						{
-							fallthrough = false,
-							ReadOnly,
-							{ provider = icons.circle },
-						},
-						Space,
-						{
-							provider = function()
-								return hydra.get_name() or "HYDRA"
-							end,
-						},
-						hl = { fg = hl.StatusLine.bg, force = true },
-					}
-				),
-			}
-
 			local VimMode
 			do
 				local NormalModeIndicator = {
@@ -163,17 +129,9 @@ return {
 
 			Indicator = {
 				fallthrough = false,
-				HydraName,
 				VimMode,
 			}
 		end
-
-		local HydraHint = {
-			condition = function()
-				return hydra.get_hint()
-			end,
-			provider = hydra.get_hint,
-		}
 
 		local FileNameBlock, CurrentPath, FileName
 		do
@@ -452,7 +410,7 @@ return {
 
 		local SearchResults = {
 			condition = function(self)
-				local lines = api.nvim_buf_line_count(0)
+				local lines = vim.api.nvim_buf_line_count(0)
 				if lines > 50000 then
 					return
 				end
@@ -550,7 +508,7 @@ return {
 		local StatusLines = {
 			init = function(self)
 				local pwd = fn.getcwd(0) -- Present working directory.
-				local current_path = api.nvim_buf_get_name(0)
+				local current_path = vim.api.nvim_buf_get_name(0)
 				local filename
 
 				if current_path == "" then
