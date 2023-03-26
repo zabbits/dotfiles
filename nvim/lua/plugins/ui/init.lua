@@ -41,10 +41,130 @@ local dressing_conf = {
 }
 
 local veil_conf = {
-    'willothy/veil.nvim',
-    lazy = false,
-    event = 'VimEnter',
-    opts = {},
+	"willothy/veil.nvim",
+	lazy = false,
+	event = "VimEnter",
+	opts = function()
+		local builtin = require("veil.builtin")
+
+		local default = {
+			sections = {
+				builtin.sections.animated(builtin.headers.frames_nvim, {
+					hl = { fg = "#5de4c7" },
+				}),
+				builtin.sections.padding(1),
+				builtin.sections.buttons({
+					{
+						icon = "ﱐ",
+						text = "New File",
+						shortcut = "e",
+						callback = function()
+							vim.cmd("ene <BAR> startinsert")
+						end,
+					},
+					{
+						icon = "",
+						text = "Find Files",
+						shortcut = "f",
+						callback = function()
+							require("telescope.builtin").find_files()
+						end,
+					},
+					{
+						icon = "ﭨ",
+						text = "Find Word",
+						shortcut = "w",
+						callback = function()
+							require("telescope.builtin").live_grep()
+						end,
+					},
+					{
+						icon = "",
+						text = "FInd Recent",
+						shortcut = "o",
+						callback = function()
+							require("telescope.builtin").oldfiles()
+						end,
+					},
+					{
+						icon = "ﮫ",
+						text = "Find Sessions",
+						shortcut = "s",
+						callback = function()
+							require("telescope").extensions.possession.list({ initial_mode = "normal" })
+						end,
+					},
+					{
+						icon = "",
+						text = "Config",
+						shortcut = "c",
+						callback = function()
+							require("telescope").extensions.file_browser.file_browser({
+								path = vim.fn.stdpath("config"),
+							})
+						end,
+					},
+					{
+						icon = "z",
+						text = "Lazy",
+						shortcut = "l",
+						callback = function()
+							vim.cmd("Lazy")
+						end,
+					},
+					{
+						icon = "",
+						text = "Quit",
+						shortcut = "q",
+						callback = function()
+							vim.cmd("qa")
+						end,
+					},
+				}, { spacing = 1 }),
+				-- builtin.sections.padding(3),
+			},
+			mappings = {},
+			startup = true,
+		}
+
+		return default
+	end,
+	config = function(_, opts)
+		require("veil").setup(opts)
+		vim.api.nvim_create_autocmd("VimEnter", {
+			desc = "Disable tabline and statusline in veil",
+			callback = function()
+				local fname = vim.fn.expand("%")
+				if fname == "Veil" then
+					vim.opt.showtabline = 0
+					vim.opt.laststatus = 0
+				end
+			end,
+		})
+		vim.api.nvim_create_autocmd("BufEnter", {
+			desc = "Disable tabline and statusline in veil",
+			pattern = "*",
+			callback = function()
+				local fname = vim.fn.expand("%")
+				if fname == "Veil" then
+					vim.opt.showtabline = 0
+					vim.opt.laststatus = 0
+					vim.api.nvim_create_autocmd("BufUnload", {
+						desc = "Reset",
+						pattern = "<buffer>",
+						callback = function()
+							vim.opt.showtabline = 2
+							vim.opt.laststatus = 3
+						end,
+					})
+				end
+				if vim.bo.filetype == "norg" then
+					vim.opt.showtabline = 2
+					vim.opt.laststatus = 3
+				end
+			end,
+		})
+	end,
 }
 
 local alpha_conf = {
@@ -204,9 +324,9 @@ local indent_conf = {
 				"norg",
 				"lspinfo",
 				"lspsagaoutline",
-        "neotest-summary",
-        "neotest-output",
-        "neotest-output-panel",
+				"neotest-summary",
+				"neotest-output",
+				"neotest-output-panel",
 			},
 			callback = function()
 				vim.b.miniindentscope_disable = true
@@ -282,5 +402,5 @@ return {
 	indent_conf,
 	heirline_conf,
 	noice_conf,
-  veil_conf,
+	veil_conf,
 }

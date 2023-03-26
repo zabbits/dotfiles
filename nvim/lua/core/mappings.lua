@@ -19,7 +19,8 @@ map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 
 -- Insert mode movement
-map("i", "<c-h>", "<Left>", opts)
+-- <c-h> reserved for delete char 
+-- map("i", "<c-h>", "<Left>", opts)
 map("i", "<c-j>", "<Down>", opts)
 map("i", "<c-k>", "<Up>", opts)
 map("i", "<c-l>", "<Right>", opts)
