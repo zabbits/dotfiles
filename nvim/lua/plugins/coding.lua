@@ -1,6 +1,5 @@
 -- ============ treesitter =============
 local ts_conf = {
-<<<<<<< HEAD
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	event = { "BufRead", "BufNewFile" },
@@ -33,41 +32,6 @@ local ts_conf = {
 			"markdown_inline",
 			"norg",
 		}
-=======
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
-  event = { "BufRead", "BufNewFile" },
-  dependencies = {
-    "windwp/nvim-ts-autotag",
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    "HiPhish/nvim-ts-rainbow2",
-    -- FIX: for now must using norg as dependencies, otherwise openning neorg file can not get ts info
-    "nvim-neorg/neorg",
-  },
-  config = function()
-    local ensure_installed = {
-      "c",
-      "cpp",
-      "rust",
-      "go",
-      "lua",
-      "python",
-      "vue",
-      "svelte",
-      "typescript",
-      "javascript",
-      "html",
-      "css",
-      "vim",
-      "regex",
-      "bash",
-      "markdown",
-      "markdown_inline",
-      "norg",
-    }
->>>>>>> 0dc01aa65bc71c8dd0e0a9d528fc4125d39999ef
-
     local opts = {
       ensure_installed = ensure_installed,
       sync_install = false,
@@ -168,7 +132,6 @@ local ts_conf = {
 
 -- ============ snip =============
 local snip_conf = {
-<<<<<<< HEAD
 	"L3MON4D3/LuaSnip",
 	build = "make install_jsregexp",
 	dependencies = {
@@ -187,31 +150,10 @@ local snip_conf = {
         end,
       })
 	end,
-=======
-  "L3MON4D3/LuaSnip",
-  build = "make install_jsregexp",
-  dependencies = {
-    "honza/vim-snippets",
-  },
-  config = function()
-    vim.api.nvim_create_autocmd("InsertLeave", {
-      callback = function()
-        if require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-            and not require("luasnip").session.jump_active
-        then
-          require("luasnip").unlink_current()
-        end
-      end,
-    })
-
-    require("luasnip.loaders.from_snipmate").lazy_load()
-  end,
->>>>>>> 0dc01aa65bc71c8dd0e0a9d528fc4125d39999ef
 }
 
 -- ============ cmp =============
 local cmp_conf = {
-<<<<<<< HEAD
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
@@ -223,25 +165,6 @@ local cmp_conf = {
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
-=======
-  "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
-  dependencies = {
-    "saadparwaiz1/cmp_luasnip",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-nvim-lsp",
-  },
-  config = function()
-    local cmp = require("cmp")
-    local luasnip = require("luasnip")
-    local has_words_before = function()
-      unpack = unpack or table.unpack
-      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-    end
->>>>>>> 0dc01aa65bc71c8dd0e0a9d528fc4125d39999ef
-
     cmp.setup({
       preselect = cmp.PreselectMode.None,
       formatting = {
@@ -375,31 +298,16 @@ local pair_conf = {
 }
 
 local comment_conf = {
-<<<<<<< HEAD
 	"numToStr/Comment.nvim",
 	keys = {
 		{ "gc", mode = { "n", "v" } },
 		{ "gb", mode = { "n", "v" } },
-		--{ "<C-/>", mode = { "n", "v", "i" } },
 	},
 	config = function()
 		require("Comment").setup({
 			pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 		})
 	end,
-=======
-  "numToStr/Comment.nvim",
-  keys = {
-    { "gc", mode = { "n", "v" } },
-    { "gb", mode = { "n", "v" } },
-    { "<C-/>", mode = { "n", "v", "i" } },
-  },
-  config = function()
-    require("Comment").setup({
-      pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-    })
-  end,
->>>>>>> 0dc01aa65bc71c8dd0e0a9d528fc4125d39999ef
 }
 
 local dap_conf = {
