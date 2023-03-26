@@ -40,6 +40,13 @@ local dressing_conf = {
 	end,
 }
 
+local veil_conf = {
+    'willothy/veil.nvim',
+    lazy = false,
+    event = 'VimEnter',
+    opts = {},
+}
+
 local alpha_conf = {
 	"goolord/alpha-nvim",
 	event = "VimEnter",
@@ -267,7 +274,7 @@ local noice_conf = {
 return {
 	theme_conf,
 	icons_conf,
-	alpha_conf,
+	-- alpha_conf,
 	dressing_conf,
 	notify_conf,
 	bufferline_conf,
@@ -275,4 +282,5 @@ return {
 	indent_conf,
 	heirline_conf,
 	noice_conf,
+  veil_conf,
 }

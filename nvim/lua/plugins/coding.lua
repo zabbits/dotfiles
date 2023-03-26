@@ -9,7 +9,7 @@ local ts_conf = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		"HiPhish/nvim-ts-rainbow2",
 		-- FIX: for now must using norg as dependencies, otherwise openning neorg file can not get ts info
-		"nvim-neorg/neorg",
+		-- "nvim-neorg/neorg",
 	},
 	config = function()
 		local ensure_installed = {
@@ -140,6 +140,16 @@ local snip_conf = {
 	},
 	config = function()
 		require("luasnip.loaders.from_snipmate").lazy_load()
+      vim.api.nvim_create_autocmd("InsertLeave", {
+        callback = function()
+          if
+            require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+            and not require("luasnip").session.jump_active
+          then
+            require("luasnip").unlink_current()
+          end
+        end,
+      })
 	end,
 }
 
@@ -156,11 +166,6 @@ local cmp_conf = {
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
-		local has_words_before = function()
-			unpack = unpack or table.unpack
-			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-		end
 
 		cmp.setup({
 			preselect = cmp.PreselectMode.None,
@@ -299,7 +304,7 @@ local comment_conf = {
 	keys = {
 		{ "gc", mode = { "n", "v" } },
 		{ "gb", mode = { "n", "v" } },
-		{ "<C-/>", mode = { "n", "v", "i" } },
+		--{ "<C-/>", mode = { "n", "v", "i" } },
 	},
 	config = function()
 		require("Comment").setup({
