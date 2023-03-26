@@ -57,7 +57,7 @@ local options = {
   updatetime = 200,                           -- Length of time to wait before triggering the plugin
   fillchars = { eob = " " },                  -- Disable `~` on nonexistent lines
 
-  conceallevel = 3,                           -- Hide some text
+  conceallevel = 0,                           -- Hide some text
   concealcursor = "nc",                       -- Hide on normal and command line
   mousemoveevent = true,
 }

@@ -19,10 +19,22 @@ map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 
 -- Insert mode movement
-map("i", "<A-h>", "<esc>i", opts)
-map("i", "<A-l>", "<esc>la", opts)
-map("i", "<D-h>", "<esc>i", opts)
-map("i", "<D-l>", "<esc>la", opts)
+map("i", "<c-h>", "<Left>", opts)
+map("i", "<c-j>", "<Down>", opts)
+map("i", "<c-k>", "<Up>", opts)
+map("i", "<c-l>", "<Right>", opts)
+
+-- view mode
+map("n", "<leader>v", function ()
+  local lv = vim.o.conceallevel
+  if lv == 3 then
+    vim.o.conceallevel = 0
+    vim.notify('conceallevel 0')
+  else
+    vim.o.conceallevel = 3
+    vim.notify('conceallevel 3')
+  end
+end)
 
 
 -- disable Ex mode:
@@ -79,12 +91,21 @@ map("n", "<C-\\>", "<cmd>ToggleTerm<CR>")
 map({ "n", "i", "v", "x" }, "<F5>", '<ESC><cmd>TermExec cmd="cc % -o temp.out;./temp.out;rm ./temp.out"<CR>',
   { desc = "Run C" })
 
--- map('n', comment_key, function() require("Comment.api").toggle.linewise.current() end)
+
+-- === neotree ===
 map("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Toggle Explorer" })
 map("n", "<leader>oo", "<cmd>Neotree reveal toggle<CR>", { desc = "Toggle Reveal Explorer" })
 map("n", "<leader>og", "<cmd>Neotree toggle git_status<CR>", { desc = "Toggle Git Status" })
 map("n", "<leader>ob", "<cmd>Neotree toggle buffers<CR>", { desc = "Toggle Buffers" })
 map("n", "<leader>of", "<cmd>NeoTreeFocus<CR>", { desc = "Focus" })
+
+-- === comment ===
+map("n", "<c-/>", function()
+    require("Comment.api").toggle.linewise.current()
+  end,
+  {desc = "toggle comment"}
+)
+map("v", "<c-/>", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", {desc = "toggle comment"})
 
 -- === GitSigns ===
 local function gitsigns()
