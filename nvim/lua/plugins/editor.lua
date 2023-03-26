@@ -95,6 +95,10 @@ local which_key_conf = {
 	"folke/which-key.nvim",
 	keys = {
 		{ "<leader>", mode = { "n", "v" } },
+		{ "'", mode = { "n", "v" } },
+		{ "`", mode = { "n", "v" } },
+		{ '"', mode = { "n", "v" } },
+		{ "g", mode = { "n", "v" } },
 	},
 	config = function()
 		local which_key = require("which-key")
@@ -460,7 +464,7 @@ local mason_conf = {
 
 local yank_conf = {
 	"in-a-day/nvim-osc52",
-	keys = "<leader>y",
+	keys = {"<leader>y", mode = { "n", "v" }},
 }
 
 local chatgpt_conf = {
