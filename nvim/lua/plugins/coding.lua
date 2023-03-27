@@ -202,7 +202,7 @@ local cmp_conf = {
       },
       window = {
         documentation = {
-          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+          border = "rounded",
         },
         completion = {
           border = "rounded",
