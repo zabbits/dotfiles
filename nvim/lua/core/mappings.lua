@@ -107,6 +107,12 @@ map("n", "<c-/>", function()
   {desc = "toggle comment"}
 )
 map("v", "<c-/>", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", {desc = "toggle comment"})
+map("n", "<c-_>", function()
+    require("Comment.api").toggle.linewise.current()
+  end,
+  {desc = "toggle comment"}
+)
+map("v", "<c-_>", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", {desc = "toggle comment"})
 
 -- === GitSigns ===
 local function gitsigns()
@@ -238,7 +244,7 @@ end,
   { desc = "Find Words" })
 
 map("n", "<leader>fc", function()
-  require("telescope.builtin").find_files({ cwd = "$HOME/.config/nvim/" })
+  require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config")})
 end,
   { desc = "Find Configurations" })
 

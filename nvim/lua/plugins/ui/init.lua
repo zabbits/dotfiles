@@ -3,19 +3,58 @@ local theme_conf = {
 	lazy = false,
 	dependencies = { "rebelot/kanagawa.nvim" },
 	config = function()
-		vim.cmd.colorscheme("tokyodark")
-		-- vim.cmd.colorscheme("kanagawa")
-		local p = require("tokyodark.palette")
-		-- highlight for illuminate
-		for _, group in pairs({
-			"illuminatedWord",
-			"illuminatedCurWord",
-			"IlluminatedWordText",
-			"IlluminatedWordRead",
-			"IlluminatedWordWrite",
-		}) do
-			vim.api.nvim_set_hl(0, group, { bg = p.grey })
-		end
+		-- vim.cmd.colorscheme("tokyodark")
+    local color_gamma = require("tokyodark.utils").color_gamma
+		require("kanagawa").setup({
+			colors = {
+				theme = {
+					all = {
+						ui = {
+							bg_gutter = "none",
+              -- #1A1B2A
+              -- #06080A
+              bg = "#11121D",
+						},
+            syn = {
+              variable = "",
+            },
+					},
+				},
+			},
+			overrides = function(colors)
+				local theme = colors.theme
+				return {
+          StatusLine = { fg = theme.ui.fg_dim, bg = theme.ui.bg_visual },
+
+					NormalFloat = { bg = "none" },
+					FloatBorder = { bg = "none" },
+					NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+					LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+					MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+
+					TelescopeTitle = { fg = theme.ui.special, bold = true },
+					TelescopePromptNormal = { bg = theme.ui.bg_p1 },
+					TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
+					TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
+					TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+					TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+					TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+
+					Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
+					PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+					PmenuSbar = { bg = theme.ui.bg_m1 },
+					PmenuThumb = { bg = theme.ui.bg_p2 },
+
+          illuminatedWord = { bg = theme.ui.bg_visual },
+          illuminatedCurWord = { bg = theme.ui.bg_visual },
+          IlluminatedWordText = { bg = theme.ui.bg_visual },
+          IlluminatedWordRead = { bg = theme.ui.bg_visual },
+          IlluminatedWordWrite = { bg = theme.ui.bg_visual },
+				}
+			end,
+		})
+
+		vim.cmd.colorscheme("kanagawa")
 	end,
 }
 
@@ -40,137 +79,26 @@ local dressing_conf = {
 	end,
 }
 
-local veil_conf = {
-	"willothy/veil.nvim",
-	lazy = false,
-	event = "VimEnter",
-	opts = function()
-		local builtin = require("veil.builtin")
-
-		local default = {
-			sections = {
-				builtin.sections.animated(builtin.headers.frames_nvim, {
-					hl = { fg = "#5de4c7" },
-				}),
-				builtin.sections.padding(1),
-				builtin.sections.buttons({
-					{
-						icon = "ﱐ",
-						text = "New File",
-						shortcut = "e",
-						callback = function()
-							vim.cmd("ene <BAR> startinsert")
-						end,
-					},
-					{
-						icon = "",
-						text = "Find Files",
-						shortcut = "f",
-						callback = function()
-							require("telescope.builtin").find_files()
-						end,
-					},
-					{
-						icon = "ﭨ",
-						text = "Find Word",
-						shortcut = "w",
-						callback = function()
-							require("telescope.builtin").live_grep()
-						end,
-					},
-					{
-						icon = "",
-						text = "FInd Recent",
-						shortcut = "o",
-						callback = function()
-							require("telescope.builtin").oldfiles()
-						end,
-					},
-					{
-						icon = "ﮫ",
-						text = "Find Sessions",
-						shortcut = "s",
-						callback = function()
-							require("telescope").extensions.possession.list({ initial_mode = "normal" })
-						end,
-					},
-					{
-						icon = "",
-						text = "Config",
-						shortcut = "c",
-						callback = function()
-							require("telescope").extensions.file_browser.file_browser({
-								path = vim.fn.stdpath("config"),
-							})
-						end,
-					},
-					{
-						icon = "z",
-						text = "Lazy",
-						shortcut = "l",
-						callback = function()
-							vim.cmd("Lazy")
-						end,
-					},
-					{
-						icon = "",
-						text = "Quit",
-						shortcut = "q",
-						callback = function()
-							vim.cmd("qa")
-						end,
-					},
-				}, { spacing = 1 }),
-				-- builtin.sections.padding(3),
-			},
-			mappings = {},
-			startup = true,
-		}
-
-		return default
-	end,
-	config = function(_, opts)
-		require("veil").setup(opts)
-		vim.api.nvim_create_autocmd("VimEnter", {
-			desc = "Disable tabline and statusline in veil",
-			callback = function()
-				local fname = vim.fn.expand("%")
-				if fname == "Veil" then
-					vim.opt.showtabline = 0
-					vim.opt.laststatus = 0
-				end
-			end,
-		})
-		vim.api.nvim_create_autocmd("BufEnter", {
-			desc = "Disable tabline and statusline in veil",
-			pattern = "*",
-			callback = function()
-				local fname = vim.fn.expand("%")
-				if fname == "Veil" then
-					vim.opt.showtabline = 0
-					vim.opt.laststatus = 0
-					vim.api.nvim_create_autocmd("BufUnload", {
-						desc = "Reset",
-						pattern = "<buffer>",
-						callback = function()
-							vim.opt.showtabline = 2
-							vim.opt.laststatus = 3
-						end,
-					})
-				end
-				if vim.bo.filetype == "norg" then
-					vim.opt.showtabline = 2
-					vim.opt.laststatus = 3
-				end
-			end,
-		})
-	end,
-}
-
 local alpha_conf = {
 	"goolord/alpha-nvim",
 	event = "VimEnter",
 	config = function()
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "AlphaReady",
+			callback = function()
+				vim.opt.showtabline = 0
+				vim.opt.laststatus = 0
+			end,
+		})
+
+		vim.api.nvim_create_autocmd("BufUnload", {
+			pattern = "<buffer>",
+			callback = function()
+				vim.opt.showtabline = 2
+				vim.opt.laststatus = 3
+			end,
+		})
+
 		local alpha = require("alpha")
 		local dashboard = require("alpha.themes.dashboard")
 		local header = {
@@ -197,20 +125,12 @@ local alpha_conf = {
 			dashboard.button(
 				"  c",
 				"  Configurations",
-				':lua require("telescope.builtin").find_files({cwd="$HOME/.config/nvim/"}) <CR>'
+				':lua require("telescope.builtin").find_files({cwd=vim.fn.stdpath("config")}) <CR>'
 			),
 			dashboard.button("  l", "  Lazy", ":Lazy <CR>"),
 			dashboard.button("  q", "  Quit", ":qa <CR>"),
 		}
 
-		-- Foot must be a table so that its height is correctly measured
-		-- local num_plugins_loaded = #vim.fn.globpath(vim.fn.stdpath('data') .. '/site/pack/packer/start', '*', 0, 1)
-		-- local num_plugins_tot = #vim.tbl_keys(packer_plugins)
-		-- if num_plugins_tot <= 1 then
-		--   dashboard.section.footer.val = { num_plugins_loaded .. ' / ' .. num_plugins_tot .. ' plugin ﮣ loaded' }
-		-- else
-		--   dashboard.section.footer.val = { num_plugins_loaded .. ' / ' .. num_plugins_tot .. ' plugins ﮣ loaded' }
-		-- end
 		dashboard.section.footer.opts.hl = "Comment"
 
 		vim.api.nvim_create_autocmd("User", {
@@ -394,7 +314,7 @@ local noice_conf = {
 return {
 	theme_conf,
 	icons_conf,
-	-- alpha_conf,
+	alpha_conf,
 	dressing_conf,
 	notify_conf,
 	bufferline_conf,
@@ -402,5 +322,4 @@ return {
 	indent_conf,
 	heirline_conf,
 	noice_conf,
-	veil_conf,
 }

@@ -63,6 +63,7 @@ local exclude_filetype = {
 	"Trouble",
 	"notify",
 	"mason",
+  "TelescopePrompt",
 }
 local function disable_number()
 	local ft = vim.bo.filetype
