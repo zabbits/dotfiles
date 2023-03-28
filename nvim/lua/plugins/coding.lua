@@ -7,7 +7,6 @@ local ts_conf = {
 		"windwp/nvim-ts-autotag",
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		"HiPhish/nvim-ts-rainbow2",
 		-- FIX: for now must using norg as dependencies, otherwise openning neorg file can not get ts info
 		-- "nvim-neorg/neorg",
 	},
@@ -62,15 +61,6 @@ local ts_conf = {
       },
       autotag = {
         enable = true,
-      },
-      rainbow = {
-        enable = true,
-        -- list of languages you want to disable the plugin for
-        disable = {},
-        -- Which query to use for finding delimiters
-        query = "rainbow-parens",
-        -- Highlight the entire buffer all at once
-        strategy = require("ts-rainbow.strategy.global"),
       },
       textobjects = {
         lsp_interop = {
