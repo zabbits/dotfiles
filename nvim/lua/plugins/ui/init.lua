@@ -17,9 +17,11 @@ local theme_conf = {
 						ui = {
 							fg = "#F6955B",
 							bg_gutter = "none",
-							bg = "#11121D",
+							-- bg = "#11121D",
+							bg = "#161823",
+							-- bg = "#312520",
 							pmenu = {
-								bg = "#11121D",
+                bg = "#161823",
 							},
 						},
 						syn = {
