@@ -478,16 +478,6 @@ local chatgpt_conf = {
 	opts = {},
 }
 
-local matchup_conf = {
-	"andymass/vim-matchup",
-	enabled = false,
-	event = { "BufRead", "BufNewFile" },
-	keys = "%",
-	config = function()
-		vim.g.matchup_matchparen_offscreen = { method = "popup" }
-	end,
-}
-
 local todo_conf = {
 	"folke/todo-comments.nvim",
 	cmd = "TodoTrouble",
@@ -536,6 +526,5 @@ return {
 	mason_conf,
 	yank_conf,
 	chatgpt_conf,
-	matchup_conf,
 	todo_conf,
 }

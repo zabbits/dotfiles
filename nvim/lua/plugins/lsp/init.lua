@@ -91,6 +91,9 @@ local lspsaga_conf = {
 		diagnostic = {
 			on_insert = false,
 		},
+		beacon = {
+			enable = false,
+		},
 	},
 }
 

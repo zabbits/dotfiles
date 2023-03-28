@@ -15,14 +15,13 @@ M.treesitter = {
 -- ========== lsp =========
 function M.lsp_name(msg)
   msg = msg or "Inactive"
-  local buf_clients = vim.lsp.buf_get_clients()
+  local buf_clients = vim.lsp.get_active_clients()
   if next(buf_clients) == nil then
     if type(msg) == "boolean" or #msg == 0 then
       return "Inactive"
     end
     return msg
   end
-  local buf_ft = vim.bo.filetype
   local buf_client_names = {}
 
   for _, client in pairs(buf_clients) do

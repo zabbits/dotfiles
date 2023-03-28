@@ -1,9 +1,8 @@
 local theme_conf = {
-	"tiagovla/tokyodark.nvim",
+	"rebelot/kanagawa.nvim",
 	lazy = false,
-	dependencies = { "rebelot/kanagawa.nvim" },
+	-- dependencies = { "tiagovla/tokyodark.nvim" },
 	config = function()
-		-- vim.cmd.colorscheme("tokyodark")
 		require("kanagawa").setup({
 			compile = false, -- enable compiling the colorscheme
 			undercurl = true, -- enable undercurls
@@ -16,7 +15,7 @@ local theme_conf = {
 				theme = {
 					all = {
 						ui = {
-							fg = "#66BAB7",
+							fg = "#F6955B",
 							bg_gutter = "none",
 							bg = "#11121D",
 							pmenu = {
@@ -24,7 +23,9 @@ local theme_conf = {
 							},
 						},
 						syn = {
-							identifier = "#F6955B",
+							identifier = "#66BAB7",
+							-- springGreen
+							type = "#98BB6C",
 						},
 					},
 				},
@@ -32,8 +33,7 @@ local theme_conf = {
 			overrides = function(colors)
 				local theme = colors.theme
 				return {
-					-- { "SagaWinbarModule", "SagaWinbarInterface", "SagaWinbarConstructor", "SagaWinbarStruct", "SagaWinbarObject", "SagaWinbarUnit", "SagaWinbarFile", "SagaWinbarSnippet", "SagaWinbarText", "SagaWinbarTypeAlias", "SagaWinbarEvent", "SagaWinbarParameter", "SagaWinbarKey", "SagaWinbarValue", "SagaWinbarMacro", "SagaWinbarNumber", "SagaWinbarConstant", "SagaWinbarFunction", "SagaWinbarEnum", "SagaWinbarField", "SagaWinbarProperty", "SagaWinbarMethod", "SagaWinbarClass", "SagaWinbarFolder", "SagaWinbarPackage", "SagaWinbarStaticMethod", "SagaWinbarTypeParameter", "SagaWinbarEnumMember", "SagaWinbarOperator", "SagaWinbarNull", "SagaWinbarNamespace", "SagaWinbarArray", "SagaWinbarBoolean", "SagaWinbarString", "SagaWinbarVariable", "SagaWinbarFilename", "SagaWinbarFolderName", "SagaWinbarFileIcon", "SagaWinbarSep" }
-					StatusLine = { fg = theme.ui.fg_dim, bg = theme.ui.bg_visual },
+					StatusLine = { bg = theme.ui.bg_visual },
 
 					NormalFloat = { bg = "none" },
 					FloatBorder = { bg = "none" },
@@ -55,9 +55,10 @@ local theme_conf = {
 					IlluminatedWordRead = { bg = theme.ui.bg_p2 },
 					IlluminatedWordWrite = { bg = theme.ui.bg_p2 },
 
-          SagaBeacon = { fg = theme.ui.fg_dim, bg = theme.ui.bg_visual },
-
-					Identifier = { fg = theme.syn.identifier, italic = false },
+					["@lsp.type.magicFunction"] = { link = "@method" },
+					["@lsp.typemod.function.builtin"] = { link = "@method" },
+					["@lsp.typemod.function.defaultLibrary"] = { link = "@method" },
+					["@lsp.typemod.method.defaultLibrary"] = { link = "@method" },
 				}
 			end,
 		})
@@ -211,7 +212,8 @@ local bufferline_conf = {
 				{ filetype = "Outline", text = "Outline", padding = 1 },
 				{ filetype = "Trouble", text = "Trouble", padding = 1 },
 			},
-			indicator = { style = "none" },
+			indicator = { style = "underline" },
+      -- separator_style = "slope",
 			show_buffer_close_icons = false,
 			close_icon = "",
 			show_close_icon = true,
@@ -226,50 +228,7 @@ local bufferline_conf = {
 			always_show_bufferline = true,
 			diagnostics = false,
 		},
-		highlights = {
-			buffer_selected = {
-				bg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-				bold = true,
-				italic = true,
-			},
-			tab_selected = {
-				fg = {
-					attribute = "fg",
-					highlight = "Visual",
-				},
-				bg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-				bold = true,
-				italic = true,
-			},
-			modified_selected = {
-				bg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-			},
-			indicator_selected = {
-				bg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-			},
-			separator_selected = {
-				fg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-				bg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-			},
-		},
+		highlights = {},
 	},
 }
 
@@ -300,6 +259,7 @@ local indent_conf = {
 				"neotest-summary",
 				"neotest-output",
 				"neotest-output-panel",
+				"notify",
 			},
 			callback = function()
 				vim.b.miniindentscope_disable = true
