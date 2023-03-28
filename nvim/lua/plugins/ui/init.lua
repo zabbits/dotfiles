@@ -8,24 +8,23 @@ local theme_conf = {
 			compile = false, -- enable compiling the colorscheme
 			undercurl = true, -- enable undercurls
 			commentStyle = { italic = true },
-			functionStyle = {},
-			keywordStyle = { italic = false },
+			functionStyle = { italic = true },
+			keywordStyle = { italic = true },
 			statementStyle = { bold = true },
 			typeStyle = { italic = true },
 			colors = {
 				theme = {
 					all = {
 						ui = {
+							fg = "#66BAB7",
 							bg_gutter = "none",
-							-- #1A1B2A
-							-- #06080A
 							bg = "#11121D",
 							pmenu = {
 								bg = "#11121D",
 							},
 						},
 						syn = {
-							variable = "#A0A8CD",
+							identifier = "#F6955B",
 						},
 					},
 				},
@@ -33,6 +32,7 @@ local theme_conf = {
 			overrides = function(colors)
 				local theme = colors.theme
 				return {
+					-- { "SagaWinbarModule", "SagaWinbarInterface", "SagaWinbarConstructor", "SagaWinbarStruct", "SagaWinbarObject", "SagaWinbarUnit", "SagaWinbarFile", "SagaWinbarSnippet", "SagaWinbarText", "SagaWinbarTypeAlias", "SagaWinbarEvent", "SagaWinbarParameter", "SagaWinbarKey", "SagaWinbarValue", "SagaWinbarMacro", "SagaWinbarNumber", "SagaWinbarConstant", "SagaWinbarFunction", "SagaWinbarEnum", "SagaWinbarField", "SagaWinbarProperty", "SagaWinbarMethod", "SagaWinbarClass", "SagaWinbarFolder", "SagaWinbarPackage", "SagaWinbarStaticMethod", "SagaWinbarTypeParameter", "SagaWinbarEnumMember", "SagaWinbarOperator", "SagaWinbarNull", "SagaWinbarNamespace", "SagaWinbarArray", "SagaWinbarBoolean", "SagaWinbarString", "SagaWinbarVariable", "SagaWinbarFilename", "SagaWinbarFolderName", "SagaWinbarFileIcon", "SagaWinbarSep" }
 					StatusLine = { fg = theme.ui.fg_dim, bg = theme.ui.bg_visual },
 
 					NormalFloat = { bg = "none" },
@@ -49,11 +49,15 @@ local theme_conf = {
 					TelescopePreviewNormal = { bg = theme.ui.bg_dim },
 					TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
 
-					illuminatedWord = { bg = theme.ui.bg_visual },
-					illuminatedCurWord = { bg = theme.ui.bg_visual },
-					IlluminatedWordText = { bg = theme.ui.bg_visual },
-					IlluminatedWordRead = { bg = theme.ui.bg_visual },
-					IlluminatedWordWrite = { bg = theme.ui.bg_visual },
+					illuminatedWord = { bg = theme.ui.bg_p2 },
+					illuminatedCurWord = { bg = theme.ui.bg_p2 },
+					IlluminatedWordText = { bg = theme.ui.bg_p2 },
+					IlluminatedWordRead = { bg = theme.ui.bg_p2 },
+					IlluminatedWordWrite = { bg = theme.ui.bg_p2 },
+
+          SagaBeacon = { fg = theme.ui.fg_dim, bg = theme.ui.bg_visual },
+
+					Identifier = { fg = theme.syn.identifier, italic = false },
 				}
 			end,
 		})
@@ -207,6 +211,7 @@ local bufferline_conf = {
 				{ filetype = "Outline", text = "Outline", padding = 1 },
 				{ filetype = "Trouble", text = "Trouble", padding = 1 },
 			},
+			indicator = { style = "none" },
 			show_buffer_close_icons = false,
 			close_icon = "",
 			show_close_icon = true,
@@ -220,6 +225,50 @@ local bufferline_conf = {
 			show_buffer_icons = true,
 			always_show_bufferline = true,
 			diagnostics = false,
+		},
+		highlights = {
+			buffer_selected = {
+				bg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+				bold = true,
+				italic = true,
+			},
+			tab_selected = {
+				fg = {
+					attribute = "fg",
+					highlight = "Visual",
+				},
+				bg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+				bold = true,
+				italic = true,
+			},
+			modified_selected = {
+				bg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+			},
+			indicator_selected = {
+				bg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+			},
+			separator_selected = {
+				fg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+				bg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+			},
 		},
 	},
 }
