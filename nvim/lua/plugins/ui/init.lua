@@ -16,7 +16,7 @@ local theme_conf = {
 					all = {
 						ui = {
 							-- fg = "#bdaead",
-							fg = "#619ac3",
+							fg = "#33a6b8",
 							bg_gutter = "none",
 							bg = "#11121D",
 							-- bg = "#161823",
@@ -26,8 +26,9 @@ local theme_conf = {
 							},
 						},
 						syn = {
-							identifier = "#55bb8a",
-							type = "#d2b42c",
+							identifier = "#7cabb1",
+							type = "#43b244",
+              fun = "#51a8dd",
 						},
 					},
 				},
