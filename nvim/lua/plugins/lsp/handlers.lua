@@ -52,11 +52,13 @@ end
 local function buffer_key_maps(client, bufnr)
 	local bmap = vim.api.nvim_buf_set_keymap
 	bmap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "Goto declaration" })
-	bmap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", { desc = "Goto implementation" })
-	bmap(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", { desc = "Goto type definition" })
+	bmap(bufnr, "n", "gi", "<cmd>Trouble lsp_implementations<CR>", { desc = "Goto implementation" })
+	bmap(bufnr, "n", "gt", "<cmd>Trouble lsp_type_definitions<CR>", { desc = "Goto implementation" })
+	-- bmap(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", { desc = "Goto type definition" })
 	bmap(bufnr, "n", "gl", '<cmd>lua require("lsp_lines").toggle()<CR>', { desc = "Hover diagnostic" })
 	bmap(bufnr, "n", "gn", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename" })
-	bmap(bufnr, "i", "<c-y>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { desc = "Signature help" })
+  -- TODO: Signature help
+	bmap(bufnr, "i", "<C-y>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { desc = "Signature help" })
 	bmap(bufnr, "n", "<leader>lc", "<cmd>lua vim.lsp.buf.clear_references()<CR>", { desc = "Clear" })
 	vim.keymap.set("n", "<leader>lf", format, { desc = "LSP Format", buffer = true })
 	vim.keymap.set("n", "gq", format, { desc = "LSP Format", buffer = true })
@@ -66,7 +68,7 @@ local function buffer_key_maps(client, bufnr)
 	else
 		bmap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 	end
-	bmap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition<CR>", { desc = "Goto definition" })
+	bmap(bufnr, "n", "gd", "<cmd>Trouble lsp_definitions<CR>", { desc = "Goto definition" })
 	bmap(bufnr, "n", "ga", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true })
 	bmap(bufnr, "v", "ga", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true, noremap = true })
 	bmap(bufnr, "n", "<C-CR>", "<cmd>Lspsaga code_action<CR>", { silent = true, noremap = true })

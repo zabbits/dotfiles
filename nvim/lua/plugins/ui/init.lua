@@ -15,19 +15,18 @@ local theme_conf = {
 				theme = {
 					all = {
 						ui = {
-							fg = "#F6955B",
+							fg = "#c1b2a3",
 							bg_gutter = "none",
 							-- bg = "#11121D",
 							bg = "#161823",
-							-- bg = "#312520",
+							-- bg = "#1c0d1a",
 							pmenu = {
-                bg = "#161823",
+								bg = "#161823",
 							},
 						},
 						syn = {
-							identifier = "#66BAB7",
-							-- springGreen
-							type = "#98BB6C",
+							identifier = "#be7e4a",
+							type = "#d2b42c",
 						},
 					},
 				},
@@ -64,7 +63,6 @@ local theme_conf = {
 				}
 			end,
 		})
-
 		vim.cmd.colorscheme("kanagawa")
 	end,
 }
@@ -97,7 +95,7 @@ local alpha_conf = {
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "AlphaReady",
 			callback = function()
-				vim.opt.showtabline = 0
+				-- vim.opt.showtabline = 0
 				vim.opt.laststatus = 0
 			end,
 		})
@@ -105,7 +103,7 @@ local alpha_conf = {
 		vim.api.nvim_create_autocmd("BufUnload", {
 			pattern = "<buffer>",
 			callback = function()
-				vim.opt.showtabline = 2
+				-- vim.opt.showtabline = 2
 				vim.opt.laststatus = 3
 			end,
 		})
@@ -215,7 +213,7 @@ local bufferline_conf = {
 				{ filetype = "Trouble", text = "Trouble", padding = 1 },
 			},
 			indicator = { style = "underline" },
-      -- separator_style = "slope",
+			-- separator_style = "slope",
 			show_buffer_close_icons = false,
 			close_icon = "",
 			show_close_icon = true,
@@ -332,7 +330,7 @@ return {
 	alpha_conf,
 	dressing_conf,
 	notify_conf,
-	bufferline_conf,
+	-- bufferline_conf,
 	nui_conf,
 	indent_conf,
 	heirline_conf,
