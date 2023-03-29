@@ -15,17 +15,18 @@ local theme_conf = {
 				theme = {
 					all = {
 						ui = {
-							fg = "#c1b2a3",
+							-- fg = "#bdaead",
+							fg = "#619ac3",
 							bg_gutter = "none",
-							-- bg = "#11121D",
-							bg = "#161823",
-							-- bg = "#1c0d1a",
+							bg = "#11121D",
+							-- bg = "#161823",
+							-- bg = "#131124",
 							pmenu = {
 								bg = "#161823",
 							},
 						},
 						syn = {
-							identifier = "#be7e4a",
+							identifier = "#55bb8a",
 							type = "#d2b42c",
 						},
 					},
