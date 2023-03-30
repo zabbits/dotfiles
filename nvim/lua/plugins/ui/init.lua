@@ -35,6 +35,7 @@ local theme_conf = {
 							identifier = "#45b787",
 							type = "#e16723",
 							keyword = "#b7ae8f",
+              fun = "#51a8dd",
 						},
 					},
 				},
