@@ -17,17 +17,24 @@ local theme_conf = {
 						ui = {
 							-- fg = "#bdaead",
 							fg = "#619ac3",
+							fg_dim = "#22a2c3",
 							bg_gutter = "none",
 							bg = "#11121D",
 							-- bg = "#161823",
 							-- bg = "#131124",
 							pmenu = {
-								bg = "#161823",
+								fg = "#619ac3",
+								bg = "#11121D",
+							},
+							float = {
+								fg = "#619ac3",
+								bg = "#11121D",
 							},
 						},
 						syn = {
-							identifier = "#55bb8a",
-							type = "#d2b42c",
+							identifier = "#45b787",
+							type = "#e16723",
+							keyword = "#b7ae8f",
 						},
 					},
 				},
@@ -36,12 +43,13 @@ local theme_conf = {
 				local theme = colors.theme
 				return {
 					StatusLine = { bg = theme.ui.bg_visual },
+					WinSeparator = { fg = theme.ui.bg_p1 },
 
 					NormalFloat = { bg = "none" },
 					FloatBorder = { bg = "none" },
-					NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
-					LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-					MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+					NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m2 },
+					LazyNormal = { bg = theme.ui.bg_m2, fg = theme.ui.fg_dim },
+					MasonNormal = { bg = theme.ui.bg_m2, fg = theme.ui.fg_dim },
 
 					TelescopeTitle = { fg = theme.ui.special, bold = true },
 					TelescopePromptNormal = { bg = theme.ui.bg_p1 },
@@ -56,6 +64,9 @@ local theme_conf = {
 					IlluminatedWordText = { bg = theme.ui.bg_p2 },
 					IlluminatedWordRead = { bg = theme.ui.bg_p2 },
 					IlluminatedWordWrite = { bg = theme.ui.bg_p2 },
+
+					CmpItemAbbrMatch = { fg = theme.syn.type },
+					CmpItemAbbrMatchFuzzy = { fg = theme.syn.type },
 
 					["@lsp.type.magicFunction"] = { link = "@method" },
 					["@lsp.typemod.function.builtin"] = { link = "@method" },
@@ -212,8 +223,9 @@ local bufferline_conf = {
 				{ filetype = "neo-tree", text = "Neo-Tree", padding = 1 },
 				{ filetype = "Outline", text = "Outline", padding = 1 },
 				{ filetype = "Trouble", text = "Trouble", padding = 1 },
+				{ filetype = "toggleterm", text = "Term", padding = 1 },
 			},
-			indicator = { style = "underline" },
+			indicator = { style = "none" },
 			-- separator_style = "slope",
 			show_buffer_close_icons = false,
 			close_icon = "",
@@ -229,7 +241,87 @@ local bufferline_conf = {
 			always_show_bufferline = true,
 			diagnostics = false,
 		},
-		highlights = {},
+		highlights = {
+			fill = {
+				bg = {
+					attribute = "bg",
+					highlight = "Normal",
+				},
+			},
+			background = {
+				bg = {
+					attribute = "bg",
+					highlight = "Normal",
+				},
+			},
+			tab_selected = {
+				bg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+			},
+			close_button_selected = {
+				bg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+			},
+			buffer_selected = {
+				bg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+				bold = true,
+				italic = true,
+			},
+			numbers_selected = {
+				bg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+				bold = true,
+				italic = true,
+			},
+			modified_selected = {
+				bg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+			},
+			duplicate_selected = {
+				bg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+				italic = true,
+			},
+			separator = {
+				bg = {
+					attribute = "bg",
+					highlight = "Normal",
+				},
+			},
+			-- separator_selected = {
+			-- 	bg = {
+			-- 		attribute = "bg",
+			-- 		highlight = "Visual",
+			-- 	},
+			-- },
+			indicator_selected = {
+				bg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+			},
+			pick_selected = {
+				bg = {
+					attribute = "bg",
+					highlight = "Visual",
+				},
+				bold = true,
+				italic = true,
+			},
+		},
 	},
 }
 
@@ -282,8 +374,8 @@ local noice_conf = {
 	opts = {
 		cmdline = {
 			format = {
-				search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
-				search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+				search_down = { kind = "search", pattern = "^/", icon = "", lang = "regex" },
+				search_up = { kind = "search", pattern = "^%?", icon = "", lang = "regex" },
 			},
 		},
 		lsp = {
@@ -331,7 +423,7 @@ return {
 	alpha_conf,
 	dressing_conf,
 	notify_conf,
-	-- bufferline_conf,
+	bufferline_conf,
 	nui_conf,
 	indent_conf,
 	heirline_conf,
