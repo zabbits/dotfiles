@@ -633,15 +633,6 @@ local test_conf = {
 	end,
 }
 
-local org_conf = {
-	"nvim-orgmode/orgmode",
-	ft = "org",
-	config = function()
-		require("orgmode").setup_ts_grammar()
-		require("orgmode").setup({})
-	end,
-}
-
 return {
 	ts_conf,
 	snip_conf,
@@ -656,5 +647,4 @@ return {
 	surround_conf,
 	table_conf,
 	test_conf,
-	org_conf,
 }
