@@ -12,16 +12,15 @@ local theme_conf = {
 			statementStyle = { bold = true },
 			typeStyle = { italic = true },
 			colors = {
+        palette = {
+          oldWhite = "#CCCCCC",
+          fujiWhite = "#B6B6B6",
+        },
 				theme = {
 					all = {
 						ui = {
-							-- fg = "#bdaead",
-							fg = "#619ac3",
-							fg_dim = "#22a2c3",
 							bg_gutter = "none",
 							bg = "#11121D",
-							-- bg = "#161823",
-							-- bg = "#131124",
 							pmenu = {
 								fg = "#619ac3",
 								bg = "#11121D",
@@ -33,7 +32,6 @@ local theme_conf = {
 						},
 						syn = {
 							identifier = "#45b787",
-							type = "#e16723",
 							keyword = "#b7ae8f",
               fun = "#51a8dd",
 						},
