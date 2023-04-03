@@ -12,10 +12,10 @@ local theme_conf = {
 			statementStyle = { bold = true },
 			typeStyle = { italic = true },
 			colors = {
-        palette = {
-          oldWhite = "#CCCCCC",
-          fujiWhite = "#B6B6B6",
-        },
+				palette = {
+					oldWhite = "#CCCCCC",
+					fujiWhite = "#B6B6B6",
+				},
 				theme = {
 					all = {
 						ui = {
@@ -32,8 +32,6 @@ local theme_conf = {
 						},
 						syn = {
 							identifier = "#45b787",
-							keyword = "#b7ae8f",
-              fun = "#51a8dd",
 						},
 					},
 				},
@@ -224,7 +222,7 @@ local bufferline_conf = {
 				{ filetype = "Trouble", text = "Trouble", padding = 1 },
 				{ filetype = "toggleterm", text = "Term", padding = 1 },
 			},
-			indicator = { style = "none" },
+			-- indicator = { style = "none" },
 			-- separator_style = "slope",
 			show_buffer_close_icons = false,
 			close_icon = "",
@@ -241,84 +239,8 @@ local bufferline_conf = {
 			diagnostics = false,
 		},
 		highlights = {
-			fill = {
-				bg = {
-					attribute = "bg",
-					highlight = "Normal",
-				},
-			},
-			background = {
-				bg = {
-					attribute = "bg",
-					highlight = "Normal",
-				},
-			},
-			tab_selected = {
-				bg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-			},
-			close_button_selected = {
-				bg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-			},
-			buffer_selected = {
-				bg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-				bold = true,
-				italic = true,
-			},
-			numbers_selected = {
-				bg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-				bold = true,
-				italic = true,
-			},
-			modified_selected = {
-				bg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-			},
-			duplicate_selected = {
-				bg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-				italic = true,
-			},
-			separator = {
-				bg = {
-					attribute = "bg",
-					highlight = "Normal",
-				},
-			},
-			-- separator_selected = {
-			-- 	bg = {
-			-- 		attribute = "bg",
-			-- 		highlight = "Visual",
-			-- 	},
-			-- },
 			indicator_selected = {
-				bg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-			},
-			pick_selected = {
-				bg = {
-					attribute = "bg",
-					highlight = "Visual",
-				},
-				bold = true,
-				italic = true,
+				fg = "#619ac3",
 			},
 		},
 	},
