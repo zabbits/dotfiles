@@ -38,8 +38,10 @@ local theme_conf = {
 			},
 			overrides = function(colors)
 				local theme = colors.theme
+				local palette = colors.palette
 				return {
 					StatusLine = { bg = theme.ui.bg_visual },
+					-- StatusLine = { bg = theme.ui.bg_visual },
 					WinSeparator = { fg = theme.ui.bg_p1 },
 
 					NormalFloat = { bg = "none" },
@@ -48,11 +50,15 @@ local theme_conf = {
 					LazyNormal = { bg = theme.ui.bg_m2, fg = theme.ui.fg_dim },
 					MasonNormal = { bg = theme.ui.bg_m2, fg = theme.ui.fg_dim },
 
-					TelescopeTitle = { fg = theme.ui.special, bold = true },
+					TelescopeMatching = { fg = palette.springBlue, sp = palette.springBlue },
+					TelescopePromptTitle = { fg = palette.sumiInk0, bg = palette.oniViolet, bold = true, italic = true },
 					TelescopePromptNormal = { bg = theme.ui.bg_p1 },
 					TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
+					TelescopePromptPrefix = { fg = palette.springBlue, bg = theme.ui.bg_p1 },
 					TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
 					TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+					TelescopeResultsTitle = { fg = palette.sumiInk0, bg = palette.sumiInk0 },
+					TelescopePreviewTitle = { fg = palette.sumiInk0, bg = palette.springBlue, bold = true, italic = true },
 					TelescopePreviewNormal = { bg = theme.ui.bg_dim },
 					TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
 

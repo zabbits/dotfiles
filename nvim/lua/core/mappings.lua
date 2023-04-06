@@ -171,11 +171,6 @@ map("n", "<leader>/", function()
 end,
   { desc = "Words" })
 
--- map("n", "<C-e>", function()
---   require("telescope.builtin").buffers()
--- end,
---   { desc = "Find Buffers" })
-
 map("n", "<leader>b", function()
   require("telescope.builtin").buffers()
 end,
@@ -192,7 +187,7 @@ end,
   { desc = "Checkout branch" })
 
 map("n", "<leader>sh", function()
-  require("telescope.builtin").help_tags()
+  require("telescope.builtin").highlights()
 end,
   { desc = "Find Help" })
 

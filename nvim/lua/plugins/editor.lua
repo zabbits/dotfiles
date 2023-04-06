@@ -188,7 +188,6 @@ local git_conf = {
 	},
 }
 
-
 local filetree_conf = {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v2.x",
@@ -464,7 +463,7 @@ local mason_conf = {
 
 local yank_conf = {
 	"in-a-day/nvim-osc52",
-	keys = {"<leader>y", mode = { "n", "v" }},
+	keys = { "<leader>y", mode = { "n", "v" } },
 }
 
 local chatgpt_conf = {
@@ -513,6 +512,12 @@ local todo_conf = {
 	},
 }
 
+local diffview_conf = {
+	"sindrets/diffview.nvim",
+	cmd = "DiffviewOpen",
+	opts = {},
+}
+
 return {
 	{ "nvim-lua/plenary.nvim" },
 	telescope_conf,
@@ -527,4 +532,5 @@ return {
 	yank_conf,
 	chatgpt_conf,
 	todo_conf,
+	diffview_conf,
 }
