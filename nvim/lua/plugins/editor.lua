@@ -518,6 +518,12 @@ local diffview_conf = {
 	opts = {},
 }
 
+local spectre_conf = {
+  'nvim-pack/nvim-spectre',
+  cmd = 'Spectre',
+  opts = {},
+}
+
 return {
 	{ "nvim-lua/plenary.nvim" },
 	telescope_conf,
@@ -533,4 +539,5 @@ return {
 	chatgpt_conf,
 	todo_conf,
 	diffview_conf,
+  spectre_conf,
 }

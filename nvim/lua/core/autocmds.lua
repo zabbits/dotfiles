@@ -44,6 +44,11 @@ cmd("FileType", {
 	command = "set formatoptions-=cro",
 })
 
+-- disable ts highlight
+cmd("FileType", {
+  pattern = "vue",
+  command = "TSDisable highlight"
+})
 
 -- fix telescope cannot use <C-R>, which-key hiject it.
 augroup("_telescope", {})

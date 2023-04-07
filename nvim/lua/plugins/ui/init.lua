@@ -57,7 +57,7 @@ local theme_conf = {
 					TelescopePromptPrefix = { fg = palette.springBlue, bg = theme.ui.bg_p1 },
 					TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
 					TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
-					TelescopeResultsTitle = { fg = palette.sumiInk0, bg = palette.sumiInk0 },
+					TelescopeResultsTitle = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
 					TelescopePreviewTitle = { fg = palette.sumiInk0, bg = palette.springBlue, bold = true, italic = true },
 					TelescopePreviewNormal = { bg = theme.ui.bg_dim },
 					TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },

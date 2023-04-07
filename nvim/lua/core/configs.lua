@@ -2,7 +2,7 @@ local icons = require("core.icons")
 
 local M = {
 	lsp = {
-		volar = true,
+		volar = false,
 	},
 	nonicons = false,
 	noice = true,
