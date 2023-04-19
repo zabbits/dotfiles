@@ -466,17 +466,6 @@ local yank_conf = {
 	keys = { "<leader>y", mode = { "n", "v" } },
 }
 
-local chatgpt_conf = {
-	cmd = { "ChatGPT", "ChatGPTActAs", "ChatGPTEditWithInstructions" },
-	dependencies = {
-		"MunifTanjim/nui.nvim",
-		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope.nvim",
-	},
-	"jackMort/ChatGPT.nvim",
-	opts = {},
-}
-
 local todo_conf = {
 	"folke/todo-comments.nvim",
 	cmd = "TodoTrouble",
@@ -536,7 +525,6 @@ return {
 	buffer_conf,
 	mason_conf,
 	yank_conf,
-	chatgpt_conf,
 	todo_conf,
 	diffview_conf,
   spectre_conf,
