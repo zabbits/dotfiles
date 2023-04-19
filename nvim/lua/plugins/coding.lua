@@ -333,7 +333,7 @@ local dap_conf = {
 }
 
 local rust_conf = {
-	"in-a-day/rust-tools.nvim",
+	"zabbits/rust-tools.nvim",
 	ft = "rust",
 	dependencies = {
 		"nvim-lspconfig",

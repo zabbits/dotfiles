@@ -462,7 +462,7 @@ local mason_conf = {
 }
 
 local yank_conf = {
-	"in-a-day/nvim-osc52",
+	"zabbits/nvim-osc52",
 	keys = { "<leader>y", mode = { "n", "v" } },
 }
 
