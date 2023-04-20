@@ -462,19 +462,8 @@ local mason_conf = {
 }
 
 local yank_conf = {
-	"in-a-day/nvim-osc52",
+	"zabbits/nvim-osc52",
 	keys = { "<leader>y", mode = { "n", "v" } },
-}
-
-local chatgpt_conf = {
-	cmd = { "ChatGPT", "ChatGPTActAs", "ChatGPTEditWithInstructions" },
-	dependencies = {
-		"MunifTanjim/nui.nvim",
-		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope.nvim",
-	},
-	"jackMort/ChatGPT.nvim",
-	opts = {},
 }
 
 local todo_conf = {
@@ -536,7 +525,6 @@ return {
 	buffer_conf,
 	mason_conf,
 	yank_conf,
-	chatgpt_conf,
 	todo_conf,
 	diffview_conf,
   spectre_conf,

@@ -333,7 +333,7 @@ local dap_conf = {
 }
 
 local rust_conf = {
-	"in-a-day/rust-tools.nvim",
+	"zabbits/rust-tools.nvim",
 	ft = "rust",
 	dependencies = {
 		"nvim-lspconfig",
@@ -420,12 +420,12 @@ local neorg_conf = {
 				},
 			},
 			["core.looking-glass"] = {},
-			["core.norg.journal"] = {
+			["core.journal"] = {
 				config = {
 					workspace = "gtd",
 				},
 			},
-			["core.norg.dirman"] = {
+			["core.dirman"] = {
 				config = {
 					workspaces = {
 						work = "~/norg/work",
@@ -437,8 +437,8 @@ local neorg_conf = {
 					-- open_last_workspace = "default",
 				},
 			},
-			["core.norg.manoeuvre"] = {},
-			["core.norg.concealer"] = {
+			["core.manoeuvre"] = {},
+			["core.concealer"] = {
 				config = {
 					-- icon_preset = 'varied',
 					icons = {
@@ -581,8 +581,8 @@ local neorg_conf = {
 					},
 				},
 			},
-			["core.norg.qol.toc"] = {},
-			["core.norg.completion"] = {
+			["core.qol.toc"] = {},
+			["core.completion"] = {
 				config = {
 					engine = "nvim-cmp",
 				},
