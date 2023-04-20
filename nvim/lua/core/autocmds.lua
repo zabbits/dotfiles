@@ -47,7 +47,7 @@ cmd("FileType", {
 -- disable ts highlight
 cmd("FileType", {
   pattern = "vue",
-  command = "TSDisable highlight"
+  command = "TSBufDisable highlight"
 })
 
 -- fix telescope cannot use <C-R>, which-key hiject it.
