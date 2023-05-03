@@ -298,4 +298,9 @@ map('n', '<leader>;s', function () require('neotest').summary.open() end, { desc
 map('n', '<leader>;o', function () require('neotest').output_panel.open() end, { desc = "Output panel" })
 map('n', '<leader>;l', function () require('neotest').output.open() end, { desc = "Last output" })
 
+
+-- === outline ===
+map('n', 'go', '<cmd>AerialToggle!<CR>')
+
+
 return M

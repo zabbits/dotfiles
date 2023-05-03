@@ -513,6 +513,12 @@ local spectre_conf = {
   opts = {},
 }
 
+local aerial_conf= {
+  'stevearc/aerial.nvim',
+  cmd = 'AerialToggle',
+  opts = {},
+}
+
 return {
 	{ "nvim-lua/plenary.nvim" },
 	telescope_conf,
@@ -528,4 +534,5 @@ return {
 	todo_conf,
 	diffview_conf,
   spectre_conf,
+  aerial_conf,
 }
