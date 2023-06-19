@@ -1,7 +1,6 @@
 local theme_conf = {
 	"rebelot/kanagawa.nvim",
 	lazy = false,
-	-- dependencies = { "tiagovla/tokyodark.nvim" },
 	config = function()
 		require("kanagawa").setup({
 			compile = false, -- enable compiling the colorscheme
@@ -40,6 +39,7 @@ local theme_conf = {
 				local theme = colors.theme
 				local palette = colors.palette
 				return {
+					LspInlayHintxxx = { bg = "#11121D" },
 					StatusLine = { bg = theme.ui.bg_visual },
 					-- StatusLine = { bg = theme.ui.bg_visual },
 					WinSeparator = { fg = theme.ui.bg_p1 },
@@ -58,7 +58,12 @@ local theme_conf = {
 					TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
 					TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
 					TelescopeResultsTitle = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
-					TelescopePreviewTitle = { fg = palette.sumiInk0, bg = palette.springBlue, bold = true, italic = true },
+					TelescopePreviewTitle = {
+						fg = palette.sumiInk0,
+						bg = palette.springBlue,
+						bold = true,
+						italic = true,
+					},
 					TelescopePreviewNormal = { bg = theme.ui.bg_dim },
 					TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
 

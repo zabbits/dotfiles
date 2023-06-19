@@ -128,8 +128,11 @@ local snip_conf = {
 		require("luasnip.loaders.from_snipmate").lazy_load()
 		vim.api.nvim_create_autocmd("InsertLeave", {
 			callback = function()
+				local om = vim.v.event.old_mode
+				local nm = vim.v.event.new_mode
 				if
-					require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+					((om == "s" and nm == "n") or om == "i")
+					and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
 					and not require("luasnip").session.jump_active
 				then
 					require("luasnip").unlink_current()
@@ -355,6 +358,13 @@ local rust_conf = {
 		local liblldb_path = mason_path .. "/codelldb/extension/lldb/lib/liblldb" .. postfix
 
 		rt.setup({
+			tools = {
+				inlay_hints = {
+					-- automatically set inlay hints (type hints)
+					-- default: true
+					auto = false,
+				},
+			},
 			hover_actions = {
 				auto_focus = true,
 			},
