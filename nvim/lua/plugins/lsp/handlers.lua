@@ -83,6 +83,7 @@ end
 
 M.on_attach = function(client, bufnr)
   buffer_key_maps(client, bufnr)
+  vim.lsp.buf.inlay_hint(bufnr, true)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()

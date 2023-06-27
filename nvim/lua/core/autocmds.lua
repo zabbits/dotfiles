@@ -44,6 +44,11 @@ cmd("FileType", {
 	command = "set formatoptions-=cro",
 })
 
+cmd("FileType", {
+  pattern = "rust",
+	command = "LspStart",
+})
+
 -- disable ts highlight
 cmd("FileType", {
   pattern = "vue",

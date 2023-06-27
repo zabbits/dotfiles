@@ -249,5 +249,5 @@ return {
 	null_ls,
 	incline_conf,
 	typescript_conf,
-  inlay_hints,
+  -- inlay_hints,
 }
