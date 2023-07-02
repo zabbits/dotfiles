@@ -62,6 +62,8 @@ map('n', '<leader>tn', '<cmd>tabnext<cr>')
 map('n', '<leader>tp', '<cmd>tabprev<cr>')
 map('n', '<leader>]', '<cmd>tabnext<cr>')
 map('n', '<leader>[', '<cmd>tabprev<cr>')
+map('i', '<C-t>', '<cmd>tabnext<cr>')
+map('n', '<C-t>', '<cmd>tabnext<cr>')
 
 
 -- === Close Buffer ===
