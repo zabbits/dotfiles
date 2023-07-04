@@ -643,6 +643,18 @@ local test_conf = {
 	end,
 }
 
+local codeium_conf = {
+  'Exafunction/codeium.vim',
+	event = { "BufRead", "BufNewFile" },
+  config = function ()
+    -- Change '<C-g>' here to any keycode you like.
+    vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+    vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+    vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+    vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+  end
+}
+
 return {
 	ts_conf,
 	snip_conf,
@@ -657,4 +669,5 @@ return {
 	surround_conf,
 	table_conf,
 	test_conf,
+  codeium_conf,
 }
