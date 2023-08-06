@@ -663,5 +663,5 @@ return {
 	surround_conf,
 	table_conf,
 	test_conf,
-  yuck_conf,
+	yuck_conf,
 }

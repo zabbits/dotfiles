@@ -142,13 +142,13 @@ local alpha_conf = {
 		dashboard.section.header.val = header
 
 		dashboard.section.buttons.val = {
-			dashboard.button("  e", "ﱐ  New file", ":ene <BAR> startinsert <CR>"),
-			dashboard.button("  f", "  Find files", ':lua require("telescope.builtin").find_files() <CR>'),
-			dashboard.button("  o", "  Find old files", ':lua require("telescope.builtin").oldfiles() <CR>'),
-			dashboard.button("  w", "ﭨ  Live grep", ':lua require("telescope.builtin").live_grep() <CR>'),
+			dashboard.button("  e", "  New file", ":ene <BAR> startinsert <CR>"),
+			dashboard.button("  f", "󰈞  Find files", ':lua require("telescope.builtin").find_files() <CR>'),
+			dashboard.button("  o", "  Find old files", ':lua require("telescope.builtin").oldfiles() <CR>'),
+			dashboard.button("  w", "  Live grep", ':lua require("telescope.builtin").live_grep() <CR>'),
 			dashboard.button(
 				"  s",
-				"ﮫ  Sessions",
+				"  Sessions",
 				':lua require("telescope").extensions.possession.list({initial_mode="normal"}) <CR>'
 			),
 			dashboard.button(
@@ -156,8 +156,8 @@ local alpha_conf = {
 				"  Configurations",
 				':lua require("telescope.builtin").find_files({cwd=vim.fn.stdpath("config")}) <CR>'
 			),
-			dashboard.button("  l", "  Lazy", ":Lazy <CR>"),
-			dashboard.button("  q", "  Quit", ":qa <CR>"),
+			dashboard.button("  l", "󰒲  Lazy", ":Lazy <CR>"),
+			dashboard.button("  q", "󰿅  Quit", ":qa <CR>"),
 		}
 
 		dashboard.section.footer.opts.hl = "Comment"
