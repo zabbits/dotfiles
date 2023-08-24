@@ -1,5 +1,2 @@
-require('core.options')
-require('core.lazy')
-require("core.mappings")
-require("core.autocmds")
-require("core.usercommands")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
