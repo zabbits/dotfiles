@@ -23,4 +23,10 @@ return {
       return { "BufReadPre", "BufNewFile" }
     end,
   },
+  {
+    "williamboman/mason.nvim",
+    keys = function()
+      return {}
+    end,
+  },
 }
