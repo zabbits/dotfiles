@@ -68,11 +68,11 @@ local hl = {
 
   CurrentPath = { fg = get_hl("Directory").fg, bold = true },
 
-  FileName = { fg = get_hl("Statusline").fg, bold = true },
+  FileName = { fg = colors.green, bold = true },
 
   -- GPS = { fg = colors.grey2 },
 
-  FileProperties = nil,
+  FileProperties = { fg = colors.blue, bold = true },
 
   DapMessages = { fg = get_hl("Debug").fg },
 
@@ -85,7 +85,7 @@ local hl = {
   },
 
   LspIndicator = { fg = colors.blue },
-  LspServer = { fg = colors.onedark.blue, bold = true },
+  LspServer = { bold = false },
 
   Diagnostic = {
     error = { fg = get_hl("DiagnosticSignError").fg },
@@ -94,17 +94,11 @@ local hl = {
     hint = { fg = get_hl("DiagnosticSignHint").fg },
   },
 
-  ScrollBar = { bg = colors.grey0, fg = colors.fg1 },
+  ScrollBar = { fg = colors.green, bold = true },
 
   SearchResults = { fg = colors.black, bg = colors.aqua },
 
   WinBar = get_hl("WinBar"),
-
-  -- WinBar = {
-  --    -- fg = get_highlight('Statusline').fg,
-  --    bg = get_highlight('SignColumn').bg,
-  --    -- bg = colors.bg_statusline2,
-  -- },
 
   Navic = {
     -- Lable = { fg = colors.grey2 },

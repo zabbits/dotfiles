@@ -37,15 +37,13 @@ return {
     local colors = theme.colors
     local lsp_colors = theme.lsp_colors
 
-    vim.o.showmode = false
-
     -- Flexible components priorities
     local priority = {
+      ScrollPercentage = 70,
       CurrentPath = 60,
       Git = 40,
       WorkDir = 25,
       Lsp = 10,
-      ScrollPercentage = 70,
     }
 
     local Align, Space, Null, ReadOnly
@@ -71,7 +69,6 @@ return {
 
     local LeftCap = {
       provider = "▌",
-      -- provider = '',
       hl = hl.Mode.normal,
     }
 
@@ -238,7 +235,6 @@ return {
         elseif fileformat == "mac" then
           fileformat = ""
         else -- 'unix'
-          -- fileformat = 'LF'
           fileformat = "󰣇"
         end
 
@@ -321,7 +317,7 @@ return {
         end,
         hl = hl.Diagnostic.hint,
       },
-      Space(2),
+      -- Space(1),
     }
 
     local Git
@@ -343,7 +339,7 @@ return {
     local Lsp
     do
       local LspIndicator = {
-        provider = icons.circle_small .. " ",
+        provider = "",
         hl = hl.LspIndicator,
       }
 
@@ -389,7 +385,7 @@ return {
           end
         end,
         flexible = priority.Lsp,
-
+        LspIndicator,
         LspServer,
       }
     end
@@ -460,28 +456,10 @@ return {
       end,
       -- %P  : percentage through file of displayed window
       provider = " %3(%P%) ",
-      hl = hl.StatusLine,
+      hl = hl.ScrollBar,
     }
 
     --------------------------------------------------------------------------------
-
-    local HelpBufferStatusline = {
-      condition = function()
-        return bo.filetype == "help"
-      end,
-      Space,
-      Indicator,
-      {
-        provider = function()
-          local filename = api.nvim_buf_get_name(0)
-          return fn.fnamemodify(filename, ":t")
-        end,
-        hl = hl.FileName,
-      },
-      Align,
-      ScrollPercentage,
-    }
-
     local StatusLines = {
       init = function(self)
         local pwd = fn.getcwd(0) -- Present working directory.
@@ -520,247 +498,25 @@ return {
         Diagnostics,
         {
           fallthrough = false,
-          { SearchResults, FileNameBlock },
+          { FileNameBlock },
         },
         Space(2),
         -- GPS,
         Align,
         DapMessages,
+        SearchResults,
         Lsp,
         FileProperties,
         -- Ruler, ScrollBar, ScrollPercentage
         -- Ruler,
         ScrollPercentage,
+        LeftCap,
       },
     }
 
     --------------------------------------------------------------------------------
 
-    local WinBarActiveLeftIcon = {
-      {
-        provider = "  ",
-        hl = function()
-          if bo.modified then
-            return { fg = hl.WinBar.bg, bg = hl.Mode.insert.bg }
-          else
-            return { fg = hl.WinBar.bg, bg = hl.Mode.normal.fg }
-          end
-        end,
-      },
-      {
-        provider = "▍",
-        hl = function()
-          if bo.modified then
-            return { fg = hl.Mode.insert.bg }
-          else
-            return hl.Mode.normal
-          end
-        end,
-      },
-    }
-
-    local WinBarInactiveLeftIcon = {
-      provider = "▋",
-      hl = function()
-        if bo.modified then
-          return { fg = hl.Mode.insert.bg }
-        else
-          return hl.Mode.normal
-        end
-      end,
-    }
-
-    local WinBarRightIcon = {
-      provider = "▍",
-      hl = { fg = hl.WinBar.bg, bg = hl.Mode.normal.fg },
-    }
-
-    local WinBarModifiedIndicator = {
-      condition = function()
-        return bo.modified
-      end,
-      provider = icons.circle_small,
-      hl = { fg = hl.Mode.insert.bg },
-    }
-
-    local Navic = {
-      static = {
-        -- create a type highlight map
-        type_hl = {
-          File = "Directory",
-          Module = "Include",
-          Namespace = "TSNamespace",
-          Package = "Include",
-          Class = "Struct",
-          Method = "@method",
-          Property = "TSProperty",
-          Field = "TSField",
-          Constructor = "TSConstructor ",
-          Enum = "TSField",
-          Interface = "Type",
-          Function = "Keyword",
-          Variable = "TSVariable",
-          Constant = "Constant",
-          String = "String",
-          Number = "Number",
-          Boolean = "Boolean",
-          Array = "TSField",
-          Object = "Type",
-          Key = "TSKeyword",
-          Null = "Comment",
-          EnumMember = "TSField",
-          Struct = "Struct",
-          Event = "Keyword",
-          Operator = "Operator",
-          TypeParameter = "Type",
-        },
-      },
-      condition = function(self)
-        if not prequire("nvim-navic").is_available() then
-          return false
-        end
-
-        local data = prequire("nvim-navic").get_data() or {}
-        if vim.tbl_isempty(data) then
-          return false
-        end
-
-        local children = {}
-        -- create a child for each level
-        for i, d in ipairs(data) do
-          local child = {
-            {
-              provider = d.icon,
-              hl = self.type_hl[d.type],
-            },
-            {
-              provider = d.name,
-              -- highlight icon only or location name as well
-              -- hl = self.type_hl[d.type],
-            },
-          }
-          -- add a separator only if needed
-          if 1 < #data and i < #data then
-            table.insert(child, {
-              provider = " > ",
-              hl = hl.Navic.Separator,
-            })
-          end
-          table.insert(children, child)
-        end
-        -- instantiate the new child, overwriting the previous one
-        self[1] = self:new(children, 1)
-        return true
-      end,
-    }
-
-    local ActiveWinBar = {
-      condition = conditions.is_active,
-      WinBarActiveLeftIcon,
-      Space(2),
-      Navic,
-      Align,
-      WinBarRightIcon,
-    }
-
-    local InactiveWinBar = {
-      -- condition = function()
-      --    return not conditions.is_active()
-      -- end,
-      WinBarInactiveLeftIcon,
-      Space,
-      Align,
-      CurrentPath,
-      FileName,
-      Space,
-      WinBarModifiedIndicator,
-      Align,
-      WinBarRightIcon,
-    }
-
-    --------------------------------------------------------------------------------
-
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "HeirlineInitWinbar",
-      callback = function(args)
-        local buf = args.buf
-        local buftype = vim.tbl_contains({ "prompt", "nofile", "help", "quickfix" }, bo[buf].buftype)
-        local filetype = vim.tbl_contains({
-          "gitcommit",
-          "fugitive",
-          "markdown",
-          "NeogitStatus",
-          "NeogitPopup",
-          "NeogitCommitMessage",
-        }, bo[buf].filetype)
-        if buftype or filetype then
-          vim.opt_local.winbar = nil
-        end
-      end,
-    })
-
-    local WinBars = {
-      init = function(self)
-        local pwd = fn.getcwd(0) -- Present working directory.
-        local current_path = api.nvim_buf_get_name(0)
-        local filename
-
-        if current_path == "" then
-          pwd = fn.fnamemodify(pwd, ":~")
-          current_path = nil
-          filename = " [No Name]"
-        elseif current_path:find(pwd, 1, true) then
-          filename = fn.fnamemodify(current_path, ":t")
-          current_path = fn.fnamemodify(current_path, ":~:.:h")
-          pwd = fn.fnamemodify(pwd, ":~") .. os_sep
-          if current_path == "." then
-            current_path = nil
-          else
-            current_path = current_path .. os_sep
-          end
-        else
-          pwd = nil
-          filename = fn.fnamemodify(current_path, ":t")
-          current_path = fn.fnamemodify(current_path, ":~:.:h") .. os_sep
-        end
-
-        self.pwd = pwd
-        self.current_path = current_path -- The opened file path relevant to pwd.
-        self.filename = filename
-      end,
-      fallthrough = false,
-      -- { -- Hide the winbar for special buffers
-      --    condition = function()
-      --       return conditions.buffer_matches({
-      --          buftype = { 'nofile', 'prompt', 'help', 'quickfix' },
-      --          filetype = { '^git.*', 'fugitive', 'hydra_hint' },
-      --       })
-      --    end,
-      --    init = function() vim.opt_local.winbar = nil end
-      -- },
-      ActiveWinBar,
-      InactiveWinBar,
-      -- {   -- A special winbar for terminals
-      --    condition = function()
-      --       return conditions.buffer_matches({ buftype = { "terminal" } })
-      --    end,
-      --    heirline.surround({ "", "" }, "dark_red", {
-      --       FileType,
-      --       Space,
-      --       TerminalName,
-      --    }),
-      -- },
-      hl = hl.WinBar,
-    }
-
-    --------------------------------------------------------------------------------
-
-    -- local StatusLines = {
-    --   {
-    --     provider = "▌",
-    --   },
-    -- }
-
+    vim.opt.showmode = false
     vim.opt.laststatus = 3
     require("heirline").setup({
       statusline = StatusLines,
