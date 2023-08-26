@@ -459,6 +459,41 @@ return {
       hl = hl.ScrollBar,
     }
 
+    local MacroRec = {
+      condition = function()
+        return vim.fn.reg_recording() ~= "" and vim.o.cmdheight == 0
+      end,
+      provider = " ",
+      hl = { fg = "orange", bold = true },
+      heirline.surround({ "[", "]" }, nil, {
+        provider = function()
+          return vim.fn.reg_recording()
+        end,
+        hl = { fg = "green", bold = true },
+      }),
+      update = {
+        "RecordingEnter",
+        "RecordingLeave",
+      },
+    }
+
+    local FileFlags = {
+      {
+        condition = function()
+          return vim.bo.modified
+        end,
+        provider = "[+]",
+        hl = { fg = "green" },
+      },
+      {
+        condition = function()
+          return not vim.bo.modifiable or vim.bo.readonly
+        end,
+        provider = "",
+        hl = { fg = "orange" },
+      },
+    }
+
     --------------------------------------------------------------------------------
     local StatusLines = {
       init = function(self)
@@ -498,12 +533,14 @@ return {
         Diagnostics,
         {
           fallthrough = false,
-          { FileNameBlock },
+          { FileNameBlock, FileFlags },
         },
         Space(2),
         -- GPS,
         Align,
         DapMessages,
+        MacroRec,
+        Space(1),
         SearchResults,
         Lsp,
         FileProperties,
