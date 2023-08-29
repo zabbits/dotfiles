@@ -12,6 +12,13 @@ cmd("TextYankPost", {
   end,
 })
 
+cmd({ "FileType" }, {
+  pattern = { "lua", "c", "cpp", "rust", "python", "json", "yaml", "toml" },
+  callback = function()
+    vim.b.autoformat = false
+  end,
+})
+
 -- close some filetypes with <q>
 cmd("FileType", {
   pattern = {

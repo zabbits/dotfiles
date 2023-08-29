@@ -29,4 +29,12 @@ return {
       return {}
     end,
   },
+  {
+    "akinsho/bufferline.nvim",
+    opts = {
+      options = {
+        diagnostics = false,
+      },
+    },
+  },
 }

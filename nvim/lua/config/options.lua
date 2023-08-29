@@ -1,8 +1,8 @@
 local options = {
   fillchars = { eob = " " }, -- Disable `~` on nonexistent lines
   list = false,
-  -- laststatus = 3,
-  completeopt = { "menuone", "noselect", "menuone" }, -- Options for insert mode completion
+  completeopt = { "menu", "menuone", "noselect" }, -- Options for insert mode completion
+  wildmode = "full",
 }
 
 for k, v in pairs(options) do
