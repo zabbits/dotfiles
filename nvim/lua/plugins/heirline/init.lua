@@ -43,7 +43,7 @@ return {
       CurrentPath = 60,
       Git = 40,
       WorkDir = 25,
-      Lsp = 10,
+      Lsp = 30,
     }
 
     local Align, Space, Null, ReadOnly
@@ -366,7 +366,9 @@ return {
         init = function(self)
           local names = {}
           for _, server in pairs(vim.lsp.get_clients()) do
-            table.insert(names, server.name)
+            if (server.name ~= "null-ls") then
+              table.insert(names, server.name)
+            end
           end
           self.lsp_names = names
         end,
@@ -384,7 +386,6 @@ return {
             return hl.LspServer
           end
         end,
-        flexible = priority.Lsp,
         LspIndicator,
         LspServer,
       }
