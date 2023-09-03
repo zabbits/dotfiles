@@ -1,22 +1,11 @@
-local options = {
-  fillchars = { eob = " " }, -- Disable `~` on nonexistent lines
-  list = false,
-  completeopt = { "menu", "menuone", "noselect" }, -- Options for insert mode completion
-  wildmode = "full",
-}
+-- Options are automatically loaded before lazy.nvim startup
+-- Default options that are always set: https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/options.lua
+-- Add any additional options here
 
-for k, v in pairs(options) do
-  vim.opt[k] = v
-end
+-- vim.opt.relativenumber = true -- sets vim.opt.relativenumber
+-- vim.opt.number = true -- sets vim.opt.number
+-- vim.opt.spell = false -- sets vim.opt.spell
+-- vim.opt.signcolumn = "auto" -- sets vim.opt.signcolumn to auto
+-- vim.opt.wrap = false -- sets vim.opt.wrap
 
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-vim.cmd([[set iskeyword+=-]])
-vim.opt.fillchars:append({
-  horiz = "━",
-  horizup = "┻",
-  horizdown = "┳",
-  vert = "┃",
-  vertleft = "┨",
-  vertright = "┣",
-  verthoriz = "╋",
-})
+-- vim.g.mapleader = " " -- sets vim.g.mapleader
