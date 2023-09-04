@@ -9,22 +9,10 @@ return {
         -- second key is the lefthand side of the map
 
         -- navigate buffer tabs with `H` and `L`
-        L = {
-          "<cmd>bn<cr>",
-          desc = "Next buffer",
-        },
-        H = {
-          "<cmd>bp<cr>",
-          desc = "Previous buffer",
-        },
-        ["<leader>L"] = {
-          "<cmd>Lazy<cr>",
-          desc = "󰒲 Lazy",
-        },
-        ["<leader>M"] = {
-          "<cmd>Mason<cr>",
-          desc = " Mason",
-        },
+        L = { "<cmd>bn<cr>", desc = "Next buffer", },
+        H = { "<cmd>bp<cr>", desc = "Previous buffer", },
+        ["<leader>L"] = { "<cmd>Lazy<cr>", desc = "󰒲 Lazy", },
+        ["<leader>M"] = { "<cmd>Mason<cr>", desc = " Mason", },
 
         -- session
         ["<leader>s"] = { desc = "Session" },
@@ -39,6 +27,10 @@ return {
         },
         -- for telescope find session
         ["<Leader>fs"] = { function() require("resession").load() end, desc = "Load a session" },
+        ["<leader>fc"] = {
+          function () require("telescope.builtin").find_files({cwd=vim.fn.stdpath("config")}) end,
+          desc = "Find config"
+        },
 
         -- disable astro session keys
         ["<leader>S"] = false,
@@ -48,6 +40,9 @@ return {
         ["<Leader>Sd"] = false,
         ["<Leader>Sf"] = false,
         ["<Leader>S."] = false,
+
+        ["<Leader>/"] = false,
+        ["<Leader>o"] = { "<cmd>Neotree reveal<cr>", desc = "reveal" },
       },
     },
   },

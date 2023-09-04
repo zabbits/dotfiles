@@ -60,4 +60,52 @@ return {
       return opts
     end,
   },
+
+  -- term
+  {
+    "akinsho/toggleterm.nvim",
+    keys = {
+      [[<c-\>]]
+    },
+    opts = function(_, opts)
+      opts.open_mapping = [[<c-\>]]
+      opts.direction = 'horizontal'
+      return opts
+    end
+  },
+
+  -- notify
+  {
+    "rcarriga/nvim-notify",
+    opts = function (_, opts)
+      opts.top_down = false
+      return opts
+    end
+  },
+
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = function (_, opts)
+      opts.filesystem.follow_current_file = { enabled = false }
+      opts.window.mappings = {
+        h = false,
+        j = false,
+        k = false,
+        l = false,
+        v = false,
+        g = false,
+        w = false,
+        e = false,
+      }
+      return opts
+    end
+  },
+  {
+    "AstroNvim/astroui",
+    opts = function (_, opts)
+      opts.status.separators.breadcrumbs = " > "
+      opts.status.separators.path = " > "
+      return opts
+    end
+  }
 }
