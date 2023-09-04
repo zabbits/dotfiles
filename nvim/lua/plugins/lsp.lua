@@ -35,7 +35,7 @@ return {
     },
     -- customize language server configuration options passed to `lspconfig`
     config = {
-      -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      clangd = { capabilities = { offsetEncoding = "utf-8" } },
     },
     -- customize how language servers are attached
     setup_handlers = {

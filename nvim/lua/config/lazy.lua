@@ -24,6 +24,7 @@ require("lazy").setup {
     -- { import = "astrocommunity.pack.lua" },
     { "AstroNvim/astrocommunity", branch = "v4" },
     { import = "astrocommunity.pack.rust" },
+    { import = "astrocommunity.colorscheme.kanagawa-nvim" },
     { import = "plugins" }, -- import/override with your plugins
   }),
   defaults = {
@@ -31,7 +32,7 @@ require("lazy").setup {
     -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
     lazy = false,
   },
-  install = { colorscheme = { "astrodark" } },
+  install = { colorscheme = { "kanagawa" } },
   checker = { enabled = false }, -- automatically check for plugin updates
   performance = {
     rtp = {
