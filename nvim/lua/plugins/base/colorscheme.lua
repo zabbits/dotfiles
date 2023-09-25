@@ -1,7 +1,7 @@
 return {
-  'cryptomilk/nightcity.nvim',
+  "rebelot/kanagawa.nvim",
   config = function()
-	  require("nightcity").setup({})
-	  vim.cmd.colorscheme("nightcity")
+	  require("kanagawa").setup({})
+	  vim.cmd.colorscheme("kanagawa")
   end
 }
