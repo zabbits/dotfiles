@@ -1,16 +1,17 @@
 return {
-	"stevearc/conform.nvim",
-    keys = "gq",
-	config = function()
-		local conform = require("conform")
-		conform.setup({
-			formatters_by_ft = {
-				lua = { "stylua" },
-			},
-		})
-
-		vim.keymap.set("n", "gq", function()
-			conform.format({ lsp_fallback = true })
-		end, { noremap = true, silent = true, desc = "Format" })
-	end,
+    "stevearc/conform.nvim",
+    lazy = true,
+    init = function()
+        vim.z.map("n", "gq", function()
+            require("conform").format({ lsp_fallback = true })
+        end, "Format")
+    end,
+    config = function()
+        local conform = require("conform")
+        conform.setup({
+            formatters_by_ft = {
+                lua = { "stylua" },
+            },
+        })
+    end,
 }

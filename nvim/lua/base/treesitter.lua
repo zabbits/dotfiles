@@ -1,5 +1,6 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufRead", "BufNewFile" },
     config = function()
         require("nvim-treesitter.configs").setup({
             ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "rust" },
@@ -16,5 +17,5 @@ return {
                 additional_vim_regex_highlighting = false,
             },
         })
-    end
+    end,
 }
