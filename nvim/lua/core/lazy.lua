@@ -1,9 +1,9 @@
 require("lazy").setup({
 	{
-		import = "plugins.base",
+		import = "base",
 	},
 	{
-		import = "plugins.extra",
+		import = "extra",
 	}
 }, {
   install = {
@@ -11,7 +11,6 @@ require("lazy").setup({
     missing = true,
     -- try to load one of these colorschemes when starting an installation during startup
     colorscheme = { "kanagawa" },
-
   },
 
 })
