@@ -1,17 +1,13 @@
-local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
-local desc = function(val)
-    return { noremap = true, silent = true, desc = val }
-end
-
 -- === Window navigation ===
-map("n", "<C-h>", "<C-w>h", opts)
-map("n", "<C-l>", "<C-w>l", opts)
-map("n", "<C-k>", "<C-w>k", opts)
-map("n", "<C-j>", "<C-w>j", opts)
+vim.z.map("n", "<C-h>", "<C-w>h")
+vim.z.map("n", "<C-l>", "<C-w>l")
+vim.z.map("n", "<C-k>", "<C-w>k")
+vim.z.map("n", "<C-j>", "<C-w>j")
 
-map("n", "<ESC>", "<cmd>nohlsearch<CR>", opts)
-map("n", "<leader>w", "<cmd>w<CR>", desc("Save"))
-map("n", "<leader>q", "<cmd>q<CR>", desc("Quit"))
+vim.z.map("n", "<ESC>", "nohlsearch")
+vim.z.map("n", "<leader>w", "w", "Save")
+vim.z.map("n", "<leader>q", "q", "Quit")
 
-map("i", ";;", "<ESC>A;<ESC>", opts)
+vim.z.map("i", ";;", "normal A;")
+
+vim.z.map("n", "<leader>L", "Lazy", "Lazy");
