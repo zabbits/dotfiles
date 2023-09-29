@@ -9,5 +9,6 @@ vim.z.map("n", "<leader>w", "w", "Save")
 vim.z.map("n", "<leader>q", "q", "Quit")
 
 vim.z.map("i", ";;", "normal A;")
+vim.z.map("i", ",,", "normal A,")
 
 vim.z.map("n", "<leader>L", "Lazy", "Lazy");
