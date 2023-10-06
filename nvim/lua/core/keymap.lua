@@ -1,14 +1,14 @@
 -- === Window navigation ===
-vim.z.map("n", "<C-h>", "<C-w>h")
-vim.z.map("n", "<C-l>", "<C-w>l")
-vim.z.map("n", "<C-k>", "<C-w>k")
-vim.z.map("n", "<C-j>", "<C-w>j")
+vim.z.mapo("n", "<C-h>", "<C-w>h")
+vim.z.mapo("n", "<C-l>", "<C-w>l")
+vim.z.mapo("n", "<C-k>", "<C-w>k")
+vim.z.mapo("n", "<C-j>", "<C-w>j")
 
 vim.z.map("n", "<ESC>", "nohlsearch")
 vim.z.map("n", "<leader>w", "w", "Save")
 vim.z.map("n", "<leader>q", "q", "Quit")
 
-vim.z.map("i", ";;", "normal A;")
-vim.z.map("i", ",,", "normal A,")
+vim.z.mapo({ "i", "n" }, "<C-;>", "<ESC>A;<ESC>")
+vim.z.mapo({ "i", "n" }, "<C-,>", "<ESC>normal A,<ESC>")
 
-vim.z.map("n", "<leader>L", "Lazy", "Lazy");
+vim.z.map("n", "<leader>L", "Lazy", "Lazy")

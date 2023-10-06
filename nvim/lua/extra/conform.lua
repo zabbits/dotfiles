@@ -1,11 +1,20 @@
 return {
     "stevearc/conform.nvim",
     lazy = true,
-    init = function()
-        vim.z.map("n", "gq", function()
-            require("conform").format({ lsp_fallback = true })
-        end, "Format")
-    end,
+    keys = {
+        {
+            "gq",
+            function()
+                require("conform").format({ lsp_fallback = true })
+            end,
+            desc = "Format",
+        },
+    },
+    -- init = function()
+    --     vim.z.map("n", "gq", function()
+    --         require("conform").format({ lsp_fallback = true })
+    --     end, "Format")
+    -- end,
     config = function()
         local conform = require("conform")
         conform.setup({

@@ -4,12 +4,13 @@ return {
     dependencies = {
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
-    init = function()
-        vim.z.map("n", "<leader><leader>", "Telescope find_files", "Find Files")
-        vim.z.map("n", "<leader>b", "Telescope buffers", "Find Buffers")
-        vim.z.map("n", "<leader>fo", "Telescope oldfiles", "Find OldFiles")
-        vim.z.map("n", "<leader>fh", "Telescope help_tags", "Find Help")
-    end,
+    keys = {
+        { "<leader><leader>", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+        { "<leader>b", "<cmd>Telescope buffers<cr>", desc = "Find Buffers" },
+        { "<leader>fw", "<cmd>Telescope live_grep<cr>", desc = "Find Word" },
+        { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Find OldFiles" },
+        { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find Help" },
+    },
     config = function()
         local telescope = require("telescope")
         local actions = require("telescope.actions")
@@ -18,6 +19,23 @@ return {
                 file_ignore_patterns = { "node_modules", "dist", "build", "target" },
                 prompt_prefix = "  ",
                 selection_caret = "󰈺 ",
+                path_display = { "truncate" },
+                selection_strategy = "reset",
+                sorting_strategy = "ascending",
+                layout_strategy = "horizontal",
+                layout_config = {
+                    horizontal = {
+                        prompt_position = "top",
+                        preview_width = 0.55,
+                        results_width = 0.85,
+                    },
+                    vertical = {
+                        mirror = false,
+                    },
+                    width = 0.9,
+                    height = 0.80,
+                    preview_cutoff = 120,
+                },
                 mappings = {
                     i = {
                         ["<C-n>"] = actions.cycle_history_next,

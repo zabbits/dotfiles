@@ -1,10 +1,11 @@
 return {
     "stevearc/aerial.nvim",
     lazy = true,
+    cmd = { "Aerial", "AerialToggle" },
     -- Optional dependencies
-    init = function()
-        vim.z.map("n", "go", "AerialToggle!")
-    end,
+    keys = {
+        { "go", "<cmd>AerialToggle<cr>", "Aerial" },
+    },
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons",

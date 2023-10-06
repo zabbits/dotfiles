@@ -1,9 +1,13 @@
 local mason = {
     "williamboman/mason.nvim",
     cmd = "Mason",
-    init = function ()
-        vim.z.map("n", "<leader>M", "Mason", "Mason")
-    end,
+    keys = {
+        {
+            "<leader>M",
+            "<cmd>Mason<cr>",
+            desc = "Mason",
+        },
+    },
     opts = true,
 }
 

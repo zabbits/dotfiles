@@ -11,11 +11,6 @@ local options = {
     mouse = "a", -- Enable mouse support
     signcolumn = "auto:1", -- Hide the sign column
 
-    foldlevel = 99,
-    foldlevelstart = 99,
-    foldcolumn = "0",
-    foldenable = true,
-
     completeopt = { "menuone", "noselect", "menuone" }, -- Options for insert mode completion
     colorcolumn = "99999", -- Fix for the indentline problem
     backup = false, -- Disable making a backup file
@@ -41,7 +36,8 @@ local options = {
     termguicolors = true, -- Enable 24-bit RGB color in the TUI
     undofile = true, -- Enable persistent undo
     writebackup = false, -- Disable making a backup before overwriting a file
-    cursorline = false, -- Highlight the text line of the cursor
+    cursorline = true, -- Highlight the text line of the cursor
+    cursorlineopt = "number",  -- only Highlight line number
     number = true, -- Show numberline
     relativenumber = true, -- Show relative numberline
     wrap = false, -- Disable wrapping of lines longer than the width of window
@@ -57,6 +53,8 @@ local options = {
     conceallevel = 3, -- Hide all text
     concealcursor = "", -- show all
     mousemoveevent = true,
+
+    smoothscroll = true,
 }
 
 for k, v in pairs(options) do
