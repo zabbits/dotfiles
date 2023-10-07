@@ -12,4 +12,18 @@ require("lazy").setup({
         -- try to load one of these colorschemes when starting an installation during startup
         colorscheme = { "kanagawa" },
     },
+    performance = {
+        rtp = {
+            disabled_plugins = {
+                -- "gzip",
+                -- "matchit",
+                -- "matchparen",
+                "netrwPlugin",
+                -- "tarPlugin",
+                -- "tohtml",
+                -- "tutor",
+                -- "zipPlugin",
+            },
+        },
+    },
 })

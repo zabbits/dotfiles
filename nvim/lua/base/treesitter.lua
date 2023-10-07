@@ -5,6 +5,7 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "windwp/nvim-ts-autotag",
         "JoosepAlviste/nvim-ts-context-commentstring",
+        "HiPhish/rainbow-delimiters.nvim",
     },
     config = function()
         require("nvim-treesitter.configs").setup({
