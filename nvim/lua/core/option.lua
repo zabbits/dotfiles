@@ -19,7 +19,7 @@ local options = {
     ignorecase = true, -- Case insensitive searching
     smartcase = true, -- Case sensitivie searching
     spell = false, -- Disable spelling checking and highlighting
-    showmode = true, -- Disable showing modes in command line
+    showmode = false, -- Disable showing modes in command line
 
     -- indent
     smartindent = true,
