@@ -10,6 +10,13 @@ return {
         { "<leader>fw", "<cmd>Telescope live_grep<cr>", desc = "Find Word" },
         { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Find OldFiles" },
         { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find Help" },
+        {
+            "<leader>fc",
+            function()
+                require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+            end,
+            desc = "Find Config",
+        },
     },
     config = function()
         local telescope = require("telescope")
@@ -32,7 +39,7 @@ return {
                     vertical = {
                         mirror = false,
                     },
-                    width = 0.9,
+                    width = 0.85,
                     height = 0.80,
                     preview_cutoff = 120,
                 },

@@ -10,7 +10,9 @@ return {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons",
     },
-    config = function()
-        require("aerial").setup({})
-    end,
+    opts = {
+        layout = {
+            min_width = 30,
+        },
+    },
 }

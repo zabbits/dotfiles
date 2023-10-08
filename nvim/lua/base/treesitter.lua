@@ -9,7 +9,7 @@ return {
     },
     config = function()
         require("nvim-treesitter.configs").setup({
-            ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "rust" },
+            ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "query", "markdown", "rust" },
             highlight = {
                 enable = true,
                 -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
@@ -31,7 +31,6 @@ return {
             textobjects = {
                 select = {
                     enable = true,
-                    -- Automatically jump forward to textobj, similar to targets.vim
                     lookahead = true,
                     keymaps = {
                         -- You can use the capture groups defined in textobjects.scm

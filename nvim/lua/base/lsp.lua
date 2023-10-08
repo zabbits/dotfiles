@@ -31,12 +31,23 @@ return {
                 vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
                 vim.keymap.set("n", "gm", vim.lsp.buf.rename, opts)
                 vim.keymap.set({ "n", "v" }, "ga", vim.lsp.buf.code_action, opts)
-                vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-                vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-                vim.keymap.set("n", "<space>wl", function()
-                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+
+                -- jump diagnostic
+                vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+                vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+                vim.keymap.set("n", "]e", function()
+                    vim.diagnostic.goto_next({ severity = { vim.diagnostic.severity.ERROR } })
+                end, opts)
+                vim.keymap.set("n", "[e", function()
+                    vim.diagnostic.goto_prev({ severity = { vim.diagnostic.severity.ERROR } })
                 end, opts)
             end,
+        })
+    end,
+    config = function()
+        vim.diagnostic.config({
+            underline = false,
+            update_in_insert = true,
         })
     end,
 }
