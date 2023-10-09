@@ -9,9 +9,29 @@ return {
     keys = {
         {
             "<leader>e",
-            "<cmd>Neotree reveal<cr>",
+            "<cmd>Neotree toggle<cr>",
             desc = "FileTree",
         },
+        {
+            "<leader>E",
+            "<cmd>Neotree toggle reveal<cr>",
+            desc = "FileTree Reveal",
+        },
     },
-    opts = {},
+    opts = {
+        window = {
+            mappings = {
+                ["e"] = "none",
+                ["b"] = "none",
+                ["g"] = "none",
+                ["w"] = "none",
+                ["l"] = "none",
+                ["h"] = "none",
+                ["v"] = "none",
+                ["V"] = "none",
+                ["j"] = "none",
+                ["k"] = "none",
+            },
+        },
+    },
 }

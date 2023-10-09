@@ -14,7 +14,7 @@ return {
                 -- See `:help vim.lsp.*` for documentation on any of the below functions
                 local opts = { buffer = ev.buf, silent = true, noremap = true }
                 -- if trouble plugin exist
-                local ok, trouble = pcall(require, "trouble")
+                local ok, _ = pcall(require, "trouble")
                 if ok then
                     vim.keymap.set("n", "gr", "<cmd>Trouble lsp_references<cr>", opts)
                     vim.keymap.set("n", "gd", "<cmd>Trouble lsp_definitions<cr>", opts)
@@ -45,9 +45,17 @@ return {
         })
     end,
     config = function()
+        local _border = "single"
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+            border = _border,
+        })
+        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+            border = _border,
+        })
         vim.diagnostic.config({
             underline = false,
             update_in_insert = true,
+            float = { border = _border },
         })
     end,
 }

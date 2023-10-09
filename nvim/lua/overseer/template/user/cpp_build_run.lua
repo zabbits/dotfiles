@@ -1,10 +1,11 @@
 return {
-    name = "g++ run",
+    name = "g++ build & run",
     builder = function()
         -- Full path to current file (see :help expand())
         local output = vim.fn.expand("%:r")
+        local file = vim.fn.expand("%:p")
         return {
-            cmd = { "./" .. output },
+            cmd = string.format("g++ %s -o %s && %s", file, output, output),
             components = {
                 { "on_output_quickfix", set_diagnostics = true, open = true },
                 "on_result_diagnostics",
