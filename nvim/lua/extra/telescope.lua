@@ -25,7 +25,6 @@ return {
         local actions = require("telescope.actions")
         telescope.setup({
             defaults = {
-                file_ignore_patterns = { "node_modules/", "dist/", "build/", "target/" },
                 prompt_prefix = "  ",
                 selection_caret = "󰈺 ",
                 path_display = { "truncate" },

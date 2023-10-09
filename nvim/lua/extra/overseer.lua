@@ -7,11 +7,13 @@ return {
     },
     opts = {
         templates = { "builtin", "user.cpp_build", "user.cpp_run", "user.cpp_build_run" },
-        bindings = {
-            ["<C-l>"] = false,
-            ["<C-h>"] = false,
-            ["L"] = "IncreaseDetail",
-            ["H"] = "DecreaseDetail",
+        task_list = {
+            bindings = {
+                ["<C-l>"] = false,
+                ["<C-h>"] = false,
+                ["L"] = "IncreaseDetail",
+                ["H"] = "DecreaseDetail",
+            },
         },
     },
 }
