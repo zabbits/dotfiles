@@ -16,31 +16,31 @@ return {
                 -- if trouble plugin exist
                 local ok, _ = pcall(require, "trouble")
                 if ok then
-                    vim.keymap.set("n", "gr", "<cmd>Trouble lsp_references<cr>", opts)
-                    vim.keymap.set("n", "gd", "<cmd>Trouble lsp_definitions<cr>", opts)
-                    vim.keymap.set("n", "gt", "<cmd>Trouble lsp_type_definitions<cr>", opts)
+                    vim.z.mapo("n", "gr", "<cmd>Trouble lsp_references<cr>", "LSP ref", opts)
+                    vim.z.mapo("n", "gd", "<cmd>Trouble lsp_definitions<cr>", "LSP def", opts)
+                    vim.z.mapo("n", "gt", "<cmd>Trouble lsp_type_definitions<cr>", "LSP type", opts)
                 else
-                    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-                    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-                    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
+                    vim.z.map("n", "gr", vim.lsp.buf.references, "LSP ref", opts)
+                    vim.z.map("n", "gd", vim.lsp.buf.definition, "LSP def", opts)
+                    vim.z.map("n", "gt", vim.lsp.buf.type_definition, "LSP type", opts)
                 end
 
-                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-                vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-                vim.keymap.set("n", "gm", vim.lsp.buf.rename, opts)
-                vim.keymap.set({ "n", "v" }, "ga", vim.lsp.buf.code_action, opts)
+                vim.z.map("n", "gD", vim.lsp.buf.declaration, "LSP declaration", opts)
+                vim.z.map("n", "K", vim.lsp.buf.hover, "Hover", opts)
+                vim.z.map("n", "gi", vim.lsp.buf.implementation, "LSP impl", opts)
+                vim.z.map("n", "<C-k>", vim.lsp.buf.signature_help, "Signature help", opts)
+                vim.z.map("n", "gm", vim.lsp.buf.rename, "Lsp rename", opts)
+                vim.z.map({ "n", "v" }, "ga", vim.lsp.buf.code_action, "Code action", opts)
 
                 -- jump diagnostic
-                vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-                vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-                vim.keymap.set("n", "]e", function()
+                vim.z.map("n", "]d", vim.diagnostic.goto_next, "Next diagnostic", opts)
+                vim.z.map("n", "[d", vim.diagnostic.goto_prev, "Prev diagnostic", opts)
+                vim.z.map("n", "]e", function()
                     vim.diagnostic.goto_next({ severity = { vim.diagnostic.severity.ERROR } })
-                end, opts)
-                vim.keymap.set("n", "[e", function()
+                end, "Next error", opts)
+                vim.z.map("n", "[e", function()
                     vim.diagnostic.goto_prev({ severity = { vim.diagnostic.severity.ERROR } })
-                end, opts)
+                end, "Prev error", opts)
             end,
         })
     end,

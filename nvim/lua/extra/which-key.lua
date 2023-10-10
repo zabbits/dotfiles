@@ -9,7 +9,7 @@ return {
                 s = { name = "Session " },
                 l = { name = "LeetCode" },
                 x = { name = "Trouble" },
-                o = { name = "Overseer" },
+                r = { name = "Overseer" },
             },
         })
     end,
