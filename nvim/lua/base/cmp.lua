@@ -1,3 +1,34 @@
+local function cmp_format(opts)
+    if opts == nil then
+        opts = {}
+    end
+
+    return function(entry, vim_item)
+        if opts.before then
+            vim_item = opts.before(entry, vim_item)
+        end
+
+        vim_item.kind = lspkind.symbolic(vim_item.kind, opts)
+
+        if opts.menu ~= nil then
+            vim_item.menu = opts.menu[entry.source.name]
+        end
+
+        if opts.maxwidth ~= nil then
+            if opts.ellipsis_char == nil then
+                vim_item.abbr = string.sub(vim_item.abbr, 1, opts.maxwidth)
+            else
+                local label = vim_item.abbr
+                local truncated_label = vim.fn.strcharpart(label, 0, opts.maxwidth)
+                if truncated_label ~= label then
+                    vim_item.abbr = truncated_label .. opts.ellipsis_char
+                end
+            end
+        end
+        return vim_item
+    end
+end
+
 return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
@@ -6,14 +37,15 @@ return {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-nvim-lsp",
+        "onsails/lspkind.nvim",
         {
             "L3MON4D3/LuaSnip",
             build = "make install_jsregexp",
             dependencies = {
-                "honza/vim-snippets",
+                "rafamadriz/friendly-snippets",
             },
             config = function()
-                require("luasnip.loaders.from_snipmate").lazy_load()
+                require("luasnip.loaders.from_vscode").lazy_load()
                 vim.api.nvim_create_autocmd("InsertLeave", {
                     callback = function()
                         local om = vim.v.event.old_mode
@@ -38,6 +70,25 @@ return {
             snippet = {
                 expand = function(args)
                     luasnip.lsp_expand(args.body)
+                end,
+            },
+            formatting = {
+                format = function(entry, vim_item)
+                    return require("lspkind").cmp_format({
+                        menu = {
+                            buffer = "[Buf]",
+                            nvim_lsp = "[LSP]",
+                            luasnip = "[Snip]",
+                            path = "[Path]",
+                            neorg = "[Neorg]",
+                            orgmode = "[Org]",
+                            latex_symbols = "[LaTeX]",
+                            crates = "[Crates]",
+                        },
+                        maxwidth = 30,
+                        ellipsis_char = "...",
+                        with_text = false,
+                    })(entry, vim_item)
                 end,
             },
             duplicates = {
