@@ -15,7 +15,7 @@ return {
         },
         {
             "<leader>E",
-            "<cmd>Neotree toggle reveal<cr>",
+            "<cmd>Neotree focus reveal<cr>",
             desc = "FileTree Reveal",
         },
     },
@@ -32,6 +32,8 @@ return {
                 ["V"] = "none",
                 ["j"] = "none",
                 ["k"] = "none",
+                ["y"] = "none",
+                ["c"] = "copy_to_clipboard",
             },
         },
     },

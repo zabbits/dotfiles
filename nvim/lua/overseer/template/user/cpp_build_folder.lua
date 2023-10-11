@@ -23,6 +23,8 @@ return {
             "-Wsign-conversion",
             -- treat warning as error, i don't want this
             -- "-Werror",
+            -- -I: include directory
+            -- "-I/home/zbs/project/cpp/ch2/header/others",
 
             -- remove compile extensions
             "-pedantic-errors",
