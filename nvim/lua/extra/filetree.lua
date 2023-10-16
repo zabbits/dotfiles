@@ -33,6 +33,7 @@ return {
                 ["j"] = "none",
                 ["k"] = "none",
                 ["y"] = "none",
+                ["z"] = "none",
                 ["c"] = "copy_to_clipboard",
             },
         },
