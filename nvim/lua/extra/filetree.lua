@@ -9,12 +9,12 @@ return {
     },
     keys = {
         {
-            "<leader>e",
+            "<leader>E",
             "<cmd>Neotree toggle<cr>",
             desc = "FileTree",
         },
         {
-            "<leader>E",
+            "<leader>e",
             "<cmd>Neotree focus reveal<cr>",
             desc = "FileTree Reveal",
         },

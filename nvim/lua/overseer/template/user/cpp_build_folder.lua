@@ -30,6 +30,8 @@ return {
             "-pedantic-errors",
             -- compile for debug
             "-ggdb",
+            -- using c++17 std
+            "-std=c++17",
             "-o",
             output,
         }
