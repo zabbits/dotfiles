@@ -34,7 +34,7 @@ return {
                         width = 0.8,
                         height = 0.9,
                         preview_cutoff = 1,
-                        -- mirror = true,
+                        mirror = true,
                         prompt_position = "top",
                     },
                 },

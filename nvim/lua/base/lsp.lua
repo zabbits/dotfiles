@@ -7,15 +7,11 @@ return {
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(ev)
-                -- Enable completion triggered by <c-x><c-o>
-                vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
                 -- Buffer local mappings.
                 -- See `:help vim.lsp.*` for documentation on any of the below functions
                 local opts = { buffer = ev.buf, silent = true, noremap = true }
                 -- if trouble plugin exist
-                local ok, _ = pcall(require, "trouble")
-                if ok then
+                if require("lazy.core.config").plugins["trouble.nvim"] then
                     vim.z.mapo("n", "gr", "<cmd>Trouble lsp_references<cr>", "LSP ref", opts)
                     vim.z.mapo("n", "gd", "<cmd>Trouble lsp_definitions<cr>", "LSP def", opts)
                     vim.z.mapo("n", "gt", "<cmd>Trouble lsp_type_definitions<cr>", "LSP type", opts)
