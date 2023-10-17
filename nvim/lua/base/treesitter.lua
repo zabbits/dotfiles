@@ -13,6 +13,9 @@ return {
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
+                disable = function(lang, buf)
+                    return lang == "vue"
+                end,
             },
             autotag = {
                 enable = true,
