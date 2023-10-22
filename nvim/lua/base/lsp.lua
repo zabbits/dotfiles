@@ -1,9 +1,8 @@
 return {
     "neovim/nvim-lspconfig",
     event = { "BufRead", "BufNewFile" },
-    init = function()
-        -- Use LspAttach autocommand to only map the following keys
-        -- after the language server attaches to the current buffer
+    config = function()
+        -- keymaps
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(ev)
@@ -39,8 +38,8 @@ return {
                 end, "Prev error", opts)
             end,
         })
-    end,
-    config = function()
+
+        -- ui
         local _border = "single"
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
             border = _border,
