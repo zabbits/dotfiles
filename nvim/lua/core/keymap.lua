@@ -8,7 +8,4 @@ vim.z.map("n", "<ESC>", "nohlsearch")
 vim.z.map("n", "<leader>w", "w", "Save")
 vim.z.map("n", "<leader>q", "q", "Quit")
 
-vim.z.mapo({ "i", "n" }, "<C-;>", "<ESC>A;<ESC>")
-vim.z.mapo({ "i", "n" }, "<C-,>", "<ESC>normal A,<ESC>")
-
 vim.z.map("n", "<leader>L", "Lazy", "Lazy")
