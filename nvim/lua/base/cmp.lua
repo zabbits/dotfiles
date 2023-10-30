@@ -66,10 +66,10 @@ return {
         local cmp = require("cmp")
         local luasnip = require("luasnip")
         -- autopair integration
-        local pair_ok, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
-        if pair_ok then
-            cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-        end
+        -- local pair_ok, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
+        -- if pair_ok then
+        --     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+        -- end
 
         cmp.setup({
             preselect = cmp.PreselectMode.None,
