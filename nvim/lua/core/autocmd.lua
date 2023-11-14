@@ -106,7 +106,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- set indent to 2
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup("indent2"),
-    pattern = { "json", "markdown", "cpp", "vue" },
+    pattern = { "json", "markdown", "cpp", "vue", "html", "css" },
     callback = function()
         vim.bo.shiftwidth = 2
         vim.bo.softtabstop = 2

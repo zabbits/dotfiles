@@ -22,6 +22,8 @@ return {
                 lua = { "stylua" },
                 cpp = { "clang_format" },
                 c = { "clang_format" },
+                html = { "prettierd" },
+                css = { "prettierd" },
             },
         })
     end,
