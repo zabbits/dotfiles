@@ -8,6 +8,11 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
     command = "checktime",
 })
 
+-- reomve comment
+vim.api.nvim_create_autocmd("FileType", {
+    command = "set formatoptions-=cro",
+})
+
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = augroup("highlight_yank"),

@@ -33,6 +33,8 @@ return {
                         PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
                         PmenuSbar = { bg = theme.ui.bg_m1 },
                         PmenuThumb = { bg = theme.ui.bg_p2 },
+
+                        StatusLine = { link = "Visual" },
                     }
                 end,
             })
