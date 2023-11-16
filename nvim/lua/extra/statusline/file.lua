@@ -1,82 +1,113 @@
-local conditions = require("heirline.conditions")
-local utils = require("heirline.utils")
+local colors = require("extra.statusline.colors")
+local hl = colors.highlight
+local devicons = require("nvim-web-devicons")
 
-local filename_block = {
-    -- let's first set up some attributes needed by this component and it's children
-    init = function(self)
-        self.filename = vim.api.nvim_buf_get_name(0)
+local Null = { provider = "" }
+
+local FileIcon = {
+    condition = function(self)
+        return not self.ReadOnly.condition()
     end,
-}
--- We can now define some children separately and add them later
-
-local file_icon = {
     init = function(self)
         local filename = self.filename
         local extension = vim.fn.fnamemodify(filename, ":e")
-        self.icon, self.icon_color = require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+        self.icon, self.icon_color = devicons.get_icon_color(filename, extension, { default = true })
     end,
     provider = function(self)
-        return self.icon and (self.icon .. " ")
+        if self.icon then
+            return self.icon .. " "
+        end
     end,
     hl = function(self)
         return { fg = self.icon_color }
-    end
+    end,
 }
 
-local filename = {
+local WorkDir = {
+    condition = function(self)
+        if vim.bo.buftype == "" then
+            return self.pwd
+        end
+    end,
+    hl = hl.WorkDir,
+    flexible = 25,
+    {
+        provider = function(self)
+            return self.pwd
+        end,
+    },
+    {
+        provider = function(self)
+            return vim.fn.pathshorten(self.pwd)
+        end,
+    },
+    Null,
+}
+
+local CurrentPath = {
+    condition = function(self)
+        if vim.bo.buftype == "" then
+            return self.current_path
+        end
+    end,
+    hl = hl.CurrentPath,
+    flexible = 60,
+    {
+        provider = function(self)
+            return self.current_path
+        end,
+    },
+    {
+        provider = function(self)
+            return vim.fn.pathshorten(self.current_path, 2)
+        end,
+    },
+    { provider = "" },
+}
+
+local FileName = {
     provider = function(self)
-        -- first, trim the pattern relative to the current directory. For other
-        -- options, see :h filename-modifers
-        local filename = vim.fn.fnamemodify(self.filename, ":.")
-        if filename == "" then return "[No Name]" end
-        -- now, if the filename would occupy more than 1/4th of the available
-        -- space, we trim the file path to its initials
-        -- See Flexible Components section below for dynamic truncation
-        if not conditions.width_percent_below(#filename, 0.25) then
-            filename = vim.fn.pathshorten(filename)
-        end
-        return filename
+        return self.filename
     end,
-    hl = { fg = utils.get_highlight("Directory").fg },
+    hl = hl.FileName,
 }
 
-local file_flags = {
-    {
-        condition = function()
-            return vim.bo.modified
-        end,
-        provider = "[+]",
-        hl = { fg = "green" },
-    },
-    {
-        condition = function()
-            return not vim.bo.modifiable or vim.bo.readonly
-        end,
-        provider = "",
-        hl = { fg = "orange" },
-    },
-}
+local FileNameBlock = {
+    init = function(self)
+        local os_sep = package.config:sub(1, 1)
+        local pwd = vim.fn.getcwd(0) -- Present working directory.
+        local current_path = vim.api.nvim_buf_get_name(0)
+        local filename
 
--- Now, let's say that we want the filename color to change if the buffer is
--- modified. Of course, we could do that directly using the FileName.hl field,
--- but we'll see how easy it is to alter existing components using a "modifier"
--- component
-
-local filename_modifer = {
-    hl = function()
-        if vim.bo.modified then
-            -- use `force` because we need to override the child's hl foreground
-            return { fg = "cyan", bold = true, force=true }
+        if current_path == "" then
+            pwd = vim.fn.fnamemodify(pwd, ":~")
+            ---@diagnostic disable-next-line
+            current_path = nil
+            filename = " [No Name]"
+        elseif current_path:find(pwd, 1, true) then
+            filename = vim.fn.fnamemodify(current_path, ":t")
+            current_path = vim.fn.fnamemodify(current_path, ":~:.:h")
+            pwd = vim.fn.fnamemodify(pwd, ":~") .. os_sep
+            if current_path == "." then
+                ---@diagnostic disable-next-line
+                current_path = nil
+            else
+                current_path = current_path .. os_sep
+            end
+        else
+            ---@diagnostic disable-next-line
+            pwd = nil
+            filename = vim.fn.fnamemodify(current_path, ":t")
+            current_path = vim.fn.fnamemodify(current_path, ":~:.:h") .. os_sep
         end
+
+        self.pwd = pwd
+        self.current_path = current_path -- The opened file path relevant to pwd.
+        self.filename = filename
     end,
+    { FileIcon, WorkDir, CurrentPath, FileName },
+    -- This means that the statusline is cut here when there's not enough space.
+    { provider = "%<" },
 }
 
--- let's add the children to our FileNameBlock component
-filename_block = utils.insert(filename_block,
-    file_icon,
-    utils.insert(filename_modifer, filename), -- a new table where FileName is a child of FileNameModifier
-    file_flags,
-    { provider = '%<'} -- this means that the statusline is cut here when there's not enough space
-)
-
-return filename_block
+return FileNameBlock
