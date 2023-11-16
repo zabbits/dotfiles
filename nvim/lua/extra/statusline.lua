@@ -1,24 +1,26 @@
 return {
-    "sontungexpt/sttusline",
-    branch = "table_version",
+    "rebelot/heirline.nvim",
     event = { "BufRead", "BufNewFile" },
-    opts = {
-        components = {
-            "mode",
-            "os-uname",
-            "filename",
-            "git-branch",
-            "git-diff",
-            "diagnostics",
-            "%=",
-            "lsps-formatters",
-            "indent",
-            "encoding",
-            "pos-cursor",
-            "pos-cursor-progress",
-        },
-    },
-    config = function(_, opts)
-        require("sttusline").setup(opts)
+    config = function()
+        local vi_mode = require("extra.statusline.mode")
+        local file = require("extra.statusline.file")
+        local diagnostic = require("extra.statusline.diagnostic")
+
+        local utils = require("heirline.utils")
+        local main_bg = utils.get_highlight("StatusLine")
+        local space = { provider = " " }
+
+        local statusline = {
+            hl = main_bg,
+            vi_mode,
+            space,
+            space,
+            file,
+            space,
+            diagnostic,
+        }
+        require("heirline").setup({
+            statusline = statusline,
+        })
     end,
 }

@@ -1,6 +1,19 @@
 return {
     "neovim/nvim-lspconfig",
     event = { "BufRead", "BufNewFile" },
+    init = function()
+        local icons = require("core.icons")
+        local signs = {
+            { name = "DiagnosticSignError", text = icons.lsp.error },
+            { name = "DiagnosticSignWarn", text = icons.lsp.warn },
+            { name = "DiagnosticSignHint", text = icons.lsp.hint },
+            { name = "DiagnosticSignInfo", text = icons.lsp.info },
+        }
+
+        for _, sign in ipairs(signs) do
+            vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+        end
+    end,
     config = function()
         -- keymaps
         vim.api.nvim_create_autocmd("LspAttach", {
