@@ -14,5 +14,17 @@ return {
         layout = {
             min_width = 30,
         },
+        filter_kind = {
+            "Class",
+            "Constructor",
+            "Enum",
+            "Function",
+            "Interface",
+            "Module",
+            "Method",
+            "Struct",
+            "Namespace",
+            "Package",
+        },
     },
 }

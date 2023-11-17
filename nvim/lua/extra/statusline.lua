@@ -10,6 +10,7 @@ return {
         local Git = require("extra.statusline.git")
         local Lsp = require("extra.statusline.lsp")
         local misc  = require("extra.statusline.misc")
+        local Winbar = require("extra.statusline.winbar")
 
         local colors = require("extra.statusline.colors")
         local hl = colors.highlight
@@ -43,14 +44,15 @@ return {
             Space,
             misc.TabSize,
             Space,
-            misc.ModifiableIndicator,
-            Space,
             misc.FileProperties,
             Space,
-            misc.Location,
+            misc.Percent,
+            misc.ModifiableIndicator,
         }
         require("heirline").setup({
             statusline = statusline,
+            -- TODO: disable winbar for specific buf, file type
+            winbar = Winbar,
         })
     end,
 }

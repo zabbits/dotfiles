@@ -64,7 +64,7 @@ local hl = {
         hint = { fg = get_hl("DiagnosticSignHint").fg },
     },
 
-    ScrollBar = { fg = colors.aqua, bold = true },
+    ScrollBar = { bg = colors.aqua, fg = colors.black, bold = true },
 
     SearchResults = { fg = colors.black, bg = colors.aqua },
 

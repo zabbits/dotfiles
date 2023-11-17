@@ -88,7 +88,7 @@ return {
                             mirror = true,
                             prompt_position = "top",
                             width = 90,
-                            preview_height = 0.7,
+                            preview_height = 0.6,
                         },
                     },
                     mappings = {

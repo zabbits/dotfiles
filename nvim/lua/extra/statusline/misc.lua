@@ -1,6 +1,12 @@
 local colors = require("extra.statusline.colors")
 local hl = colors.highlight
 
+local Space = setmetatable({ provider = " " }, {
+    __call = function(_, n)
+        return { provider = string.rep(" ", n) }
+    end,
+})
+
 local function append(a, b)
     if a and b then
         return a .. " " .. b
@@ -34,7 +40,7 @@ local TabSize = {
     provider = function()
         return "Spaces:" .. vim.o.tabstop
     end,
-    hl = hl.ScrollBar,
+    hl = hl.FileProperties,
 }
 
 local Ruler = {
@@ -60,15 +66,18 @@ local Location = {
 }
 
 local ModifiableIndicator = {
+    Space,
     provider = function()
         return vim.bo.modifiable and "" or ""
     end,
-    hl = { fg = colors.colors.green },
+    hl = hl.ScrollBar,
 }
 
 -- TODO: add percent
 local Percent = {
-
+    Space,
+    provider = "%3(%p%)" .. "%%",
+    hl = hl.ScrollBar,
 }
 
 return {
