@@ -1,13 +1,10 @@
+local colors = require("extra.statusline.colors")
+local hl = colors.highlight
 local conditions = require("heirline.conditions")
 
 local lsp = {
     condition = conditions.lsp_attached,
     update = { "LspAttach", "LspDetach" },
-
-    -- You can keep it simple,
-    -- provider = " [LSP]",
-
-    -- Or complicate things a bit and get the servers names
     provider = function()
         local names = {}
         for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
@@ -15,7 +12,8 @@ local lsp = {
         end
         return " [" .. table.concat(names, " ") .. "]"
     end,
-    hl = { fg = "green", bold = true },
+
+    hl = hl.LspServer,
 }
 
 return lsp

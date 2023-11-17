@@ -7,6 +7,7 @@ return {
     keys = {
         { "<leader><leader>", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
         { "<leader>b", "<cmd>Telescope buffers<cr>", desc = "Find Buffers" },
+        { "<C-e>", "<cmd>Telescope buffers<cr>", desc = "Find Buffers" },
         { "<leader>fw", "<cmd>Telescope live_grep<cr>", desc = "Find Word" },
         { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Find OldFiles" },
         { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find Help" },
@@ -50,6 +51,10 @@ return {
                         ["<C-v>"] = actions.select_vertical,
                         ["<C-u>"] = actions.preview_scrolling_up,
                         ["<C-d>"] = actions.preview_scrolling_down,
+                        ["<C-t>"] = function(opts)
+                            local trouble = require("trouble.providers.telescope")
+                            trouble.open_with_trouble(opts)
+                        end,
                     },
                     n = {
                         ["<esc>"] = actions.close,
@@ -65,6 +70,30 @@ return {
                         ["G"] = actions.move_to_bottom,
                         ["<C-u>"] = actions.preview_scrolling_up,
                         ["<C-d>"] = actions.preview_scrolling_down,
+                        ["<C-t>"] = function(opts)
+                            local trouble = require("trouble.providers.telescope")
+                            trouble.open_with_trouble(opts)
+                        end,
+                    },
+                },
+            },
+            pickers = {
+                buffers = {
+                    initial_mode = "normal",
+                    show_all_buffers = true,
+                    sort_lastused = true,
+                    layout_strategy = "vertical",
+                    layout_config = {
+                        vertical = {
+                            mirror = true,
+                            prompt_position = "top",
+                            width = 90,
+                            preview_height = 0.7,
+                        },
+                    },
+                    mappings = {
+                        i = { ["<c-d>"] = "delete_buffer" },
+                        n = { d = "delete_buffer" },
                     },
                 },
             },

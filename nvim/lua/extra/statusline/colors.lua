@@ -4,7 +4,6 @@ local M = {} -- theme
 
 local colors = {}
 do
-    -- Do not delete! It is my addition.
     colors.fg1 = "#f0dec2"
     colors.grey3 = "#b0a392"
     colors.black = "#282828"
@@ -43,7 +42,7 @@ local hl = {
 
     FileName = { fg = get_hl("Statusline").fg, bold = true, italic = true },
 
-    FileProperties = nil,
+    FileProperties = { italic = true, fg = colors.purple },
 
     DapMessages = { fg = get_hl("Debug").fg },
 
@@ -65,7 +64,7 @@ local hl = {
         hint = { fg = get_hl("DiagnosticSignHint").fg },
     },
 
-    ScrollBar = { bg = colors.grey0, fg = colors.fg1 },
+    ScrollBar = { fg = colors.aqua, bold = true },
 
     SearchResults = { fg = colors.black, bg = colors.aqua },
 

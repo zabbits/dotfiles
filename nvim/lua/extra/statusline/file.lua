@@ -62,7 +62,7 @@ local CurrentPath = {
             return vim.fn.pathshorten(self.current_path, 2)
         end,
     },
-    { provider = "" },
+    Null,
 }
 
 local FileName = {
@@ -105,6 +105,7 @@ local FileNameBlock = {
         self.current_path = current_path -- The opened file path relevant to pwd.
         self.filename = filename
     end,
+    hl = hl.StatusLine,
     { FileIcon, WorkDir, CurrentPath, FileName },
     -- This means that the statusline is cut here when there's not enough space.
     { provider = "%<" },

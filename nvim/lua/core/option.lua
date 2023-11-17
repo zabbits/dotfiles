@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local options = {
-    laststatus = 3,
+    laststatus = 0,
     belloff = "all",
     fileencoding = "utf-8", -- File content encoding for the buffer
     spelllang = "en", -- Support US english

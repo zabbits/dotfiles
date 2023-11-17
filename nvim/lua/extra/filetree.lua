@@ -19,6 +19,7 @@ return {
         },
     },
     opts = {
+        enable_diagnostics = false,
         window = {
             mappings = {
                 ["e"] = "none",

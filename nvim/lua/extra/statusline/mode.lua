@@ -43,8 +43,8 @@ local mode_lable = {
     normal = "NORMAL",
     op = "OP",
     visual = "VISUAL",
-    visual_lines = "V-LINES",
-    visual_block = "V-BLOCK",
+    visual_lines = "VLINES",
+    visual_block = "VBLOCK",
     select = "SELECT",
     block = "BLOCK",
     insert = "INSERT",
@@ -59,16 +59,13 @@ local mode_lable = {
     none = "NONE",
 }
 
-local Space = setmetatable({ provider = " " }, {
-    __call = function(_, n)
-        return { provider = string.rep(" ", n) }
-    end,
-})
+local Space = { provider = " " }
 
 local VimMode = {
     init = function(self)
         self.mode = mode[vim.api.nvim_get_mode().mode] -- :h mode()
     end,
+    update = { "ModeChanged" },
     Space,
     {
         provider = function(self)
@@ -79,9 +76,6 @@ local VimMode = {
         return hl.Mode[self.mode]
     end,
     Space,
-    update = {
-        "ModeChanged",
-    },
 }
 
 return VimMode
