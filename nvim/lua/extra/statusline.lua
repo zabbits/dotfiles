@@ -9,7 +9,7 @@ return {
         local Diagnostic = require("extra.statusline.diagnostic")
         local Git = require("extra.statusline.git")
         local Lsp = require("extra.statusline.lsp")
-        local misc  = require("extra.statusline.misc")
+        local misc = require("extra.statusline.misc")
         local Winbar = require("extra.statusline.winbar")
 
         local colors = require("extra.statusline.colors")
@@ -21,7 +21,7 @@ return {
                 return { provider = string.rep(" ", n) }
             end,
         })
-        local statusline = {
+        local Statusline = {
             hl = hl.StatusLine,
             static = {
                 ReadOnly = {
@@ -40,6 +40,7 @@ return {
             Space,
             Diagnostic,
             Align,
+            Space,
             Lsp,
             Space,
             misc.TabSize,
@@ -49,10 +50,28 @@ return {
             misc.Percent,
             misc.ModifiableIndicator,
         }
+
+        local conditions = require("heirline.conditions")
         require("heirline").setup({
-            statusline = statusline,
-            -- TODO: disable winbar for specific buf, file type
+            statusline = Statusline,
             winbar = Winbar,
+            opts = {
+                disable_winbar_cb = function(args)
+                    return conditions.buffer_matches({
+                        buftype = { "nofile", "prompt", "help", "quickfix", "terminal" },
+                        filetype = {
+                            "^git.*",
+                            "fugitive",
+                            "Trouble",
+                            "dashboard",
+                            "neo-tree",
+                            "lazy",
+                            "mason",
+                            "toggleterm",
+                        },
+                    }, args.buf)
+                end,
+            },
         })
     end,
 }

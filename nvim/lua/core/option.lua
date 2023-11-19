@@ -37,7 +37,7 @@ local options = {
     undofile = true, -- Enable persistent undo
     writebackup = false, -- Disable making a backup before overwriting a file
     cursorline = true, -- Highlight the text line of the cursor
-    cursorlineopt = "number",  -- only Highlight line number
+    cursorlineopt = "number", -- only Highlight line number
     number = true, -- Show numberline
     relativenumber = true, -- Show relative numberline
     wrap = false, -- Disable wrapping of lines longer than the width of window
@@ -73,3 +73,7 @@ vim.opt.fillchars:append({
     vertright = "┣",
     verthoriz = "╋",
 })
+
+if vim.g.neovide then
+    vim.o.guifont = "Maple Mono SC NF:h12"
+end

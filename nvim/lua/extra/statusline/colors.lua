@@ -89,6 +89,7 @@ do
         command = colors.aqua,
         shell = colors.orange,
         term = colors.orange,
+        terminal = colors.orange,
         none = colors.red,
     }
 

@@ -20,9 +20,6 @@ return {
             autotag = {
                 enable = true,
             },
-            context_commentstring = {
-                enable = true,
-            },
             textobjects = {
                 select = {
                     enable = true,
@@ -59,5 +56,6 @@ return {
                 },
             },
         })
+        require('ts_context_commentstring').setup({})
     end,
 }
