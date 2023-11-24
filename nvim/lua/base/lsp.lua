@@ -38,7 +38,11 @@ return {
                 vim.z.map("n", "gi", vim.lsp.buf.implementation, "LSP impl", opts)
                 vim.z.map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help", opts)
                 vim.z.map("n", "gm", vim.lsp.buf.rename, "Lsp rename", opts)
-                vim.z.map({ "n", "v" }, "ga", vim.lsp.buf.code_action, "Code action", opts)
+                if require("lazy.core.config").plugins["rustaceanvim"] then
+                    vim.z.map({ "n", "v" }, "ga", "RustLsp codeAction", "Code action", opts)
+                else
+                    vim.z.map({ "n", "v" }, "ga", vim.lsp.buf.code_action, "Code action", opts)
+                end
 
                 -- jump diagnostic
                 vim.z.map("n", "]d", vim.diagnostic.goto_next, "Next diagnostic", opts)
@@ -61,6 +65,8 @@ return {
             border = _border,
         })
         vim.diagnostic.config({
+            virtual_text = false,
+            severity_sort = true,
             underline = false,
             update_in_insert = true,
             float = { border = _border },
