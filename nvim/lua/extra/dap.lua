@@ -1,7 +1,7 @@
 return {
     {
         "jay-babu/mason-nvim-dap.nvim",
-        event = { "BufRead", "BufNewFile" },
+        keys = {"<leader>d"},
         dependencies = {
             "williamboman/mason.nvim",
             "mfussenegger/nvim-dap",

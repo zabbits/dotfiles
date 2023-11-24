@@ -76,7 +76,19 @@ local ModifiableIndicator = {
 -- TODO: add percent
 local Percent = {
     Space,
-    provider = "%3(%p%)" .. "%%",
+    -- provider = "%3(%p%)" .. "%%",
+    provider = function()
+        local curr = vim.fn.line(".")
+        local last = vim.fn.line("$")
+        if curr == 1 then
+            return " TOP"
+        elseif curr == last then
+            return " BOT"
+        else
+            local percent = math.floor(curr / last * 100)
+            return (percent < 10 and "  " .. percent or " " .. percent) .. "%%"
+        end
+    end,
     hl = hl.ScrollBar,
 }
 
