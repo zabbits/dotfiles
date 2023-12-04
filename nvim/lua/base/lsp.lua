@@ -38,7 +38,7 @@ return {
                 vim.z.map("n", "gi", vim.lsp.buf.implementation, "LSP impl", opts)
                 vim.z.map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help", opts)
                 vim.z.map("n", "gm", vim.lsp.buf.rename, "Lsp rename", opts)
-                if require("lazy.core.config").plugins["rustaceanvim"] then
+                if require("lazy.core.config").plugins["rustaceanvim"] and vim.bo.filetype == "rust" then
                     vim.z.map({ "n", "v" }, "ga", "RustLsp codeAction", "Code action", opts)
                 else
                     vim.z.map({ "n", "v" }, "ga", vim.lsp.buf.code_action, "Code action", opts)
