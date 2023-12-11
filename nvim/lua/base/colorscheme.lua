@@ -31,6 +31,12 @@ return {
                         PmenuThumb = { bg = theme.ui.fg_dim },
 
                         StatusLine = { link = "Visual" },
+
+                        DiagnosticFloatingError  = { link = "DiagnosticError" },
+                        DiagnosticFloatingWarn  = { link = "DiagnosticWarn" },
+                        DiagnosticFloatingInfo  = { link = "DiagnosticInfo" },
+                        DiagnosticFloatingHint  = { link = "DiagnosticHint" },
+                        DiagnosticFloatingOk  = { link = "DiagnosticOk" },
                     }
                 end,
             })
