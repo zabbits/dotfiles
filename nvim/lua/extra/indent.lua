@@ -1,23 +1,23 @@
 return {
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        event = { "BufRead", "BufNewFile" },
-        opts = {
-            indent = {
-                char = "│",
-            },
-            exclude = {
-                filetypes = {
-                    "trouble",
-                    "Trouble",
-                },
-            },
-            scope = {
-                enabled = false,
-            },
-        },
-    },
+    -- {
+    --     "lukas-reineke/indent-blankline.nvim",
+    --     main = "ibl",
+    --     event = { "BufRead", "BufNewFile" },
+    --     opts = {
+    --         indent = {
+    --             char = "│",
+    --         },
+    --         exclude = {
+    --             filetypes = {
+    --                 "trouble",
+    --                 "Trouble",
+    --             },
+    --         },
+    --         scope = {
+    --             enabled = false,
+    --         },
+    --     },
+    -- },
     {
         "echasnovski/mini.indentscope",
         event = { "BufRead", "BufNewFile" },
