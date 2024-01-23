@@ -22,8 +22,9 @@ local mason_lsp = {
         require("mason-lspconfig").setup({})
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         require("mason-lspconfig").setup_handlers({
+            -- default lsp config
             function(server_name)
-                -- using ferris for rust_analyzer
+                -- using rustaceanvim for rust_analyzer
                 if server_name == "rust_analyzer" then
                     return
                 end
@@ -36,25 +37,12 @@ local mason_lsp = {
                     capabilities = capabilities,
                     settings = {
                         Lua = {
-                            runtime = {
-                                -- Tell the language server which version of Lua you're using
-                                -- (most likely LuaJIT in the case of Neovim)
-                                version = "LuaJIT",
-                            },
                             diagnostics = {
                                 -- Get the language server to recognize the `vim` global
                                 globals = {
                                     "vim",
                                     "require",
                                 },
-                            },
-                            workspace = {
-                                -- Make the server aware of Neovim runtime files
-                                library = vim.api.nvim_get_runtime_file("", true),
-                            },
-                            -- Do not send telemetry data containing a randomized but unique identifier
-                            telemetry = {
-                                enable = false,
                             },
                         },
                     },
