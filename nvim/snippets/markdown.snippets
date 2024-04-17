@@ -1,0 +1,32 @@
+snippet todo "todo"
+	- [ ] $1
+
+snippet blog "blog" w
+	---
+	title: $1
+	description: $2
+	date: $3
+	tags:
+		- $3
+	---
+
+snippet tip "tip"
+    {% tip(header="Tip") %}
+    $1
+    {% end %}
+
+snippet imp "important"
+    {% important(header="Important ") %}
+    $1
+    {% end %}
+
+snippet note "note "
+    {% note(header="Note ") %}
+    $1
+    {% end %}
+
+snippet warning "warning"
+    {% warning(header="Warning ") %}
+    $1
+    {% end %}
+

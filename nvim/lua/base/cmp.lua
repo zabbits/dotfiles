@@ -14,6 +14,7 @@ return {
                 "rafamadriz/friendly-snippets",
             },
             config = function()
+                require("luasnip.loaders.from_snipmate").lazy_load()
                 require("luasnip.loaders.from_vscode").lazy_load()
                 vim.api.nvim_create_autocmd("InsertLeave", {
                     callback = function()
@@ -76,7 +77,7 @@ return {
             },
             confirm_opts = {
                 -- behavior = cmp.ConfirmBehavior.Replace,
-                select = false,
+                select = true,
             },
             window = {
                 documentation = {

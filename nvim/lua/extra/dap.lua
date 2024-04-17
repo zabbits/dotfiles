@@ -2,6 +2,7 @@ return {
     {
         "jay-babu/mason-nvim-dap.nvim",
         keys = {"<leader>d"},
+        enabled = false,
         dependencies = {
             "williamboman/mason.nvim",
             "mfussenegger/nvim-dap",
