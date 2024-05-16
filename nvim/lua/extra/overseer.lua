@@ -8,10 +8,10 @@ return {
     opts = {
         templates = {
             "builtin",
-            "user.cpp_build",
             "user.cpp_run",
-            "user.cpp_build_folder",
+            "user.cpp_build",
             "user.cpp_run_folder",
+            "user.cpp_build_folder",
         },
         task_list = {
             bindings = {
