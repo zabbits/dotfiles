@@ -1,5 +1,6 @@
 return {
-    "rebelot/heirline.nvim",
+    -- dir = "~/github/heirline.nvim/",
+    "zabbits/heirline.nvim",
     event = { "BufRead", "BufNewFile" },
     config = function()
         vim.o.laststatus = 3

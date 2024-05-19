@@ -1,14 +1,15 @@
 local colors = require("extra.statusline.colors")
 local hl = colors.highlight
 local conditions = require("heirline.conditions")
+local icons = require("core.icons")
 
 local diagnostics = {
     condition = conditions.has_diagnostics,
     static = {
-        error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1].text,
-        warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text,
-        info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text,
-        hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1].text,
+        error_icon = icons.lsp.error,
+        warn_icon = icons.lsp.warn,
+        info_icon = icons.lsp.info,
+        hint_icon = icons.lsp.hint,
     },
     init = function(self)
         self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
