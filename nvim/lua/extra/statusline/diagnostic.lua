@@ -6,10 +6,10 @@ local icons = require("core.icons")
 local diagnostics = {
     condition = conditions.has_diagnostics,
     static = {
-        error_icon = icons.lsp.error,
-        warn_icon = icons.lsp.warn,
-        info_icon = icons.lsp.info,
-        hint_icon = icons.lsp.hint,
+        error_icon = icons.lsp.error .. ' ',
+        warn_icon = icons.lsp.warn .. ' ',
+        info_icon = icons.lsp.info .. ' ',
+        hint_icon = icons.lsp.hint .. ' ',
     },
     init = function(self)
         self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
