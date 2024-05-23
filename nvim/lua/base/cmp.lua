@@ -2,50 +2,28 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-        "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-nvim-lsp",
         "onsails/lspkind.nvim",
         {
-            "L3MON4D3/LuaSnip",
-            build = "make install_jsregexp",
+            "garymjr/nvim-snippets",
             dependencies = {
                 "rafamadriz/friendly-snippets",
             },
-            config = function()
-                require("luasnip.loaders.from_snipmate").lazy_load()
-                require("luasnip.loaders.from_vscode").lazy_load()
-                vim.api.nvim_create_autocmd("InsertLeave", {
-                    callback = function()
-                        local om = vim.v.event.old_mode
-                        local nm = vim.v.event.new_mode
-                        if
-                            ((om == "s" and nm == "n") or om == "i")
-                            and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-                            and not require("luasnip").session.jump_active
-                        then
-                            require("luasnip").unlink_current()
-                        end
-                    end,
-                })
-            end,
+            opts = {
+                friendly_snippets = true,
+                create_cmp_source = true,
+            },
         },
     },
     config = function()
         local cmp = require("cmp")
-        local luasnip = require("luasnip")
-        -- autopair integration
-        -- local pair_ok, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
-        -- if pair_ok then
-        --     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-        -- end
-
         cmp.setup({
             preselect = cmp.PreselectMode.None,
             snippet = {
                 expand = function(args)
-                    luasnip.lsp_expand(args.body)
+                    vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
                 end,
             },
             formatting = {
@@ -54,9 +32,9 @@ return {
                         menu = {
                             buffer = "[Buf]",
                             nvim_lsp = "[LSP]",
-                            luasnip = "[Snip]",
                             path = "[Path]",
                             neorg = "[Neorg]",
+                            snippets = "[Snip]",
                             orgmode = "[Org]",
                             latex_symbols = "[LaTeX]",
                             crates = "[Crates]",
@@ -70,7 +48,7 @@ return {
             duplicates = {
                 nvim_lsp = 1,
                 snippy = 1,
-                luasnip = 1,
+                snippets = 1,
                 cmp_tabnine = 1,
                 buffer = 1,
                 path = 1,
@@ -95,7 +73,7 @@ return {
             },
             sources = {
                 { name = "nvim_lsp" },
-                { name = "luasnip" },
+                { name = "snippets" },
                 { name = "neorg" },
                 { name = "orgmode" },
                 { name = "buffer" },
@@ -118,18 +96,17 @@ return {
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
-                    elseif luasnip.expand_or_locally_jumpable() then
-                        luasnip.expand_or_jump()
+                    elseif vim.snippet.active({ direction = 1 }) then
+                        vim.snippet.jump(1)
                     else
                         fallback()
                     end
                 end, { "i", "s" }),
-
                 ["<S-Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
-                    elseif luasnip.jumpable(-1) then
-                        luasnip.jump(-1)
+                    elseif vim.snippet.active({ direction = -1 }) then
+                        vim.snippet.jump(-1)
                     else
                         fallback()
                     end

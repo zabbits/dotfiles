@@ -1,0 +1,52 @@
+{
+  "todo": {
+    "prefix": "todo",
+    "body": [
+      "- [ ] $0"
+    ]
+  },
+  "blog": {
+    "prefix": "blog",
+    "body": [
+      "---",
+      "title: $0",
+      "description: $1",
+      "date: $2",
+      "tags:",
+      "  - $3",
+      "---"
+    ]
+  },
+  "tip": {
+    "prefix": "tip",
+    "body": [
+      "{% tip(header=\"Tip\") %}",
+      "$0",
+      "{% end %}"
+    ]
+  },
+  "important": {
+    "prefix": "imp",
+    "body": [
+      "{% tip(header=\"Important\") %}",
+      "$0",
+      "{% end %}"
+    ]
+  },
+  "note": {
+    "prefix": "note",
+    "body": [
+      "{% tip(header=\"Note\") %}",
+      "$0",
+      "{% end %}"
+    ]
+  },
+  "warning": {
+    "prefix": "warning",
+    "body": [
+      "{% tip(header=\"Warning\") %}",
+      "$0",
+      "{% end %}"
+    ]
+  }
+}
