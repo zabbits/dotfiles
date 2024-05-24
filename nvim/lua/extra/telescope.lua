@@ -11,6 +11,7 @@ return {
         { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Find OldFiles" },
         { "<leader>fh", "<cmd>FzfLua helptags<cr>", desc = "Find Help" },
         { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find Files" },
+        { "<leader>fr", "<cmd>FzfLua resume<cr>", desc = "Find Resume" },
         -- { "<leader>b", "<cmd>Telescope buffers<cr>", desc = "Find Buffers" },
         -- { "<C-e>", "<cmd>Telescope buffers<cr>", desc = "Find Buffers" },
         -- { "<leader>fw", "<cmd>Telescope live_grep<cr>", desc = "Find Word" },

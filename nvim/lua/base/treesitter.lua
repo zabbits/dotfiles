@@ -4,7 +4,6 @@ return {
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "windwp/nvim-ts-autotag",
-        "JoosepAlviste/nvim-ts-context-commentstring",
         "HiPhish/rainbow-delimiters.nvim",
     },
     config = function()
@@ -56,6 +55,5 @@ return {
                 },
             },
         })
-        require('ts_context_commentstring').setup({})
     end,
 }

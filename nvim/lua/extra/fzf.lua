@@ -8,6 +8,7 @@ return {
             "borderless_full",
             winopts = {
                 on_create = function()
+                    -- use Ctrl-r paste register
                     vim.keymap.set("t", "<C-r>", [['<C-\><C-N>"'.nr2char(getchar()).'pi']],
                         { expr = true, buffer = true })
                 end,
