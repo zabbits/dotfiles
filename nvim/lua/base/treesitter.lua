@@ -4,7 +4,7 @@ return {
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "windwp/nvim-ts-autotag",
-        "HiPhish/rainbow-delimiters.nvim",
+        -- "HiPhish/rainbow-delimiters.nvim",
     },
     config = function()
         require("nvim-treesitter.configs").setup({

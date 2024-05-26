@@ -12,19 +12,27 @@ return {
         { "<leader>fh", "<cmd>FzfLua helptags<cr>", desc = "Find Help" },
         { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find Files" },
         { "<leader>fr", "<cmd>FzfLua resume<cr>", desc = "Find Resume" },
+        {
+            "<leader>fc",
+            function()
+                require('fzf-lua').files({ cwd = vim.fn.stdpath("config") })
+            end,
+            desc = "Find Config",
+        },
+
         -- { "<leader>b", "<cmd>Telescope buffers<cr>", desc = "Find Buffers" },
         -- { "<C-e>", "<cmd>Telescope buffers<cr>", desc = "Find Buffers" },
         -- { "<leader>fw", "<cmd>Telescope live_grep<cr>", desc = "Find Word" },
         -- { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Find OldFiles" },
         -- { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find Help" },
         -- { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-        {
-            "<leader>fc",
-            function()
-                require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
-            end,
-            desc = "Find Config",
-        },
+        -- {
+        --     "<leader>fc",
+        --     function()
+        --         require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+        --     end,
+        --     desc = "Find Config",
+        -- },
         -- maybe check if notify exsits?
         { "<leader>fn", "<cmd>Telescope notify<cr>", desc = "Find Notify" },
     },
