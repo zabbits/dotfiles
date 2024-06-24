@@ -78,22 +78,22 @@ if vim.g.neovide then
     vim.o.guifont = "Maple Mono SC NF:h12"
 end
 
--- ssh copy using osc52
-local has_tty = vim.fn.getenv('SSH_TTY')
-if has_tty and has_tty ~= vim.NIL then
-    vim.g.clipboard = {
-        name = 'OSC 52',
-        copy = {
-            ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-            ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-        },
-        paste = {
-            ['+'] = function()
-                return vim.fn.getreg('+')
-            end,
-            ['*'] = function()
-                return vim.fn.getreg('*')
-            end,
-        }
-    }
-end
+-- TODO: fix paste error ssh copy using osc52
+-- local has_tty = vim.fn.getenv('SSH_TTY')
+-- if has_tty and has_tty ~= vim.NIL then
+--     vim.g.clipboard = {
+--         name = 'OSC 52',
+--         copy = {
+--             ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+--             ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+--         },
+--         paste = {
+--             ['+'] = function()
+--                 return vim.fn.getreg('+')
+--             end,
+--             ['*'] = function()
+--                 return vim.fn.getreg('*')
+--             end,
+--         }
+--     }
+-- end

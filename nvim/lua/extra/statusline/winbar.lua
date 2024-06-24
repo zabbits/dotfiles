@@ -1,5 +1,27 @@
 local get_hl = require("aerial.highlight").get_highlight
 local colors = require("extra.statusline.colors").colors
+local hl = require("extra.statusline.colors").highlight
+local conditions = require("heirline.conditions")
+
+local Align = { provider = "%=" }
+local Space = setmetatable({ provider = " " }, {
+    __call = function(_, n)
+        return { provider = string.rep(" ", n) }
+    end,
+})
+
+local FileName = {
+    init = function (self)
+        local current_path = vim.api.nvim_buf_get_name(0)
+        self.filename = vim.fn.fnamemodify(current_path, ":t")
+        self.active = conditions.is_active()
+        self.hl = conditions.is_active() and { fg = hl.StatusLine.bg, bg = colors.aqua } or { fg = hl.StatusLine.bg, bg = colors.grey0 }
+    end,
+    provider = function(self)
+        return self.filename and self.filename ~= "" and " " .. self.filename .. " "
+    end,
+    hl = { fg = hl.StatusLine.bg, bg = colors.aqua }
+}
 
 local Aerial = {
     static = {
@@ -34,7 +56,7 @@ local Aerial = {
                         minwid = self.enc(val.lnum, val.col, self.winnr),
                         callback = function(_, minwid)
                             local line, col, winnr = self.dec(minwid)
-                            vim.api.nvim_win_set_cursor(vim.fn.win_getid(winnr), {line, col})
+                            vim.api.nvim_win_set_cursor(vim.fn.win_getid(winnr), { line, col })
                         end,
                         name = "heirline_aerial",
                     },
@@ -57,4 +79,11 @@ local Aerial = {
     update = { "CursorMoved", "CursorMovedI" },
 }
 
-return Aerial
+local Winbar = {
+    Aerial,
+    Space,
+    Align,
+    FileName
+}
+
+return Winbar
