@@ -26,7 +26,14 @@ return {
                 output,
                 file,
             },
-            components = { { "on_output_quickfix", open = true }, "default" },
+            components = { { "on_output_quickfix", open = true },
+
+                { "display_duration",   detail_level = 2 },
+                "on_output_summarize",
+                "on_exit_set_status",
+                { "on_complete_dispose", require_view = { "SUCCESS", "FAILURE" } },
+                -- "default"
+            },
         }
     end,
     condition = {

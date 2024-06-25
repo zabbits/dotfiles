@@ -2,10 +2,10 @@ return {
     {
         "stevearc/overseer.nvim",
         lazy = true,
-        -- keys = {
-        --     { "<leader>;", "<cmd>OverseerToggle<cr>", desc = "OverseerRun" },
-        --     { "<leader>r", "<cmd>OverseerRun<cr>",    desc = "OverseerRun" },
-        -- },
+        keys = {
+            { "<leader>;", "<cmd>OverseerToggle<cr>", desc = "OverseerRun" },
+            { "<leader>r", "<cmd>OverseerRun<cr>",    desc = "OverseerRun" },
+        },
         opts = {
             templates = {
                 "builtin",
@@ -29,15 +29,5 @@ return {
                 },
             },
         },
-    },
-    {
-        "Zeioth/compiler.nvim",
-        cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
-        dependencies = { "stevearc/overseer.nvim", "nvim-telescope/telescope.nvim" },
-        keys = {
-            { "<leader>;", "<cmd>CompilerToggleResults<cr>", desc = "OverseerRun", noremap = true, silent = true },
-            { "<leader>r", "<cmd>CompilerOpen<cr>",          desc = "OverseerRun", noremap = true, silent = true },
-        },
-        opts = {}
     }
 }

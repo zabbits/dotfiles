@@ -6,7 +6,6 @@ return {
     },
     keys = {
         { "<leader>b", "<cmd>FzfLua buffers<cr>", desc = "Find Buffers" },
-        { "<C-e>", "<cmd>FzfLua buffers<cr>", desc = "Find Buffers" },
         { "<leader>fw", "<cmd>FzfLua live_grep<cr>", desc = "Find Word" },
         { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Find OldFiles" },
         { "<leader>fh", "<cmd>FzfLua helptags<cr>", desc = "Find Help" },

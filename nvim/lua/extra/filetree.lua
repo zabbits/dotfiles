@@ -9,14 +9,15 @@ return {
     keys = {
         {
             "<leader>E",
-            "<cmd>Neotree toggle<cr>",
+            "<cmd>Neotree toggle float<cr>",
             desc = "FileTree",
         },
         {
             "<leader>e",
-            "<cmd>Neotree focus reveal<cr>",
+            "<cmd>Neotree focus reveal float<cr>",
             desc = "FileTree Reveal",
         },
+        { "<C-e>", "<cmd>Neotree buffers float<cr>", desc = "Buffers" },
     },
     opts = {
         enable_diagnostics = false,
