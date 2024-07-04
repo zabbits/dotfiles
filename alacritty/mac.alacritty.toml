@@ -37,7 +37,7 @@ background = "0x2d4f67"
 foreground = "0xc8c093"
 
 [font]
-size = 15.5
+size = 16.0
 
 [font.normal]
 family = "FiraCode Nerd Font Mono"
@@ -46,12 +46,22 @@ style = "Regular"
 [font.italic]
 family = "Maple Mono NF"
 style = "Italic"
+[font.bold_italic]
+family = "Maple Mono NF"
+style = "Bold Italic"
 
 [window]
-decorations = "full"
+decorations = "Full"
 dynamic_title = true
 opacity = 1
 
 [window.dimensions]
 columns = 120
 lines = 40
+
+
+[keyboard]
+[[keyboard.bindings]]
+key = "Space"
+mods = "Shift"
+action = "ToggleViMode"

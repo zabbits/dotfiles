@@ -1,7 +1,8 @@
 if status is-interactive
     fish_add_path /opt/homebrew/bin
+    fish_add_path ~/.local/bin
+    fish_add_path ~/.cargo/bin
 
-    # Commands to run in interactive sessions can go here
     alias vi=nvim
     alias vim=nvim
     alias l='lsd -lah'
@@ -13,4 +14,5 @@ if status is-interactive
     fnm env --use-on-cd | source
     atuin init fish | source
     starship init fish | source
+    mise activate fish | source
 end

@@ -16,6 +16,15 @@ $time\
 [ ](fg:#1d2230)\
 \n$character"""
 
+[character]
+disabled = false
+success_symbol = '[](bold)'
+error_symbol = '[](bold)'
+vimcmd_symbol = '[](bold)'
+vimcmd_replace_one_symbol = '[](bold)'
+vimcmd_replace_symbol = '[](bold)'
+vimcmd_visual_symbol = '[](bold)'
+
 [directory]
 style = "fg:#e3e5e5 bg:#769ff0"
 format = "[ $path ]($style)"
