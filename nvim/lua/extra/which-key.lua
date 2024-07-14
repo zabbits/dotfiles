@@ -3,14 +3,14 @@ return {
     keys = { "<leader>", "g", "[", "]" },
     config = function()
         local wk = require("which-key")
-        wk.register({
-            ["<leader>"] = {
-                f = { name = "Find" },
-                s = { name = "Session " },
-                l = { name = "LeetCode" },
-                x = { name = "Trouble" },
-                r = { name = "Overseer" },
-            },
+        wk.setup({
+            preset = "helix",
+        })
+        wk.add({
+            { "<leader>f", group = "Find" },
+            { "<leader>r", group = "Overseer" },
+            { "<leader>s", group = "Session " },
+            { "<leader>x", group = "Trouble" },
         })
     end,
 }
