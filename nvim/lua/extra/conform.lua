@@ -19,6 +19,7 @@ return {
                 c = { "clang_format" },
                 html = { "prettierd" },
                 css = { "prettierd" },
+                json = { "prettierd" },
             },
         })
     end,

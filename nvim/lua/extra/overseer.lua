@@ -9,6 +9,8 @@ return {
         opts = {
             templates = {
                 "builtin",
+                "user.c_run",
+                "user.c_build",
                 "user.cpp_run",
                 "user.cpp_build",
                 "user.cpp_run_folder",
