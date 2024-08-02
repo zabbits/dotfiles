@@ -63,5 +63,5 @@ lines = 40
 [keyboard]
 [[keyboard.bindings]]
 key = "Space"
-mods = "Shift"
+mods = "Command|Shift"
 action = "ToggleViMode"
