@@ -7,7 +7,6 @@ if status is-interactive
     alias vim=nvim
     alias l='lsd -lah'
     alias ls=lsd
-    alias hx=helix
 
     fzf --fish | source
     zoxide init fish | source
