@@ -1,0 +1,42 @@
+{
+  "features": {
+    "inline_completion_provider": "none"
+  },
+  "assistant": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-20240620"
+    },
+    "version": "2"
+  },
+  "theme": "Kanagawa Wave",
+  "vim_mode": true,
+  "current_line_highlight": "none",
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "cursor_blink": false,
+  "format_on_save": "off",
+  // hide the scroll bar
+  "scrollbar": { "show": "never" },
+  // prevent the buffer from scrolling beyond the last line
+  "scroll_beyond_last_line": "one_page",
+  // allow cursor to reach edges of screen
+  "vertical_scroll_margin": 0,
+  "buffer_font_family": "FiraCode Nerd Font Mono",
+  "terminal": {
+    "shell": {
+      "program": "fish"
+    }
+  },
+  "relative_line_numbers": true,
+  "languages": {
+    "Vue.js": {
+      "tab_size": 2,
+      "format_on_save": "off"
+    },
+    "TypeScript": {
+      "tab_size": 2,
+      "format_on_save": "off"
+    }
+  }
+}
