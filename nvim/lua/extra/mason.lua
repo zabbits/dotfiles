@@ -56,8 +56,8 @@ local mason_lsp = {
                 })
             end,
             -- install typescript-language-server and vue-language-server
-            ["tsserver"] = function()
-                require("lspconfig").tsserver.setup({
+            ["ts_ls"] = function()
+                require("lspconfig").ts_ls.setup({
                     capabilities = capabilities,
                     init_options = {
                         plugins = {

@@ -1,8 +1,9 @@
 return {
     {
         "mrcjkb/rustaceanvim",
-        version = "^4", -- Recommended
+        version = "^5", -- Recommended
         ft = { "rust" },
+        lazy = false,
         init = function()
             vim.g.rustaceanvim = {
                 tools = {

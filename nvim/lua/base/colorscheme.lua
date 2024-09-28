@@ -6,6 +6,10 @@ return {
         opts = {},
     },
     {
+        "yorumicolors/yorumi.nvim",
+        lazy = false,
+    },
+    {
         "rebelot/kanagawa.nvim",
         priority = 1000, -- make sure to load this before all the other start plugins
         config = function()
@@ -47,6 +51,7 @@ return {
                 end,
             })
             vim.cmd.colorscheme("kanagawa")
+            -- vim.cmd.colorscheme("yorumi")
             -- vim.cmd.colorscheme("tokyonight")
         end,
     },
