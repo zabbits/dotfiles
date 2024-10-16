@@ -5,7 +5,7 @@ return {
     keys = {
         { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Trouble" },
         { "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Trouble doc" },
-        { "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", desc = "Trouble workspace" },
+        { "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>", desc = "Trouble workspace" },
         { "<leader>xl", "<cmd>Trouble loclist toggle<cr>", desc = "Trouble loc" },
         { "<leader>xq", "<cmd>Trouble quickfix toggle<cr>", desc = "Trouble qf" },
         { "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },

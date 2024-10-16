@@ -2,13 +2,18 @@ local function augroup(name)
     return vim.api.nvim_create_augroup("zvim_" .. name, { clear = true })
 end
 
+-- vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+--   pattern = "*.mdx",
+--   command = "set filetype=markdown",
+-- })
+
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
     group = augroup("checktime"),
     command = "checktime",
 })
 
--- reomve comment
+-- remove comment
 vim.api.nvim_create_autocmd("FileType", {
     command = "set formatoptions-=cro",
 })

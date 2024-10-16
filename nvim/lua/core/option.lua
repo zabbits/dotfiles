@@ -74,9 +74,15 @@ vim.opt.fillchars:append({
     verthoriz = "╋",
 })
 
-if vim.g.neovide then
-    vim.o.guifont = "Maple Mono SC NF:h12"
-end
+vim.filetype.add({
+  extension = {
+    mdx = 'mdx'
+  }
+})
+
+-- if vim.g.neovide then
+--     vim.o.guifont = "Maple Mono SC NF:h12"
+-- end
 
 -- TODO: fix paste error ssh copy using osc52
 -- local has_tty = vim.fn.getenv('SSH_TTY')
