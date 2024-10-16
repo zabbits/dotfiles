@@ -10,13 +10,16 @@
     "context": "Workspace",
     "bindings": {
       // "shift shift": "file_finder::Toggle"
-      "ctrl-[": ["workspace::SendKeystrokes", "escape"]
+      "ctrl-[": ["workspace::SendKeystrokes", "escape"],
+      "ctrl-\\": "terminal_panel::ToggleFocus",
+      "ctrl-t n": "workspace::NewTerminal"
     }
   },
   {
     "context": "VimControl && !menu",
     "bindings": {
-      "ctrl-b": "editor::MovePageUp",
+      "ctrl-b": "vim::ScrollUp",
+      // "ctrl-b": "editor::MovePageUp",
       "space f f": "file_finder::Toggle",
       "space e": "pane::RevealInProjectPanel",
       "space q": "pane::CloseActiveItem",
@@ -31,6 +34,7 @@
       "g w i": "editor::GoToImplementationSplit",
       "g t": "editor::GoToTypeDefinition",
       "g w t": "editor::GoToTypeDefinitionSplit",
+      "g m": "editor::Rename",
       // window navigation
       "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
       "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
@@ -47,10 +51,16 @@
   {
     "context": "Dock || Terminal",
     "bindings": {
-      "ctrl-w h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-w l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-w k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-w j": ["workspace::ActivatePaneInDirection", "Down"]
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-n": "workspace::NewTerminal"
     }
   },
   // File panel (netrw)
