@@ -20,7 +20,9 @@ local mason_lsp = {
     },
     config = function()
         require("mason-lspconfig").setup({})
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        local capabilities = require('blink.cmp').get_lsp_capabilities({})
+
         local mason_registry = require("mason-registry")
         local vue_language_server_path = ""
         if mason_registry.is_installed("vue-language-server") then
