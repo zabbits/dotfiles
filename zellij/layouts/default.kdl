@@ -5,7 +5,7 @@ layout {
             plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
                 format_left   "{mode}#[fg=black]{tabs}"
                 format_center ""
-                format_right  "#[fg=#6867AF,bold]  {datetime}#[fg=cyan]↖ "
+                format_right  "#[fg=#6867AF,bold] {datetime}#[fg=cyan]↖ "
                 format_space  "#[fg=yellow] "
                 // {session}
                 hide_frame_for_single_pane "false"
@@ -91,16 +91,16 @@ layout {
                 // mode_normal        "#[bg=#89B4FA] {name} "
                 // mode_locked        "#[bg=#89B4FA] {name} "
                 // mode_resize        "#[bg=#89B4FA] {name} "
-                // mode_pane          "#[bg=#89B4FA] {name} "
-                // mode_tab           "#[bg=#89B4FA] {name} "
-                // mode_scroll        "#[bg=#89B4FA] {name} "
-                // mode_enter_search  "#[bg=#89B4FA] {name} "
-                // mode_search        "#[bg=#89B4FA] {name} "
-                // mode_rename_tab    "#[bg=#89B4FA] {name} "
-                // mode_rename_pane   "#[bg=#89B4FA] {name} "
-                // mode_session       "#[bg=#89B4FA] {name} "
-                // mode_move          "#[bg=#89B4FA] {name} "
-                // mode_prompt        "#[bg=#89B4FA] {name} "
+                mode_pane          "#[fg=cyan] {name}  "
+                mode_tab           "#[fg=cyan] {name}  "
+                mode_scroll        "#[fg=cyan] {name}  "
+                mode_enter_search  "#[fg=cyan] {name}  "
+                mode_search        "#[fg=cyan] {name}  "
+                mode_rename_tab    "#[fg=cyan] {name}  "
+                mode_rename_pane   "#[fg=cyan] {name}  "
+                mode_session       "#[fg=cyan] {name}  "
+                mode_move          "#[fg=cyan] {name}  "
+                mode_prompt        "#[fg=cyan] {name}  "
                 // mode_tmux          "#[bg=#ffc387] {name} "
 
                 // formatting for inactive tabs
@@ -122,8 +122,8 @@ layout {
                 tab_floating_indicator   ""
 
                 datetime        "#[fg=#6C7086,bold] {format} "
-                datetime_format "%A, %d %b %Y %H:%M"
-                datetime_timezone "Europe/Berlin"
+                datetime_format "%A %d %b %Y %H:%M"
+                datetime_timezone "Asia/Shanghai"
             }
         }
     }
