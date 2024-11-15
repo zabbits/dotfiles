@@ -35,8 +35,7 @@ return {
             nerd_font_variant = "mono",
             windows = {
                 autocomplete = {
-                    -- draw = "reversed",
-                    -- winblend = vim.o.pumblend,
+                    draw = "reversed",
                 },
                 documentation = {
                     auto_show = true,
@@ -59,10 +58,6 @@ return {
                     -- remember to enable your providers here
                     enabled_providers = { "lsp", "path", "snippets", "buffer" },
                 },
-                path = { name = "Path", module = "blink.cmp.sources.path", score_offset = 4 },
-                lsp = { name = "LSP", module = "blink.cmp.sources.lsp", score_offset = 3 },
-                snippets = { name = "Snippets", module = "blink.cmp.sources.snippets", score_offset = 2 },
-                buffer = { name = "Buffer", module = "blink.cmp.sources.buffer", score_offset = 1 },
             },
 
             keymap = {
