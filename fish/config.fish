@@ -7,7 +7,6 @@ if status is-interactive
     alias hx=helix
 
     zoxide init fish | source
-    fnm env --use-on-cd | source
     atuin init fish | source
     starship init fish | source
 end
