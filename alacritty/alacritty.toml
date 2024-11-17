@@ -1,4 +1,3 @@
-shell="/bin/fish"
 
 [[colors.indexed_colors]]
 color = "0xffa066"
@@ -50,3 +49,6 @@ opacity = 1
 [window.dimensions]
 columns = 120
 lines = 40
+
+[terminal]
+shell="/bin/fish"
