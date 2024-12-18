@@ -5,11 +5,11 @@
   "assistant": {
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-20240620"
+      "model": "claude-3-5-sonnet-latest"
     },
     "version": "2"
   },
-  "theme": "NeoSolarized Dark",
+  "theme": "Kanagawa",
   "vim_mode": true,
   "current_line_highlight": "none",
   "ui_font_size": 16.5,

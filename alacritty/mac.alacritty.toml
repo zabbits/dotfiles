@@ -65,3 +65,9 @@ lines = 40
 key = "Space"
 mods = "Command|Shift"
 action = "ToggleViMode"
+
+[[keyboard.bindings]]
+key = "T"
+mods = "Command"
+# https://github.com/alacritty/alacritty/blob/63ef6c931901e895442edf5ec113d0ff609a7c24/alacritty.yml#L741
+action = "ReceiveChar"
