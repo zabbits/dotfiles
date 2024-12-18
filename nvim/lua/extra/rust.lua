@@ -8,9 +8,21 @@ return {
             vim.g.rustaceanvim = {
                 tools = {
                     float_win_config = {
-                        border = "single"
-                    }
-                }
+                        border = "single",
+                    },
+                },
+                server = {
+                    on_attach = function(client, bufnr)
+                        -- Set keybindings, etc. here.
+                        vim.z.map(
+                            { "n", "v" },
+                            "ga",
+                            "RustLsp codeAction",
+                            "Code action",
+                            { buffer = bufnr, silent = true, noremap = true }
+                        )
+                    end,
+                },
             }
         end,
     },
@@ -20,8 +32,18 @@ return {
         tag = "stable",
         event = { "BufRead Cargo.toml" },
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("crates").setup()
-        end,
+        opts = {
+            completion = {
+                crates = {
+                    enabled = true,
+                },
+            },
+            lsp = {
+                enabled = true,
+                actions = true,
+                completion = true,
+                hover = true,
+            },
+        },
     },
 }
