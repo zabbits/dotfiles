@@ -1,7 +1,7 @@
 return {
     {
         "saghen/blink.cmp",
-        version = "*",
+        version = false,
         build = "cargo build --release",
         dependencies = {
             {
@@ -19,8 +19,33 @@ return {
         opts = {
             keymap = {
                 preset = "enter",
-                ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-                ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+                ["<Enter>"] = {
+                    function(cmp)
+                        if cmp.is_visible() then
+                            local completion_list = require("blink.cmp.completion.list")
+                            local idx = completion_list.selected_item_idx or 1
+                            if idx then
+                                return cmp.accept({ index = idx })
+                            end
+                        end
+                    end,
+                    "fallback",
+                },
+                ["<C-k>"] = { "select_prev", "fallback" },
+                ["<C-j>"] = { "select_next", "fallback" },
+                ["<Tab>"] = {
+                    function(cmp)
+                        if cmp.is_visible() then
+                            return cmp.select_next()
+                        else
+                            return cmp.snippet_forward()
+                        end
+                    end,
+                    "fallback",
+                },
+                cmdline = {
+                    preset = "enter",
+                },
             },
             completion = {
                 documentation = {

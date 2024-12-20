@@ -21,6 +21,14 @@ return {
                             "Code action",
                             { buffer = bufnr, silent = true, noremap = true }
                         )
+
+                        vim.z.map(
+                            { "n", "v" },
+                            "K",
+                            "RustLsp hover actions",
+                            "Lsp hover",
+                            { buffer = bufnr, silent = true, noremap = true }
+                        )
                     end,
                 },
             }
