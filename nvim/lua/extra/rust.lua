@@ -3,8 +3,8 @@ return {
         "mrcjkb/rustaceanvim",
         version = "^5", -- Recommended
         ft = { "rust" },
-        lazy = false,
-        init = function()
+        lazy = true,
+        config = function()
             vim.g.rustaceanvim = {
                 tools = {
                     float_win_config = {
@@ -12,6 +12,12 @@ return {
                     },
                 },
                 server = {
+                    default_settings = {
+                        -- rust-analyzer language server configuration
+                        ["rust-analyzer"] = {
+                            capabilities = require('blink.cmp').get_lsp_capabilities({}),
+                        },
+                    },
                     on_attach = function(client, bufnr)
                         -- Set keybindings, etc. here.
                         vim.z.map(
