@@ -40,10 +40,10 @@ return {
                     vim.diagnostic.jump({ count = -1, float = false })
                 end, "Prev diagnostic", opts)
                 vim.z.map("n", "]e", function()
-                    vim.diagnostic.jump({ count = 1, float = false, severity = vim.diagnostic.severity.ERROR })
+                    vim.diagnostic.jump({ count = 1, float = true, severity = vim.diagnostic.severity.ERROR })
                 end, "Next error", opts)
                 vim.z.map("n", "[e", function()
-                    vim.diagnostic.jump({ count = -1, float = false, severity = vim.diagnostic.severity.ERROR })
+                    vim.diagnostic.jump({ count = -1, float = true, severity = vim.diagnostic.severity.ERROR })
                 end, "Prev error", opts)
 
                 -- toggle inlay hints
