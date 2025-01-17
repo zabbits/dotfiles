@@ -23,4 +23,10 @@ return {
         },
         ft = { "markdown", "Avante" },
     },
+    {
+        "nvzone/typr",
+        cmd = "TyprStats",
+        dependencies = "nvzone/volt",
+        opts = {},
+    },
 }
