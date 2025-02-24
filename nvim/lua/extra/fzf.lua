@@ -1,6 +1,7 @@
 return {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    enabled = false,
     cmd = { "FzfLua" },
     config = function()
         -- calling `setup` is optional for customization

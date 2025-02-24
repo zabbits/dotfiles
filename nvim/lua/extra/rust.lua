@@ -2,8 +2,8 @@ return {
     {
         "mrcjkb/rustaceanvim",
         version = "^5", -- Recommended
-        ft = { "rust" },
-        lazy = true,
+        -- ft = { "rust" },
+        lazy = false,
         config = function()
             vim.g.rustaceanvim = {
                 tools = {

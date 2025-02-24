@@ -9,25 +9,25 @@ return {
                 -- Buffer local mappings.
                 -- See `:help vim.lsp.*` for documentation on any of the below functions
                 local opts = { buffer = ev.buf, silent = true, noremap = true }
-                if require("lazy.core.config").plugins["fzf-lua"] then
-                    vim.z.mapo("n", "gr", "<cmd>FzfLua lsp_references<cr>", "LSP ref", opts)
-                    vim.z.mapo("n", "gd", "<cmd>FzfLua lsp_definitions<cr>", "LSP def", opts)
-                    vim.z.mapo("n", "gt", "<cmd>FzfLua lsp_typedefs<cr>", "LSP type", opts)
-                    vim.z.map("n", "gD", "<cmd>FzfLua lsp_declarations<cr>", "LSP declaration", opts)
-                -- if trouble plugin exist
-                elseif require("lazy.core.config").plugins["trouble.nvim"] then
-                    vim.z.mapo("n", "gr", "<cmd>Trouble lsp_references<cr>", "LSP ref", opts)
-                    vim.z.mapo("n", "gd", "<cmd>Trouble lsp_definitions<cr>", "LSP def", opts)
-                    vim.z.mapo("n", "gt", "<cmd>Trouble lsp_type_definitions<cr>", "LSP type", opts)
-                else
-                    vim.z.map("n", "gr", vim.lsp.buf.references, "LSP ref", opts)
-                    vim.z.map("n", "gd", vim.lsp.buf.definition, "LSP def", opts)
-                    vim.z.map("n", "gt", vim.lsp.buf.type_definition, "LSP type", opts)
-                end
+                -- if require("lazy.core.config").plugins["fzf-lua"] then
+                --     vim.z.mapo("n", "gr", "<cmd>FzfLua lsp_references<cr>", "LSP ref", opts)
+                --     vim.z.mapo("n", "gd", "<cmd>FzfLua lsp_definitions<cr>", "LSP def", opts)
+                --     vim.z.mapo("n", "gt", "<cmd>FzfLua lsp_typedefs<cr>", "LSP type", opts)
+                --     vim.z.map("n", "gD", "<cmd>FzfLua lsp_declarations<cr>", "LSP declaration", opts)
+                -- -- if trouble plugin exist
+                -- elseif require("lazy.core.config").plugins["trouble.nvim"] then
+                --     vim.z.mapo("n", "gr", "<cmd>Trouble lsp_references<cr>", "LSP ref", opts)
+                --     vim.z.mapo("n", "gd", "<cmd>Trouble lsp_definitions<cr>", "LSP def", opts)
+                --     vim.z.mapo("n", "gt", "<cmd>Trouble lsp_type_definitions<cr>", "LSP type", opts)
+                -- else
+                --     vim.z.map("n", "gr", vim.lsp.buf.references, "LSP ref", opts)
+                --     vim.z.map("n", "gd", vim.lsp.buf.definition, "LSP def", opts)
+                --     vim.z.map("n", "gt", vim.lsp.buf.type_definition, "LSP type", opts)
+                -- end
 
-                vim.z.map("n", "gD", vim.lsp.buf.declaration, "LSP declaration", opts)
+                -- vim.z.map("n", "gD", vim.lsp.buf.declaration, "LSP declaration", opts)
                 vim.z.map("n", "K", vim.lsp.buf.hover, "Hover", opts)
-                vim.z.map("n", "gi", vim.lsp.buf.implementation, "LSP impl", opts)
+                -- vim.z.map("n", "gi", vim.lsp.buf.implementation, "LSP impl", opts)
                 vim.z.map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help", opts)
                 vim.z.map("n", "gm", vim.lsp.buf.rename, "Lsp rename", opts)
 
