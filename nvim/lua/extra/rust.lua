@@ -15,8 +15,8 @@ return {
                     default_settings = {
                         -- rust-analyzer language server configuration
                         ["rust-analyzer"] = {
-                            -- capabilities = require('blink.cmp').get_lsp_capabilities({}),
-                            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                            capabilities = require('blink.cmp').get_lsp_capabilities({}),
+                            -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
                         },
                     },
                     on_attach = function(client, bufnr)

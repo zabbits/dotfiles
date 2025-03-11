@@ -5,15 +5,15 @@ return {
     ---@type snacks.Config
     opts = {
         bigfile = { enabled = true },
-        explorer = { enabled = true, replace_netrw = true },
+        explorer = { enabled = false, replace_netrw = true },
         input = { enabled = true },
         picker = { enabled = true },
         notifier = { enabled = true },
         quickfile = { enabled = true },
         scope = { enabled = true },
-        scroll = { enabled = true },
+        scroll = { enabled = false },
         statuscolumn = { enabled = true },
-        words = { enabled = true },
+        words = { enabled = false },
         terminal = { enabled = true, win = { style = "terminal" }, },
         styles = {
             terminal = {
@@ -25,7 +25,7 @@ return {
     },
     keys = {
         -- explorer
-        { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+        -- { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
         -- find
         { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
         { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
@@ -34,6 +34,8 @@ return {
         { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
         { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
         { "<leader>fo", function() Snacks.picker.recent() end, desc = "Recent" },
+        { "<leader>fh", function() Snacks.picker.help() end, desc = "Help Pages" },
+        { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
         -- Grep
         { "<leader>fw", function() Snacks.picker.grep() end, desc = "Grep" },
         { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
