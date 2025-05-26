@@ -6,7 +6,7 @@ return {
     opts = {
         bigfile = { enabled = true },
         explorer = { enabled = false, replace_netrw = true },
-        input = { enabled = true },
+        input = { enabled = false },
         picker = { enabled = true },
         notifier = { enabled = true },
         quickfile = { enabled = true },
@@ -28,6 +28,7 @@ return {
         -- { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
         -- find
         { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+        { "<leader>b", function() Snacks.picker.buffers() end, desc = "Buffers" },
         { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
         { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
         { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },

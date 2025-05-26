@@ -21,6 +21,9 @@ return {
         { "<C-e>", "<cmd>Neotree buffers float<cr>", desc = "Buffers" },
     },
     opts = {
+        filesystem = {
+            hijack_netrw_behavior = "open_default",
+        },
         enable_diagnostics = false,
         window = {
             mappings = {

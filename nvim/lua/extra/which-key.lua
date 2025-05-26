@@ -1,6 +1,6 @@
 return {
     "folke/which-key.nvim",
-    keys = { "<leader>", "g", "[", "]" },
+    keys = { mode = { "n", "x", "o" }, "<leader>", "g", "[", "]" },
     config = function()
         local wk = require("which-key")
         wk.setup({

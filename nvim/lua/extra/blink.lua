@@ -6,6 +6,7 @@ return {
         enabled = true,
         dependencies = {
             "rafamadriz/friendly-snippets",
+            "Kaiser-Yang/blink-cmp-avante",
             {
                 "saghen/blink.compat",
                 version = "*",
@@ -29,7 +30,16 @@ return {
             -- Default list of enabled providers defined so that you can extend it
             -- elsewhere in your config, without redefining it, due to `opts_extend`
             sources = {
-                default = { "lsp", "path", "snippets", "buffer" },
+                default = { "avante", "lsp", "path", "snippets", "buffer" },
+                providers = {
+                    avante = {
+                        module = "blink-cmp-avante",
+                        name = "Avante",
+                        opts = {
+                            -- options for blink-cmp-avante
+                        },
+                    },
+                },
             },
             fuzzy = { implementation = "prefer_rust_with_warning" },
             completion = {
@@ -41,8 +51,10 @@ return {
                         },
                     },
                 },
+                documentation = { auto_show = true, auto_show_delay_ms = 500 },
+                ghost_text = { enabled = false },
             },
+            signature = { enabled = true },
         },
-        opts_extend = { "sources.default" },
     },
 }
