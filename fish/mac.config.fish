@@ -1,4 +1,5 @@
 if status is-interactive
+    set -x XAI_API_KEY xai-RfF2UmUemhapQV9WxYbZefXqw3plj4bcaIuB6uRZcdwz9dDJdETvkEhU7cbaWTcrJ6nZNt6iRTZYLi6R
     set EDITOR nvim
     fish_add_path /opt/homebrew/bin
     fish_add_path ~/.local/bin
@@ -15,4 +16,14 @@ if status is-interactive
     atuin init fish | source
     starship init fish | source
     mise activate fish | source
+
+    # Then use y instead of yazi to start, and press q to quit, you'll see the CWD changed. Sometimes, you don't want to change, press Q to quit.
+    function y
+        set tmp (mktemp -t "yazi-cwd.XXXXXX")
+        yazi $argv --cwd-file="$tmp"
+        if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+            builtin cd -- "$cwd"
+        end
+        rm -f -- "$tmp"
+    end
 end

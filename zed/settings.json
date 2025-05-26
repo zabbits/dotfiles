@@ -1,8 +1,13 @@
 {
-  "features": {
-    "inline_completion_provider": "none"
+  "show_edit_predictions": false,
+  "edit_predictions": {
+    "disabled_globs": [],
+    "mode": "eager_preview"
   },
-  "assistant": {
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "agent": {
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-3-5-sonnet-latest"
@@ -30,6 +35,9 @@
   },
   "relative_line_numbers": false,
   "languages": {
+    "Rust": {
+      "show_edit_predictions": true
+    },
     "Vue.js": {
       "tab_size": 2,
       "format_on_save": "off"
