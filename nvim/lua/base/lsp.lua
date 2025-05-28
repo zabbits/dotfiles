@@ -1,6 +1,7 @@
 return {
     "neovim/nvim-lspconfig",
-    event = { "BufRead", "BufNewFile" },
+    -- event = { "BufRead", "BufNewFile" },
+    event = "VeryLazy",
     config = function()
         -- keymaps
         vim.api.nvim_create_autocmd("LspAttach", {

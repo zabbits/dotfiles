@@ -1,6 +1,7 @@
 local mason = {
     "williamboman/mason.nvim",
-    cmd = "Mason",
+    -- cmd = "Mason",
+    event = "VeryLazy",
     keys = {
         {
             "<leader>M",
@@ -13,7 +14,8 @@ local mason = {
 
 local mason_lsp = {
     "williamboman/mason-lspconfig.nvim",
-    event = { "BufRead", "BufNewFile" },
+    -- event = { "BufRead", "BufNewFile" },
+    event = "VeryLazy",
     dependencies = {
         "williamboman/mason.nvim",
         "neovim/nvim-lspconfig",

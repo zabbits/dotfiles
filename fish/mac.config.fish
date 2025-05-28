@@ -1,5 +1,4 @@
 if status is-interactive
-    set -x XAI_API_KEY xai-RfF2UmUemhapQV9WxYbZefXqw3plj4bcaIuB6uRZcdwz9dDJdETvkEhU7cbaWTcrJ6nZNt6iRTZYLi6R
     set EDITOR nvim
     fish_add_path /opt/homebrew/bin
     fish_add_path ~/.local/bin
