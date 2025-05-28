@@ -22,7 +22,13 @@ local mason_lsp = {
     },
     config = function()
         -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
-        local capabilities = require("blink.cmp").get_lsp_capabilities({})
+
+        local capabilities = vim.tbl_deep_extend(
+          "force",
+          {},
+          vim.lsp.protocol.make_client_capabilities(),
+          require("blink.cmp").get_lsp_capabilities({})
+        )
 
         local mason_registry = require("mason-registry")
         local vue_language_server_path = ""
