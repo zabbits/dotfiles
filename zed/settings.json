@@ -1,22 +1,39 @@
 {
+  "ssh_connections": [
+    {
+      "host": "m4mini",
+      "projects": [
+        {
+          "paths": [
+            "/Users/zabbits/project/rust/anytype-api"
+          ]
+        }
+      ]
+    }
+  ],
   "show_edit_predictions": false,
   "edit_predictions": {
     "disabled_globs": [],
-    "mode": "eager_preview"
+    "mode": "subtle"
   },
   "features": {
     "edit_prediction_provider": "zed"
   },
   "agent": {
+    "inline_assistant_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-7-sonnet"
+    },
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-latest"
+      "model": "claude-sonnet-4"
     },
     "version": "2"
   },
   "theme": "Kanagawa",
   "vim_mode": true,
-  "current_line_highlight": "none",
+  // "current_line_highlight": "none",
+  "current_line_highlight": "all",
   "ui_font_size": 16.5,
   "buffer_font_size": 17,
   "cursor_blink": false,
@@ -28,12 +45,31 @@
   // allow cursor to reach edges of screen
   "vertical_scroll_margin": 0,
   "buffer_font_family": "FiraCode Nerd Font Mono",
+  "buffer_font_weight": 400,
+  "ui_font_weight": 400,
+  "relative_line_numbers": false,
+
+  // LSP
+  "go_to_definition_fallback": "none",
+  "auto_signature_help": false,
+
+  // Toolbar related settings
+  "toolbar": {
+    "code_actions": true
+  },
+
+  // Titlebar related settings
+  "title_bar": {
+    // Whether to show the branch icon beside branch switcher in the titlebar.
+    "show_branch_icon": true
+  },
+
   "terminal": {
     "shell": {
       "program": "fish"
-    }
+    },
+    "line_height": "standard"
   },
-  "relative_line_numbers": false,
   "languages": {
     "Rust": {
       "show_edit_predictions": true
@@ -43,7 +79,7 @@
       "format_on_save": "off"
     },
     "TypeScript": {
-      "tab_size": 2,
+      "tab_size": 4,
       "format_on_save": "off"
     }
   }
