@@ -9,7 +9,7 @@ return {
             -- add any opts here
             -- for example
             provider = "xai",
-            vendors = {
+            providers = {
                 ["xai"] = {
                     __inherited_from = "openai",
                     -- __inherited_from = "openai",
