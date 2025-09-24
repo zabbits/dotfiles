@@ -12,6 +12,15 @@ local mason = {
     opts = true,
 }
 
+-- ◍ astro-language-server astro
+-- ◍ gopls
+-- ◍ lua-language-server lua_ls
+-- ◍ prettierd
+-- ◍ pyright
+-- ◍ ruff
+-- ◍ stylua
+-- ◍ tinymist
+-- ◍ typescript-language-server ts_ls
 local mason_lsp = {
     "williamboman/mason-lspconfig.nvim",
     -- event = { "BufRead", "BufNewFile" },

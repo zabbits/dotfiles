@@ -6,16 +6,15 @@ return {
         lazy = false,
         version = false, -- Never set this value to "*"! Never!
         opts = {
-            -- add any opts here
-            -- for example
-            provider = "xai",
-            providers = {
-                ["xai"] = {
-                    __inherited_from = "openai",
-                    -- __inherited_from = "openai",
-                    api_key_name = "XAI_API_KEY",
-                    endpoint = "https://api.x.ai/v1",
-                    model = "grok-3-beta",
+            provider = "gemini-cli",
+            acp_providers = {
+                ["gemini-cli"] = {
+                    command = "gemini",
+                    args = { "--experimental-acp" },
+                    env = {
+                        NODE_NO_WARNINGS = "1",
+                    },
+                    auth_method = nil,
                 },
             },
         },
