@@ -25,6 +25,12 @@ return {
         opts = {
             spec = {
                 {
+                    "<leader>q",
+                    group = "Quit",
+                    proxy = nil,
+                    expand = nil,
+                },
+                {
                     "<leader>w",
                     group = "save",
                     proxy = nil,
@@ -32,6 +38,12 @@ return {
                 },
             },
         },
+    },
+    {
+        "folke/persistence.nvim",
+        keys = function ()
+            return nil
+        end
     },
     {
         "j-hui/fidget.nvim",
