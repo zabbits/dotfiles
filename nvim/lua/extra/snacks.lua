@@ -31,6 +31,7 @@ return {
         { "<leader>b", function() Snacks.picker.buffers() end, desc = "Buffers" },
         { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
         { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+        { "<leader>/", function() Snacks.picker.files({hidden = true}) end, desc = "Find Files" },
         { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
         { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
         { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
@@ -39,6 +40,7 @@ return {
         { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
         -- Grep
         { "<leader>fw", function() Snacks.picker.grep() end, desc = "Grep" },
+        { "<leader>:", function() Snacks.picker.grep({hidden = true}) end, desc = "Grep" },
         { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
         { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
         { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },

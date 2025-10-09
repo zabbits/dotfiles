@@ -68,6 +68,9 @@ return {
         opts = {
             completions = { lsp = { enabled = true } },
             file_types = { "markdown", "Avante" },
+            heading = {
+                position = "inline",
+            },
         },
         ft = { "markdown", "Avante" },
     },
