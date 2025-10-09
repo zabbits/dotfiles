@@ -9,6 +9,14 @@
           ]
         }
       ]
+    },
+    {
+      "host": "txnj",
+      "projects": []
+    },
+    {
+      "host": "td202",
+      "projects": []
     }
   ],
   "show_edit_predictions": false,
@@ -28,7 +36,6 @@
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
     },
-    "version": "2"
   },
   "theme": "Kanagawa",
   "vim_mode": true,
@@ -73,6 +80,17 @@
   "languages": {
     "Rust": {
       "show_edit_predictions": true
+    },
+    "Python": {
+      "show_edit_predictions": true,
+      "language_servers": ["pyright", "ruff"],
+      "formatter": [
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ]
     },
     "Vue.js": {
       "tab_size": 2,

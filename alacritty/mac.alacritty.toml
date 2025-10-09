@@ -40,14 +40,17 @@ foreground = "0xc8c093"
 size = 17
 
 [font.normal]
-family = "Maple Mono NF CN"
+# family = "Maple Mono NF CN"
+family = "FiraCode Nerd Font Mono"
 style = "Regular"
 # just a maple mono italic
 [font.italic]
-family = "Maple Mono NF CN"
+# family = "Maple Mono NF CN"
+family = "FiraCode Nerd Font Mono"
 style = "Italic"
 [font.bold_italic]
-family = "Maple Mono NF CN"
+# family = "Maple Mono NF CN"
+family = "FiraCode Nerd Font Mono"
 style = "Bold Italic"
 
 [window]

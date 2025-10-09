@@ -22,5 +22,17 @@
     "bindings": {
       "space f f": "file_finder::Toggle"
     }
+  },
+  {
+    "context": "(VimControl && !menu)",
+    "bindings": {
+      "[ e": null
+    }
+  },
+  {
+    "context": "(VimControl && !menu)",
+    "bindings": {
+      "] e": null
+    }
   }
 ]
