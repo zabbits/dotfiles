@@ -4,6 +4,11 @@ return {
         keys = {
             { "go", "<cmd>AerialToggle<cr>", desc = "Aerial (Symbols)" },
         },
+        opts = {
+            layout = {
+                min_width = 30,
+            },
+        },
     },
     {
         "folke/snacks.nvim",
@@ -18,6 +23,7 @@ return {
             scope = { enabled = false },
             scroll = { enabled = false },
             words = { enabled = false },
+            dashboard = { enabled = false },
         },
     },
     {
@@ -42,8 +48,8 @@ return {
     {
         "folke/persistence.nvim",
         keys = function ()
-            return nil
-        end
+            return {}
+        end,
     },
     {
         "j-hui/fidget.nvim",
