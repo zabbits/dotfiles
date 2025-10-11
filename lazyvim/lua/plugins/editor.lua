@@ -24,6 +24,24 @@ return {
             scroll = { enabled = false },
             words = { enabled = false },
             dashboard = { enabled = false },
+            picker = {
+                sources = {
+                    explorer = {
+                        -- your explorer picker configuration comes here
+                        -- or leave it empty to use the default settings
+                        diagnostics = false,
+                        win = {
+                            list = {
+                                keys = {
+                                    ["<BS>"] = "explorer_up",
+                                    ["C"] = "explorer_close", -- close directory
+                                    ["y"] = { "explorer_yank", mode = { "n" } },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
         },
     },
     {
@@ -47,7 +65,7 @@ return {
     },
     {
         "folke/persistence.nvim",
-        keys = function ()
+        keys = function()
             return {}
         end,
     },
