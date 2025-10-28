@@ -3,32 +3,49 @@ return {
         "neovim/nvim-lspconfig",
         opts = {
             diagnostics = {
-                virtual_lines = {
-                    current_line = true,
-                },
+                -- virtual_lines = {
+                --     current_line = true,
+                -- },
+                -- virtual_text = {
+                --     current_line = false,
+                -- },
                 virtual_text = false,
                 severity_sort = true,
                 underline = false,
-                update_in_insert = false,
                 float = { border = "single" },
             },
         },
     },
     {
         "neovim/nvim-lspconfig",
-        opts = function()
-            local keys = require("lazyvim.plugins.lsp.keymaps").get()
-            -- change a keymap
-            keys[#keys + 1] = {
-                "K",
-                function()
-                    vim.lsp.buf.hover({ border = "single" })
-                end,
-            }
-            -- disable a keymap
-            -- keys[#keys + 1] = { "K", false }
-            -- add a keymap
-            -- keys[#keys + 1] = { "H", "<cmd>echo 'hello'<cr>" }
+        opts = {
+            servers = {
+                ["*"] = {
+                    keys = {
+                        {
+                            "K",
+                            function()
+                                vim.lsp.buf.hover({ border = "single" })
+                            end,
+                        },
+                    },
+                },
+            },
+        },
+    },
+    {
+        "rachartier/tiny-inline-diagnostic.nvim",
+        event = { "BufRead", "BufNewFile" },
+        config = function()
+            require("tiny-inline-diagnostic").setup({
+                preset = "ghost",
+                options = {
+                    show_source = {
+                        enabled = true,
+                    },
+                    show_all_diags_on_cursorline = true,
+                },
+            })
         end,
     },
 }

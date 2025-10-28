@@ -13,8 +13,10 @@ return {
     {
         "folke/snacks.nvim",
         keys = {
+            { "<C-e>", LazyVim.pick("buffers"), desc = "Buffers" },
             { "<leader>/", LazyVim.pick("files", { hidden = true }), desc = "Grep (With Hidden)" },
             { "<leader>:", LazyVim.pick("grep", { hidden = true }), desc = "Find Files (With Hidden)" },
+            { "<leader><leader>", "<C-^>", desc = "Alternate file" },
             { "<leader>fo", LazyVim.pick("oldfiles"), desc = "Recent" },
         },
         opts = {
