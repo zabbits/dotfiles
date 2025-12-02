@@ -123,4 +123,8 @@ return {
         event = { "BufRead", "BufNewFile" },
         opts = {},
     },
+    {
+        "esmuellert/vscode-diff.nvim",
+        dependencies = { "MunifTanjim/nui.nvim" },
+    },
 }
