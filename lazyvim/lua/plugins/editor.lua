@@ -11,15 +11,25 @@ return {
         },
     },
     {
+        "nvim-neo-tree/neo-tree.nvim",
+        opts = {
+            filesystem = {
+                bind_to_cwd = true,
+            },
+        },
+    },
+    {
+        "ibhagwan/fzf-lua",
+        keys = {
+            { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Old Files" },
+            { "<leader>fw", "<cmd>FzfLua live_grep<cr>", desc = "Old Files" },
+        },
+    },
+    {
         "folke/snacks.nvim",
         keys = {
-            -- { "<leader>e", false },
-            -- { "<leader>E", false },
             { "<C-e>", LazyVim.pick("buffers"), desc = "Buffers" },
-            { "<leader>/", LazyVim.pick("files", { hidden = true }), desc = "Grep (With Hidden)" },
-            { "<leader>:", LazyVim.pick("grep", { hidden = true }), desc = "Find Files (With Hidden)" },
             { "<leader><leader>", "<C-^>", desc = "Alternate file" },
-            { "<leader>fo", LazyVim.pick("oldfiles"), desc = "Recent" },
         },
         opts = {
             animate = { enabled = false },
@@ -28,24 +38,6 @@ return {
             scroll = { enabled = false },
             words = { enabled = false },
             dashboard = { enabled = false },
-            picker = {
-                sources = {
-                    explorer = {
-                        -- your explorer picker configuration comes here
-                        -- or leave it empty to use the default settings
-                        diagnostics = false,
-                        win = {
-                            list = {
-                                keys = {
-                                    ["<BS>"] = "explorer_up",
-                                    ["C"] = "explorer_close", -- close directory
-                                    ["y"] = { "explorer_yank", mode = { "n" } },
-                                },
-                            },
-                        },
-                    },
-                },
-            },
         },
     },
     {

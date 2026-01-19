@@ -5,6 +5,9 @@ vim.g.autoformat = false
 vim.g.snacks_animate = false
 vim.g.trouble_lualine = false
 
+-- fzf replace snacks picker
+vim.g.lazyvim_picker = "fzf"
+
 local options = {
     -- indent
     smartindent = true,
