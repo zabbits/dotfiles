@@ -21,6 +21,7 @@ return {
     {
         "ibhagwan/fzf-lua",
         keys = {
+            { "<leader><leader>", "<C-^>", desc = "Alternate" },
             { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Old Files" },
             { "<leader>fw", "<cmd>FzfLua live_grep<cr>", desc = "Old Files" },
         },
