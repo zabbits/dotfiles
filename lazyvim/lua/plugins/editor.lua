@@ -12,9 +12,41 @@ return {
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
+        keys = {
+            {
+                "<leader>E",
+                "<cmd>Neotree toggle float<cr>",
+                desc = "FileTree",
+            },
+            {
+                "<leader>e",
+                "<cmd>Neotree focus reveal float<cr>",
+                desc = "FileTree Reveal",
+            },
+            { "<C-e>", "<cmd>Neotree buffers float<cr>", desc = "Buffers" },
+        },
         opts = {
             filesystem = {
+                hijack_netrw_behavior = "open_default",
                 bind_to_cwd = true,
+            },
+            enable_diagnostics = false,
+            window = {
+                mappings = {
+                    ["e"] = "none",
+                    ["b"] = "none",
+                    ["g"] = "none",
+                    ["w"] = "none",
+                    ["l"] = "none",
+                    ["h"] = "none",
+                    ["v"] = "none",
+                    ["V"] = "none",
+                    ["j"] = "none",
+                    ["k"] = "none",
+                    ["y"] = "none",
+                    ["z"] = "none",
+                    ["c"] = "copy_to_clipboard",
+                },
             },
         },
     },
@@ -24,6 +56,24 @@ return {
             { "<leader><leader>", "<C-^>", desc = "Alternate" },
             { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Old Files" },
             { "<leader>fw", "<cmd>FzfLua live_grep<cr>", desc = "Old Files" },
+        },
+        opts = {
+            "borderless_full",
+            winopts = {
+                -- preview = {
+                --     layout = "vertical",
+                --     vertical = "down:65%",
+                -- },
+                on_create = function()
+                    -- use Ctrl-r paste register
+                    vim.keymap.set(
+                        "t",
+                        "<C-r>",
+                        [['<C-\><C-N>"'.nr2char(getchar()).'pi']],
+                        { expr = true, buffer = true }
+                    )
+                end,
+            },
         },
     },
     {
